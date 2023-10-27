@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             ข้อมูลผู้ใช้ {{Auth::user()->name}}
            <b class="float-end">จำนวนผู้ใช้ระบบ <span class="text-red-500">{{count($users)}} </span>คน</b>
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-10xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-purple-500 overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="mx-auto max-w-10xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-purple-500 shadow-xl sm:rounded-lg">
                 <table class="table table-striped ">
                     <thead class="table-warning">
                       <tr>
@@ -16,7 +16,6 @@
                         <th scope="col">User</th>
                         <th scope="col">Email</th>
                         <th scope="col">เริ่มใช้งานระบบ</th>
-                        <th scope="col">สิทธ์เข้าถึง</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -27,7 +26,7 @@
                         <td>{{$row->name}}</td>
                         <td>{{$row->email}}</td>
                         <td>{{$row->created_at->diffForHumans()}}</td>
-                        <td><a href="#" class="btn btn-success show-model"> เพิ่มหน่วย</a></td>
+
                       </tr>
                       @endforeach
                     </tbody>
