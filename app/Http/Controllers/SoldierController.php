@@ -46,7 +46,7 @@ class SoldierController extends Controller
             }
 		    })
             // ->dd()
-       ->orderBy('created_at','desc')->paginate(2);
+       ->orderBy('created_at','desc')->paginate(50);
 
             $Department=Department::where('dep_id','!=','')->orderby('dep_id')->get();
 

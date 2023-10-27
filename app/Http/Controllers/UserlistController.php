@@ -80,6 +80,8 @@ class UserlistController extends Controller
 
             $Department=Department::where('dep_id','!=','')->orderBy('dep_id')->get();
 
+            // $showDepartment=Department::where('dep_id','!=','' )->orderBy('dep_id')->get();
+
           return view('admin.userlist.add',compact('Department','user_id','userdep'));
          }
 

@@ -18,7 +18,7 @@ class DepartmentController extends Controller
        $battalion = Battalion::where('battalion_id','!=','')->orderby('battalion_id')->get();
 
     //    $Battalion = Battalion::where('battalion_id','!= ไม่ค่าว่าง','')->orderby('battalion_id')->get();
-       $trashDepartment = Department::onlyTrashed()->paginate(5);
+       $trashDepartment = Department::onlyTrashed()->paginate(10);
       // $departments =  DB::table('departments')->get();
 
       //เขียนเรียกจาก table โดยตรง

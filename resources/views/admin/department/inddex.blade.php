@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header" >
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             จัดการหน่วย
             <b class="float-end"> ผู้ใช้ : <span class="text-black">{{Auth::user()->name}}</span></b>
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-10xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="mx-auto max-w-10xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
                 <div class="row">
                     @if (session('success'))
                             <div class="alert alert-success">{{session('success')}}</div>
@@ -47,8 +47,8 @@
                                     <td>{{$row->dep_id}}</td>
                                     <td>{{$row->department_name}}</td>
                                     <td>{{$batArr[$row->battalion_id]}}</td>
-                                    <td><a href="{{url('/department/edit/'.$row->dep_id)}}{{ "?page=".Request::get('page') }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td><a href="{{url('/department/softdelete/'.$row->dep_id)}}" class="btn btn-warning"> ลบ</a></td>
+                                    <td><a href="{{url('/department/edit/'.$row->dep_id)}}{{ "?page=".Request::get('page') }}" class="btn btn-danger" > แก้ไข</a></td>
+                                    <td><a href="{{url('/department/softdelete/'.$row->dep_id)}}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
@@ -60,7 +60,7 @@
 
                     <div class="col-md-4 ">
                         <div class="card">
-                            <div class="card-header bg-purple-500 "><b>แบบฟอร์ม</b></div>
+                            <div class="bg-purple-500 card-header "><b>แบบฟอร์ม</b></div>
                             <div class="card-body">
                                 <form action="{{route('addDepartment')}}" method="POST">
                                     @csrf
@@ -79,7 +79,7 @@
 
                                     @error('department_id')
                                       <div class="my-2">
-                                        <span class="text text-red-600">{{$message}}</span>
+                                        <span class="text-red-600 text">{{$message}}</span>
                                       </div>
                                     </div>
                                     @enderror
@@ -87,7 +87,7 @@
                                     <input type="text" class="form-control" name="dep_id"  id="dep_id" required>
                                     @error('dep_id')
                                       <div class="my-2">
-                                        <span class="text text-red-600">{{$message}}</span>
+                                        <span class="text-red-600 text">{{$message}}</span>
                                       </div>
                                     @enderror
 
@@ -95,18 +95,18 @@
                                     <input type="text" class="form-control" name="department_name" id="department_name"required>
                                     @error('department_name')
                                       <div class="my-2">
-                                        <span class="text text-red-600">{{$message}}</span>
+                                        <span class="text-red-600 text">{{$message}}</span>
                                       </div>
                                     @enderror
 
                                     <br>
-                                    <button type="submit" value="บันทึก" class="btn btn-primary text-black">บันทึก</button>
+                                    <button type="submit" value="บันทึก" class="text-black btn btn-primary">บันทึก</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                     @if (count($trashDepartment)>0)
-                    <div class="col-md-8 my-4">
+                    <div class="my-4 col-md-8">
                         <div class="card ">
                             <div class="card-header">ถังขยะ
                             </div>

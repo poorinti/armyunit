@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            ข้อมูลผู้ใช้ {{Auth::user()->name}}
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            รายชื่อผู้ใช้งาน
            <b class="float-end">จำนวนผู้ใช้ระบบ <span class="text-red-500">{{count($users)}} </span>คน</b>
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-10xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-purple-500 overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="mx-auto max-w-10xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-purple-500 shadow-xl sm:rounded-lg">
                 <table class="table table-striped ">
                     <thead class="table-warning">
                       <tr>
@@ -57,7 +57,7 @@
     </div>
   </div>
 
-{{-- 
+{{--
 <script>
 $(".show-model").on('click',function (e){
 //{{url('/userallow/edit/'.$row->id)}}
