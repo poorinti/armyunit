@@ -31,7 +31,7 @@
                     <div class="col-md-8">
                         <div class=" card">
                             <div class="card">
-                                <div class="card-header">แก้ไขข้อมูลประจำตัว</div>
+                                <div class="bg-yellow-100 card-header">แก้ไขข้อมูลประจำตัว</div>
                                      <div class="card-body">
                                         <form action="{{url('/soldier/update/'.$soldier->soldier_id )}}" method="POST" enctype="multipart/form-data">
                                             @csrf
@@ -243,8 +243,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-header">รูปประจำตัว</div>
-                            <div class="justify-center mx-auto text-center card-body">
+                            <div class="bg-yellow-100 card-header ">รูปประจำตัว</div>
+                            <div class="justify-center mx-auto text-center card-body ">
                                 <img src="{{isset($soldier->soldier_image) ? asset($soldier->soldier_image) : '/storage/logo1.png'}}" alt="{{ isset($soldier->soldier_image) ? asset($soldier->soldier_image) : '' }}" alt="imageshow" width="200px" height="200px">
                                 <label for="imageshow">{{$soldier->soldier_name }}</label>
                             </div>
