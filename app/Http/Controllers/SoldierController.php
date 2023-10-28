@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Service;
+use File;
 use App\Models\Soldier;
 use App\Models\Userdep;
 use App\Models\Department;
