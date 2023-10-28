@@ -290,7 +290,7 @@ class SoldierController extends Controller
                 $upload_location = 'image/soldier/'.$soldier_year.'/'.$soldier_dep_id.'/';
 
                 //ต้องการเช็ตpath ก่อน ถ้าไม่มีให้สร้าง
-                if (!File::exists($upload_location)) {
+                if (!File::exists('image/soldier/'.$soldier_year)) {
 
                     // mkdir($upload_location, 0755, true);
                     File::makeDirectory('image/soldier/'.$soldier_year, 0755, true);
