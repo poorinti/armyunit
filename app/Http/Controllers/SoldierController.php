@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Service;
-use File;
+use Illuminate\Support\Facades\File;
 use App\Models\Soldier;
 use App\Models\Userdep;
 use App\Models\Department;
