@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>ระบบจัดการฐานข้อมูลหน่วยฝึกทหารใหม่</title>
-
+        <link rel="icon" type="image/x-icon" href="/image/logo/favicon.ico">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
@@ -29,9 +29,9 @@
 
     </head>
     <body class="antialiased">
-        <div class="relative sm:justify-center sm:items-center bg-gray-100 selection:bg-red-500 selection:text-white"
+        <div class="relative bg-gray-100 sm:justify-center sm:items-center selection:bg-red-500 selection:text-white"
         style=" background-position: 100%;
-                    background-image: url('{{ asset('storage/bg2.jpg') }}');
+                    background-image: url('{{ asset('/image/logo/bg2.jpg') }}');
                     height: 100%;
                     width: 100%;
                     background-position: center;
@@ -42,7 +42,7 @@
                 ">
 
         <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white"
+        class="relative min-h-screen bg-gray-100 bg-center sm:flex sm:justify-center sm:items-center bg-dots-darker selection:bg-red-500 selection:text-white"
         style="
         background-color: rgba(0, 0, 0, 0.425);
         background-position: center;
@@ -51,7 +51,7 @@
         position: relative;
         ">
             @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+                <div class="z-10 p-6 text-right sm:fixed sm:top-0 sm:right-0">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="font-semibold text-white hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                     @else
@@ -66,12 +66,12 @@
             <div class="px-4 py-5 my-5 text-center"
 
             >
-                <img class="d-block mx-auto mb-4" src="{{ asset('storage/logo1.png') }}" alt="" width="200" height="200">
-                <h1 class="display-6 fw-bold text-white">ระบบฐานข้อมูลหน่วยฝึกทหารใหม่ ส.พัน.6 พล.ร.6</h1>
-                <div class="col-lg-6 mx-auto">
-                  <p class="lead mb-4"></p>
-                  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <a href="{{ route('login') }}" class="btn btn-primary btn-lg px-4 gap-3 text-white hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">เข้าสู่ระบบ</a>
+                <img class="mx-auto mb-4 d-block" src="{{ asset('/image/logo/logo1.png') }}" alt="" width="200" height="200">
+                <h1 class="text-white display-6 fw-bold">ระบบฐานข้อมูลหน่วยฝึกทหารใหม่ ส.พัน.6 พล.ร.6</h1>
+                <div class="mx-auto col-lg-6">
+                  <p class="mb-4 lead"></p>
+                  <div class="gap-2 d-grid d-sm-flex justify-content-sm-center">
+                    <a href="{{ route('login') }}" class="gap-3 px-4 text-white btn btn-primary btn-lg hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">เข้าสู่ระบบ</a>
 
                   </div>
                 </div>

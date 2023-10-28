@@ -1,20 +1,20 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             ข้อมูลกำลังพล
         </h2>
 </x-slot>
 
     <div class="py-12">
-        <div class="max-w-auto mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="mx-auto max-w-auto sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
                 <form action="/soldier/all"  name="frmsearch" id="frmsearch" method="post">
                     @csrf
-                <div class="row my-3">
+                <div class="my-3 row">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="ค้นหากำลังพล" id="search" name="search" value="{{isset($search) ? $search : '' }}">
-                        <button class="btn btn-primary bg-primary text-white mr-2" type="sumit">ค้นหา</button>
-                        <a href="{{url('/soldier/startadd')}}" class="btn btn-primary bg-purple-700 text-white"> เพิ่มกำลังพล</a>
+                        <button class="mr-2 text-white btn btn-primary bg-primary" type="sumit">ค้นหา</button>
+                        <a href="{{url('/soldier/startadd')}}" class="text-white bg-purple-700 btn btn-primary"> เพิ่มกำลังพล</a>
                     </div>
                 </div>
                 </form>
@@ -45,7 +45,7 @@
                                     <th> {{$soldier->firstItem()+$loop->index}}</th>
                                     <td >
                                         {{-- isset จากฐานข้อมูล ถ้าไม่มีภาพ ให้ดึงเอา โลโก้มา --}}
-                                        <img src="{{isset($row->soldier_image) ? asset($row->soldier_image) : '/storage/logo1.png'}}" alt="{{ isset($row->soldier_image) ? asset($row->soldier_image) : '' }}" width="100px" height="100px" class="mx-auto" >
+                                        <img src="{{isset($row->soldier_image) ? asset($row->soldier_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->soldier_image) ? asset($row->soldier_image) : '' }}" width="100px" height="100px" class="mx-auto" >
                                     </td>
                                     <td>{{$row->soldier_name}}</td>
                                     <td>{{$row->soldier_id }}</td>
@@ -72,7 +72,7 @@
                                     <input type="text" class="form-control" name="service_name">
                                     @error('service_name')<!-- ชื่อแท็ก name-->
                                       <div class="my-2">
-                                        <span class="text text-red-600">{{$message}}</span>
+                                        <span class="text-red-600 text">{{$message}}</span>
                                       </div>
                                     @enderror
                                     <br>
@@ -81,13 +81,13 @@
                                     <input type="file" class="form-control" name="service_image">
                                     @error('service_image')
                                       <div class="my-2">
-                                        <span class="text text-red-600">{{$message}}</span>
+                                        <span class="text-red-600 text">{{$message}}</span>
                                       </div>
                                     @enderror
                                     <br>
                                     <a href="{{url('/service/startup')}}" class="btn btn-danger"> เพิ่มกำลังพล</a>
 
-                                    <input type="submit" value="บันทัก" class="btn btn-primary text-black">
+                                    <input type="submit" value="บันทัก" class="text-black btn btn-primary">
                                 </form>
                             </div>
                         </div>

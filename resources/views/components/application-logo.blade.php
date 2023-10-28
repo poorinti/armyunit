@@ -1,3 +1,3 @@
 <div>
-    <img src="{{ asset('storage/logo1.png') }}">
+    <img src="{{ asset('/image/logo/logo1.png') }}">
 </div>
