@@ -135,10 +135,11 @@ class SoldierController extends Controller
 
     //อัพโหลดภาพ และบันทึกข้อมูล
     $upload_location = 'image/soldier/'.$soldier_year.'/'.$soldier_dep_id.'/';
-    if(!is_dir($upload_location)) {
+    if (!File::exists('image/soldier/'.$soldier_year)) {
 
         // mkdir($upload_location, 0755, true);
-        File::makeDirectory('/'.$upload_location, 0755, true);
+        File::makeDirectory('image/soldier/'.$soldier_year, 0755, true);
+        File::makeDirectory($upload_location, 0755, true);
     }
     $full_path = $upload_location.$img_name;
    // dd($full_path);
@@ -301,8 +302,8 @@ class SoldierController extends Controller
 
                   //ลบภาพเก่าและอัพภาพใหม่แทนที่
                   $old_image = $request->old_image;
-                  if($old_image){
-                  unlink($old_image);}
+                //   if($old_image){
+                //   unlink($old_image);}
                   $soldier_image->move($upload_location,$img_name);
                   $chk = True;
 
