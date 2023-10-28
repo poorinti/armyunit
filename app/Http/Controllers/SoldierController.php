@@ -293,7 +293,7 @@ class SoldierController extends Controller
                 if(!is_dir($upload_location)) {
 
                     // mkdir($upload_location, 0755, true);
-                    File::makeDirectory('/'.$upload_location, 0755, true);
+                    File::makeDirectory('image/soldier/'.$soldier_year, 0755, true);
                 }
 
                 $full_path = $upload_location.$img_name;
