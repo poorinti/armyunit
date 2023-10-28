@@ -245,7 +245,7 @@
                         <div class="card">
                             <div class="bg-yellow-100 card-header ">รูปประจำตัว</div>
                             <div class="justify-center mx-auto text-center card-body ">
-                                <img src="{{isset($soldier->soldier_image) ? asset($soldier->soldier_image) : '/storage/logo1.png'}}" alt="{{ isset($soldier->soldier_image) ? asset($soldier->soldier_image) : '' }}" alt="imageshow" width="200px" height="200px">
+                                <img src="{{isset($soldier->soldier_image) ? asset($soldier->soldier_image) : '/image/logo/logo1.png'}}" alt="{{ isset($soldier->soldier_image) ? asset($soldier->soldier_image) : '' }}" alt="imageshow" width="200px" height="200px">
                                 <label for="imageshow">{{$soldier->soldier_name }}</label>
                             </div>
                         </div>
