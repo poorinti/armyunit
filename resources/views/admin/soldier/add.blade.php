@@ -79,6 +79,7 @@
                                          <br>
                                          <a href="/soldier/all" class="btn btn-info "><i class="fa fa-arrow-left"></i> กลับ</a>
                                          <button type="submit" class="btn btn-primary text-black mx-auto ">บันทึกข้อมูล</button>
+                                         
                                         </form>
                                 </div>
                             </div>

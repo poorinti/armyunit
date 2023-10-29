@@ -14,7 +14,8 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="ค้นหากำลังพล" id="search" name="search" value="{{isset($search) ? $search : '' }}">
                         <button class="mr-2 text-white btn btn-primary bg-primary" type="sumit">ค้นหา</button>
-                        <a href="{{url('/soldier/startadd')}}" class="text-white bg-purple-700 btn btn-primary"> เพิ่มกำลังพล</a>
+                        <a href="{{url('/soldier/startadd')}}" class="text-white bg-purple-700 btn btn-primary mr-2"> เพิ่มกำลังพล</a>
+                        <a href="{{url('/soldier/excel')}}" class=" btn btn-success text-white mr-2">import excel</a>
                     </div>
                 </div>
                 </form>
@@ -57,7 +58,7 @@
                                   @endforeach
                                 </tbody>
                             </table>
-                            <a href="{{url('/soldier/excel')}}" class="btn btn-danger">excel</a>
+
                             <br>
                             {{$soldier->links()}}
                         </div>
