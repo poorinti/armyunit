@@ -22,7 +22,7 @@ class ExcelController extends Controller
 
        $excel_import= $request->file('excel_import');
     //
-        $act=false;
+
 
     if(!$excel_import){
 
@@ -30,7 +30,7 @@ class ExcelController extends Controller
     }
 
     // $line->$soldier_dep_id = $soldier_dep_id;
-        try {
+        // try {
             $soldiers = (new FastExcel)->import($excel_import, function ($line) {
 
                 $soldier_dep_id=$line['soldier_dep_id'];
@@ -53,11 +53,11 @@ class ExcelController extends Controller
                     ,'soldiers_bat_name'=>$soldiers_bat_name
 
                 ]);
-                $act=true;
+
             });
-        } catch (\Throwable $th) {
+        // } catch (\Throwable $th) {
             return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
-        }
+        // }
 
         return redirect('/soldier/excel')->with(['success' => "Users imported successfully."]);
 
