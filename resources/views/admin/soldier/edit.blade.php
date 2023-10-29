@@ -56,7 +56,7 @@
                                                 @enderror
 
                                                 <label for="soldier_name">ชื่อ-สกุล</label>
-                                                <input type="text" class="form-control" name="soldier_name" value="{{$soldier->soldier_name }}" disabled>
+                                                <input type="text" class="form-control" name="soldier_name" value="{{$soldier->soldier_name }}" >
                                                 @error('soldier_name')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
