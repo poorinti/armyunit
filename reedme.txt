@@ -1,0 +1,34 @@
+1.clone git url<project> armyunit2
+2.composer install
+3.mv .env.ex .env แก้ฐานข้อมูล pass
+4. php artisan key:generate
+
+5.###Write storage ,bootstrap
+chown -R www-data storage
+> chown -R www-data bootstrap/cache
+
+6.##Configure site
+==> nano /etc/apache2/sites-available/000.conf 
+7.
+<VirtualHost *:80>
+    ServerName yasv1979-PowerEdge-R610
+    DocumentRoot /var/www/html/armyunit/public    
+
+    CustomLog       /var/www/html/armyunit/paccess.log common
+    ErrorLog        /var/www/html/armyunit/perror.log    
+
+   <Directory /var/www/html/armyunit/public>
+      <IfModule mod_rewrite.c>
+      Options -MultiViews
+      RewriteEngine On
+      RewriteCond %{REQUEST_FILENAME} !-f
+     RewriteRule ^ index.php [L]
+   </IfModule>
+</Directory>
+</VirtualHost>
+
+8.systemctl restart apache2
+9.npm istalll
+10.php artisan storage:link
+11. chomd image 775
+12. chomd image/solier 775
