@@ -57,6 +57,7 @@
                                   @endforeach
                                 </tbody>
                             </table>
+                            <a href="{{url('/soldier/excel')}}" class="btn btn-danger">excel</a>
                             <br>
                             {{$soldier->links()}}
                         </div>

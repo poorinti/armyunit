@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BattalionController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\UserAllowDepController;
 use App\Http\Controllers\UserlistController;
 use App\Http\Controllers\ServiceController;
@@ -76,6 +77,10 @@ Route::middleware([
     Route::get('/userlist/dep/{id}',[UserlistController::class,'dep'])->name('userlist.dep');
     Route::get('/userlist/delete/{id}',[UserlistController::class,'delete'])->name('userlist.delete');
 
+    ///excel
+    Route::get('/soldier/excel', [ExcelController::class,'index']);
+    Route::post('/soldier/excel/import', [ExcelController::class,'import']);
+    Route::get('/soldier/excel/export', [ExcelController::class,'export']);
 });
 
 
