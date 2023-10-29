@@ -29,7 +29,7 @@ class ExcelController extends Controller
 
      } catch (\Throwable $th) {
 
-        return redirect('/soldier/excel')->with(['success' => "อัพโหลดไม่สำเร็จครับ"]);
+        return redirect('/soldier/excel')->with(['success' => "ไม่สำเร็จครับ"]);
 
      }
 
