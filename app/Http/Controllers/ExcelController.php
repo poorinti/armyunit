@@ -30,7 +30,7 @@ class ExcelController extends Controller
     }
 
     // $line->$soldier_dep_id = $soldier_dep_id;
-        // try {
+        try {
             $soldiers = (new FastExcel)->import($excel_import, function ($line) {
 
                 $soldier_dep_id=$line['soldier_dep_id'];
@@ -55,9 +55,9 @@ class ExcelController extends Controller
                 ]);
 
             });
-        // } catch (\Throwable $th) {
+         } catch (\Throwable $th) {
             return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
-        // }
+        }
 
         return redirect('/soldier/excel')->with(['success' => "Users imported successfully."]);
 
