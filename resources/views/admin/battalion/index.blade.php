@@ -22,7 +22,7 @@
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">รหัส</th>
                                     <th scope="col">หน่วยหลัก</th>
-                                    <th scope="col">แก้ไข</th>
+                                    {{-- <th scope="col">แก้ไข</th> --}}
                                     <th scope="col">ลบ</th>
                                   </tr>
                                 </thead>
@@ -33,7 +33,7 @@
                                     <th scope="row">{{$battalion->firstItem()+$loop->index}}</th>
                                     <td>{{$row->battalion_id}}</td>
                                     <td>{{$row->battalion_name}}</td>
-                                    <td><a href="{{url('/battalion/edit/'.$row->battalion_id)}}" class="btn btn-danger"> แก้ไข</a></td>
+                                    {{-- <td><a href="{{url('/battalion/edit/'.$row->battalion_id)}}" class="btn btn-danger"> แก้ไข</a></td> --}}
                                     <td><a href="{{url('/battalion/delete/'.$row->battalion_id)}}" class="btn btn-warning"> ลบ</a></td>
                                   </tr>
                                   @endforeach
