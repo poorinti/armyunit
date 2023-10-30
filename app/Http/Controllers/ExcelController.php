@@ -41,12 +41,13 @@ class ExcelController extends Controller
                 $soldiers_dep_name      =$Dep->department_name;
                 $soldiers_bat_id        =$Dep->battalion_id ;
                 $soldiers_bat_name      =$Dep->battalion_name;
-            //   dd($Dep);
+
 
                 return Soldier::insert([
 
                     'soldier_id' =>$line['soldier_id']
                     ,'soldier_name'=>$line['soldier_name']
+                    ,'soldier_intern'=>$line['soldier_intern']
                     ,'soldier_dep_id'=>$soldier_dep_id
                     ,'soldiers_dep_name'=>$soldiers_dep_name
                     ,'soldiers_bat_id'=>$soldiers_bat_id
