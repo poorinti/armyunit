@@ -10,11 +10,15 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Nette\Utils\Arrays;
+use DB;
+use Image;
 
 class SoldierController extends Controller
 {
     public function index(Request $request){
         $search   =isset($request->search) ? $request->search : '' ;
+        //  รับจากหน้า index ที่ selecd มา
+        $soldier_dep_id=isset($request->soldier_dep_id) ? $request->soldier_dep_id : '' ;
         $user_id = Auth::user()->id;
         $userdep =Userdep::where('user_id','=',$user_id)->orderBy('dep_id')->get();
         $DepArr =Array();
@@ -32,6 +36,13 @@ class SoldierController extends Controller
                 }
 
          })
+         // ส่งโทรแปลเพื่อหาค่า  use คือฝาก พารามิเตอร์ลงในฟังชั่น
+         ->where(function($query) use ($soldier_dep_id){
+            if($soldier_dep_id!=''){
+                $query->where('soldier_dep_id','=',$soldier_dep_id);
+            }
+
+     })
         ->where(function($query) use ($search){
             if($search !=''){
                 //ตัวแรก where ตามด้วย orwhere
@@ -50,11 +61,25 @@ class SoldierController extends Controller
             }
 		    })
             // ->dd()
-       ->orderBy('created_at','desc')->paginate(100);
+       ->orderBy('created_at','desc')->paginate(5);
 
-            $Department=Department::where('dep_id','!=','')->orderby('dep_id')->get();
+            // $Department=Department::where('dep_id','!=','')
+            // ->orderby('dep_id')->get();
 
-        return view('admin.soldier.index',compact('soldier','search','Department'));
+            //
+            $Department=Department::select('dep_id')
+            //->selectRaw('ใส่sql ตรงๆเลย')
+            ->selectRaw('min(department_name)department_name')
+            ->selectRaw("SUM(CASE WHEN soldier_dep_id != '' THEN 1 ELSE 0 END) AS total")
+            //->leftJoin("เทเบิ้ลที่จะเอามาเชื่อม", "soldiers.ฟิวที่ตรงกัน", "=", "departments.ฟิวตรงกัน")
+            ->leftJoin("soldiers", "soldiers.soldier_dep_id", "=", "departments.dep_id")
+            //->where('soldier_dep_id','!=',)
+            ->groupBy('dep_id')
+            //->dd()
+            ->get();
+
+            $total_soldier= Soldier::where('soldier_id','!=','')->count();
+        return view('admin.soldier.index',compact('soldier','search','soldier_dep_id','total_soldier','Department'));
     }
 
     public function store( Request $request){
@@ -65,7 +90,7 @@ class SoldierController extends Controller
 
             'soldier_id'=>'required|unique:soldiers|max:13'
             ,'soldier_name'=>'required|unique:soldiers|max:255'
-            // ,'soldier_image'=>'mimes:png,jpg,jpeg'
+            ,'soldier_image'=>'mimes:png,jpg,jpeg,JPG|max:3072'
             // ,'soldier_address'
             // ,'soldier_country'
             // ,'soldier_state'
@@ -151,7 +176,23 @@ class SoldierController extends Controller
         'soldier_image'=>$full_path,
 
     ]);
-    $soldier_image->move($upload_location,$img_name);
+
+  $soldier_image->move($upload_location,$img_name);
+
+        // $img = Image::make($soldier_image->path());
+        // $act = $img->resize(400, 600, function ($const) {
+        //     $const->aspectRatio();
+        // })->save($full_path);
+
+
+        // $imgFile = Image::make($soldier_image->getRealPath());
+        // $imgFile->resize(150, 150, function ($constraint) {
+		//     $constraint->aspectRatio();
+		// })->save($upload_location.'/'.$input['file']);
+
+        // $image->move($upload_location, $input['file']);
+
+
     }
 
 }
@@ -227,6 +268,14 @@ class SoldierController extends Controller
     public function update(Request $request,$dep_id){
            //dd( $request->All());
 
+           $request->validate([
+
+            'soldier_image'=>'mimes:png,jpg,jpeg,JPG|max:2500'
+          ],[
+            'soldier_image.max' => "ขนาดไฟล์เกิด 2 MB ครับ",
+          ]
+
+      );
 
             $page = isset($request->page) ? $request->page  : '';
             $old_image = isset($request->old_image) ? $request->old_image  : '';
@@ -315,6 +364,10 @@ class SoldierController extends Controller
                 //   if($old_image){
                 //   unlink($old_image);}
                   $soldier_image->move($upload_location,$img_name);
+                // $img = Image::make($soldier_image->path());
+                // $act = $img->resize(400, 600, function ($const) {
+                //     $const->aspectRatio();
+                // })->save($full_path);
                   $chk = True;
 
                   Soldier::where('soldier_id','=',$soldier_id)->update([

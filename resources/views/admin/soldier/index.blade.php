@@ -2,16 +2,49 @@
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             ข้อมูลกำลังพล
+            <b class="float-end">จำนวนกำลังพลทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_soldier,0)}}</button>  คน</b>
         </h2>
+
 </x-slot>
+
+
+            {{-- @foreach ( $Department as $key=>$row )
+
+
+            <div class="col-auto my-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Special {{$row->total}}</h5>
+                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                      <a href="#" class="btn btn-primary">{{$row->department_name}} </a>
+                    </div>
+                  </div>
+            </div>
+
+        @endforeach --}}
 
     <div class="py-12">
         <div class="mx-auto max-w-auto sm:px-6 lg:px-8">
+
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
                 <form action="/soldier/all"  name="frmsearch" id="frmsearch" method="post">
                     @csrf
                 <div class="my-3 row">
+                    <div class="form-group my-2">
+
+                    </div>
+
                     <div class="input-group">
+
+
+                        <select class="form-control" name="soldier_dep_id" id="soldier_dep_id" >
+                            <option value="">แสดงทั้งหมด</option>
+                                @foreach ( $Department as $key=>$row )
+
+                                <option value="{{$row->dep_id}}" {{ $soldier_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
+                            @endforeach
+                       </select>
+
                         <input type="text" class="form-control" placeholder="ค้นหากำลังพล" id="search" name="search" value="{{isset($search) ? $search : '' }}">
                         <button class="mr-2 text-white btn btn-primary bg-primary" type="sumit">ค้นหา</button>
                         <a href="{{url('/soldier/startadd')}}" class="text-white bg-purple-700 btn btn-primary mr-2"> เพิ่มกำลังพล</a>
@@ -60,7 +93,10 @@
                             </table>
 
                             <br>
-                            {{$soldier->links()}}
+
+                            {{$soldier->appends(['search' => isset($search) ? $search : '','soldier_dep_id'=>isset($soldier_dep_id) ?$soldier_dep_id :'' ])->links()}}
+
+
                         </div>
                     </div>
 

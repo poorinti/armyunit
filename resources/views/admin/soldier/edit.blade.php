@@ -49,11 +49,11 @@
                                                 <label for="soldier_image">อัพโหลดภาพโปรไฟล์</label>
                                                 <input type="file" class="form-control" name="soldier_image" value="{{$soldier->soldier_image}}">
                                                 </div>
-                                                @error('service_image')
-                                                    <div class="my-2">
-                                                        <span class="text-danger">{{$message}}</span>
-                                                    </div>
-                                                @enderror
+                                                @error('soldier_image')
+                                                        <div class="my-2">
+                                                            <span class="text-danger">{{$message}}</span>
+                                                        </div>
+                                                    @enderror
 
                                                 <label for="soldier_name">ชื่อ-สกุล</label>
                                                 <input type="text" class="form-control" name="soldier_name" value="{{$soldier->soldier_name }}" >
