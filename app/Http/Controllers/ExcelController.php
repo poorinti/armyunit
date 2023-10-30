@@ -30,7 +30,7 @@ class ExcelController extends Controller
     }
 
     // $line->$soldier_dep_id = $soldier_dep_id;
-        try {
+        // try {
             $soldiers = (new FastExcel)->import($excel_import, function ($line) {
 
                 $soldier_dep_id=$line['soldier_dep_id'];
@@ -48,6 +48,9 @@ class ExcelController extends Controller
                     'soldier_id' =>$line['soldier_id']
                     ,'soldier_name'=>$line['soldier_name']
                     ,'soldier_intern'=>$line['soldier_intern']
+                    ,'soldier_corp'=>$line['soldier_corp']
+                    ,'soldier_address'=>$line['soldier_address']
+                    ,'soldier_phone'=>$line['soldier_phone']
                     ,'soldier_dep_id'=>$soldier_dep_id
                     ,'soldiers_dep_name'=>$soldiers_dep_name
                     ,'soldiers_bat_id'=>$soldiers_bat_id
@@ -56,9 +59,9 @@ class ExcelController extends Controller
                 ]);
 
             });
-         } catch (\Throwable $th) {
-            return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
-        }
+        //  } catch (\Throwable $th) {
+        //     return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
+        // }
 
         return redirect('/soldier/excel')->with(['success' => "Users imported successfully."]);
 

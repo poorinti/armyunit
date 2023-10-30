@@ -14,7 +14,7 @@ class DepartmentController extends Controller
 {
     public function index(){
         //ดึงจาก EORM โดยตรง
-       $departments = Department::paginate(10);
+       $departments = Department::paginate(30);
        $battalion = Battalion::where('battalion_id','!=','')->orderby('battalion_id')->get();
 
     //    $Battalion = Battalion::where('battalion_id','!= ไม่ค่าว่าง','')->orderby('battalion_id')->get();
