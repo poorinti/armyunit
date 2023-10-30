@@ -43,6 +43,9 @@ class SoldierController extends Controller
                 ->orwhere('soldier_education', 'like','%'.$search.'%')
                 ->orwhere('soldier_intern', 'like','%'.$search.'%')
                 ->orwhere('soldier_skill', 'like','%'.$search.'%')
+                ->orwhere('soldiers_teacher', 'like','%'.$search.'%')
+                ->orwhere('soldiers_now', 'like','%'.$search.'%')
+                ->orwhere('soldier_course', 'like','%'.$search.'%')
                 ->orWhere('soldier_state','%'. $search.'%');
             }
 		    })
