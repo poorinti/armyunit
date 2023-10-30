@@ -240,6 +240,10 @@ class SoldierController extends Controller
             $soldier_phone = isset($request->soldier_phone ) ? $request->soldier_phone  : '';
             $soldier_about = isset($request->soldier_about) ? $request->soldier_about   : '';
             $soldier_image =isset($request->soldier_image) ? $request->soldier_image   : '';
+            $soldiers_teacher=isset($request->soldiers_teacher) ? $request->soldiers_teacher   : '';
+            $soldiers_now=isset($request->soldiers_now) ? $request->soldiers_now   : '';
+            $soldiers_term=isset($request->soldiers_term) ? $request->soldiers_term   : '';
+            $soldier_course=isset($request->soldier_course) ? $request->soldier_course   : '';
           //  dd($soldier_id);
          $soldier =Soldier::where('soldier_id','=', $soldier_id)->first();
          $soldier_year =$soldier ->soldier_year;
@@ -266,7 +270,10 @@ class SoldierController extends Controller
                 ,"soldier_enddate" => $soldier_enddate
                 ,"soldier_phone" => $soldier_phone
                 ,"soldier_about" => $soldier_about
-                // ,'soldier_image'=> $full_path
+                ,'soldiers_teacher'=> $soldiers_teacher
+                , 'soldiers_now'=> $soldiers_now
+                , 'soldiers_term'=> $soldiers_term
+                 ,'soldier_course'=> $soldier_course
 
             ]);
         }

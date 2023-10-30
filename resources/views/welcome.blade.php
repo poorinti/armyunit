@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>ระบบจัดการฐานข้อมูลหน่วยฝึกทหารใหม่</title>
+        <title>ระบบจัดการฐานข้อมูลนขต. พล.ร.6</title>
         <link rel="icon" type="image/x-icon" href="/image/logo/favicon.ico">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -67,7 +67,7 @@
 
             >
                 <img class="mx-auto mb-4 d-block" src="{{ asset('/image/logo/logo1.png') }}" alt="" width="200" height="200">
-                <h1 class="text-white display-6 fw-bold">ระบบฐานข้อมูลหน่วยฝึกทหารใหม่ กองพลทหารราบที่ 6</h1>
+                <h1 class="text-white display-4 fw-bold">ระบบจัดการฐานข้อมูลนขต. กองพลทหารราบที่ 6</h1>
                 <div class="mx-auto col-lg-6">
                   <p class="mb-4 lead"></p>
                   <div class="gap-2 d-grid d-sm-flex justify-content-sm-center">

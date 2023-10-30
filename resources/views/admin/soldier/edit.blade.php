@@ -92,7 +92,7 @@
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
-                                                <!--จังหวัด-->
+                                                {{-- <!--จังหวัด-->
                                                 <div class="my-2 form-group">
                                                     <label for="soldier_state">จังหวัด</label>
                                                     <input type="text" class="form-control" name="soldier_state"placeholder="ระบุเต็มให้ถูกต้อง ตัวอย่าง :  อุลราชธาณี , ร้อยเอ็ด , มหาสารคาม , นครราชสีมา " value ="{{isset($soldier->soldier_state) ? $soldier->soldier_state: ''}}" >
@@ -101,7 +101,7 @@
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
-                                                @enderror
+                                                @enderror --}}
                                                 <!--ผลัดที่/ปี -->
                                                 <div class="my-2 form-group">
                                                     <label for="soldier_intern">ผลัดที่/ปี</label>
@@ -208,6 +208,57 @@
                                                 </div>
                                                 @enderror
 
+                                                <div class="card my-4 ">
+                                                    <div class="card-header bg-purple-500 text-white">ข้อมูลเรียน กศน.</div>
+                                                    <div class=" card-body  bg-slate-100">
+                                                         <!--หลักสูตร-->
+                                                            <div class="my-2 form-group">
+                                                                <label for="soldier_course">หลักสูตร</label>
+                                                                <input type="text" class="form-control" name="soldier_course" value ="{{isset($soldier->soldier_course) ? $soldier->soldier_course : ''}}" >
+                                                            </div>
+                                                            @error('soldier_course')
+                                                            <div class="my-2">
+                                                                <span class="text-red-600 text">{{$message}}</span>
+                                                            </div>
+                                                            @enderror
+                                                             <!--ครูประจำกลุ่ม-->
+                                                             <div class="my-2 form-group">
+                                                                <label for="soldiers_teacher">ครูประจำกลุ่ม</label>
+                                                                <input type="text" class="form-control" name="soldiers_teacher" value ="{{isset($soldier->soldiers_teacher) ? $soldier->soldiers_teacher : ''}}" >
+                                                            </div>
+                                                            @error('soldiers_teacher')
+                                                            <div class="my-2">
+                                                                <span class="text-red-600 text">{{$message}}</span>
+                                                            </div>
+                                                            @enderror
+                                                         <!--ภาคเรียนปัจจุบัน-->
+                                                            <div class="my-2 form-group">
+                                                                <label for="soldiers_term">ภาคเรียนปัจจุบัน</label>
+                                                                <input type="text" class="form-control" name="soldiers_term" value ="{{isset($soldier->soldiers_term) ? $soldier->soldiers_term : ''}}" >
+                                                            </div>
+                                                            @error('soldiers_term')
+                                                            <div class="my-2">
+                                                                <span class="text-red-600 text">{{$message}}</span>
+                                                            </div>
+                                                            @enderror
+                                                            @php
+                                                            $unitArr = array();
+                                                            $unitArr=['ประจำตัว ผบช.','ที่ตั้งปกติ','ปฏิบัติราชการสนาม']
+                                                        @endphp
+                                                        <!--วุฒิการศึกษา -->
+                                                        <div class="my-2 form-group">
+                                                            <label for="soldiers_now" class="form-label">สถานะปัจจุบัน</label>
+                                                            <select class="form-select" id="soldiers_now" name="soldiers_now">
+                                                                <option value ="{{isset($soldier->soldiers_now) ? $soldier->soldiers_now : '' }} " >{{isset($soldier->soldiers_now) ? $soldier->soldiers_now : ''}}</option>
+                                                                @foreach ( $unitArr as $row )
+                                                              <option value="{{ $row}}">{{ $row}}</option>
+                                                              @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
                                                 {{-- <!--หน่วย-->
                                                 <div class="my-2 form-group">
                                                     <label for="soldier_dep_id">หน่วย กองร้อย</label>
@@ -235,7 +286,7 @@
                                                 @enderror --}}
 
                                             <br>
-                                            <input type="submit" value="อัพเดท" class="text-black btn btn-primary">
+                                            <input type="submit" value="อัพเดท" class="text-black btn btn-primary bg-blue-300">
                                         </form>
                                 </div>
                             </div>
@@ -249,6 +300,7 @@
                                 <label for="imageshow">{{$soldier->soldier_name }}</label>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

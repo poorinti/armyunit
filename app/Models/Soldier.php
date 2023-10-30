@@ -23,6 +23,7 @@ class Soldier extends Model
         , 'soldier_enddate', 'soldier_phone', 'soldier_about', 'soldier_dep_id'
         , 'created_at', 'updated_at','soldier_year'
         ,'soldiers_dep_name','soldiers_bat_id','soldiers_bat_name'
+        ,'soldiers_teacher', 'soldiers_now', 'soldiers_term', 'soldier_course'
 
    ];
 }
