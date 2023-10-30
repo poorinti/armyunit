@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             ข้อมูลกำลังพล
-            <b class="float-end">จำนวนกำลังพลทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_soldier,0)}}</button>  คน</b>
+            <b class="float-end">จำนวนกำลังพลทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_soldier,0)}}</button>  นาย</b>
         </h2>
 
 </x-slot>
