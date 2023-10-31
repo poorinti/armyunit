@@ -90,7 +90,7 @@ class SoldierController extends Controller
 
             'soldier_id'=>'required|unique:soldiers|max:13'
             ,'soldier_name'=>'required|unique:soldiers|max:255'
-            ,'soldier_image'=>'mimes:png,jpg,jpeg,JPG|max:3072'
+            ,'soldier_image'=>'mimes:png,jpg,jpeg,JPG|max:2048'
             // ,'soldier_address'
             // ,'soldier_country'
             // ,'soldier_state'
@@ -270,9 +270,9 @@ class SoldierController extends Controller
 
            $request->validate([
 
-            'soldier_image'=>'mimes:png,jpg,jpeg,JPG|max:2500'
+            'soldier_image'=>'mimes:png,jpg,jpeg,JPG|max:2048'
           ],[
-            'soldier_image.max' => "ขนาดไฟล์เกิด 2 MB ครับ",
+            'soldier_image.max' => "ขนาดไฟล์เกิน 2 MB ครับ",
           ]
 
       );
