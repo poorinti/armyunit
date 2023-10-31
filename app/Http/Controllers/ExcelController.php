@@ -73,6 +73,7 @@ class ExcelController extends Controller
                     ,'soldier_corp'=>$line['soldier_corp']
                     ,'soldier_address'=>$line['soldier_address']
                     ,'soldier_phone'=>$line['soldier_phone']
+                    
                     ,'soldier_dep_id'=>$soldier_dep_id
                     ,'soldiers_dep_name'=>$soldiers_dep_name
                     ,'soldiers_bat_id'=>$soldiers_bat_id

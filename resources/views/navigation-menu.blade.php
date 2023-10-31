@@ -27,7 +27,7 @@
                         {{ __('รายชื่อผู้ใช้งาน') }}
                     </x-nav-link>
                     @endif
-                    
+
                     <x-nav-link href="{{ route('soldier') }}" :active="request()->routeIs('soldier')"  class="text-white ">
                        {{ __('ข้อมูลกำลังพล') }}
                     </x-nav-link>
@@ -165,6 +165,14 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
+        <div class="pt-2 pb-3 space-y-1 mx-3">
+            <x-nav-link href="{{ route('soldier') }}" :active="request()->routeIs('soldier')"  class="text-yellow-500 ">
+                {{ __('ข้อมูลกำลังพล') }}
+             </x-nav-link>
+
+        </div>
+
+
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
