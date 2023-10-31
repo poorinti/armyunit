@@ -9,7 +9,7 @@
         <meta name="theme-color" content="#6777ef"/>
         <link rel="apple-touch-icon" href="{{ asset('/image/logo/logo1.png') }}">
         <link rel="manifest" href="{{ asset('/manifest.json') }}">
-        
+
         <link rel="icon" type="image/x-icon" href="/image/logo/favicon.ico">
 
         <title>Armyunit</title>
@@ -26,13 +26,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="/js/jquery/jquery-3.7.1.min.js"></script>
         <script src="{{ asset('/sw.js') }}"></script>
-        <script>
-            if (!navigator.serviceWorker.controller) {
-                navigator.serviceWorker.register("/sw.js").then(function (reg) {
-                    console.log("Service worker has been registered for scope: " + reg.scope);
-                });
-             }
-        </script>
+
 
 
         <!-- Scripts -->
@@ -65,6 +59,14 @@
         @stack('modals')
 
         @livewireScripts
+
     </body>
 </html>
 
+<script>
+    if (!navigator.serviceWorker.controller) {
+        navigator.serviceWorker.register("/sw.js").then(function (reg) {
+            console.log("Service worker has been registered for scope: " + reg.scope);
+        });
+     }
+</script>

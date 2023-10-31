@@ -288,6 +288,7 @@ class SoldierController extends Controller
             $page = isset($request->page) ? $request->page  : '';
             $old_image = isset($request->old_image) ? $request->old_image  : '';
             $soldier_id = isset($request->soldier_id ) ? $request->soldier_id   : '';
+            $soldier_name=isset($request->soldier_name) ? $request->soldier_name   : '';
             $soldier_rtanumber = isset($request->soldier_rtanumber ) ? $request->soldier_rtanumber   : '';
             $soldier_address = isset($request->soldier_address ) ? $request->soldier_address   : '';
             $soldier_state = isset($request->soldier_state ) ? $request->soldier_state   : '';
@@ -320,6 +321,7 @@ class SoldierController extends Controller
             Soldier::where('soldier_id','=',$soldier_id)->update([
 
                 "soldier_id" => $soldier_id
+                ,"soldier_name" => $soldier_name
                 ,"soldier_rtanumber" => $soldier_rtanumber
                 ,"soldier_address" => $soldier_address
                 ,"soldier_state" => $soldier_state

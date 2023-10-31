@@ -97,7 +97,7 @@
                                                     @enderror
 
                                                 <label for="soldier_name">ชื่อ-สกุล</label>
-                                                <input type="text" class="form-control" name="soldier_name" value="{{$soldier->soldier_name }}" >
+                                                <input type="text" class="form-control" name="soldier_name" value="{{$soldier->soldier_name}}" >
                                                 @error('soldier_name')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
@@ -249,9 +249,9 @@
                                                 </div>
                                                 @enderror
 
-                                                <div class="card my-4 ">
-                                                    <div class="card-header bg-purple-500 text-white">ข้อมูลเรียน กศน.</div>
-                                                    <div class=" card-body  bg-slate-100">
+                                                <div class="my-4 card ">
+                                                    <div class="text-white bg-purple-500 card-header">ข้อมูลเรียน กศน.</div>
+                                                    <div class=" card-body bg-slate-100">
                                                          <!--หลักสูตร-->
                                                             <div class="my-2 form-group">
                                                                 <label for="soldier_course">หลักสูตร</label>
@@ -327,7 +327,7 @@
                                                 @enderror --}}
 
                                             <br>
-                                            <input type="submit" value="อัพเดท" class="text-black btn btn-primary bg-blue-300">
+                                            <input type="submit" value="อัพเดท" class="text-black bg-blue-300 btn btn-primary">
                                         </form>
                                 </div>
                             </div>
