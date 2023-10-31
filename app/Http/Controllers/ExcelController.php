@@ -7,6 +7,7 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Rap2hpoutre\FastExcel\FastExcel;
+use Carbon\Carbon;
 
 class ExcelController extends Controller
 {
@@ -30,7 +31,7 @@ class ExcelController extends Controller
     }
 
     // $line->$soldier_dep_id = $soldier_dep_id;
-        // try {
+      //   try {
             $soldiers = (new FastExcel)->import($excel_import, function ($line) {
 
                 $soldier_dep_id=$line['soldier_dep_id'];
@@ -42,7 +43,10 @@ class ExcelController extends Controller
                 $soldiers_bat_id        =$Dep->battalion_id ;
                 $soldiers_bat_name      =$Dep->battalion_name;
 
+                $created_at=Carbon::now()->format("Y-m-d H:i:s");
+                $updated_at =Carbon::now()->format("Y-m-d H:i:s");
 
+                try {
                 return Soldier::insert([
 
                     'soldier_id' =>$line['soldier_id']
@@ -55,13 +59,38 @@ class ExcelController extends Controller
                     ,'soldiers_dep_name'=>$soldiers_dep_name
                     ,'soldiers_bat_id'=>$soldiers_bat_id
                     ,'soldiers_bat_name'=>$soldiers_bat_name
+                    ,'updated_at'=>$updated_at
+                    ,'created_at'=>$created_at
+
 
                 ]);
+            } catch (\Throwable $th) {
+                return Soldier::where('soldier_id','=',$line['soldier_id'])->update([
+
+                    //'soldier_id' =>$line['soldier_id']
+                    'soldier_name'=>$line['soldier_name']
+                    ,'soldier_intern'=>$line['soldier_intern']
+                    ,'soldier_corp'=>$line['soldier_corp']
+                    ,'soldier_address'=>$line['soldier_address']
+                    ,'soldier_phone'=>$line['soldier_phone']
+                    ,'soldier_dep_id'=>$soldier_dep_id
+                    ,'soldiers_dep_name'=>$soldiers_dep_name
+                    ,'soldiers_bat_id'=>$soldiers_bat_id
+                    ,'soldiers_bat_name'=>$soldiers_bat_name
+                    ,'updated_at'=>$updated_at
+                    ,'created_at'=>$created_at
+
+
+                ]);
+                //  return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
+                }
+
 
             });
-        //  } catch (\Throwable $th) {
-        //     return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
-        // }
+        //   } catch (\Throwable $th) {
+
+        //  //  return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
+        //  }
 
         return redirect('/soldier/excel')->with(['success' => "Users imported successfully."]);
 

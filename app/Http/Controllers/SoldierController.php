@@ -61,7 +61,10 @@ class SoldierController extends Controller
             }
 		    })
             // ->dd()
-       ->orderBy('created_at','desc')->paginate(15);
+       ->orderBy('created_at','desc')
+       ->orderBy('soldier_intern')
+       ->orderBy('soldier_name')
+       ->paginate(15);
 
             // $Department=Department::where('dep_id','!=','')
             // ->orderby('dep_id')->get();
@@ -266,7 +269,7 @@ class SoldierController extends Controller
 
 
     public function update(Request $request,$dep_id){
-           //dd( $request->All());
+        //   dd( $request->All());
 
            $request->validate([
 
@@ -276,6 +279,11 @@ class SoldierController extends Controller
           ]
 
       );
+
+
+
+
+// dd($soldier_startdate);
 
             $page = isset($request->page) ? $request->page  : '';
             $old_image = isset($request->old_image) ? $request->old_image  : '';
@@ -287,8 +295,10 @@ class SoldierController extends Controller
             $soldier_corp = isset($request->soldier_corp ) ? $request->soldier_corp  : '';
             $soldier_education = isset($request->soldier_education ) ? $request->soldier_education   : '';
             $soldier_skill = isset($request->soldier_skill ) ? $request->soldier_skill    : '';
-            $soldier_startdate = isset($request->soldier_startdate  ) ? Carbon::parse($request->soldier_startdate )->format('Y-m-d')   : null;
-            $soldier_enddate = isset($request->soldier_enddate ) ?Carbon::parse($request->soldier_enddate )->format('Y-m-d')  : null;
+            $soldier_startdate = isset($request->soldier_startdate  ) ?   $this->dateThaiToeng($request->soldier_startdate)  : null;
+            $soldier_enddate = isset($request->soldier_enddate  ) ?   $this->dateThaiToeng($request->soldier_enddate)  : null;
+            // $soldier_startdate = isset($request->soldier_startdate  ) ? Carbon::parse($request->soldier_startdate )->format('Y-m-d')   : null;
+            // $soldier_enddate = isset($request->soldier_enddate ) ?Carbon::parse($request->soldier_enddate )->format('Y-m-d')  : null;
             $soldier_phone = isset($request->soldier_phone ) ? $request->soldier_phone  : '';
             $soldier_about = isset($request->soldier_about) ? $request->soldier_about   : '';
             $soldier_image =isset($request->soldier_image) ? $request->soldier_image   : '';
@@ -398,6 +408,21 @@ class SoldierController extends Controller
             // return redirect()->route('department')->with("success","อัพเดทข้อมูลเรียบร้อย");
         }
 
+        public static function  dateThaiToeng($strdate=""){
 
+            $d1 = substr($strdate, 0, 2);
+            $m1 = substr($strdate, 3, 2);
+            $y = substr($strdate, 6, 4) ;
+            $y1 = $y-543;
+            $h1 = substr($strdate, 10, 6);
+            $_date="";
+
+            if ($strdate == ""){
+                $_date="";
+            } else {
+                $_date=$y1 . "-" . $m1 . "-" . $d1;
+            }
+            return  $_date;
+            }
 
 }

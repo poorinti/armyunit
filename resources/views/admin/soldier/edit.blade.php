@@ -9,16 +9,47 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> --}}
 
     <link rel="stylesheet" href="/css/datepicker/jquery-ui.css">
+
     <script src="/css/datepicker/jquery-3.6.0.js"></script>
     <script src="/css/datepicker/jquery-ui.js"></script>
 
-    <script>
+    <link rel="stylesheet" href="https://www.codopa.com/web/DatePicker/css/ui-lightness/jquery-ui-1.8.10.custom.css">
+    <style>
+        .ui-datepicker-month {
+            color: #000000;
+        }
+        .ui-datepicker-year{
+            color: #000000;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+          var d = new Date();
+          var toDay = d.getDate() + '/'
+      + (d.getMonth() + 1) + '/'
+      + (d.getFullYear() + 543);
+
+              // Datepicker
+          $("#datepicker-th").datepicker({ dateFormat: 'dd/mm/yy', isBuddhist: true, defaultDate: toDay, dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
+            dayNamesMin: ['อา.','จ.','อ.','พ.','พฤ.','ศ.','ส.'],
+            monthNames: ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'],
+            monthNamesShort: ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.']});
+            $(".soldier-date" ).datepicker({ changeMonth: true, changeYear: true,dateFormat: 'dd/mm/yy', isBuddhist: true, defaultDate: toDay,dayNames: ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์'],
+            dayNamesMin: ['อา.','จ.','อ.','พ.','พฤ.','ศ.','ส.'],
+            monthNames: ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'],
+            monthNamesShort: ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.']});
+            $("#datepicker-en").datepicker({ dateFormat: 'dd/mm/yy'});
+            $("#inline").datepicker({ dateFormat: 'dd/mm/yy', inline: true });
+          });
+      </script>
+    {{-- <script>
+
     $( function() {
       $( ".soldier-date" ).datepicker(
         { dateFormat: 'dd-mm-yy' }
       );
     } );
-    </script>
+    </script> --}}
 
 
     <div class="py-12">
@@ -166,7 +197,7 @@
                                                 <div class="my-2 form-group">
                                                     <label for="soldier_startdate">วันที่ เข้าประจำการ</label>
                                                     <div class="col-md-6">
-                                                        <input type="text" class="form-control soldier-date"  name="soldier_startdate" value ="{{isset($soldier->soldier_startdate) ? \Carbon\Carbon::parse($soldier->soldier_startdate )->format('d-m-Y'): ''}}" >
+                                                        <input type="text" class="form-control soldier-date"  name="soldier_startdate" value ="{{ isset($soldier->soldier_startdate) ? Carbon\Carbon::parse($soldier->soldier_startdate)->format('d/m').'/'.Carbon\Carbon::parse($soldier->soldier_startdate)->format('Y')+543 : ''}}" >
                                                     </div>
                                                 </div>
                                                 @error('soldier_startdate')
@@ -178,7 +209,7 @@
                                                 <div class="my-2 form-group">
                                                     <label for="soldier_enddate">วันที่ ปลดประจำการ</label>
                                                     <div class="col-md-6">
-                                                        <input type="text" class="form-control soldier-date" name="soldier_enddate" value ="{{isset($soldier->soldier_enddate) ?\Carbon\Carbon::parse($soldier->soldier_enddate )->format('d-m-Y')  : ''}}" >
+                                                        <input type="text" class="form-control soldier-date" name="soldier_enddate" value ="{{ isset($soldier->soldier_enddate) ? Carbon\Carbon::parse($soldier->soldier_enddate)->format('d/m').'/'.Carbon\Carbon::parse($soldier->soldier_enddate)->format('Y')+543 : ''}}" >
                                                     </div>
                                                 </div>
                                                 @error('soldier_enddate')
