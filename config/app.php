@@ -160,6 +160,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Ladumor\LaravelPwa\PWAServiceProvider::class,
         'Intervention\Image\ImageServiceProvider',
 
         /*
@@ -186,6 +187,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
         // 'Example' => App\Facades\Example::class,
         'Image' => 'Intervention\Image\Facades\Image'
     ])->toArray(),
