@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            ข้อมูลผู้ใช้ {{Auth::user()->name}}
-           <b class="float-end">จำนวนผู้ใช้ระบบ <span class="text-red-500">{{count($users)}} </span>คน</b>
+
+           <b >จำนวนหน่วย <span class="text-red-500">{{count($Department)}} </span>หน่วย</b>
         </h2>
     </x-slot>
 
@@ -13,19 +13,22 @@
                     <thead class="table-warning">
                       <tr>
                         <th scope="col">ลำดับ</th>
-                        <th scope="col">User</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">เริ่มใช้งานระบบ</th>
+                        <th scope="col">หน่วย</th>
+                        <th scope="col">จำนวนกำลังพล</th>
+
                       </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $i=1;
+                        @endphp
 
-                        @foreach ( $users as $row )
+                        @foreach ( $Department as $row )
                       <tr>
-                        <th scope="row">{{$row->id}}</th>
-                        <td>{{$row->name}}</td>
-                        <td>{{$row->email}}</td>
-                        <td>{{$row->created_at->diffForHumans()}}</td>
+                        <th scope="row">{{$i++}}</th>
+                        <td>{{$row->department_name}}</td>
+                        <td>{{$row->total}}</td>
+
 
                       </tr>
                       @endforeach

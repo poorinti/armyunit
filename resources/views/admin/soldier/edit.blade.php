@@ -82,8 +82,13 @@
                                                 <input type="hidden" name="old_image" value="{{$soldier->soldier_image}}">
                                                 <!-- ไอดีเก่า -->
                                                 <input type="hidden" name="soldier_id" value="{{$soldier->soldier_id}}">
+
                                                 <!-- ไอดีเก่า -->
                                                 <input type="hidden" name="page" value="{{$page}}">
+
+                                                <input type="hidden" name="soldier_dep_id" value="{{$soldier_dep_id}}">
+                                                <input type="hidden" name="search" value="{{$search}}">
+
 
                                                 <div class="form-group">
                                                 </div>

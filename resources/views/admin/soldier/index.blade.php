@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800 hidden sm:block ">
+        <h2 class="hidden text-xl font-semibold leading-tight text-gray-800 sm:block ">
             ข้อมูลกำลังพล
             <b class="float-end">จำนวนกำลังพลทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_soldier,0)}}</button>  นาย</b>
         </h2>
@@ -32,8 +32,9 @@
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
                 <form action="/soldier/all"  name="frmsearch" id="frmsearch" method="post">
                     @csrf
+
                 <div class="my-3 row">
-                    <div class="form-group my-2">
+                    <div class="my-2 form-group">
 
                     </div>
 
@@ -47,11 +48,11 @@
                                 <option value="{{$row->dep_id}}" {{ $soldier_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
                             @endforeach
                        </select>
-
-                        <input type="text" class="form-control" placeholder="ค้นหากำลังพล" id="search" name="search" value="{{isset($search) ? $search : '' }}">
+                         {{-- {{dd($search);}} --}}
+                        <input type="text" class="form-control" placeholder="ค้นหากำลังพล" id="search" name="search" value="{{isset($search) ? $search :"" }}">
                         <button class="mr-2 text-white btn btn-primary bg-primary" type="sumit">ค้นหา</button>
-                        <a href="{{url('/soldier/startadd')}}" class="text-white bg-purple-700 btn btn-primary mr-2 hidden sm:block "> เพิ่มกำลังพล</a>
-                        <a href="{{url('/soldier/excel')}}" class=" btn btn-success text-white mr-2 hidden sm:block">import excel</a>
+                        <a href="{{url('/soldier/startadd')}}" class="hidden mr-2 text-white bg-purple-700 btn btn-primary sm:block "> เพิ่มกำลังพล</a>
+                        <a href="{{url('/soldier/excel')}}" class="hidden mr-2 text-white btn btn-success sm:block">import excel</a>
                     </div>
                 </div>
                 </form>
@@ -69,11 +70,11 @@
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ภาพประกอบ</th>
                                     <th scope="col">ชื่อกำลังพล</th>
-                                    <th scope="col" class=" hidden sm:table-cell ">เลขบัตรประชาชน</th>
+                                    <th scope="col" class="hidden sm:table-cell">เลขบัตรประชาชน</th>
                                     <th style="width: 80px;" scope="col">ผลัด/ปี</th>
                                     <th scope="col">หน่วย</th>
-                                    <th scope="col" class=" hidden sm:table-cell ">แก้ไข</th>
-                                    <th scope="col" class=" hidden sm:table-cell ">ลบ</th>
+                                    <th scope="col" class="hidden sm:table-cell">แก้ไข</th>
+                                    <th scope="col" class="hidden sm:table-cell">ลบ</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -88,12 +89,13 @@
                                         </a>
                                     </td>
 
+
                                     <td class="text-left">{{$row->soldier_name}}</td>
-                                    <td  class=" hidden sm:table-cell ">{{$row->soldier_id }}</td>
+                                    <td  class="hidden sm:table-cell">{{$row->soldier_id }}</td>
                                     <td>{{$row->soldier_intern}}</td>
                                     <td>{{$row->soldiers_dep_name}}</td>
-                                    <td class=" hidden sm:table-cell "><a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td class=" hidden sm:table-cell "><a href="{{url('/soldier/delete/'.$row->soldier_id)}}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}" class="btn btn-danger"> แก้ไข</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/soldier/delete/'.$row->soldier_id)}}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>

@@ -82,7 +82,7 @@ class SoldierController extends Controller
             ->get();
 
             $total_soldier= Soldier::where('soldier_id','!=','')->count();
-        return view('admin.soldier.index',compact('soldier','search','soldier_dep_id','total_soldier','Department'));
+        return view('admin.soldier.index',compact('soldier','search','soldier_dep_id','total_soldier','Department','soldier_dep_id'));
     }
 
     public function store( Request $request){
@@ -256,10 +256,12 @@ class SoldierController extends Controller
     public function edit(Request $request,$soldier_id){
             //  dd($request->all());
             $page = isset($request->page)? $request->page : '';
+            $search = isset($request->search) ? $request->search  : '';
+            $soldier_dep_id = isset($request->soldier_dep_id) ? $request->soldier_dep_id : '';
             $soldier = Soldier::Where('soldier_id','=',$soldier_id)->first(); /// get คือ มีหลายตั้งหลายเร็ค // first เอาอันเดียว
 
             if($soldier){
-                return view('admin.soldier.edit',compact('page','soldier'));
+                return view('admin.soldier.edit',compact('page','soldier','soldier_dep_id','search'));
             }
             else {
             return  view('erroe.403');
@@ -285,7 +287,11 @@ class SoldierController extends Controller
 
 // dd($soldier_startdate);
 
+
             $page = isset($request->page) ? $request->page  : '';
+            $search = isset($request->search) ? $request->search  : '';
+            $soldier_dep_id = isset($request->soldier_dep_id) ? $request->soldier_dep_id : '';
+            ////
             $old_image = isset($request->old_image) ? $request->old_image  : '';
             $soldier_id = isset($request->soldier_id ) ? $request->soldier_id   : '';
             $soldier_name=isset($request->soldier_name) ? $request->soldier_name   : '';
@@ -397,12 +403,20 @@ class SoldierController extends Controller
 
             // เช็คว่ามีเพจไหม ถ้าไม่มีไป all
             if($chk= true){
-             if($page != ''){
-                return redirect('/soldier/all?page='.$page)->with("success","อัพเดทข้อมูลเรียบร้อย");
-             }
-                else{
-                    return redirect('/soldier/all')->with("success","อัพเดทข้อมูลเรียบร้อย");
-                }
+
+                // $page = isset($request->page) ? $request->page  : '';
+                // $search = isset($request->search) ? $request->search  : '';
+                // $soldier_dep_id = isset($request->soldier_dep_id) ? $request->soldier_dep_id : '';
+
+                $url='/soldier/all?';
+                $url .=isset($page)? 'page='.$page :'';
+                $url .=isset($search) ? '&search='.$search : '' ;
+                $url .=isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' ;
+                //  dd($url);
+                return redirect($url  )->with("success","อัพเดทข้อมูลเรียบร้อย");
+
+
+
             }else{
 
                 return with("error","ไม่ลบสามารถบันทึกข้อมูลได้");
