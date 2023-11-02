@@ -5,7 +5,7 @@
            <b >จำนวนหน่วย <span class="text-red-500">{{count($Department)}} </span>หน่วย</b>
         </h2>
     </x-slot>
-
+   {{-- {{dd($Department);}} --}}
     <div class="py-12">
         <div class="mx-auto max-w-10xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-purple-500 shadow-xl sm:rounded-lg">
@@ -25,9 +25,10 @@
 
                         @foreach ( $Department as $row )
                       <tr>
-                        <th scope="row">{{$i++}}</th>
+                        <th >{{$i++}}</th>
                         <td>{{$row->department_name}}</td>
                         <td>{{$row->total}}</td>
+                        <td>{{$row->dep_index}}</td>
 
 
                       </tr>

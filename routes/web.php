@@ -36,16 +36,18 @@ Route::middleware([
     Route::get('/dashboard', function () {
 
 
-          $Department=Department::select('dep_id')
-            //->selectRaw('ใส่sql ตรงๆเลย')
-            ->selectRaw('min(department_name)department_name')
-            ->selectRaw("SUM(CASE WHEN soldier_dep_id != '' THEN 1 ELSE 0 END) AS total")
-            //->leftJoin("เทเบิ้ลที่จะเอามาเชื่อม", "soldiers.ฟิวที่ตรงกัน", "=", "departments.ฟิวตรงกัน")
-            ->leftJoin("soldiers", "soldiers.soldier_dep_id", "=", "departments.dep_id")
-            //->where('soldier_dep_id','!=',)
-            ->groupBy('dep_id')
-            //->dd()
-            ->get();
+        $Department=Department::select('dep_id')
+        //->selectRaw('ใส่sql ตรงๆเลย')
+        ->selectRaw('min(departments.dep_index)dep_index')
+        ->selectRaw('min(department_name)department_name')
+        ->selectRaw("SUM(CASE WHEN soldier_dep_id != '' THEN 1 ELSE 0 END) AS total")
+        //->leftJoin("เทเบิ้ลที่จะเอามาเชื่อม", "soldiers.ฟิวที่ตรงกัน", "=", "departments.ฟิวตรงกัน")
+        ->leftJoin("soldiers", "soldiers.soldier_dep_id", "=", "departments.dep_id")
+        //->where('soldier_dep_id','!=',)
+        ->groupBy('dep_id')
+        ->orderBy('dep_index')
+        //->dd()
+        ->get();
 
         return view('dashboard',compact('Department'));
     })->name('dashboard');
