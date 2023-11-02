@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             หน่วยฝึก {{Auth::user()->name}}
         </h2>
     </x-slot>
@@ -9,8 +9,8 @@
     <script src="form-validation.js"></script>
 
     <div class="py-12">
-        <div class="max-w-10xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="mx-auto max-w-10xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
                 <div class="row">
                     @if (session('success'))
                             <div class="alert alert-success">{{session('success')}}</div>
@@ -23,11 +23,11 @@
                                         <form action="{{route('addSoldier')}}" method="POST" enctype="multipart/form-data">
                                             @csrf
 
-                                            <div class="d-flex flex-row-reverse justify-content-end ">
+                                            <div class="flex-row-reverse d-flex justify-content-end ">
 
 
                                             </div>
-                                                <div class="form-group my-3">
+                                                <div class="my-3 form-group">
                                                     <!--รูปภาพ -->
                                                     <div class="form-group">
                                                     </div>
@@ -49,21 +49,21 @@
                                                 <input type="text" class="form-control" name="soldier_name" value="" required>
                                                 @error('soldier_name')
                                                 <div class="my-2">
-                                                    <span class="text text-red-600">{{$message}}</span>
+                                                    <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
                                                 <!--เลขประชาชน -->
-                                                <div class="form-group my-2">
+                                                <div class="my-2 form-group">
                                                     <label for="soldier_id">เลขประชาชน</label>
                                                     <input type="text" class="form-control" name="soldier_id" placeholder="ตัวอย่าง :เลข 13 หลัก" required>
                                                 </div>
                                                 @error('soldier_id')
                                                 <div class="my-2">
-                                                    <span class="text text-red-600">{{$message}}</span>
+                                                    <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
                                                  <!--หน่วย-->
-                                                 <div class="form-group my-2">
+                                                 <div class="my-2 form-group">
                                                     <label for="soldier_dep_id">หน่วย กองร้อย</label>
                                                      <select class="form-control" name="soldier_dep_id" id="soldier_dep_id" required>
                                                      @foreach ( $Department as $key=>$row )
@@ -73,13 +73,13 @@
                                                 </div>
                                                 @error('soldier_dep_id')
                                                 <div class="my-2">
-                                                    <span class="text text-red-600">{{$message}}</span>
+                                                    <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
                                          <br>
-                                         <a href="/soldier/all" class="btn btn-info "><i class="fa fa-arrow-left"></i> กลับ</a>
-                                         <button type="submit" class="btn btn-primary text-black mx-auto ">บันทึกข้อมูล</button>
-                                         
+                                         <a href="/soldier/all" class="btn-info btn-yellow-warnnig "><i class="fa fa-arrow-left"></i> กลับ</a>
+                                         <button type="submit" class="mx-auto text-black btn btn-primary ">บันทึกข้อมูล</button>
+
                                         </form>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                     {{-- <div class="col-md-4">
                         <div class="card">
                             <div class="card-header">รูปประจำตัว</div>
-                            <div class="card-body justify-center mx-auto text-center">
+                            <div class="justify-center mx-auto text-center card-body">
                                 <img src="" alt="imageshow" width="200px" height="200px">
                                 <label for="imageshow"></label>
                             </div>
