@@ -28,7 +28,7 @@
                         <th >{{$i++}}</th>
                         <td>{{$row->department_name}}</td>
                         <td>{{$row->total}}</td>
-                        <td>{{$row->dep_index}}</td>
+
 
 
                       </tr>
