@@ -14,7 +14,7 @@ class DepartmentController extends Controller
 {
     public function index(){
         //ดึงจาก EORM โดยตรง
-       $departments = Department::paginate(30);
+       $departments = Department::orderby('dep_index')->paginate(30);
        $battalion = Battalion::where('battalion_id','!=','')->orderby('battalion_id')->get();
 
     //    $Battalion = Battalion::where('battalion_id','!= ไม่ค่าว่าง','')->orderby('battalion_id')->get();
@@ -55,6 +55,7 @@ class DepartmentController extends Controller
     $data = array();
 
     $data['dep_id'] = $request->dep_id;
+    $data['dep_index'] = $request->dep_index;
     $data['department_name'] = $request->department_name;
     $data['battalion_id'] = $request->battalion_id;
     $battalion =Battalion::where('battalion_id','=', $request->battalion_id)->first();
@@ -98,6 +99,8 @@ class DepartmentController extends Controller
     $battalion =Battalion::where('battalion_id','=', $request->battalion_id)->first();
     $battalion_name =  $battalion->battalion_name ?? '';
     $department_name = isset($request->department_name) ? $request->department_name : '';
+    $dep_index = isset($request->dep_index) ? $request->dep_index : 0;
+
     //กรณีแก้ไข เลยอ้างอิงจากชื่อ
     $update =false;
 
@@ -105,6 +108,7 @@ class DepartmentController extends Controller
         $update =true;
         Department::where('dep_id','=',$dep_id)->update([
             'department_name' => $department_name
+            ,'dep_index' => $dep_index
 
         ]);
     }
@@ -112,6 +116,7 @@ class DepartmentController extends Controller
     if($update ){
         Soldier::where('soldier_dep_id','=',$dep_id)->update([
             'soldiers_dep_name' => $department_name
+            ,'dep_index' => $dep_index
 
         ]);
     }

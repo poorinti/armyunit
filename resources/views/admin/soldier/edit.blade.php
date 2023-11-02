@@ -50,7 +50,11 @@
       );
     } );
     </script> --}}
-
+ @php   $url='/soldier/all?';
+ $url .=isset($page)? 'page='.$page :'';
+ $url .=isset($search) ? '&search='.$search : '' ;
+ $url .=isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' ;
+ @endphp
 
     <div class="py-12">
         <div class="mx-auto max-w-10xl sm:px-6 lg:px-8">
@@ -332,7 +336,9 @@
                                                 @enderror --}}
 
                                             <br>
-                                            <input type="submit" value="อัพเดท" class="text-black bg-blue-300 btn btn-primary">
+                                             <a href="{{ $url }}" class="text-black bg-yellow-400 btn btn-primary"> กลับ</a>
+
+                                            <button type="submit" value="อัพเดท" class="text-black bg-blue-300 btn btn-primary">อัพเดท </button>
                                         </form>
                                 </div>
                             </div>

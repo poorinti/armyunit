@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             หน่วยฝึก {{Auth::user()->name}}
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-10xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="mx-auto max-w-10xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
                 <div class="row">
                     @if (session('success'))
                             <div class="alert alert-success">{{session('success')}}</div>
@@ -20,6 +20,7 @@
                                     <form action="{{url('/department/update/'.$department->dep_id)}}" method="POST">
                                         @csrf
                                         <input type="hidden" name="page" id="page" value="{{ isset($page) ? $page :'' }}">
+
                                         <label for="battalion_id">เลือกกองพัน</label>
                                         <!-- <input type="hidden" class="form-control" name="department_id"> -->
                                         <!-- เลือกกองพัน -->
@@ -35,14 +36,16 @@
                                          </select>
 
                                         <label for="department_name">ขื่อหน่วยฝึก</label>
-                                        <input type="text" class="form-control" name="department_name" value="{{$department->department_name }}">
+                                        <input type="text" class="form-control" name="department_name" value="{{$department->department_name }} " required>
                                         @error('department_name')
                                           <div class="my-2">
-                                            <span class="text text-red-600">{{$message}}</span>
+                                            <span class="text-red-600 text">{{$message}}</span>
                                           </div>
                                         @enderror
+                                        <label for="dep_index">ลำดับหน่วย</label>
+                                        <input type="number" class="form-control" name="dep_index" value="{{$department->dep_index }}">
                                         <br>
-                                        <input type="submit" value="อัพเดท" class="btn btn-primary text-black">
+                                        <button type="submit" value="อัพเดท" class="text-black btn btn-primary">อัพเดท</button>
                                     </form>
                                 </div>
                             </div>

@@ -26,6 +26,7 @@
                                     <th scope="col">รหัสหน่วย</th>
                                     <th scope="col">หน่วย</th>
                                     <th scope="col">กองพัน</th>
+                                    <th scope="col">เรียงลำดับ</th>
                                     <th scope="col">แก้ไข</th>
                                     <th scope="col">ลบ</th>
                                   </tr>
@@ -47,6 +48,7 @@
                                     <td>{{$row->dep_id}}</td>
                                     <td>{{$row->department_name}}</td>
                                     <td>{{$batArr[$row->battalion_id]}}</td>
+                                    <td>{{$row->dep_index}}</td>
                                     <td><a href="{{url('/department/edit/'.$row->dep_id)}}{{ "?page=".Request::get('page') }}" class="btn btn-danger" > แก้ไข</a></td>
                                     <td><a href="{{url('/department/softdelete/'.$row->dep_id)}}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
