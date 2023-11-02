@@ -82,7 +82,7 @@
                                   <tr class="text-center ">
                                     <th class="text-center"> {{$soldier->firstItem()+$loop->index}}</th>
                                     <td >
-                                        <a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}" >
+                                        <a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}" >
 
                                         {{-- isset จากฐานข้อมูล ถ้าไม่มีภาพ ให้ดึงเอา โลโก้มา --}}
                                         <img src="{{isset($row->soldier_image) ? asset($row->soldier_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->soldier_image) ? asset($row->soldier_image) : '' }}" width="100px" height="100px" class="mx-auto" >
