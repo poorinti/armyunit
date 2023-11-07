@@ -160,6 +160,7 @@ return [
         /*
          * Package Service Providers...
          */
+        // Spatie\Backup\BackupServiceProvider::class,
         Ladumor\LaravelPwa\PWAServiceProvider::class,
         'Intervention\Image\ImageServiceProvider',
 

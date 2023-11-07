@@ -48,3 +48,7 @@ chown -R www-data storage
 post_max_size แนะนำ 64mb
 upload_max_size แนะนำ 64mb
 max_execution_time แนะนำ 300
+
+dbname =infdiv_signal6
+username =infdiv_signal6
+password=e2db3@Y43

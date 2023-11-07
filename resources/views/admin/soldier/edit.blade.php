@@ -30,10 +30,6 @@
       + (d.getFullYear() + 543);
 
               // Datepicker
-          $("#datepicker-th").datepicker({ dateFormat: 'dd/mm/yy', isBuddhist: true, defaultDate: toDay, dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
-            dayNamesMin: ['อา.','จ.','อ.','พ.','พฤ.','ศ.','ส.'],
-            monthNames: ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'],
-            monthNamesShort: ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.']});
             $(".soldier-date" ).datepicker({ changeMonth: true, changeYear: true,dateFormat: 'dd/mm/yy', isBuddhist: true, defaultDate: toDay,dayNames: ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์'],
             dayNamesMin: ['อา.','จ.','อ.','พ.','พฤ.','ศ.','ส.'],
             monthNames: ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'],
@@ -145,7 +141,7 @@
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
-                                                {{-- <!--จังหวัด-->
+                                                 {{-- <!--จังหวัด-->
                                                 <div class="my-2 form-group">
                                                     <label for="soldier_state">จังหวัด</label>
                                                     <input type="text" class="form-control" name="soldier_state"placeholder="ระบุเต็มให้ถูกต้อง ตัวอย่าง :  อุลราชธาณี , ร้อยเอ็ด , มหาสารคาม , นครราชสีมา " value ="{{isset($soldier->soldier_state) ? $soldier->soldier_state: ''}}" >
@@ -154,7 +150,7 @@
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
-                                                @enderror --}}
+                                                @enderror  --}}
                                                 <!--ผลัดที่/ปี -->
                                                 <div class="my-2 form-group">
                                                     <label for="soldier_intern">ผลัดที่/ปี</label>
