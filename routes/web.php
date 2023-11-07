@@ -7,6 +7,9 @@ use App\Http\Controllers\UserAllowDepController;
 use App\Http\Controllers\UserlistController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SoldierController;
+use App\Http\Controllers\TambonController;
+
+
 use App\Models\Department;
 use App\Models\Service;
 use App\Models\User;
@@ -95,6 +98,13 @@ Route::middleware([
     Route::get('/soldier/excel', [ExcelController::class,'index']);
     Route::post('/soldier/excel/import', [ExcelController::class,'import']);
     Route::get('/soldier/excel/export', [ExcelController::class,'export']);
+
+
+    Route::get('/soldier/provinces',[TambonController::class,'getProvinces']);
+    Route::get('/soldier/amphoes',[TambonController::class,'getAmphoes']);
+    // Route::get('/soldier/tambons',[TambonController::class,'getTambons']);
+    // Route::get('/soldier/zipcodes',[TambonController::class,'getZipcodes']);
+
 });
 
 

@@ -141,6 +141,26 @@
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
+                                                <div class="my-2 form-group">
+                                                    <label for="soldier_province">จังหวัด</label>
+                                                    <select id="soldier_province" name="soldier_province" class="form-select"  >
+                                                        <option value="">กรุณาเลือกจังหวัด</option>
+                                                        @foreach($provinces as $item)
+                                                        <option value="{{ $item->province }}" {{ $item->province==$soldier->soldier_province ? 'selected' : ''}}>{{ $item->province }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="my-2 form-group">
+                                                    <label for="soldier_amphoe">เขต/อำเภอ</label>
+                                                    <select id="soldier_amphoe"  name="soldier_amphoe"  class="form-select" >
+                                                        <option value="">กรุณาเลือกเขต/อำเภอ</option>
+                                                        @foreach($amphoes as $item)
+                                                        <option value="{{ $item->amphoe }}" {{ $item->amphoe==$soldier->soldier_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
+                                                        @endforeach
+                                                        </select>
+                                                </div>
+
                                                  {{-- <!--จังหวัด-->
                                                 <div class="my-2 form-group">
                                                     <label for="soldier_state">จังหวัด</label>
@@ -355,4 +375,34 @@
 $(document).ready(function() {
 
 });
+
+
+function showAmphoes() {
+        let soldier_province = document.querySelector("#soldier_province");
+        let url = "/soldier/amphoes?province=" + soldier_province.value;
+
+        // if(soldier_province.value == "") return;
+        fetch(url)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                //UPDATE SELECT OPTION
+                let soldier_amphoe = document.querySelector("#soldier_amphoe");
+                soldier_amphoe.innerHTML = '<option value="">กรุณาเลือกเขต/อำเภอ</option>';
+                for (let item of result) {
+                    let option = document.createElement("option");
+                    option.text = item.amphoe;
+                    option.value = item.amphoe;
+                    soldier_amphoe.appendChild(option);
+                }
+                //QUERY AMPHOES
+                showTambons();
+            });
+    }
+
+    document.querySelector('#soldier_province').addEventListener('change', (event) => {
+        showAmphoes();
+    });
+
+
 </script>

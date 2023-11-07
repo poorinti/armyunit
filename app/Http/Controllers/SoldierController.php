@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\File;
 use App\Models\Soldier;
 use App\Models\Userdep;
 use App\Models\Department;
+use App\Models\Tambon;
+
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +20,9 @@ class SoldierController extends Controller
     public function index(Request $request){
         $search   =isset($request->search) ? $request->search : '' ;
         //  รับจากหน้า index ที่ selecd มา
-        $soldier_dep_id=isset($request->soldier_dep_id) ? $request->soldier_dep_id : '' ;
+        $soldier_dep_id     =isset($request->soldier_dep_id) ? $request->soldier_dep_id : '' ;
+        $soldier_provinces  =isset($request->soldier_provinces) ? $request->soldier_provinces : '' ;
+
         $user_id = Auth::user()->id;
         $userdep =Userdep::where('user_id','=',$user_id)->orderBy('dep_id')->get();
         $DepArr =Array();
@@ -42,7 +46,17 @@ class SoldierController extends Controller
                 $query->where('soldier_dep_id','=',$soldier_dep_id);
             }
 
-     })
+        })
+
+        ->where(function($query) use ($soldier_provinces){
+            if($soldier_provinces!=''){
+                $query->where('soldier_province','=',$soldier_provinces);
+            }
+
+        })
+
+
+
         ->where(function($query) use ($search){
             if($search !=''){
                 //ตัวแรก where ตามด้วย orwhere
@@ -54,6 +68,7 @@ class SoldierController extends Controller
                 ->orwhere('soldier_education', 'like','%'.$search.'%')
                 ->orwhere('soldier_intern', 'like','%'.$search.'%')
                 ->orwhere('soldier_skill', 'like','%'.$search.'%')
+                ->orwhere('soldier_province', 'like','%'.$search.'%')
                 ->orwhere('soldiers_teacher', 'like','%'.$search.'%')
                 ->orwhere('soldiers_now', 'like','%'.$search.'%')
                 ->orwhere('soldier_course', 'like','%'.$search.'%')
@@ -83,8 +98,11 @@ class SoldierController extends Controller
             //->dd()
             ->get();
 
+
+            $provinces = Soldier::selectRaw('soldier_province as province')->where('soldier_province','!=','')->distinct()->get();
+
             $total_soldier= Soldier::where('soldier_id','!=','')->count();
-        return view('admin.soldier.index',compact('soldier','search','soldier_dep_id','total_soldier','Department','soldier_dep_id'));
+        return view('admin.soldier.index',compact('soldier','search','soldier_dep_id','total_soldier','Department','soldier_dep_id','provinces','soldier_provinces'));
     }
 
     public function store( Request $request){
@@ -260,10 +278,17 @@ class SoldierController extends Controller
             $page = isset($request->page)? $request->page : '';
             $search = isset($request->search) ? $request->search  : '';
             $soldier_dep_id = isset($request->soldier_dep_id) ? $request->soldier_dep_id : '';
+            $soldier_provinces  =isset($request->soldier_provinces) ? $request->soldier_provinces : '' ;
+
             $soldier = Soldier::Where('soldier_id','=',$soldier_id)->first(); /// get คือ มีหลายตั้งหลายเร็ค // first เอาอันเดียว
 
+            $provinces = Tambon::select('province')->distinct()->get();
+            $amphoes = Tambon::select('amphoe')->distinct()->get();
+            //$tambons = Tambon::select('tambon')->distinct()->get();
+
+
             if($soldier){
-                return view('admin.soldier.edit',compact('page','soldier','soldier_dep_id','search'));
+                return view('admin.soldier.edit',compact('page','soldier','soldier_dep_id','search','provinces','amphoes','soldier_provinces'));
             }
             else {
             return  view('erroe.403');
@@ -320,6 +345,9 @@ class SoldierController extends Controller
          $soldier_year =$soldier ->soldier_year;
          $soldier_dep_id=$soldier ->soldier_dep_id;
 
+         $soldier_province=isset($request->soldier_province) ? $request->soldier_province   : '';
+         $soldier_amphoe=isset($request->soldier_amphoe) ? $request->soldier_amphoe   : '';
+
         //กรณีแก้ไข เลยอ้างอิงจากชื่อ
 
         $chk =false;
@@ -346,6 +374,8 @@ class SoldierController extends Controller
                 , 'soldiers_now'=> $soldiers_now
                 , 'soldiers_term'=> $soldiers_term
                  ,'soldier_course'=> $soldier_course
+                 ,"soldier_province" => $soldier_province
+                 ,"soldier_amphoe" => $soldier_amphoe
 
             ]);
         }
