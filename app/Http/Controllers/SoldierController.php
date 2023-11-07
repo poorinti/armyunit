@@ -286,6 +286,7 @@ class SoldierController extends Controller
 
             $soldier = Soldier::Where('soldier_id','=',$soldier_id)->first(); /// get คือ มีหลายตั้งหลายเร็ค // first เอาอันเดียว
 
+            // distinct() ซ้ำกันเอาอันเดียว
             $provinces = Tambon::select('province')->distinct()->get();
             $amphoes = Tambon::select('amphoe')->distinct()->get();
             //$tambons = Tambon::select('tambon')->distinct()->get();

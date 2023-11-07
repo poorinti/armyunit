@@ -379,7 +379,8 @@ $(document).ready(function() {
 
 
 function showAmphoes() {
-        let soldier_province = document.querySelector("#soldier_province");
+
+    let soldier_province = document.querySelector("#soldier_province");
         let url = "/soldier/amphoes?province=" + soldier_province.value;
 
         // if(soldier_province.value == "") return;
@@ -400,7 +401,7 @@ function showAmphoes() {
                 showTambons();
             });
     }
-
+// เมื่อเลือกจังหวัดเกิดการเปลี่ยนแปลง
     document.querySelector('#soldier_province').addEventListener('change', (event) => {
         showAmphoes();
     });
