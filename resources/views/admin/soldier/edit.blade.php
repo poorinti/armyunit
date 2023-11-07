@@ -91,6 +91,7 @@
 
                                                 <input type="hidden" name="soldier_dep_id" value="{{$soldier_dep_id}}">
                                                 <input type="hidden" name="search" value="{{$search}}">
+                                                <input type="hidden" name="soldier_provinces" value="{{isset($soldier_provinces) ? $soldier_provinces :'' }}">
 
 
                                                 <div class="form-group">

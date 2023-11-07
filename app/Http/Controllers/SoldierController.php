@@ -76,7 +76,10 @@ class SoldierController extends Controller
             }
 		    })
             // ->dd()
-            ->orderBy('soldier_intern')
+           // ->orderBy('soldier_intern')
+           //SUBSTRING_INDEX(SUBSTRING_INDEX(soldier_intern,'/', 2), '/',-1) ,SUBSTRING_INDEX(soldier_intern,'/',1);
+           ->orderByRaw("SUBSTRING_INDEX(SUBSTRING_INDEX(soldier_intern,'/', 2), '/',-1) desc")
+           ->orderByRaw("SUBSTRING_INDEX(soldier_intern,'/',1) desc")
             ->orderBy('soldier_name')
             // ->orderBy('created_at','desc')
             ->paginate(15);
@@ -274,7 +277,8 @@ class SoldierController extends Controller
     }
 
     public function edit(Request $request,$soldier_id){
-            //  dd($request->all());
+            //   dd($request->all());
+
             $page = isset($request->page)? $request->page : '';
             $search = isset($request->search) ? $request->search  : '';
             $soldier_dep_id = isset($request->soldier_dep_id) ? $request->soldier_dep_id : '';
@@ -286,7 +290,7 @@ class SoldierController extends Controller
             $amphoes = Tambon::select('amphoe')->distinct()->get();
             //$tambons = Tambon::select('tambon')->distinct()->get();
 
-
+        // dd($soldier_provinces);
             if($soldier){
                 return view('admin.soldier.edit',compact('page','soldier','soldier_dep_id','search','provinces','amphoes','soldier_provinces'));
             }
@@ -348,6 +352,7 @@ class SoldierController extends Controller
          $soldier_province=isset($request->soldier_province) ? $request->soldier_province   : '';
          $soldier_amphoe=isset($request->soldier_amphoe) ? $request->soldier_amphoe   : '';
 
+         $soldier_provinces  =isset($request->soldier_provinces) ? $request->soldier_provinces : '' ;
         //กรณีแก้ไข เลยอ้างอิงจากชื่อ
 
         $chk =false;
@@ -444,7 +449,9 @@ class SoldierController extends Controller
                 $url .=isset($page)? 'page='.$page :'';
                 $url .=isset($search) ? '&search='.$search : '' ;
                 $url .=isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' ;
-                //  dd($url);
+                $url .=isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' ;
+
+                //   dd($url);
                 return redirect($url  )->with("success","อัพเดทข้อมูลเรียบร้อย");
 
 
