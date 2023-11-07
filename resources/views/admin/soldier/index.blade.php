@@ -34,28 +34,30 @@
                     @csrf
 
                 <div class="my-3 row">
-                    <div class="my-2 form-group">
+                    <div class=" form-group">
 
                     </div>
-
                     <div class="input-group">
+                    <select class="form-control" name="soldier_dep_id" id="soldier_dep_id" >
+                        <option value="">แสดงทั้งหมด</option>
+                            @foreach ( $Department as $key=>$row )
+
+                            <option value="{{$row->dep_id}}" {{ $soldier_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
+                        @endforeach
+                   </select>
+
+                   <select class="form-control" name="soldier_provinces" id="soldier_provinces" >
+                    <option value="">เลือกจังหวัด</option>
+                        @foreach ( $provinces as $key=>$item )
+                        <option value="{{ $item->province }}" {{ $item->province==$soldier_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
+
+                        @endforeach
+                    </select>
+                   </div>
+                    <div class="my-3 input-group ">
 
 
-                        <select class="form-control" name="soldier_dep_id" id="soldier_dep_id" >
-                            <option value="">แสดงทั้งหมด</option>
-                                @foreach ( $Department as $key=>$row )
 
-                                <option value="{{$row->dep_id}}" {{ $soldier_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
-                            @endforeach
-                       </select>
-
-                       <select class="form-control" name="soldier_provinces" id="soldier_provinces" >
-                        <option value="">เลือกจังหวัด</option>
-                            @foreach ( $provinces as $key=>$item )
-                            <option value="{{ $item->province }}" {{ $item->province==$soldier_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
-
-                            @endforeach
-                        </select>
 
                          {{-- {{dd($search);}} --}}
                         <input type="text" class="form-control" placeholder="ค้นหากำลังพล" id="search" name="search" value="{{isset($search) ? $search :"" }}">
