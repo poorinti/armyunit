@@ -449,10 +449,12 @@ class SoldierController extends Controller
                 $url .=isset($page)? 'page='.$page :'';
                 $url .=isset($search) ? '&search='.$search : '' ;
                 $url .=isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' ;
-                $url .=isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' ;
+                $url .=isset($soldier_provinces) ? '&soldier_provinces='. iconv('Windows-1250', 'UTF-8',$soldier_provinces) : '' ;
 
-                //   dd($url);
-                return redirect($url  )->with("success","อัพเดทข้อมูลเรียบร้อย");
+                //    dd($url);
+                // return redirect($url  )->with("success","อัพเดทข้อมูลเรียบร้อย");
+                 return redirect()->back()->with("success","อัพเดทข้อมูลเรียบร้อย");
+
 
 
 
