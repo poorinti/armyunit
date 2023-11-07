@@ -78,7 +78,7 @@
                                   <tr class="text-center">
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ภาพประกอบ</th>
-                                    <th scope="col">ชื่อกำลังพล</th>
+                                    <th scope="col">ชื่อ-สกุล</th>
                                     <th scope="col" class="hidden sm:table-cell">เลขบัตรประชาชน</th>
                                     <th style="width: 80px;" scope="col">ผลัด/ปี</th>
                                     <th scope="col">หน่วย</th>
@@ -100,7 +100,7 @@
                                     </td>
 
 
-                                    <td class="text-left">{{$row->soldier_name}}</td>
+                                    <td class="text-left " >{{$row->soldier_name}}</td>
                                     <td  class="hidden sm:table-cell">{{$row->soldier_id }}</td>
                                     <td>{{$row->soldier_intern}}</td>
                                     <td>{{$row->soldiers_dep_name}}</td>
