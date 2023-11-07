@@ -6,9 +6,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <!-- PWA  -->
+        {{-- <!-- PWA  -->
         <meta name="theme-color" content="#6777ef"/>
         <link rel="apple-touch-icon" href="{{ asset('/image/logo/logo1.png') }}">
+        <link rel="manifest" href="{{ asset('/manifest.json') }}"> --}}
+
+        <!-- PWA  -->
+        <meta name="theme-color" content="#6777ef"/>
+        <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
         <link rel="manifest" href="{{ asset('/manifest.json') }}">
 
         <link rel="icon" type="image/x-icon" href="/image/logo/favicon.ico">
@@ -38,6 +43,14 @@
         <!-- Styles -->
         @livewireStyles
     </head>
+    <script src="{{ asset('/sw.js') }}"></script>
+        <script>
+            if (!navigator.serviceWorker.controller) {
+                navigator.serviceWorker.register("/sw.js").then(function (reg) {
+                    console.log("Service worker has been registered for scope: " + reg.scope);
+                });
+            }
+    </script>
     <body class="font-sans antialiased">
         <x-banner />
 
@@ -66,10 +79,10 @@
     </body>
 </html>
 
-<script>
+{{-- <script>
     if (!navigator.serviceWorker.controller) {
         navigator.serviceWorker.register("/sw.js").then(function (reg) {
             console.log("Service worker has been registered for scope: " + reg.scope);
         });
      }
-</script>
+</script> --}}

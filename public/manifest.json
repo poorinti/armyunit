@@ -1,14 +1,14 @@
 {
-    "name": "Army Unit",
+    "name": "Laravel Package Tutorial",
     "short_name": "LPT",
-    "start_url": "/",
+    "start_url": "/index.php",
     "background_color": "#6777ef",
-    "description": "ระบบฐานข้อมูล นขต.พล.ร.6",
+    "description": "Tutorial of Laravel Package",
     "display": "fullscreen",
     "theme_color": "#6777ef",
     "icons": [
         {
-            "src": "/image/logo/logo1.png'",
+            "src": "logo.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any maskable"
