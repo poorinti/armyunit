@@ -82,7 +82,7 @@
                                     <th scope="col" class="hidden sm:table-cell">เลขบัตรประชาชน</th>
                                     <th style="width: 80px;" scope="col">ผลัด/ปี</th>
                                     <th scope="col">หน่วย</th>
-                                    <th scope="col">จังหวัด</th>
+                                    <th scope="col" class="hidden sm:table-cell">จังหวัด</th>
                                     <th scope="col" class="hidden sm:table-cell">แก้ไข</th>
                                     <th scope="col" class="hidden sm:table-cell">ลบ</th>
                                   </tr>
@@ -104,7 +104,7 @@
                                     <td  class="hidden sm:table-cell">{{$row->soldier_id }}</td>
                                     <td>{{$row->soldier_intern}}</td>
                                     <td>{{$row->soldiers_dep_name}}</td>
-                                    <td>{{$row->soldier_province}}</td>
+                                    <td class="hidden sm:table-cell">{{$row->soldier_province}}</td>
                                     <td class="hidden sm:table-cell"><a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}" class="btn btn-danger"> แก้ไข</a></td>
                                     <td class="hidden sm:table-cell"><a href="{{url('/soldier/delete/'.$row->soldier_id)}}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
