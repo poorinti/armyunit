@@ -26,7 +26,7 @@
 
         @endforeach --}}
 
-    <div class="py-12">
+    <div class="py-3">
         <div class="mx-auto max-w-auto sm:px-6 lg:px-8">
 
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
