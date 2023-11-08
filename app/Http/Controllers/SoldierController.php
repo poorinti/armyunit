@@ -280,7 +280,7 @@ class SoldierController extends Controller
        }
 
        public function delete($soldier_id){
-        $act=false;
+        $act=true;
         $soldier_id  =isset($soldier_id) ? $soldier_id : '' ;
 
         $delete = Soldier::Where('soldier_id','=',$soldier_id)->Delete();

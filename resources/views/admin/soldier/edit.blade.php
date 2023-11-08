@@ -7,7 +7,7 @@
     {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> --}}
-
+    <script src="/js/jquery-1.4.4.min.js"></script>
     <link rel="stylesheet" href="/css/datepicker/jquery-ui.css">
 
     <script src="/css/datepicker/jquery-3.6.0.js"></script>
@@ -358,7 +358,7 @@
                                                                 <!--โรคประจำตัว-->
                                                                 @php
                                                                     $diseaseArr = array();
-                                                                    $diseaseArr=['จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','อื่นๆ']
+                                                                    $diseaseArr=['ไม่มี','ซึมเศร้า','จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','อื่นๆ']
                                                                 @endphp
 
                                                                 <div class="my-2 form-group">

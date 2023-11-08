@@ -74,7 +74,7 @@
                         </select>
                         @php
                         $diseaseArr = array();
-                        $diseaseArr=['จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','อื่นๆ']
+                        $diseaseArr=['ไม่มี','ซึมเศร้า','จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','อื่นๆ']
                         @endphp
 
                         <select class="form-control" name="soldier_disease" id="soldier_disease" >
@@ -145,7 +145,7 @@
                                     <td>{{$row->soldiers_dep_name}}</td>
                                     <td class="hidden sm:table-cell">{{$row->soldier_province}}</td>
                                     <td class="hidden sm:table-cell"><a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/soldier/delete/'.$row->soldier_id)}}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/soldier/delete/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
@@ -158,37 +158,6 @@
 
                         </div>
                     </div>
-
-                     {{-- <div class="col-md-4 ">
-                        <div class="card">
-                            <div class="card-header">แบบฟอร์มข้อมูลกำลังพล</div>
-                            <div class="card-body">
-                                <form action="{{route('addService')}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <label for="service_name">ขื่อกำลังพล</label>
-                                    <input type="text" class="form-control" name="service_name">
-                                    @error('service_name')<!-- ชื่อแท็ก name-->
-                                      <div class="my-2">
-                                        <span class="text-red-600 text">{{$message}}</span>
-                                      </div>
-                                    @enderror
-                                    <br>
-
-                                    <label for="service_image">ภาพประกรอบ</label>
-                                    <input type="file" class="form-control" name="service_image">
-                                    @error('service_image')
-                                      <div class="my-2">
-                                        <span class="text-red-600 text">{{$message}}</span>
-                                      </div>
-                                    @enderror
-                                    <br>
-                                    <a href="{{url('/service/startup')}}" class="btn btn-danger"> เพิ่มกำลังพล</a>
-
-                                    <input type="submit" value="บันทัก" class="text-black btn btn-primary">
-                                </form>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>
