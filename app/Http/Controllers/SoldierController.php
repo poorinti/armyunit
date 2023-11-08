@@ -19,9 +19,12 @@ class SoldierController extends Controller
 {
     public function index(Request $request){
         $search   =isset($request->search) ? $request->search : '' ;
+        // dd($request->all());
         //  รับจากหน้า index ที่ selecd มา
         $soldier_dep_id     =isset($request->soldier_dep_id) ? $request->soldier_dep_id : '' ;
         $soldier_provinces  =isset($request->soldier_provinces) ? $request->soldier_provinces : '' ;
+        $soldier_education =isset($request->soldier_education) ? $request->soldier_education : '' ;
+        $soldier_disease =isset($request->soldier_disease) ? $request->soldier_disease : '' ;
 
         $user_id = Auth::user()->id;
         $userdep =Userdep::where('user_id','=',$user_id)->orderBy('dep_id')->get();
@@ -54,6 +57,18 @@ class SoldierController extends Controller
             }
 
         })
+        ->where(function($query) use ($soldier_education){
+            if($soldier_education!=''){
+                $query->where('soldier_education','=',$soldier_education);
+            }
+
+        })
+        ->where(function($query) use ($soldier_disease){
+            if($soldier_disease!=''){
+                $query->where('soldier_disease','=',$soldier_disease);
+            }
+
+        })
 
 
 
@@ -82,7 +97,7 @@ class SoldierController extends Controller
            ->orderByRaw("SUBSTRING_INDEX(soldier_intern,'/',1) desc")
             ->orderBy('soldier_name')
             // ->orderBy('created_at','desc')
-            ->paginate(15);
+            ->paginate(2);
 
             // $Department=Department::where('dep_id','!=','')
             // ->orderby('dep_id')->get();
@@ -105,7 +120,7 @@ class SoldierController extends Controller
             $provinces = Soldier::selectRaw('soldier_province as province')->where('soldier_province','!=','')->distinct()->get();
 
             $total_soldier= Soldier::where('soldier_id','!=','')->count();
-        return view('admin.soldier.index',compact('soldier','search','soldier_dep_id','total_soldier','Department','soldier_dep_id','provinces','soldier_provinces'));
+        return view('admin.soldier.index',compact('soldier','search','soldier_dep_id','total_soldier','Department','soldier_dep_id','provinces','soldier_provinces','soldier_education','soldier_disease'));
     }
 
     public function store( Request $request){
@@ -346,15 +361,32 @@ class SoldierController extends Controller
             $soldiers_term=isset($request->soldiers_term) ? $request->soldiers_term   : '';
             $soldier_course=isset($request->soldier_course) ? $request->soldier_course   : '';
           //  dd($soldier_id);
-         $soldier =Soldier::where('soldier_id','=', $soldier_id)->first();
-         $soldier_year =$soldier ->soldier_year;
-         $soldier_dep_id=$soldier ->soldier_dep_id;
+            $soldier =Soldier::where('soldier_id','=', $soldier_id)->first();
+            $soldier_year =$soldier ->soldier_year;
+            $soldier_dep_id=$soldier ->soldier_dep_id;
+            $soldier_province=isset($request->soldier_province) ? $request->soldier_province   : '';
+            $soldier_amphoe=isset($request->soldier_amphoe) ? $request->soldier_amphoe   : '';
+            //เพิ่มล่าสุด 8/11/2566
+            $soldier_education_study  =isset($request->soldier_education_study) ? $request->soldier_education_study : '' ;
+            $soldier_education_end  =isset($request->soldier_education_end) ? $request->soldier_education_end : '' ;
+            $soldier_wantto  =isset($request->soldier_wantto) ? $request->soldier_wantto : '' ;
+            $soldier_health  =isset($request->soldier_health) ? $request->soldier_health : '' ;
+            $soldier_want_nco  =isset($request->soldier_want_nco) ? $request->soldier_want_nco : '' ;
+            $soldier_want_skill  =isset($request->soldier_want_skill) ? $request->soldier_want_skill : '' ;
+            $soldier_disease  =isset($request->soldier_disease) ? $request->soldier_disease : '' ;
+            $soldier_relative_name1  =isset($request->soldier_relative_name1) ? $request->soldier_relative_name1 : '' ;
+            $soldier_relative_phone1  =isset($request->soldier_relative_phone1) ? $request->soldier_relative_phone1 : '' ;
+            $soldier_relative_add1  =isset($request->soldier_relative_add1) ? $request->soldier_relative_add1 : '' ;
+            $soldier_relative_name2  =isset($request->soldier_relative_name2) ? $request->soldier_relative_name2 : '' ;
+            $soldier_relative_phone2  =isset($request->soldier_relative_phone2) ? $request->soldier_relative_phone2 : '' ;
+            $soldier_relative_add2  =isset($request->soldier_relative_add2) ? $request->soldier_relative_add2 : '' ;
 
-         $soldier_province=isset($request->soldier_province) ? $request->soldier_province   : '';
-         $soldier_amphoe=isset($request->soldier_amphoe) ? $request->soldier_amphoe   : '';
+            //ตัวแปรค้นหา
+            $soldier_provinces  =isset($request->soldier_provinces) ? $request->soldier_provinces : '' ;
+            //กรณีแก้ไข เลยอ้างอิงจากชื่อ
 
-         $soldier_provinces  =isset($request->soldier_provinces) ? $request->soldier_provinces : '' ;
-        //กรณีแก้ไข เลยอ้างอิงจากชื่อ
+
+
 
         $chk =false;
 
@@ -379,9 +411,24 @@ class SoldierController extends Controller
                 ,'soldiers_teacher'=> $soldiers_teacher
                 , 'soldiers_now'=> $soldiers_now
                 , 'soldiers_term'=> $soldiers_term
-                 ,'soldier_course'=> $soldier_course
+                ,'soldier_course'=> $soldier_course
+
                  ,"soldier_province" => $soldier_province
                  ,"soldier_amphoe" => $soldier_amphoe
+
+                 ,'soldier_education_study'=>$soldier_education_study
+                 , 'soldier_education_end'=>$soldier_education_end
+                 , 'soldier_wantto'=>$soldier_wantto
+                 , 'soldier_health'=>$soldier_health
+                 , 'soldier_want_nco'=>$soldier_want_nco
+                 , 'soldier_want_skill'=>$soldier_want_skill
+                 , 'soldier_disease'=>$soldier_disease
+                 , 'soldier_relative_name1'=>$soldier_relative_name1
+                 , 'soldier_relative_phone1'=>$soldier_relative_phone1
+                 , 'soldier_relative_add1'=>$soldier_relative_add1
+                 , 'soldier_relative_name2'=>$soldier_relative_name2
+                 , 'soldier_relative_phone2'=>$soldier_relative_phone2
+                 , 'soldier_relative_add2'=>$soldier_relative_add2
 
             ]);
         }

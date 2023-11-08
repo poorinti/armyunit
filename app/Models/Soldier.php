@@ -24,6 +24,7 @@ class Soldier extends Model
         , 'created_at', 'updated_at','soldier_year'
         ,'soldiers_dep_name','soldiers_bat_id','soldiers_bat_name'
         ,'soldiers_teacher', 'soldiers_now', 'soldiers_term', 'soldier_course','dep_index','soldier_province','soldier_amphoe'
-    
+        ,'soldier_education_study', 'soldier_education_end', 'soldier_wantto', 'soldier_health', 'soldier_want_nco', 'soldier_want_skill', 'soldier_disease', 'soldier_relative_name1', 'soldier_relative_phone1', 'soldier_relative_add1', 'soldier_relative_name2', 'soldier_relative_phone2', 'soldier_relative_add2'
+
    ];
 }
