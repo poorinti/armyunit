@@ -3,7 +3,9 @@ background-position: 100%;
 background-size: 100%;
 
 background-image: url('{{ asset('/image/logo/bg2.jpg') }}');
-;
+background-repeat: no-repeat;
+background-size: cover;
+
 ">
 <div
         class="absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center w-full h-full min-h-screen pt-6 sm:justify-center sm:pt-0 "
