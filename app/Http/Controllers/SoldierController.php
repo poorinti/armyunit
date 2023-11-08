@@ -97,7 +97,7 @@ class SoldierController extends Controller
            ->orderByRaw("SUBSTRING_INDEX(soldier_intern,'/',1) desc")
             ->orderBy('soldier_name')
             // ->orderBy('created_at','desc')
-            ->paginate(2);
+            ->paginate(15);
 
             // $Department=Department::where('dep_id','!=','')
             // ->orderby('dep_id')->get();
