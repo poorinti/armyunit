@@ -50,8 +50,8 @@ class ExcelController extends Controller
                 return Soldier::insert([
 
                     'soldier_id' =>$line['soldier_id']
-                    ,'soldier_name'=>$line['soldier_name']
-                    ,'soldier_intern'=>$line['soldier_intern']
+                    ,'soldier_name'=>trim($line['soldier_name'])
+                    ,'soldier_intern'=>trim($line['soldier_intern'])
                     ,'soldier_corp'=>$line['soldier_corp']
                     ,'soldier_address'=>$line['soldier_address']
                     ,'soldier_phone'=>$line['soldier_phone']
@@ -65,21 +65,23 @@ class ExcelController extends Controller
 
                 ]);
             } catch (\Throwable $th) {
-                return Soldier::where('soldier_id','=',$line['soldier_id'])->update([
+                return
+
+                Soldier::where('soldier_id','=',trim($line['soldier_id']))->update([
 
                     //'soldier_id' =>$line['soldier_id']
-                    'soldier_name'=>$line['soldier_name']
-                    ,'soldier_intern'=>$line['soldier_intern']
+                    'soldier_name'=>trim($line['soldier_name'])
+                    ,'soldier_intern'=> trim($line['soldier_intern'])
                     ,'soldier_corp'=>$line['soldier_corp']
                     ,'soldier_address'=>$line['soldier_address']
                     ,'soldier_phone'=>$line['soldier_phone']
-                    
                     ,'soldier_dep_id'=>$soldier_dep_id
                     ,'soldiers_dep_name'=>$soldiers_dep_name
                     ,'soldiers_bat_id'=>$soldiers_bat_id
                     ,'soldiers_bat_name'=>$soldiers_bat_name
                     ,'updated_at'=>$updated_at
-                    ,'created_at'=>$created_at
+
+
 
 
                 ]);

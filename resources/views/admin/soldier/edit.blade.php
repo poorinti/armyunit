@@ -255,7 +255,7 @@
 
 
                                                 <!--วันที่ เข้าประจำการ-->
-                                                <div class="flex flex-auto">
+                                                {{-- <div class="flex flex-auto"> --}}
 
                                                         <div class="my-2 form-group">
                                                             <label for="soldier_startdate">วันที่ เข้าประจำการ</label>
@@ -269,7 +269,7 @@
                                                         </div>
                                                         @enderror
                                                         <!--วันที่ ปลดประจำการ-->
-                                                        <div class="mx-5 my-2 form-group">
+                                                        <div class="my-2 form-group">
                                                             <label for="soldier_enddate">วันที่ ปลดประจำการ</label>
                                                             <div class="w-64">
                                                                 <input type="text" class="form-control soldier-date" name="soldier_enddate" value ="{{ isset($soldier->soldier_enddate) ? Carbon\Carbon::parse($soldier->soldier_enddate)->format('d/m').'/'.Carbon\Carbon::parse($soldier->soldier_enddate)->format('Y')+543 : ''}}" >
@@ -280,7 +280,7 @@
                                                             <span class="text-red-600 text">{{$message}}</span>
                                                         </div>
                                                         @enderror
-                                                </div>
+                                                {{-- </div> --}}
 
                                                 <!--เบอร์โทรศัพท์-->
                                                 <div class="my-2 form-group">
