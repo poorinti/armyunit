@@ -27,8 +27,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/datejs', function () {
-    return view('admin.soldier.datejs');
+Route::get('/', function () {
+    return view('welcome');
 });
 
 Route::middleware([
