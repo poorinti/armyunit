@@ -67,7 +67,7 @@
 
             >
                 <img class="mx-auto mb-4 d-block" src="{{ asset('/image/logo/logo1.png') }}" alt="" width="200" height="200">
-                <h1 class="text-white display-4 fw-bold">ระบบจัดการฐานข้อมูล ทหารกองประจำการ นขต.พล.ร.6 </h1>
+                <h1 class="text-white display-4 fw-bold">ระบบจัดการฐานข้อมูลกำลังพล พล.ร.6 และ นขต.พล.ร.6 </h1>
                 <div class="mx-auto col-lg-6">
                   <p class="mb-4 lead"></p>
                   <div class="gap-2 d-grid d-sm-flex justify-content-sm-center">
