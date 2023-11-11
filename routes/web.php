@@ -3,6 +3,7 @@
 use App\Http\Controllers\BattalionController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\NcoController;
 use App\Http\Controllers\UserAllowDepController;
 use App\Http\Controllers\UserlistController;
 use App\Http\Controllers\ServiceController;
@@ -75,7 +76,7 @@ Route::middleware([
     //Route::match(['get', 'post'], '/soldier/add',[SoldierController::class,'index'])->name('soldier');
     Route::post('/soldier/add',[SoldierController::class,'store'])->name('addSoldier');
     Route::get('/soldier/edit/{id}',[SoldierController::class,'edit']);
-        //gotoadd
+    //gotoadd
     Route::get('/soldier/startadd/',[SoldierController::class,'startadd'])->name('startadd');
     Route::post('/soldier/update/{id}',[SoldierController::class,'update']);
     Route::get('/soldier/delete/{id}',[SoldierController::class,'delete']);
@@ -87,7 +88,7 @@ Route::middleware([
     //
     Route::get('/userallow/edit/{id}',[UserAllowDepController::class,'edit']);
 
-    ///userlist
+    ///userlist เชื่อมต่อ user
     Route::get('/userlist/all',[UserlistController::class,'index'])->name('userlist.index');
     Route::post('/userlist/add',[UserlistController::class,'store'])->name('userlist.store');
     Route::get('/userlist/edit/{id}',[UserlistController::class,'edit'])->name('userlist.edit');
@@ -105,6 +106,12 @@ Route::middleware([
     // Route::get('/soldier/tambons',[TambonController::class,'getTambons']);
     // Route::get('/soldier/zipcodes',[TambonController::class,'getZipcodes']);
 
+    //*หน้า nco
+
+    Route::match(['get', 'post'], '/nco/all',[NcoController::class,'index'])->name('nco');
+    Route::get('/nco/edit/{id}',[NcoController::class,'edit']);
+    Route::get('/nco/startadd/',[NcoController::class,'startadd']);
+    Route::post('/nco/update/{id}',[NcoController::class,'update']);
 });
 
 
