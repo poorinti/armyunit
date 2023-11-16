@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="header2">
+    <x-slot name="header3">
         <h2 class="text-xl font-semibold leading-tight text-white">
             ข้อมูลนายสิบ
         </h2>
@@ -62,7 +62,7 @@
                     @endif
                     <div class="col-md-4">
                         <div class="card">
-                            <a href="{{ '/nco/all?page='.request()->page.'&search='.request()->search.'&nco_dep_id='.request()->nco_dep_id.'&nco_provinces='.request()->nco_provinces.'&nco_education='.request()->nco_education.'&nco_disease='.request()->nco_disease  }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="text-black bg-purple-700 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                            <a href="{{ '/nco/all?page='.request()->page.'&search='.request()->search.'&nco_dep_id='.request()->soldier_dep_id.'&nco_provinces='.request()->nco_provinces.'&nco_education='.request()->nco_education.'&nco_disease='.request()->nco_disease  }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="text-black bg-purple-700 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
                             <div class="bg-slate-200 card-header ">รูปประจำตัว</div>
                             <div class="justify-center mx-auto text-center card-body ">
                                 <img src="{{isset($nco->nco_image) ? asset($nco->nco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($nco->nco_image) ? asset($nco->nco_image) : '' }}" alt="imageshow" width="200px" height="200px">
@@ -109,7 +109,7 @@
                                                     <label for="nco_rank">ยศ/คำนำหน้า</label>
                                                      <select class="form-control" name="nco_rank" id="nco_rank" required>
                                                      @foreach ( $rank as $key=>$row )
-                                                     <option value="{{$row->rank_name}}"{{ $row->rank_name==$nco->nco_rank ? 'selected' : ''}}>{{$row->rank_name}}</option>
+                                                     <option value="{{$row->rank_name}}">{{$row->rank_name}}</option>
                                                     @endforeach
                                                     </select>
                                                 </div>
@@ -149,7 +149,7 @@
                                                 <!--ภูมิลำเนา-->
                                                 <div class="my-2 form-group">
                                                     <label for="nco_address">ภูมิลำเนา</label>
-                                                    <input type="text" class="form-control" name="nco_address"placeholder="ตัวอย่าง : 118 หมู่ 7 ต.โพธิ์สัย" value ="{{isset($nco->nco_address) ? $nco->nco_address : ''}}" >
+                                                    <input type="text" class="form-control" name="nco_address"placeholder="ตัวอย่าง : 118 หมู่ 7 ต.โพธิ์สัย อ.ศรัสมเด็จ" value ="{{isset($nco->nco_address) ? $nco->nco_address : ''}}" >
                                                 </div>
                                                 @error('nco_address')
                                                 <div class="my-2">
@@ -180,7 +180,7 @@
                                                 <!--ผลัดที่/ปี -->
                                                 <div class="my-2 form-group">
                                                     <label for="nco_intern">รุ่น</label>
-                                                    <input type="text" class="form-control" name="nco_intern" placeholder="" value ="{{isset($nco->nco_intern) ? $nco->nco_intern : ''}}" >
+                                                    <input type="text" class="form-control" name="nco_intern" placeholder="ตัวอย่าง : 1/66 , 2/66" value ="{{isset($soldier->soldier_intern) ? $soldier->soldier_intern : ''}}" >
                                                 </div>
                                                 @error('nco_intern')
                                                 <div class="my-2">
@@ -210,21 +210,21 @@
                                                     $bornArr = array();
                                                     $bornArr=['นนส.','กองหนุน']
                                                 @endphp
-                                                {{-- <!--กำหนดเนิด -->
+                                                <!--กำหนดเนิด -->
                                                 <div class="my-2 form-group">
                                                     <label for="nco_intern" class="form-label">กำหนดเนิด</label>
                                                     <select class="form-select" id="nco_intern" name="nco_intern">
                                                         <option value ="{{isset($nco->nco_intern) ? $nco->nco_intern : '' }} " >{{isset($nco->nco_born) ? $nco->nco_born : ''}}</option>
                                                         @foreach ( $bornArr as $row )
-                                                      <option value="{{$row}}"{{ $row == $nco->nco_intern ? 'selected' : ''}}>{{ $row}}</option>
+                                                      <option value="{{$row}}">{{ $row}}</option>
                                                       @endforeach
                                                     </select>
                                                 </div>
-                                                @error('nco_intern')
+                                                @error('nco_born')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
-                                                @enderror --}}
+                                                @enderror
 
 
 
@@ -263,7 +263,7 @@
                                                 </div>
                                                 @enderror
                                                 <div class="my-4 card ">
-                                                    <div class="text-white bg-slate-500 card-header">ข้อมูล บุพพการี</div>
+                                                    <div class="text-white bg-slate-500 card-header">ข้อมูล ม.35</div>
                                                         <div class=" card-body bg-slate-100">
                                                             {{-- <!--ความต้องการพิเศษ-->
                                                                 <div class="my-2 form-group">
@@ -275,7 +275,7 @@
                                                                     <span class="text-red-600 text">{{$message}}</span>
                                                                 </div>
                                                                 @enderror --}}
-                                                                <!--อาการป่วย-->
+                                                                <!--มีบุพพการี ป่วยหรือไม่-->
                                                                 @php
                                                                     $unitArr = array();
                                                                     $unitArr=['ไม่มี','มี',]
@@ -284,9 +284,9 @@
                                                                 <div class="my-2 form-group">
                                                                     <label for="nco_law_rank" class="form-label">มีบุพพการี ป่วยหรือไม่</label>
                                                                     <select class="form-select" id="nco_law_rank" name="nco_law_rank">
-                                                                        {{-- <option value ="{{isset($nco->nco_law_rank) ? $nco->nco_law_rank : '' }} " >{{isset($nco->nco_law_rank) ? $nco->nco_law_rank : ''}}</option> --}}
+                                                                        <option value ="{{isset($nco->nco_law_rank) ? $nco->nco_law_rank : '' }} " >{{isset($nco->nco_law_rank) ? $nco->nco_law_rank : ''}}</option>
                                                                         @foreach ( $unitArr as $row )
-                                                                    <option value="{{$row}}"{{ $row == $nco->nco_law_rank ? 'selected' : ''}}>{{$row}}</option>
+                                                                    <option value="{{ $row}}">{{ $row}}</option>
                                                                     @endforeach
                                                                     </select>
                                                                 </div>
@@ -355,9 +355,9 @@
                                                                     <span class="text-red-600 text">{{$message}}</span>
                                                                 </div>
                                                                 @enderror --}}
-                                                                <!--หากมีระบุ-->
+                                                                <!--ความเกี่ยวข้องกับกำลังพล-->
                                                                 <div class="my-2 form-group">
-                                                                    <label for="nco_law_parent">ระบุ(ถ้ามี)</label>
+                                                                    <label for="nco_law_parent">ระบุ (ถ้ามี)</label>
                                                                     <input type="text" class="form-control" name="nco_law_parent" placeholder="" value ="{{isset($nco->nco_law_parent) ? $nco->nco_law_parent : ''}}" >
                                                                 </div>
                                                                 @error('nco_law_parent')

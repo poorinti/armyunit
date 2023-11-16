@@ -551,7 +551,7 @@ function showAmphoes() {
 
     let soldier_province = document.querySelector("#soldier_province");
         let url = "/soldier/amphoes?province=" + soldier_province.value;
-
+        console.log( url );
         // if(soldier_province.value == "") return;
         fetch(url)
             .then(response => response.json())
@@ -565,6 +565,7 @@ function showAmphoes() {
                     option.text = item.amphoe;
                     option.value = item.amphoe;
                     soldier_amphoe.appendChild(option);
+
                 }
                 //QUERY AMPHOES
                 showTambons();

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            หน่วยฝึก {{Auth::user()->name}}
+           เพิ่มข้อมูล พลทหาร
         </h2>
     </x-slot>
     <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -18,7 +18,7 @@
                     <div class="col-md-12">
                         <div class=" card">
                             <div class="card">
-                                <div class="card-header">บันทึกข้อมูลประจำตัว</div>
+                                <div class="bg-yellow-200 card-header">บันทึกข้อมูลพลทหาร</div>
                                      <div class="card-body">
                                         <form action="{{route('addSoldier')}}" method="POST" enctype="multipart/form-data">
                                             @csrf

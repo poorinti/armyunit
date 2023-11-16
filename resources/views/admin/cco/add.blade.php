@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="header2">
+    <x-slot name="header3">
         <h2 class="text-xl font-semibold leading-tight text-white">
-            เพิ่มข้อมูล นายสิบ
+            เพิ่มข้อมูล นายทหาร
         </h2>
     </x-slot>
     <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -18,9 +18,9 @@
                     <div class="col-md-12">
                         <div class=" card">
                             <div class="card">
-                                <div class="bg-success card-header">บันทึกข้อมูลประจำตัว นายสิบ</div>
+                                <div class="bg-red-200 card-header">บันทึกข้อมูลประจำตัว นายทหาร</div>
                                      <div class="card-body">
-                                        <form action="{{route('addNco')}}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{route('addCco')}}" method="POST" enctype="multipart/form-data">
                                             @csrf
 
                                             <div class="flex-row-reverse d-flex justify-content-end ">
@@ -31,10 +31,10 @@
                                                     <!--รูปภาพ -->
                                                     <div class="form-group">
                                                     </div>
-                                                    <label for="nco_image">อัพโหลดภาพโปรไฟล์</label>
-                                                    <input type="file" class="form-control" name="nco_image" >
+                                                    <label for="cco_image">อัพโหลดภาพโปรไฟล์</label>
+                                                    <input type="file" class="form-control" name="cco_image" >
                                                 </div>
-                                                    @error('nco_image')
+                                                    @error('cco_image')
                                                         <div class="my-2">
                                                             <span class="text-danger">{{$message}}</span>
                                                         </div>
@@ -47,51 +47,51 @@
                                                 {{-- <input type="hidden" name="soldier_id" value=""> --}}
                                                 <!--หน่วย-->
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_rank">ยศ/คำนำหน้า</label>
-                                                     <select class="form-control" name="nco_rank" id="nco_rank" required>
-                                                     @foreach ( $rank as $key=>$row )
+                                                    <label for="cco_rank">ยศ/คำนำหน้า</label>
+                                                     <select class="form-control" name="cco_rank" id="cco_rank" required>
+                                                     @foreach ( $rankcco as $key=>$row )
                                                      <option value="{{$row->rank_name}}">{{$row->rank_name}}</option>
                                                     @endforeach
                                                     </select>
                                                 </div>
-                                                @error('nco_rank')
+                                                @error('cco_rank')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
-                                                <label for="nco_name">ชื่อ-สกุล</label>
-                                                <input type="text" class="form-control" name="nco_name" value="" required>
-                                                @error('nco_name')
+                                                <label for="cco_name">ชื่อ-สกุล</label>
+                                                <input type="text" class="form-control" name="cco_name" value="" required>
+                                                @error('cco_name')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
                                                 <!--เลขประชาชน -->
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_id">เลขประชาชน</label>
-                                                    <input type="text" class="form-control" name="nco_id" placeholder="ตัวอย่าง :เลข 13 หลัก" required>
+                                                    <label for="cco_id">เลขประชาชน</label>
+                                                    <input type="text" class="form-control" name="cco_id" placeholder="ตัวอย่าง :เลข 13 หลัก" required>
                                                 </div>
-                                                @error('nco_id')
+                                                @error('cco_id')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
                                                  <!--หน่วย-->
                                                  <div class="my-2 form-group">
-                                                    <label for="nco_dep_id">หน่วย กองร้อย</label>
-                                                     <select class="form-control" name="nco_dep_id" id="nco_dep_id" required>
+                                                    <label for="cco_dep_id">หน่วย กองร้อย</label>
+                                                     <select class="form-control" name="cco_dep_id" id="cco_dep_id" required>
                                                      @foreach ( $Department as $key=>$row )
                                                      <option value="{{$row->dep_id}}">{{$row->department_name}}</option>
                                                     @endforeach
                                                     </select>
                                                 </div>
-                                                @error('nco_dep_id')
+                                                @error('cco_dep_id')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
                                          <br>
-                                         <a href="/nco/all" class="btn-info btn-yellow-warnnig "><i class="fa fa-arrow-left"></i> กลับ</a>
+                                         <a href="/cco/all" class="btn-info btn-yellow-warnnig "><i class="fa fa-arrow-left"></i> กลับ</a>
                                          <button type="submit" class="mx-auto text-black btn btn-primary ">บันทึกข้อมูล</button>
 
                                         </form>

@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            หน่วยฝึก {{Auth::user()->name}}
+    <x-slot name="header4">
+        <h2 class="text-xl font-semibold leading-tight text-white">
+           เพิ่มข้อมูล ม.35 ด้วย excel
         </h2>
     </x-slot>
     <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -21,9 +21,9 @@
                     <div class="col-md-12">
                         <div class=" card">
                             <div class="card">
-                                <div class="card-header">Import ข้อมูลกำลังพล</div>
+                                <div class="card-header">Import ม.35</div>
                                      <div class="card-body">
-                                        <form action="{{ url('/soldier/excel/import') }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ url('/law/excel/import') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
 
                                             <div class="flex-row-reverse d-flex justify-content-end ">
@@ -50,7 +50,7 @@
                                                 {{-- <input type="hidden" name="soldier_id" value=""> --}}
 
                                          <br>
-                                         <a href="/soldier/all" class="btn btn-info "><i class="fa fa-arrow-left"></i> กลับ</a>
+                                         <a href="/law/all" class="bg-blue-700 btn"><i class="fa fa-arrow-left"></i> กลับ</a>
                                          <button type="submit" class="mx-auto text-black btn btn-primary ">เพิ่มข้อมูล</button>
 
                                         </form>

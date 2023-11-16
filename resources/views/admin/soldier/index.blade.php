@@ -1,11 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="hidden text-xl font-semibold leading-tight text-gray-800 sm:block ">
-            ข้อมูลกำลังพล
-            <b class="float-end">จำนวนกำลังพลทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_soldier,0)}}</button>  นาย</b>
+            ข้อมูลพลทหาร
+            <b class="float-end">ข้อมูลพลทหารทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_soldier,0)}}</button>  นาย</b>
         </h2>
         <h2 class="text-xl font-semibold leading-tight text-gray-800 sm:block md:hidden lg:hidden xl:hidden">
-         <b class="">จำนวนกำลังพลทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_soldier,0)}}</button>  นาย</b>
+         <b class="">ข้อมูลพลทหารทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_soldier,0)}}</button>  นาย</b>
         </h2>
 
 </x-slot>
@@ -116,7 +116,7 @@
                                 <thead class="table-warning">
                                   <tr class="text-center">
                                     <th scope="col">ลำดับ</th>
-                                    <th scope="col">ภาพประกอบ</th>
+                                    <th scope="col">ภาพ</th>
                                     <th scope="col">ชื่อ-สกุล</th>
                                     <th scope="col" class="hidden sm:table-cell">เลขบัตรประชาชน</th>
                                     <th style="width: 80px;" scope="col">ผลัด/ปี</th>

@@ -7,6 +7,7 @@ use App\Models\Soldier;
 use App\Models\Userdep;
 use App\Models\Department;
 use App\Models\Nco;
+use App\Models\Law;
 use App\Models\Rank;
 use App\Models\Tambon;
 
@@ -17,21 +18,22 @@ use Nette\Utils\Arrays;
 use DB;
 use Image;
 
-class NcoController extends Controller
+class LawController extends Controller
 {
     public function index(Request $request){
 
 
 
                 $search   =isset($request->search) ? $request->search : '' ;
-                //  dd($request->all());
+                //   dd($request->all());
                 //  รับจากหน้า index ที่ selecd มา
-                $nco_dep_id     =isset($request->nco_dep_id) ? $request->nco_dep_id : '' ;
-                $nco_rank =isset($request->nco_rank ) ? $request->nco_rank  : '' ;
-                $nco_ranknco =0;
-                $nco_provinces  =isset($request->nco_provinces) ? $request->nco_provinces : '' ;
-                $nco_education =isset($request->nco_education) ? $request->nco_education : '' ;
-                $nco_disease =isset($request->nco_disease) ? $request->nco_disease : '' ;
+                $law_dep_id     =isset($request->law_dep_id) ? $request->law_dep_id : '' ;
+                $law_rank =isset($request->law_rank ) ? $request->law_rank  : '' ;
+                $law_lawchk=isset($request->law_lawchk ) ? $request->law_lawchk  : '' ;
+                $law_ranknco = 1;
+                $law_provinces  =isset($request->law_provinces) ? $request->law_provinces : '' ;
+                $law_education =isset($request->law_education) ? $request->law_education : '' ;
+                $law_disease =isset($request->law_disease) ? $request->law_disease : '' ;
 
                 // เช็ค สิทธิ์ login
                 $user_id = Auth::user()->id;
@@ -42,65 +44,72 @@ class NcoController extends Controller
                     $DepArr[]=$row->dep_id;
                 }
                 // ลิส table
-                $nco= Nco::where('nco_id','!=','')
+                $law= Law::where('law_id','!=','')
 
-                ->where(function($query) use ($nco_ranknco){
-                    if($nco_ranknco!=''){
-                        $query->where('nco_rank_index','=',0);
+                ->where(function($query) use ($law_ranknco){
+                    if($law_ranknco!=''){
+                        $query->where('law_rank_index','<=',2);
                     }
 
                 })
 
                 ->where(function($query) use ($DepArr){
                          if($DepArr){
-                             $query->whereIn('nco_dep_id',$DepArr);
+                             $query->whereIn('law_dep_id',$DepArr);
                          }
 
                   })
                   // ส่งโทรแปลเพื่อหาค่า  use คือฝาก พารามิเตอร์ลงในฟังชั่น
-                  ->where(function($query) use ($nco_dep_id){
-                     if($nco_dep_id!=''){
-                         $query->where('nco_dep_id','=',$nco_dep_id);
+                  ->where(function($query) use ($law_dep_id){
+                     if($law_dep_id!=''){
+                         $query->where('law_dep_id','=',$law_dep_id);
                      }
 
                  })
-                 ->where(function($query) use ($nco_rank){
-                    if($nco_rank!=''){
-                        $query->where('nco_rank','=',$nco_rank);
+                 ->where(function($query) use ($law_rank){
+                    if($law_rank!=''){
+                        $query->where('law_rank','=',$law_rank);
+                    }
+
+                })
+                ->where(function($query) use ($law_lawchk){
+                    if($law_lawchk!=''){
+
+                          if($law_lawchk=='ม.35(3)'){
+                                $query->where('law_index','=',3);
+                                }
+
+                          if($law_lawchk=='ม.35(7)'){
+                            $query->where('law_index','=',7);
+                              }
                     }
 
                 })
 
-                 ->where(function($query) use ($nco_provinces){
-                     if($nco_provinces!=''){
-                         $query->where('nco_province','=',$nco_provinces);
-                     }
-
-                 })
-                 ->where(function($query) use ($nco_education){
-                     if($nco_education!=''){
-                         $query->where('nco_education','=',$nco_education);
-                     }
-
-                 })
-                 ->where(function($query) use ($nco_disease){
-                     if($nco_disease!=''){
-                         $query->where('nco_disease','=',$nco_disease);
+                 ->where(function($query) use ($law_provinces){
+                     if($law_provinces!=''){
+                         $query->where('law_province','=',$law_provinces);
                      }
 
                  })
 
+                 ->where(function($query) use ($law_disease){
+                     if($law_disease!=''){
+                         $query->where('law_disease','=',$law_disease);
+                     }
+
+                    })
                  ->where(function($query) use ($search){
                      if($search !=''){
                          //ตัวแรก where ตามด้วย orwhere
-                         $query->where('nco_name', 'like','%'.$search.'%')
-                         ->orwhere('nco_id', 'like','%'.$search.'%')
-                         ->orwhere('nco_dep_name', 'like','%'.$search.'%')
-                         ->orwhere('nco_bat_name', 'like','%'.$search.'%')
-                         ->orwhere('nco_rtanumber', 'like','%'.$search.'%')
-                         ->orwhere('nco_intern', 'like','%'.$search.'%')
-                         ->orwhere('nco_province', 'like','%'.$search.'%')
-                         ->orWhere('nco_state','%'. $search.'%');
+                         $query->where('law_name', 'like','%'.$search.'%')
+                         ->orwhere('law_id', 'like','%'.$search.'%')
+                         ->orwhere('law_dep_name', 'like','%'.$search.'%')
+                         ->orwhere('law_bat_name', 'like','%'.$search.'%')
+                         ->orwhere('law_rtanumber', 'like','%'.$search.'%')
+                         ->orwhere('law_intern', 'like','%'.$search.'%')
+                         ->orwhere('law_province', 'like','%'.$search.'%');
+
                      }
                      })
                      // ->dd()
@@ -108,61 +117,61 @@ class NcoController extends Controller
                     //SUBSTRING_INDEX(SUBSTRING_INDEX(soldier_intern,'/', 2), '/',-1) ,SUBSTRING_INDEX(soldier_intern,'/',1);
                     // ->orderByRaw("SUBSTRING_INDEX(SUBSTRING_INDEX(nco_intern,'/', 2), '/',-1) desc")
                     // ->orderByRaw("SUBSTRING_INDEX(nco_intern,'/',1) desc")
-                     ->orderBy('nco_name')
+                     ->orderBy('law_name')
                      // ->orderBy('created_at','desc')
-                     ->paginate(3);
-
-
-
+                     ->paginate(15);
 
 
           $Department=Department::select('dep_id')
             //->selectRaw('ใส่sql ตรงๆเลย')
-            ->where('nco_rank_index','=',0)
+            ->where('law_rank_index','<=',2)
             ->selectRaw('min(departments.dep_index)dep_index')
             ->selectRaw('min(department_name)department_name')
-            ->selectRaw("SUM(CASE WHEN nco_dep_id != '' THEN 1 ELSE 0 END) AS total")
+            ->selectRaw("SUM(CASE WHEN law_dep_id != '' THEN 1 ELSE 0 END) AS total")
             //->leftJoin("เทเบิ้ลที่จะเอามาเชื่อม", "soldiers.ฟิวที่ตรงกัน", "=", "departments.ฟิวตรงกัน")
-            ->leftJoin("ncos", "ncos.nco_dep_id", "=", "departments.dep_id")
+            ->leftJoin("laws", "laws.law_dep_id", "=", "departments.dep_id")
             //->where('soldier_dep_id','!=',)
             ->groupBy('dep_id')
             ->orderBy('dep_index')
             //->dd()
             ->get();
 
-            $rank = Rank::where('rank_id','!=','')->where('cco_rank_index','=',0)->orderby('nco_rank_index')->get();
+            $rank = Rank::where('rank_id','!=','')->where('cco_rank_index','<=',2)->orderby('nco_rank_index')->get();
 
 
 
-            $provinces = Nco::selectRaw('nco_province as province')->where('nco_province','!=','')->distinct()->get();
+            $provinces = Law::selectRaw('law_province as province')->where('law_province','!=','')->distinct()->get();
 
-            $total_nco= Nco::where('nco_id','!=','')->count();
+            $total_nco= Law::where('law_id','!=','')->count();
 
 
 
-        return view('admin.nco.index',compact('nco','Department','total_nco','nco_dep_id','nco_provinces','nco_education','nco_disease','provinces','rank','nco_rank','search' ));
+
+        return view('admin.law.index',compact('law','Department','total_nco','law_dep_id','law_provinces','law_education','law_disease','provinces','rank','law_rank','law_lawchk','search' ));
     }
 
-    public function edit(Request $request,$nco_id){
+    public function edit(Request $request,$law_id){
 
-        //    dd($request->all());
+            // dd($request->all());
             $page = isset($request->page)? $request->page : '';
             $search = isset($request->search) ? $request->search  : '';
-            $nco_dep_id = isset($request->nco_dep_id) ? $request->nco_dep_id : '';
-            $nco_provinces  =isset($request->nco_provinces) ? $request->nco_provinces : '' ;
-            $nco_rank =isset($request->nco_rank ) ? $request->nco_rank  : '' ;
+            $law_dep_id = isset($request->law_dep_id) ? $request->law_dep_id : '';
+            $law_provinces  =isset($request->law_provinces) ? $request->law_provinces : '' ;
+            $law_rank =isset($request->law_rank ) ? $request->law_rank  : '' ;
+            $law_lawchk =isset($request->law_lawchk ) ? $request->law_lawchk  : '' ;
             $provinces = Tambon::select('province')->distinct()->get();
             $amphoes = Tambon::select('amphoe')->distinct()->get();
 
-            $nco= Nco::where('nco_id','=',$nco_id)->first();
+            $law= Law::where('law_id','=',$law_id)->first();
+            $nco= Law::where('law_id','=',$law_id)->first();
 
-            $rank = Rank::where('rank_id','!=','')->where('cco_rank_index','=',0)->orderby('nco_rank_index')->get();
+            $rank = Rank::where('rank_id','!=','')->where('cco_rank_index','<=',2)->orderby('nco_rank_index')->get();
 
 
 
     // dd($soldier_provinces);
 
-            return view('admin.nco.edit',compact('page','nco','provinces','amphoes','nco_provinces','rank','nco_rank'));
+            return view('admin.law.edit',compact('page','nco','provinces','amphoes','law_provinces','rank','law_rank','law','law_dep_id','search','law_lawchk'));
 
 
 
@@ -171,55 +180,55 @@ class NcoController extends Controller
     /////////////////////////////////////////////////////// แอดข้อมูล/////////////////////////////////////////////
     public function store( Request $request){
 
-            // dd($request->all());
+            //  dd($request->all());
             // เช็คก่อนเอาเข้า
         $request->validate([
 
           // 'ไฟล์ที่เก็บค่ามาชื่อ name'=>'ต้องการข้อมูล|ไม่ซ้ำ:ในฐานข้อมูลที่เป็น พหุพจน์ |max:255'
 
-            'nco_id'=>'required|unique:ncos|max:13'
-            ,'nco_name'=>'required|unique:ncos|max:255'
-            ,'nco_image'=>'mimes:png,jpg,jpeg,JPG|max:2048'
+            'law_id'=>'required|unique:laws|max:13'
+            ,'law_name'=>'required|unique:laws|max:255'
+            ,'law_image'=>'mimes:png,jpg,jpeg,JPG|max:2048'
         ],
         [
-            'nco_name.required'=>"กรุณาป้อนชื่อกำลังพลด้วยครับ",
-            'nco_name.max'=>"ห้ามป้อนตัวอักษรเกิน 255",
-            'nco_name.unique'=>"มีข้อมูลชื่อกำลังพลในฐานข้อมูลแล้ว",
+            'law_name.required'=>"กรุณาป้อนชื่อกำลังพลด้วยครับ",
+            'law_name.max'=>"ห้ามป้อนตัวอักษรเกิน 255",
+            'law_name.unique'=>"มีข้อมูลชื่อกำลังพลในฐานข้อมูลแล้ว",
             // 'soldier_image.required' => "กรุณาใส่ภาพประกอบ",
-            'nco_id.required'=>"กรุณาป้อนเลขประจำตัวประชาชนด้วยครับด้วยครับ",
-            'nco_id.max'=>"ห้ามป้อนตัวอักษรเกิน 13",
-            'nco_id.unique'=>"มีเลขประจำตัวประชาชนในฐานข้อมูลแล้ว",
+            'law_id.required'=>"กรุณาป้อนเลขประจำตัวประชาชนด้วยครับด้วยครับ",
+            'law_id.max'=>"ห้ามป้อนตัวอักษรเกิน 13",
+            'law_id.unique'=>"มีเลขประจำตัวประชาชนในฐานข้อมูลแล้ว",
         ]
     );
 
     //บันทึกข้อมูล
 
-    $nco_name   =isset($request->nco_name) ? $request->nco_name : '' ;
-    $nco_id   =isset($request->nco_id) ? $request->nco_id : '' ;
-    $nco_rank =isset($request->nco_rank) ? $request->nco_rank : '' ;
-    $nco_dep_id   =isset($request->nco_dep_id) ? $request->nco_dep_id : '' ;
+    $law_name   =isset($request->law_name) ? $request->law_name : '' ;
+    $law_id   =isset($request->law_id) ? $request->law_id : '' ;
+    $law_rank =isset($request->law_rank) ? $request->law_rank : '' ;
+    $law_dep_id   =isset($request->law_dep_id) ? $request->law_dep_id : '' ;
     $act=false;
     $created_at=Carbon::now()->format("Y-m-d H:i:s");
     $updated_at =Carbon::now()->format("Y-m-d H:i:s");
 
-    $Dep=Department::where('dep_id','=',$nco_dep_id)->first();
+    $Dep=Department::where('dep_id','=',$law_dep_id)->first();
 
-    $nco_dep_name      =$Dep->department_name;
-    $nco_bat_id        =$Dep->battalion_id ;
-    $nco_bat_name      =$Dep->battalion_name;
-    $nco_year   =Carbon::now()->format("Y");
+    $law_dep_name      =$Dep->department_name;
+    $law_bat_id        =$Dep->battalion_id ;
+    $law_bat_name      =$Dep->battalion_name;
+    $law_year   =Carbon::now()->format("Y");
 
-    $act =Nco::insert([
-        'nco_name'=>$nco_name,
-        'nco_rank'=>$nco_rank,
-        'nco_id'=>$nco_id,
-        'nco_dep_id'=>$nco_dep_id,
+    $act =Law::insert([
+        'law_name'=>$law_name,
+        'law_rank'=>$law_rank,
+        'law_id'=>$law_id,
+        'law_dep_id'=>$law_dep_id,
         'created_at'=>$created_at,
         'updated_at'=>$updated_at
-        ,'nco_dep_name'=>$nco_dep_name
-        ,'nco_bat_id'=>$nco_bat_id
-        ,'nco_bat_name'=>$nco_bat_name
-        ,'nco_year'=>$nco_year
+        ,'law_dep_name'=>$law_dep_name
+        ,'law_bat_id'=>$law_bat_id
+        ,'law_bat_name'=>$law_bat_name
+        ,'law_year'=>$law_year
 
     ]);
 
@@ -228,34 +237,34 @@ class NcoController extends Controller
 
 
     //การเข้ารหัสรูปภาพ
-    $nco_image = $request->file('nco_image');
-    if($nco_image){
+    $law_image = $request->file('nco_image');
+    if($law_image){
     // gen ชื่อภาพ
     $name_gen = hexdec(uniqid());
 
     //ดึงนามสกุลไฟล์ภาพ
-    $img_ext = strtolower($nco_image->getClientOriginalExtension());
+    $img_ext = strtolower($law_image->getClientOriginalExtension());
 
     //ขื่อไฟล์ภาพ ภาพ
     $img_name = $name_gen.'.'.$img_ext;
 
     //อัพโหลดภาพ และบันทึกข้อมูล
-    $upload_location = 'image/nco/'.$nco_year.'/'.$nco_dep_id.'/';
-    if (!File::exists('image/nco/'.$nco_year)) {
+    $upload_location = 'image/law/'.$law_year.'/'.$law_dep_id.'/';
+    if (!File::exists('image/law/'.$law_year)) {
 
         // mkdir($upload_location, 0755, true);
-        File::makeDirectory('image/nco/'.$nco_year, 0755, true);
+        File::makeDirectory('image/law/'.$law_year, 0755, true);
         File::makeDirectory($upload_location, 0755, true);
     }
     $full_path = $upload_location.$img_name;
    // dd($full_path);
 
-    Nco::where('nco_id','=',$nco_id)->update([
-        'nco_image'=>$full_path,
+    Law::where('law_id','=',$law_id)->update([
+        'law_image'=>$full_path,
 
     ]);
 
-  $nco_image->move($upload_location,$img_name);
+  $law_image->move($upload_location,$img_name);
 
     }
 
@@ -290,7 +299,8 @@ class NcoController extends Controller
 
           $rank = Rank::where('rank_id','!=','')->where('cco_rank_index','=',0)->orderby('nco_rank_index')->get();
           $rankcco = Rank::where('rank_id','!=','')->where('cco_rank_index','=',1)->orderby('nco_rank_index')->get();
-          return view('admin.nco.add',compact('Department','rank','rankcco'));
+          $ranklaw = Rank::where('rank_id','!=','')->where('cco_rank_index','<=',2)->orderby('nco_rank_index')->get();
+          return view('admin.law.add',compact('Department','rank','rankcco','ranklaw'));
          }
 
 
@@ -299,11 +309,12 @@ class NcoController extends Controller
 
 
 
-         public function delete($nco_id){
+         public function delete($law_id){
             $act=true;
-            $nco_id  =isset($nco_id) ? $nco_id : '' ;
 
-            $delete = Nco::Where('nco_id','=',$nco_id)->Delete();
+            $law_id  =isset($law_id) ? $law_id : '' ;
+
+            $delete = Law::Where('law_id','=',$law_id)->Delete();
             if($act){
                 return redirect()->back()->with("success","ลบข้อมูลถาวรเรียบร้อย");
             } else{
@@ -314,7 +325,7 @@ class NcoController extends Controller
 
 /////////////////////////////////////////////////////// อัพเดทข้อมูล/////////////////////////////////////////////
         public function update(Request $request,$dep_id){
-                //   dd( $request->All());
+            //    dd( $request->All());
             $request->validate([
 
                 'nco_image'=>'mimes:png,jpg,jpeg,JPG|max:2048'
@@ -326,90 +337,106 @@ class NcoController extends Controller
 
                //ค้นหา
             //ตัวแปรค้นหา
-        $nco_provinces  =isset($request->nco_provinces) ? $request->nco_provinces : '' ;
+        $law_provinces  =isset($request->law_provinces) ? $request->law_provinces : '' ;
         $page = isset($request->page) ? $request->page  : '';
         $search = isset($request->search) ? $request->search  : '';
-        $nco_dep_id = isset($request->nco_dep_id) ? $request->nco_dep_id : '';
+        $law_dep_id = isset($request->law_dep_id) ? $request->law_dep_id : '';
 
         //เซ็ทค่า การนำข้อมูลเข้า เบสิค
         $old_image = isset($request->old_image) ? $request->old_image  : '';
         // dd( $old_image);
-        $nco_id = isset($request->nco_id ) ? $request->nco_id   : '';
-        $nco_rank = isset($request->nco_rank ) ? $request->nco_rank   : '';
-        $nco_rank_index = isset($request->nco_rank_index ) ? $request->nco_rank_index   : 0;
-        $nco_rank = isset($request->nco_rank ) ? $request->nco_rank   : '';
-        $nco_name=isset($request->nco_name) ? $request->nco_name   : '';
-        $nco_image =isset($request->nco_image) ? $request->nco_image   : '';
-        $nco_rtanumber = isset($request->nco_rtanumber ) ? $request->nco_rtanumber   : '';
-        $nco_address = isset($request->nco_address ) ? $request->nco_address   : '';
-        $nco_intern = isset($request->nco_intern ) ? $request->nco_intern : '';
-        $nco_corp = isset($request->nco_corp ) ? $request->nco_corp   : '';
-        $nco_startdate = isset($request->nco_startdate  ) ?   $this->dateThaiToeng($request->nco_startdate)  : null;
-        $nco_phone = isset($request->nco_phone) ? $request->nco_phone : '';
-        $nco_about = isset($request->nco_phone) ? $request->nco_phone   : '';
 
-        // อันนี้ใช้แทนมีหรือไม่มี
-        $nco_law_rank= isset($request->nco_law_rank) ? $request->nco_law_rank  : '';
-        // อันนี้ใช้แทนอาการ
-        $nco_law_parent= isset($request->nco_law_parent) ? $request->nco_law_parent   : '';
+        $law_id = isset($request->law_id ) ? $request->law_id   : '';
+        $law_rank = isset($request->law_rank ) ? $request->law_rank   : '';
+        $law_index= isset($request->law_index) ? $request->law_index   : 0;
+        $law_name=isset($request->law_name) ? $request->law_name   : '';
+        $law_image =isset($request->law_image) ? $request->law_image   : '';
+        $law_rtanumber = isset($request->law_rtanumber ) ? $request->law_rtanumber   : '';
+        $law_defective = isset($request->law_defective ) ? $request->law_defective   : '';
+        $law_defective_about = isset($request->law_defective_about ) ? $request->law_defective_about   : '';
+        $law_m3_join = isset($request->law_m3_join ) ? $request->law_m3_join   : '';
+        $law_m7_join = isset($request->law_m7_join ) ? $request->law_m7_join   : '';
+        $law_reward = isset($request->law_reward) ? $request->law_reward  : '';
+        $law_parent_about = isset($request->law_parent_about ) ? $request->law_parent_about  : '';
+        $law_address = isset($request->law_address ) ? $request->law_address   : '';
+        $law_m7_join = isset($request->law_m7_join ) ? $request->law_m7_join   : '';
+        $law_intern = isset($request->law_intern ) ? $request->law_intern : '';
+        $law_corp = isset($request->law_corp ) ? $request->law_corp   : '';
+        $law_startdate = isset($request->law_startdate  ) ?   $this->dateThaiToeng($request->law_startdate)  : null;
+        $law_phone = isset($request->law_phone ) ? $request->law_phone  : '';
+        $law_about = isset($request->law_about) ? $request->law_about   : '';
+        $law_parent_id = isset($request->law_parent_id) ? $request->law_parent_id   : '';
+        $law_parent_rank = isset($request->law_parent_rank) ? $request->law_parent_rank   : '';
+        $law_parent_name = isset($request->law_parent_name) ? $request->law_parent_name   : '';
+        $law_dep_name = isset($request->law_dep_name) ? $request->law_dep_name   : '';
+        $law_phone = isset($request->law_phone) ? $request->law_phone   : '';
       //  dd($soldier_id);
-
         $chk =false;
-        $nco =Nco::where('nco_id','=', $nco_id)->first();
 
-        $nco_year =$nco->nco_year;
-        $nco_dep_id=$nco->nco_dep_id;
-        $nco_province=isset($request->nco_province) ? $request->nco_province   : '';
-        $nco_amphoe=isset($request->nco_amphoe) ? $request->nco_amphoe   : '';
-
-        if($nco){
-            Nco::where('nco_id','=',$nco_id)->update([
-
-                "nco_id" => $nco_id
-                ,"nco_rank" => $nco_rank
-                ,"nco_rank_index" => $nco_rank_index
-                ,"nco_name" => $nco_name
-                ,"nco_rtanumber" => $nco_rtanumber
-                ,"nco_address" => $nco_address
-                ,"nco_intern" =>$nco_intern
-                ,"nco_corp" => $nco_corp
-                ,"nco_startdate" => $nco_startdate
-                ,"nco_phone" => $nco_phone
-                ,"nco_about" => $nco_about
-                ,"nco_law_rank"=> $nco_law_rank
-                ,"nco_law_parent"=> $nco_law_parent
+        $setrank= Rank::where('rank_name','=', $law_rank)->first();
+        $law_rank_index = isset($setrank->cco_rank_index ) ? $setrank->cco_rank_index  : 2;
 
 
-                 ,"nco_province" => $nco_province
-                 ,"nco_amphoe" => $nco_amphoe
 
+        $law =Law::where('law_id','=', $law_id)->first();
+        $law_year =$law->law_year;
+        $law_dep_id=$law->law_dep_id;
+        $law_province=isset($request->law_province) ? $request->law_province   : '';
+        $law_amphoe=isset($request->law_amphoe) ? $request->law_amphoe   : '';
+
+        if($law){
+            Law::where('law_id','=',$law_id)->update([
+
+
+                "law_id" => $law_id
+                ,"law_dep_id" =>$law_dep_id
+                ,"law_rank" => $law_rank
+                ,'law_rank_index' =>$law_rank_index
+                ,"law_name" => $law_name
+                ,"law_index" => $law_index
+                ,"law_defective" =>$law_defective
+                ,"law_defective_about" =>$law_defective_about
+                ,"law_m3_join" =>$law_m3_join
+                ,"law_m7_join" =>$law_m7_join
+                ,"law_reward" =>$law_reward
+                ,"law_parent_about" =>$law_parent_about
+                ,"law_address" =>$law_address
+                ,"law_province" =>$law_province
+                ,"law_amphoe" =>$law_amphoe
+                ,"law_phone" =>$law_phone
+                ,"law_about" =>$law_about
+                ,"law_parent_id" =>$law_parent_id
+                ,"law_parent_rank" =>$law_parent_rank
+                ,"law_parent_name" =>$law_parent_name
+                ,"law_dep_name" =>$law_dep_name
+                ,"law_phone" =>$law_phone
 
             ]);
         }
 
         // อัพเดทภาพ
-        $update_image = $request->file('nco_image');
+        $update_image = $request->file('law_image');
 
-        if($update_image &&  $nco )
+        if($update_image &&  $law )
             {
 
                 // gen ชื่อภาพ
                 $name_gen = hexdec(uniqid());
 
                 //ดึงนามสกุลไฟล์ภาพ
-                $img_ext = strtolower($nco_image->getClientOriginalExtension());
+                $img_ext = strtolower($law_image->getClientOriginalExtension());
 
                 //ดึงนามสกุลไฟล์ภาพ ภาพ
                 $img_name = $name_gen.'.'.$img_ext;
 
                 //อัพโหลดภาพ และอัพเดทข้อมูล
-                $upload_location = 'image/nco/'.$nco_year.'/'.$nco_dep_id.'/';
+                $upload_location = 'image/law/'.$law_year.'/'.$law_dep_id.'/';
 
                 //ต้องการเช็ตpath ก่อน ถ้าไม่มีให้สร้าง
-                if (!File::exists('image/nco/'.$nco_year)) {
+                if (!File::exists('image/law/'.$law_year)) {
 
                     // mkdir($upload_location, 0755, true);
-                    File::makeDirectory('image/nco/'.$nco_year, 0755, true);
+                    File::makeDirectory('image/law/'.$law_year, 0755, true);
                     File::makeDirectory($upload_location, 0755, true);
                 }
 
@@ -419,15 +446,15 @@ class NcoController extends Controller
                 $old_image = $request->old_image;
                 //   if($old_image){
                 //   unlink($old_image);}
-                $nco_image->move($upload_location,$img_name);
+                $law_image->move($upload_location,$img_name);
                 // $img = Image::make($soldier_image->path());
                 // $act = $img->resize(400, 600, function ($const) {
                 //     $const->aspectRatio();
                 // })->save($full_path);
                 $chk = True;
 
-                Nco::where('nco_id','=',$nco_id)->update([
-                    'nco_image'=> $full_path
+                Law::where('law_id','=',$law_id)->update([
+                    'law_image'=> $full_path
 
                 ]);
 
@@ -583,11 +610,11 @@ class NcoController extends Controller
 
         $provinces = Nco::selectRaw('nco_province as province')->where('nco_province','!=','')->distinct()->get();
 
-        $total_cco= Nco::where('nco_id','!=','')->where('nco_rank_index','=',1)->count();
+        $total_nco= Nco::where('nco_id','!=','')->count();
 
 
 
-    return view('admin.cco.index',compact('nco','Department','total_cco','nco_dep_id','nco_provinces','nco_education','nco_disease','provinces','rank','nco_rank' ));
+    return view('admin.cco.index',compact('nco','Department','total_nco','nco_dep_id','nco_provinces','nco_education','nco_disease','provinces','rank','nco_rank' ));
 }
 public static function  dateThaiToeng($strdate=""){
 
@@ -605,6 +632,7 @@ public static function  dateThaiToeng($strdate=""){
     }
     return  $_date;
     }
+
 
 
 }

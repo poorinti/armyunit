@@ -15,7 +15,7 @@ return new class extends Migration
 
             $table->string('nco_id',50)->primary();
             $table->string('nco_rank',200)->nullable()->default('')->index();
-            $table->integer('nco_rank_index')->nullable()->default(0);
+            $table->integer('nco_rank_index')->nullable()->default(0)->index();
             $table->string('nco_name',200)->nullable()->default('')->index();
             $table->string('nco_rtanumber',50)->nullable()->default('')->index();
             $table->string('nco_image',200)->nullable();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('nco_phone',200)->nullable()->default('')->index();
             $table->string('nco_about',200)->nullable()->default('')->index();
 
-            $table->integer('nco_law_index')->nullable()->default(0);
+            $table->integer('nco_law_index')->nullable()->default(0)->index();
             $table->string('nco_law_id',50)->nullable()->default('')->index();
             $table->integer('nco_law_rank_index')->nullable()->default(0);
             $table->string('nco_law_rank',200)->nullable()->default('')->index();
@@ -41,7 +41,7 @@ return new class extends Migration
             $table->string('nco_law_reward',200)->nullable()->default('')->index();
             $table->string('nco_law_parent',200)->nullable()->default('')->index();
 
-            $table->integer('dep_index')->nullable()->default(0);
+            $table->integer('dep_index')->nullable()->default(0)->index();
             $table->string('nco_dep_id',50)->nullable()->default('')->index();
             $table->string('nco_dep_name',200)->nullable()->default('')->index();
             $table->string('nco_bat_id',50)->nullable()->default('')->index();

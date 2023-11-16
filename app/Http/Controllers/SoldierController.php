@@ -366,6 +366,8 @@ class SoldierController extends Controller
             $soldier_dep_id=$soldier ->soldier_dep_id;
             $soldier_province=isset($request->soldier_province) ? $request->soldier_province   : '';
             $soldier_amphoe=isset($request->soldier_amphoe) ? $request->soldier_amphoe   : '';
+            //
+
             //เพิ่มล่าสุด 8/11/2566
             $soldier_education_study  =isset($request->soldier_education_study) ? $request->soldier_education_study : '' ;
             $soldier_education_end  =isset($request->soldier_education_end) ? $request->soldier_education_end : '' ;

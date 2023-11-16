@@ -1,11 +1,11 @@
 <x-app-layout>
-    <x-slot name="header2">
+    <x-slot name="header4">
         <h2 class="hidden text-xl font-semibold leading-tight text-white sm:block ">
-            ข้อมูลนายสิบ
-            <b class="float-end">จำนวนทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_nco,0)}}</button>  นาย</b>
+            ข้อมูล {{$law_lawchk !=''? $law_lawchk :'ม.35'}}
+            {{-- <b class="float-end">จำนวนกำลังพลทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_soldier,0)}}</button>  นาย</b> --}}
         </h2>
         <h2 class="text-xl font-semibold leading-tight text-white sm:block md:hidden lg:hidden xl:hidden">
-         <b class="">จำนวนข้อมูลนายสิบทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_nco,0)}}</button>  นาย</b>
+         {{-- <b class="">จำนวนกำลังพลทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_soldier,0)}}</button>  นาย</b> --}}
         </h2>
 
     </x-slot>
@@ -30,25 +30,25 @@
         <div class="mx-auto max-w-auto sm:px-6 lg:px-8">
 
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
-                 <form action="/nco/all"  name="frmsearch" id="frmsearch" method="post">
+                 <form action="/law/all"  name="frmsearch" id="frmsearch" method="post">
                     @csrf
 
                 <div class="my-3 row">
                     <div class=" form-group">
                     </div>
                     <div class="input-group">
-                            <select class="form-control" name="nco_dep_id" id="nco_dep_id" >
+                            <select class="form-control" name="law_dep_id" id="law_dep_id" >
                                 <option value="">แสดงหน่วยทั้งหมด</option>
                                     @foreach ( $Department as $key=>$row )
 
-                                    <option value="{{$row->dep_id}}" {{ $nco_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
+                                    <option value="{{$row->dep_id}}" {{ $law_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
                                 @endforeach
                         </select>
 
-                        <select class="form-control" name="nco_provinces" id="nco_provinces" >
+                        <select class="form-control" name="law_provinces" id="law_provinces" >
                             <option value="">แสดงจังหวัดทั้งหมด</option>
                                 @foreach ( $provinces as $key=>$item )
-                                <option value="{{ $item->province }}" {{ $item->province==$nco_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
+                                <option value="{{ $item->province }}" {{ $item->province==$law_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
 
                                 @endforeach
                             </select>
@@ -83,13 +83,26 @@
 
 
                     <div class="my-3 input-group">
+                        @php
+                        $lawArr = array();
+                        $lawArr=['ม.35(3)','ม.35(7)']
+                        @endphp
+
+                        <select class="mr-2 form-select-sm" name="law_lawchk" id="law_lawchk" >
+
+                            <option value="">ม.35</option>
+                                @foreach ( $lawArr as $key=>$item )
+                                <option value="{{ $item }}" {{ $item == $law_lawchk ? 'selected' : ''}}>{{ $item }}</option>
+
+                                @endforeach
+                        </select>
 
 
-                        <select class="mr-2 form-select-sm" name="nco_rank" id="nco_rank" >
+                        <select class="mr-2 form-select-sm" name="law_rank" id="law_rank" >
 
-                            <option value="">แสดงยศทั้งหมด</option>
+                            <option value="">คำนำหน้า</option>
                                 @foreach ( $rank as $key=>$item )
-                                <option value="{{ $item->rank_name }}" {{ $nco_rank == $item->rank_name ? 'selected' : ''}}>{{ $item->rank_name  }}</option>
+                            <option value="{{ $item->rank_name }}" {{ $law_rank == $item->rank_name ? 'selected' : ''}}>{{ $item->rank_name  }}</option>
 
                                 @endforeach
                         </select>
@@ -98,8 +111,8 @@
 
                         <input type="text" class="form-control" placeholder="ค้นหากำลังพล" id="search" name="search" value="{{isset($search) ? $search :"" }}">
                         <button class="mr-2 text-white btn btn-primary bg-primary" type="sumit">ค้นหา</button>
-                        <a href="{{url('/nco/startadd')}}" class="hidden mr-2 text-white bg-purple-700 btn btn-primary sm:block "> เพิ่มกำลังพล</a>
-                        <a href="{{url('/nco/excel')}}" class="hidden mr-2 text-white btn btn-success sm:block">import excel</a>
+                        <a href="{{url('/law/startadd')}}" class="hidden mr-2 text-white bg-purple-700 btn btn-primary sm:block "> เพิ่มกำลังพล</a>
+                        <a href="{{url('/law/excel')}}" class="hidden mr-2 text-white btn btn-success sm:block">import excel</a>
                     </div>
                 </div>
                 </form>
@@ -113,13 +126,13 @@
                         <div class="">
 
                             <table class="table table-striped">
-                                <thead class="table-success">
+                                <thead class="table-primary">
                                   <tr class="text-center">
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ภาพ</th>
                                     <th scope="col">ชื่อ-สกุล</th>
                                     <th scope="col" class="hidden sm:table-cell">เลขบัตรประชาชน</th>
-                                    {{-- <th style="width: 80px;" scope="col">กำเหนิด</th> --}}
+                                    <th style="width: 120px;" scope="col">เกี่ยวข้องเป็น</th>
                                     <th scope="col">หน่วย</th>
                                     <th scope="col" class="hidden sm:table-cell">ภูมิลำเนา</th>
                                     <th scope="col" class="hidden sm:table-cell">แก้ไข</th>
@@ -127,33 +140,33 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ( $nco as $row )
+                                    @foreach ( $law as $row )
                                   <tr class="text-center ">
-                                    <th class="text-center"> {{$nco->firstItem()+$loop->index}}</th>
+                                    <th class="text-center"> {{$law->firstItem()+$loop->index}}</th>
                                     <td >
-                                        <a href="{{url('/nco/edit/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" >
+                                        <a href="{{url('/law/edit/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}" >
 
 
-                                        <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->nco_image) ? asset($row->nco_image) : '' }}" width="60px" height="60px" class="mx-auto" >
+                                        <img src="{{isset($row->law_image) ? asset($row->law_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->law_image) ? asset($row->law_image) : '' }}" width="100px" height="100px" class="mx-auto" >
                                         </a>
                                     </td>
 
 
-                                    <td class="text-left " >{{$row->nco_rank}}{{$row->nco_name}}</td>
-                                    <td  class="hidden sm:table-cell">{{$row->nco_id }}</td>
-                                    {{-- <td>{{$row->nco_intern}}</td> --}}
-                                    <td>{{$row->nco_dep_name}}</td>
-                                    <td class="hidden sm:table-cell">{{$row->nco_province}}</td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/nco/edit/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/nco/delete/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td class="text-left " >{{$row->law_rank}}{{$row->law_name}}</td>
+                                    <td  class="hidden sm:table-cell">{{$row->law_id }}</td>
+                                    <td>{{$row->law_parent_about}}</td>
+                                    <td>{{$row->law_dep_name}}</td>
+                                    <td class="hidden sm:table-cell">{{$row->law_province}}</td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/law/edit/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}" class="btn btn-danger"> แก้ไข</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/law/delete/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
                             </table>
                             <br>
 
+                            {{$law->appends(['search' => isset($search) ? $search : '','law_dep_id'=>isset($law_dep_id) ?$law_dep_id :'',"law_provinces"=> isset($law_provinces) ? $law_provinces : '',"law_rank"=> isset($law_rank) ? $law_rank : '',"law_lawchk"=> isset($law_lawchk) ? $law_lawchk : ''])->links()}}
 
-                            {{$nco->appends(['search' => isset($search) ? $search : '','nco_dep_id'=>isset($nco_dep_id) ?$nco_dep_id :'',"nco_provinces"=> isset($nco_provinces) ? $nco_provinces : '',"nco_rank"=> isset($nco_rank) ? $nco_rank : ''])->links()}}
                         </div>
                     </div>
                 </div>

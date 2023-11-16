@@ -28,16 +28,20 @@
                     </x-nav-link>
                     @endif
 
-                    <x-nav-link href="{{ route('soldier') }}" :active="request()->routeIs('soldier')"  class="text-white ">
+                    <x-nav-link href="{{ route('cco') }}" :active="request()->routeIs('cco')"  class="text-white ">
                         {{ __('ข้อมูลนายทหาร') }}
                     </x-nav-link>
-                    
+
                     <x-nav-link href="{{ route('nco') }}" :active="request()->routeIs('nco')"  class="text-white ">
                         {{ __('ข้อมูลนายสิบ') }}
                      </x-nav-link>
 
                     <x-nav-link href="{{ route('soldier') }}" :active="request()->routeIs('soldier')"  class="text-white ">
                        {{ __('ข้อมูลพลทหาร') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('law') }}" :active="request()->routeIs('law')"  class="text-white ">
+                       {{ __('ข้อมูล ม.35') }}
                     </x-nav-link>
 
 
@@ -177,11 +181,30 @@
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 mx-3 space-y-1">
-            <x-nav-link href="{{ route('soldier') }}" :active="request()->routeIs('soldier')"  class="text-xl text-yellow-500">
-                {{ __('ข้อมูลกำลังพล') }}
-             </x-nav-link>
-
+            <x-nav-link href="{{ route('cco') }}" :active="request()->routeIs('cco')"  class="text-xl text-yellow-500">
+                {{ __('ข้อมูลนายทหาร') }}
+            </x-nav-link>
         </div>
+        <div class="pt-2 pb-3 mx-3 space-y-1">
+            <x-nav-link href="{{ route('nco') }}" :active="request()->routeIs('nco')"  class="text-xl text-yellow-500 ">
+                {{ __('ข้อมูลนายสิบ') }}
+            </x-nav-link>
+        </div>
+        <div class="pt-2 pb-3 mx-3 space-y-1">
+            <x-nav-link href="{{ route('soldier') }}" :active="request()->routeIs('soldier')"  class="text-xl text-yellow-500 ">
+                {{ __('ข้อมูลพลทหาร') }}
+            </x-nav-link>
+        </div>
+        <div class="pt-2 pb-3 mx-3 space-y-1">
+            <x-nav-link href="{{ route('law') }}" :active="request()->routeIs('law')"  class="text-xl text-yellow-500 ">
+                {{ __('ข้อมูล ม.35') }}
+            </x-nav-link>
+        </div>
+
+
+
+
+
 
 
 

@@ -3,7 +3,9 @@
 use App\Http\Controllers\BattalionController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\LawController;
 use App\Http\Controllers\NcoController;
+use App\Http\Controllers\CcoController;
 use App\Http\Controllers\UserAllowDepController;
 use App\Http\Controllers\UserlistController;
 use App\Http\Controllers\ServiceController;
@@ -12,6 +14,7 @@ use App\Http\Controllers\TambonController;
 
 
 use App\Models\Department;
+use App\Models\Nco;
 use App\Models\Service;
 use App\Models\User;
 use App\Models\UserAllowDep;
@@ -100,18 +103,64 @@ Route::middleware([
     Route::post('/soldier/excel/import', [ExcelController::class,'import']);
     Route::get('/soldier/excel/export', [ExcelController::class,'export']);
 
+    Route::get('/nco/excel', [ExcelController::class,'indexnco']);
+    Route::post('/nco/excel/import', [ExcelController::class,'importnco']);
+    Route::get('/nco/excel/export', [ExcelController::class,'exportnco']);
+
+    Route::get('/cco/excel', [ExcelController::class,'indexcco']);
+    Route::post('/cco/excel/import', [ExcelController::class,'importcco']);
+    Route::get('/cco/excel/export', [ExcelController::class,'exportcco']);
+
+    Route::get('/law/excel', [ExcelController::class,'indexlaw']);
+    Route::post('/law/excel/import', [ExcelController::class,'importlaw']);
+    Route::get('/law/excel/export', [ExcelController::class,'exportlaw']);
+
 
     Route::get('/soldier/provinces',[TambonController::class,'getProvinces']);
     Route::get('/soldier/amphoes',[TambonController::class,'getAmphoes']);
     // Route::get('/soldier/tambons',[TambonController::class,'getTambons']);
     // Route::get('/soldier/zipcodes',[TambonController::class,'getZipcodes']);
 
-    //*หน้า nco
+    //////////////////////////////////////*หน้า Nco///////////////////////////////////////
 
     Route::match(['get', 'post'], '/nco/all',[NcoController::class,'index'])->name('nco');
+    Route::post('/nco/add',[NcoController::class,'store'])->name('addNco');
     Route::get('/nco/edit/{id}',[NcoController::class,'edit']);
     Route::get('/nco/startadd/',[NcoController::class,'startadd']);
     Route::post('/nco/update/{id}',[NcoController::class,'update']);
+    Route::get('/nco/delete/{id}',[NcoController::class,'delete']);
+
+    Route::get('/nco/provinces',[TambonController::class,'getProvinces']);
+    Route::get('/nco/amphoes',[TambonController::class,'getAmphoes']);
+
+  //////////////////////////////////////////*หน้า Cco///////////////////////////////////////////
+    Route::match(['get', 'post'], '/cco/all',[CcoController::class,'index'])->name('cco');
+    Route::post('/cco/add',[CcoController::class,'store'])->name('addCco');
+    Route::get('/cco/edit/{id}',[CcoController::class,'edit']);
+    Route::get('/cco/startadd/',[CcoController::class,'startadd']);
+    Route::post('/cco/update/{id}',[CcoController::class,'update']);
+    Route::get('/cco/delete/{id}',[CcoController::class,'delete']);
+
+    Route::get('/cco/provinces',[TambonController::class,'getProvinces']);
+    Route::get('/cco/amphoes',[TambonController::class,'getAmphoes']);
+
+
+
+
+  //////////////////////////////////////////*หน้า law//////////////////////////////////////////
+
+    Route::match(['get', 'post'], '/law/all',[LawController::class,'index'])->name('law');
+    Route::post('/law/add',[LawController::class,'store'])->name('addLaw');
+    Route::get('/law/edit/{id}',[LawController::class,'edit']);
+    Route::get('/law/startadd/',[LawController::class,'startadd']);
+    Route::post('/law/update/{id}',[LawController::class,'update']);
+    Route::get('/law/delete/{id}',[LawController::class,'delete']);
+
+    Route::get('/law/provinces',[TambonController::class,'getProvinces']);
+    Route::get('/law/amphoes',[TambonController::class,'getAmphoes']);
+
+
+
 });
 
 

@@ -67,6 +67,29 @@
                 </header>
             @endif
 
+            @if (isset($header2))
+                <header class="shadow bg-green-950">
+                    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        {{ $header2 }}
+                    </div>
+                </header>
+            @endif
+            @if (isset($header3))
+                <header class="shadow bg-red-950">
+                    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        {{ $header3 }}
+                    </div>
+                </header>
+            @endif
+
+            @if (isset($header4))
+            <header class="shadow bg-blue-950">
+                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    {{ $header4}}
+                </div>
+            </header>
+            @endif
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}

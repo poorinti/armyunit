@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="header2">
+    <x-slot name="header3">
         <h2 class="text-xl font-semibold leading-tight text-white">
-            ข้อมูลนายสิบ
+            ข้อมูลนายทหาร
         </h2>
     </x-slot>
     {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -62,10 +62,10 @@
                     @endif
                     <div class="col-md-4">
                         <div class="card">
-                            <a href="{{ '/nco/all?page='.request()->page.'&search='.request()->search.'&nco_dep_id='.request()->nco_dep_id.'&nco_provinces='.request()->nco_provinces.'&nco_education='.request()->nco_education.'&nco_disease='.request()->nco_disease  }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="text-black bg-purple-700 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                            <a href="{{ '/cco/all?page='.request()->page.'&search='.request()->search.'&cco_dep_id='.request()->cco_dep_id.'&cco_provinces='.request()->cco_provinces.'&cco_education='.request()->cco_education.'&cco_disease='.request()->cco_disease  }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}" class="text-black bg-purple-700 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
                             <div class="bg-slate-200 card-header ">รูปประจำตัว</div>
                             <div class="justify-center mx-auto text-center card-body ">
-                                <img src="{{isset($nco->nco_image) ? asset($nco->nco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($nco->nco_image) ? asset($nco->nco_image) : '' }}" alt="imageshow" width="200px" height="200px">
+                                <img src="{{isset($cco->cco_image) ? asset($cco->cco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($cco->cco_image) ? asset($cco->cco_image) : '' }}" alt="imageshow" width="200px" height="200px">
                                 {{-- <label for="imageshow">{{$soldier->soldier_name }}</label> --}}
                             </div>
 
@@ -77,101 +77,101 @@
                             <div class="card">
                                 <div class="bg-slate-200 card-header">แก้ไขข้อมูลประจำตัว</div>
                                      <div class="card-body">
-                                        <form action="{{url('/nco/update/'.$nco->nco_id )}}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{url('/cco/update/'.$cco->cco_id )}}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="my-3 form-group">
                                                 <!--  ภาพเก่า -->
                                                 <br>
-                                                <input type="hidden" name="old_image" value="{{$nco->nco_image}}">
+                                                <input type="hidden" name="old_image" value="{{$cco->cco_image}}">
                                                 <!-- ไอดีเก่า -->
-                                                <input type="hidden" name="nco_id" value="{{$nco->nco_id}}">
+                                                <input type="hidden" name="cco_id" value="{{$cco->cco_id}}">
 
                                                 <!-- เพจ -->
                                                 <input type="hidden" name="page" value="{{$page}}">
 
-                                                {{-- <input type="hidden" name="nco_dep_id" value="{{$nco_dep_id}}"> --}}
-                                                {{-- <input type="hidden" name="search" value="{{$search}}"> --}}
-                                                <input type="hidden" name="nco_provinces" value="{{isset($nco_provinces) ? $nco_provinces :'' }}">
+                                                <input type="hidden" name="cco_dep_id" value="{{$cco_dep_id}}">
+                                                <input type="hidden" name="search" value="{{$search}}">
+                                                <input type="hidden" name="cco_provinces" value="{{isset($cco_provinces) ? $cco_provinces :'' }}">
 
 
                                                 <div class="form-group">
                                                 </div>
-                                                <label for="nco_image">อัพโหลดภาพโปรไฟล์</label>
-                                                <input type="file" class="form-control" name="nco_image" value="{{$nco->nco_image}}">
+                                                <label for="cco_image">อัพโหลดภาพโปรไฟล์</label>
+                                                <input type="file" class="form-control" name="cco_image" value="{{$cco->cco_image}}">
                                                 </div>
-                                                @error('nco_image')
+                                                @error('cco_image')
                                                         <div class="my-2">
                                                             <span class="text-danger">{{$message}}</span>
                                                         </div>
                                                     @enderror
                                                  <!--ยศ -->
                                                  <div class="my-2 form-group">
-                                                    <label for="nco_rank">ยศ/คำนำหน้า</label>
-                                                     <select class="form-control" name="nco_rank" id="nco_rank" required>
+                                                    <label for="cco_rank">ยศ/คำนำหน้า</label>
+                                                     <select class="form-control" name="cco_rank" id="cco_rank" required>
                                                      @foreach ( $rank as $key=>$row )
-                                                     <option value="{{$row->rank_name}}"{{ $row->rank_name==$nco->nco_rank ? 'selected' : ''}}>{{$row->rank_name}}</option>
+                                                     <option value="{{$row->rank_name}}"{{ $row->rank_name==$cco->cco_rank ? 'selected' : ''}}>{{$row->rank_name}}</option>
                                                     @endforeach
                                                     </select>
                                                 </div>
-                                                @error('nco_rank')
+                                                @error('cco_rank')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
                                                 <!--ชื่อ -->
-                                                <label for="nco_name">ชื่อ-สกุล</label>
-                                                <input type="text" class="form-control" name="nco_name" value="{{$nco->nco_name}}" >
-                                                @error('nco_name')
+                                                <label for="cco_name">ชื่อ-สกุล</label>
+                                                <input type="text" class="form-control" name="cco_name" value="{{$cco->cco_name}}" >
+                                                @error('cco_name')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
                                                 <!--เลขประชาชน -->
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_id">เลขประชาชน</label>
-                                                    <input type="text" class="form-control" name="nco_id"  value =" {{$nco->nco_id}}" placeholder="ตัวอย่าง :เลข 13 หลัก" disabled>
+                                                    <label for="cco_id">เลขประชาชน</label>
+                                                    <input type="text" class="form-control" name="cco_id"  value =" {{$cco->cco_id}}" placeholder="ตัวอย่าง :เลข 13 หลัก" disabled>
                                                 </div>
-                                                @error('nco_id')
+                                                @error('cco_id')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
                                                   <!--เลขประจำตัวทหาร -->
                                                   <div class="my-2 form-group">
-                                                    <label for="nco_rtanumber">เลขประจำตัวทหาร</label>
-                                                    <input type="text" class="form-control" name="nco_rtanumber" placeholder="ตัวอย่าง :เลข 10 หลัก" value ="{{isset($nco->nco_rtanumber) ? $nco->nco_rtanumber : ''}}">
+                                                    <label for="cco_rtanumber">เลขประจำตัวทหาร</label>
+                                                    <input type="text" class="form-control" name="cco_rtanumber" placeholder="ตัวอย่าง :เลข 10 หลัก" value ="{{isset($cco->cco_rtanumber) ? $cco->cco_rtanumber : ''}}">
                                                 </div>
-                                                @error('nco_rtanumber')
+                                                @error('cco_rtanumber')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
                                                 <!--ภูมิลำเนา-->
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_address">ภูมิลำเนา</label>
-                                                    <input type="text" class="form-control" name="nco_address"placeholder="ตัวอย่าง : 118 หมู่ 7 ต.โพธิ์สัย" value ="{{isset($nco->nco_address) ? $nco->nco_address : ''}}" >
+                                                    <label for="cco_address">ภูมิลำเนา</label>
+                                                    <input type="text" class="form-control" name="cco_address"placeholder="ตัวอย่าง : 118 หมู่ 7 ต.โพธิ์สัย" value ="{{isset($cco->cco_address) ? $cco->cco_address : ''}}" >
                                                 </div>
-                                                @error('nco_address')
+                                                @error('cco_address')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_province">จังหวัด</label>
-                                                    <select id="nco_province" name="nco_province" class="form-select"  >
+                                                    <label for="cco_province">จังหวัด</label>
+                                                    <select id="cco_province" name="cco_province" class="form-select"  >
                                                         <option value="">กรุณาเลือกจังหวัด</option>
                                                         @foreach($provinces as $item)
-                                                        <option value="{{ $item->province }}" {{ $item->province==$nco->nco_province ? 'selected' : ''}}>{{ $item->province }}</option>
+                                                        <option value="{{ $item->province }}" {{ $item->province==$cco->cco_province ? 'selected' : ''}}>{{ $item->province }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
 
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_amphoe">เขต/อำเภอ</label>
-                                                    <select id="nco_amphoe"  name="nco_amphoe"  class="form-select" >
+                                                    <label for="cco_amphoe">เขต/อำเภอ</label>
+                                                    <select id="cco_amphoe"  name="cco_amphoe"  class="form-select" >
                                                         <option value="">กรุณาเลือกเขต/อำเภอ</option>
                                                         @foreach($amphoes as $item)
-                                                        <option value="{{ $item->amphoe }}" {{ $item->amphoe==$nco->nco_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
+                                                        <option value="{{ $item->amphoe }}" {{ $item->amphoe==$cco->cco_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
                                                         @endforeach
                                                         </select>
                                                 </div>
@@ -179,10 +179,10 @@
 
                                                 <!--ผลัดที่/ปี -->
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_intern">รุ่น</label>
-                                                    <input type="text" class="form-control" name="nco_intern" placeholder="" value ="{{isset($nco->nco_intern) ? $nco->nco_intern : ''}}" >
+                                                    <label for="cco_intern">รุ่น</label>
+                                                    <input type="text" class="form-control" name="cco_intern" placeholder="" value ="{{isset($cco->cco_intern) ? $cco->cco_intern : ''}}" >
                                                 </div>
-                                                @error('nco_intern')
+                                                @error('cco_intern')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
@@ -193,15 +193,15 @@
                                                     $unitArr=['ร.','ม.','ป.','ช.','ส.','ขส.','สพ.','พธ.','สห.','สบ.','กง.','สบ.','กง.','ธน.','พ','ผท','กส.','ดย.','ขว.']
                                                 @endphp
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_corp" class="form-label">เหล่า</label>
-                                                    <select class="form-select" id="nco_corp"  name="nco_corp">
-                                                    <option value ="{{isset($nco->nco_corp) ? $nco->nco_corp : ''}}" >{{isset($nco->nco_corp) ? $nco->nco_corp : ''}}</option>
+                                                    <label for="cco_corp" class="form-label">เหล่า</label>
+                                                    <select class="form-select" id="cco_corp"  name="cco_corp">
+                                                    {{-- <option value ="{{isset($cco->cco_corp) ? $cco->nco_corp : ''}}" >{{isset($cco->cco_corp) ? $cco->cco_corp : ''}}</option> --}}
                                                         @foreach ( $unitArr as $row )
-                                                      <option value="{{ $row}}">{{ $row}}</option>
+                                                      <option value="{{$row}}"{{ $row==$cco->cco_amphoe ? 'selected' : ''}}>{{ $row}}</option>
                                                       @endforeach
                                                     </select>
                                                 </div>
-                                                @error('nco_corp')
+                                                @error('cco_corp')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
@@ -232,32 +232,32 @@
                                                 {{-- <div class="flex flex-auto"> --}}
 
                                                         <div class="my-2 form-group">
-                                                            <label for="nco_startdate">วันที่เข้ารับราชการ</label>
+                                                            <label for="cco_startdate">วันที่เข้ารับราชการ</label>
                                                             <div class="w-64">
-                                                                <input type="text" class="form-control soldier-date"  name="nco_startdate" value ="{{ isset($nco->nco_startdate) ? Carbon\Carbon::parse($nco->nco_startdate)->format('d/m').'/'.Carbon\Carbon::parse($nco->nco_startdate)->format('Y')+543 : ''}}" >
+                                                                <input type="text" class="form-control soldier-date"  name="cco_startdate" value ="{{ isset($cco->cco_startdate) ? Carbon\Carbon::parse($cco->cco_startdate)->format('d/m').'/'.Carbon\Carbon::parse($cco->cco_startdate)->format('Y')+543 : ''}}" >
                                                             </div>
                                                         </div>
-                                                        @error('nco_startdate')
+                                                        @error('cco_startdate')
                                                         <div class="my-2">
                                                             <span class="text-red-600 text">{{$message}}</span>
                                                         </div>
                                                         @enderror
                                                 <!--เบอร์โทรศัพท์-->
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_phone">เบอร์โทรศัพท์</label>
-                                                    <input type="text" class="form-control" name="nco_phone" value ="{{isset($nco->nco_phone) ? $nco->nco_phone : ''}}" >
+                                                    <label for="cco_phone">เบอร์โทรศัพท์</label>
+                                                    <input type="text" class="form-control" name="cco_phone" value ="{{isset($cco->cco_phone) ? $cco->cco_phone : ''}}" >
                                                 </div>
-                                                @error('nco_phone')
+                                                @error('cco_phone')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
                                                 <!--หมายเหตุ-->
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_about">หมายเหตุ</label>
-                                                    <input type="text" class="form-control" name="nco_about" value ="{{isset($nco->nco_about) ? $nco->nco_about: ''}}" >
+                                                    <label for="cco_about">หมายเหตุ</label>
+                                                    <input type="text" class="form-control" name="cco_about" value ="{{isset($cco->cco_about) ? $cco->cco_about: ''}}" >
                                                 </div>
-                                                @error('nco_about')
+                                                @error('cco_about')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
@@ -282,15 +282,15 @@
                                                                 @endphp
 
                                                                 <div class="my-2 form-group">
-                                                                    <label for="nco_law_rank" class="form-label">มีบุพพการี ป่วยหรือไม่</label>
-                                                                    <select class="form-select" id="nco_law_rank" name="nco_law_rank">
+                                                                    <label for="cco_sick_have" class="form-label">มีบุพพการี ป่วยหรือไม่</label>
+                                                                    <select class="form-select" id="cco_sick_have" name="cco_sick_have">
                                                                         {{-- <option value ="{{isset($nco->nco_law_rank) ? $nco->nco_law_rank : '' }} " >{{isset($nco->nco_law_rank) ? $nco->nco_law_rank : ''}}</option> --}}
                                                                         @foreach ( $unitArr as $row )
-                                                                    <option value="{{$row}}"{{ $row == $nco->nco_law_rank ? 'selected' : ''}}>{{$row}}</option>
+                                                                    <option value="{{$row}}"{{ $row == $cco->cco_sick_have ? 'selected' : ''}}>{{$row}}</option>
                                                                     @endforeach
                                                                     </select>
                                                                 </div>
-                                                                @error('nco_law_rank')
+                                                                @error('cco_sick_have')
                                                                 <div class="my-2">
                                                                     <span class="text-red-600 text">{{$message}}</span>
                                                                 </div>
@@ -357,10 +357,10 @@
                                                                 @enderror --}}
                                                                 <!--หากมีระบุ-->
                                                                 <div class="my-2 form-group">
-                                                                    <label for="nco_law_parent">ระบุ(ถ้ามี)</label>
-                                                                    <input type="text" class="form-control" name="nco_law_parent" placeholder="" value ="{{isset($nco->nco_law_parent) ? $nco->nco_law_parent : ''}}" >
+                                                                    <label for="cco_sick">ระบุ(ถ้ามี)</label>
+                                                                    <input type="text" class="form-control" name="cco_sick" placeholder="" value ="{{isset($cco->cco_sick) ? $cco->cco_sick : ''}}" >
                                                                 </div>
-                                                                @error('nco_law_parent')
+                                                                @error('cco_sick')
                                                                 <div class="my-2">
                                                                     <span class="text-red-600 text">{{$message}}</span>
                                                                 </div>
@@ -369,7 +369,7 @@
                                                     </div>
 
                                             <br>
-                                             <a href="{{ '/nco/all?page='.request()->page.'&search='.request()->search.'&nco_dep_id='.request()->soldier_dep_id.'&nco_provinces='.request()->nco_provinces.'&nco_education='.request()->nco_education.'&nco_disease='.request()->nco_disease  }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                                             <a href="{{ '/cco/all?page='.request()->page.'&search='.request()->search.'&cco_dep_id='.request()->cco_dep_id.'&cco_provinces='.request()->cco_provinces.'&cco_education='.request()->cco_education.'&cco_disease='.request()->cco_disease  }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
 
                                             <button type="submit" value="อัพเดท" class="text-black bg-blue-300 btn btn-primary">อัพเดท </button>
                                         </form>
@@ -393,8 +393,8 @@ $(document).ready(function() {
 
 function showAmphoes() {
 
-    let nco_province = document.querySelector("#nco_province");
-        let url = "/nco/amphoes?province=" + nco_province.value;
+    let cco_province = document.querySelector("#cco_province");
+        let url = "/cco/amphoes?province=" + cco_province.value;
         console.log( url );
         // if(soldier_province.value == "") return;
         fetch(url)
@@ -402,20 +402,20 @@ function showAmphoes() {
             .then(result => {
                 console.log(result);
                 //UPDATE SELECT OPTION
-                let nco_amphoe = document.querySelector("#nco_amphoe");
-                nco_amphoe.innerHTML = '<option value="">กรุณาเลือกเขต/อำเภอ ครับ</option>';
+                let cco_amphoe = document.querySelector("#cco_amphoe");
+                cco_amphoe.innerHTML = '<option value="">กรุณาเลือกเขต/อำเภอ ครับ</option>';
                 for (let item of result) {
                     let option = document.createElement("option");
                     option.text = item.amphoe;
                     option.value = item.amphoe;
-                    nco_amphoe.appendChild(option);
+                    cco_amphoe.appendChild(option);
                 }
                 //QUERY AMPHOES
                 showTambons();
             });
     }
 // เมื่อเลือกจังหวัดเกิดการเปลี่ยนแปลง
-    document.querySelector('#nco_province').addEventListener('change', (event) => {
+    document.querySelector('#cco_province').addEventListener('change', (event) => {
         showAmphoes();
     });
 
