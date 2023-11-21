@@ -42,7 +42,7 @@ class AddC0056ToTable extends Migration
     public function down()
     {
         Schema::table('soldiers', function (Blueprint $table) {
-            
+
         });
     }
 }

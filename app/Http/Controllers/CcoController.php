@@ -107,7 +107,8 @@ class CcoController extends Controller
                     //SUBSTRING_INDEX(SUBSTRING_INDEX(soldier_intern,'/', 2), '/',-1) ,SUBSTRING_INDEX(soldier_intern,'/',1);
                     // ->orderByRaw("SUBSTRING_INDEX(SUBSTRING_INDEX(nco_intern,'/', 2), '/',-1) desc")
                     // ->orderByRaw("SUBSTRING_INDEX(nco_intern,'/',1) desc")
-                     ->orderBy('cco_name')
+                    ->orderBy('cco_rank_index','desc')
+                    ->orderBy('cco_name')
                      // ->orderBy('created_at','desc')
                      ->paginate(15);
 
@@ -170,13 +171,13 @@ class CcoController extends Controller
     /////////////////////////////////////////////////////// แอดข้อมูล/////////////////////////////////////////////
     public function store( Request $request){
 
-            //  dd($request->all());
+            //   dd($request->all());
             // เช็คก่อนเอาเข้า
         $request->validate([
 
           // 'ไฟล์ที่เก็บค่ามาชื่อ name'=>'ต้องการข้อมูล|ไม่ซ้ำ:ในฐานข้อมูลที่เป็น พหุพจน์ |max:255'
 
-            'cco_id'=>'required|unique:ccos|max:13'
+            'cco_id'=>'required|unique:ccos|max:10'
             ,'cco_name'=>'required|unique:ccos|max:255'
             ,'cco_image'=>'mimes:png,jpg,jpeg,JPG|max:2048'
         ],
@@ -185,8 +186,8 @@ class CcoController extends Controller
             'cco_name.max'=>"ห้ามป้อนตัวอักษรเกิน 255",
             'cco_name.unique'=>"มีข้อมูลชื่อกำลังพลในฐานข้อมูลแล้ว",
             // 'soldier_image.required' => "กรุณาใส่ภาพประกอบ",
-            'cco_id.required'=>"กรุณาป้อนเลขประจำตัวประชาชนด้วยครับด้วยครับ",
-            'cco_id.max'=>"ห้ามป้อนตัวอักษรเกิน 13",
+            'cco_id.required'=>"กรุณาป้อนเลขประจำตัวทหารด้วยครับด้วยครับ",
+            'cco_id.max'=>"ห้ามป้อนตัวอักษรเกิน 10",
             'cco_id.unique'=>"มีเลขประจำตัวประชาชนในฐานข้อมูลแล้ว",
         ]
     );
@@ -195,12 +196,14 @@ class CcoController extends Controller
 
     $cco_name   =isset($request->cco_name) ? $request->cco_name : '' ;
     $cco_id   =isset($request->cco_id) ? $request->cco_id : '' ;
-    $cco_rank =isset($request->cco_rank) ? $request->cco_rank : '' ;
+    $nco_rank_index =isset($request->cco_rank) ? $request->cco_rank : '' ;
     $cco_dep_id   =isset($request->cco_dep_id) ? $request->cco_dep_id : '' ;
     $act=false;
     $created_at=Carbon::now()->format("Y-m-d H:i:s");
     $updated_at =Carbon::now()->format("Y-m-d H:i:s");
 
+    $cco_rank_name=Rank::where('nco_rank_index','=',$nco_rank_index)->first();
+    // dd( $cco_rank_name->rank_name);
     $Dep=Department::where('dep_id','=',$cco_dep_id)->first();
 
     $cco_dep_name      =$Dep->department_name;
@@ -210,7 +213,8 @@ class CcoController extends Controller
 
     $act =Cco::insert([
         'cco_name'=>$cco_name,
-        'cco_rank'=>$cco_rank,
+        'cco_rank'=>$cco_rank_name->rank_name,
+        'cco_rank_index'=>$nco_rank_index,
         'cco_id'=>$cco_id,
         'cco_dep_id'=>$cco_dep_id,
 
@@ -315,7 +319,7 @@ class CcoController extends Controller
 
 /////////////////////////////////////////////////////// อัพเดทข้อมูล/////////////////////////////////////////////
         public function update(Request $request,$dep_id){
-                //    dd( $request->All());
+                    // dd( $request->All());
             $request->validate([
 
                 'nco_image'=>'mimes:png,jpg,jpeg,JPG|max:2048'
@@ -335,8 +339,11 @@ class CcoController extends Controller
         //เซ็ทค่า การนำข้อมูลเข้า เบสิค
         $old_image = isset($request->old_image) ? $request->old_image  : '';
         // dd( $old_image);
+        //หาแรงค์
+
+
         $cco_id = isset($request->cco_id ) ? $request->cco_id   : '';
-        $cco_rank = isset($request->cco_rank ) ? $request->nco_rank   : '';
+
         $cco_rank_index = isset($request->cco_rank_index ) ? $request->cco_rank_index   : 0;
         $cco_rank = isset($request->cco_rank ) ? $request->cco_rank   : '';
         $cco_name=isset($request->cco_name) ? $request->cco_name   : '';
@@ -347,16 +354,38 @@ class CcoController extends Controller
         $cco_corp = isset($request->cco_corp ) ? $request->cco_corp   : '';
         $cco_startdate = isset($request->cco_startdate  ) ?   $this->dateThaiToeng($request->cco_startdate)  : null;
         $cco_phone = isset($request->cco_phone) ? $request->cco_phone : '';
-        $cco_about = isset($request->cco_phone) ? $request->cco_phone   : '';
+        $cco_about = isset($request->cco_about) ? $request->cco_about   : '';
+        $cco_education=isset($request->cco_education) ? $request->cco_education   : '';
+        //เพิ่มครั้งที่ 2
+        $cco_education_study=isset($request->cco_education_study) ? $request->cco_education_study  : '';
+        $cco_wantto=isset($request->cco_wantto) ? $request->cco_wantto  : '';
+        $cco_health=isset($request->cco_health) ? $request->cco_health  : '';
+        $cco_skill_work=isset($request->cco_skill_work) ? $request->cco_skill_work  : '';
+        $cco_skill=isset($request->cco_skill) ? $request->cco_skill  : '';
+        $cco_wife_name=isset($request->cco_wife_name) ? $request->cco_wife_name   : '';
+        $cco_child_name1=isset($request->cco_child_name1) ? $request->cco_child_name1   : '';
+        $cco_child_name2=isset($request->cco_child_name2) ? $request->cco_child_name2   : '';
+        $cco_child_name3=isset($request->cco_child_name3) ? $request->cco_child_name3   : '';
+        $cco_child_name4=isset($request->cco_child_name4) ? $request->cco_child_name4   : '';
+        $cco_child_name5=isset($request->cco_child_name5) ? $request->cco_child_name5   : '';
+
 
         // อันนี้ใช้แทนมีหรือไม่มี
         $cco_sick_have= isset($request->cco_sick_have) ? $request->cco_sick_have  : '';
         // อันนี้ใช้แทนอาการ
         $cco_sick= isset($request->cco_sick) ? $request->cco_sick   : '';
-      //  dd($soldier_id);
+        //  dd($soldier_id);
 
         $chk =false;
         $cco =Cco::where('cco_id','=', $cco_id)->first();
+
+        //ดึงค่า index
+
+        $cco_rank = isset($request->cco_rank ) ? $request->cco_rank   : '';
+
+        $cco_rank_iput_name=Rank::where('rank_name','=',$cco_rank )->first();
+        $cco_rank_index = isset($cco_rank_iput_name->nco_rank_index ) ? $cco_rank_iput_name->nco_rank_index   : 0;
+
 
 
         $cco_year =$cco->cco_year;
@@ -378,8 +407,20 @@ class CcoController extends Controller
                 ,"cco_startdate" => $cco_startdate
                 ,"cco_phone" => $cco_phone
                 ,"cco_about" => $cco_about
-                ,"cco_sick_have"=> $cco_sick_have
-                ,"cco_sick"=> $cco_sick
+
+                ,"cco_education" => $cco_education
+                ,"cco_education_study" => $cco_education_study
+                ,"cco_wantto" => $cco_wantto
+                ,"cco_health" => $cco_health
+                ,"cco_skill_work" => $cco_skill_work
+                ,"cco_skill" => $cco_skill
+                ,"cco_wife_name" => $cco_wife_name
+                ,"cco_child_name1" => $cco_child_name1
+                ,"cco_child_name2" => $cco_child_name2
+                ,"cco_child_name3" => $cco_child_name3
+                ,"cco_child_name4" => $cco_child_name4
+                ,"cco_child_name5" => $cco_child_name5
+
 
 
                  ,"cco_province" => $cco_province

@@ -50,7 +50,7 @@
                                                     <label for="cco_rank">ยศ/คำนำหน้า</label>
                                                      <select class="form-control" name="cco_rank" id="cco_rank" required>
                                                      @foreach ( $rankcco as $key=>$row )
-                                                     <option value="{{$row->rank_name}}">{{$row->rank_name}}</option>
+                                                     <option value="{{$row->nco_rank_index}}">{{$row->rank_name}}</option>
                                                     @endforeach
                                                     </select>
                                                 </div>
@@ -68,7 +68,7 @@
                                                 @enderror
                                                 <!--เลขประชาชน -->
                                                 <div class="my-2 form-group">
-                                                    <label for="cco_id">เลขประชาชน</label>
+                                                    <label for="cco_id">เลขประจำตัวทหาร</label>
                                                     <input type="text" class="form-control" name="cco_id" placeholder="ตัวอย่าง :เลข 13 หลัก" required>
                                                 </div>
                                                 @error('cco_id')

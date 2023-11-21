@@ -126,22 +126,12 @@
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
-                                                <!--เลขประชาชน -->
+                                                <!--เลขประจำตัวทหาร  -->
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_id">เลขประชาชน</label>
+                                                    <label for="nco_id">เลขประจำตัวทหาร </label>
                                                     <input type="text" class="form-control" name="nco_id"  value =" {{$nco->nco_id}}" placeholder="ตัวอย่าง :เลข 13 หลัก" disabled>
                                                 </div>
                                                 @error('nco_id')
-                                                <div class="my-2">
-                                                    <span class="text-red-600 text">{{$message}}</span>
-                                                </div>
-                                                @enderror
-                                                  <!--เลขประจำตัวทหาร -->
-                                                  <div class="my-2 form-group">
-                                                    <label for="nco_rtanumber">เลขประจำตัวทหาร</label>
-                                                    <input type="text" class="form-control" name="nco_rtanumber" placeholder="ตัวอย่าง :เลข 10 หลัก" value ="{{isset($nco->nco_rtanumber) ? $nco->nco_rtanumber : ''}}">
-                                                </div>
-                                                @error('nco_rtanumber')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
@@ -176,17 +166,6 @@
                                                         </select>
                                                 </div>
 
-
-                                                <!--ผลัดที่/ปี -->
-                                                <div class="my-2 form-group">
-                                                    <label for="nco_intern">รุ่น</label>
-                                                    <input type="text" class="form-control" name="nco_intern" placeholder="" value ="{{isset($nco->nco_intern) ? $nco->nco_intern : ''}}" >
-                                                </div>
-                                                @error('nco_intern')
-                                                <div class="my-2">
-                                                    <span class="text-red-600 text">{{$message}}</span>
-                                                </div>
-                                                @enderror
                                                 <!--เหล่า -->
                                                 @php
                                                     $unitArr = array();
@@ -231,7 +210,7 @@
                                                 <!--วันที่ เข้าประจำการ-->
                                                 {{-- <div class="flex flex-auto"> --}}
 
-                                                        <div class="my-2 form-group">
+                                                        {{-- <div class="my-2 form-group">
                                                             <label for="nco_startdate">วันที่เข้ารับราชการ</label>
                                                             <div class="w-64">
                                                                 <input type="text" class="form-control soldier-date"  name="nco_startdate" value ="{{ isset($nco->nco_startdate) ? Carbon\Carbon::parse($nco->nco_startdate)->format('d/m').'/'.Carbon\Carbon::parse($nco->nco_startdate)->format('Y')+543 : ''}}" >
@@ -241,7 +220,58 @@
                                                         <div class="my-2">
                                                             <span class="text-red-600 text">{{$message}}</span>
                                                         </div>
-                                                        @enderror
+                                                        @enderror --}}
+                                                        <!--หน่วย -->
+                                                    <div class="my-2 form-group">
+                                                        <label for="nco_dep_name">หน่วย</label>
+                                                        <input type="text" class="form-control" name="nco_dep_name" placeholder="" value ="{{isset($nco->nco_dep_name) ? $nco->nco_dep_name : ''}}" disabled >
+                                                    </div>
+                                                    @error('nco_dep_name')
+                                                    <div class="my-2">
+                                                        <span class="text-red-600 text">{{$message}}</span>
+                                                    </div>
+                                                    @enderror
+                                                    <!--วุฒิการศึกษา -->
+                                                    <div class="my-2 form-group">
+                                                        <label for="nco_education">วุฒิการศึกษา </label>
+                                                        <input type="text" class="form-control" name="nco_education" placeholder="" value ="{{isset($nco->nco_education) ? $nco->nco_education : ''}}" >
+                                                    </div>
+                                                    @error('cco_education')
+                                                    <div class="my-2">
+                                                        <span class="text-red-600 text">{{$message}}</span>
+                                                    </div>
+                                                    @enderror
+                                                    <!--สาขา -->
+                                                    <div class="my-2 form-group">
+                                                        <label for="nco_education_study">สาขา</label>
+                                                        <input type="text" class="form-control" name="nco_education_study" placeholder="" value ="{{isset($nco->nco_education_study) ? $nco->nco_education_study: ''}}" >
+                                                    </div>
+                                                    @error('nco_education_study')
+                                                    <div class="my-2">
+                                                        <span class="text-red-600 text">{{$message}}</span>
+                                                    </div>
+                                                    @enderror
+                                                    <!--ความต้องการพิเศษ -->
+                                                    <div class="my-2 form-group">
+                                                        <label for="nco_wantto">ความต้องการพิเศษ</label>
+                                                        <input type="text" class="form-control" name="nco_wantto" placeholder="" value ="{{isset($nco->nco_wantto) ? $nco->nco_wantto : ''}}" >
+                                                    </div>
+                                                    @error('nco_wantto')
+                                                    <div class="my-2">
+                                                        <span class="text-red-600 text">{{$message}}</span>
+                                                    </div>
+                                                    @enderror
+                                                    <!--โรคประจำตัว -->
+                                                    <div class="my-2 form-group">
+                                                        <label for="nco_health">โรคประจำตัว</label>
+                                                        <input type="text" class="form-control" name="nco_health" placeholder="" value ="{{isset($nco->nco_health) ? $nco->nco_health : ''}}" >
+                                                    </div>
+                                                    @error('nco_health')
+                                                    <div class="my-2">
+                                                        <span class="text-red-600 text">{{$message}}</span>
+                                                    </div>
+                                                    @enderror
+
                                                 <!--เบอร์โทรศัพท์-->
                                                 <div class="my-2 form-group">
                                                     <label for="nco_phone">เบอร์โทรศัพท์</label>
@@ -262,7 +292,8 @@
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
-                                                <div class="my-4 card ">
+
+                                                {{-- <div class="my-4 card ">
                                                     <div class="text-white bg-slate-500 card-header">ข้อมูล บุพพการี</div>
                                                         <div class=" card-body bg-slate-100">
                                                             {{-- <!--ความต้องการพิเศษ-->
@@ -274,7 +305,7 @@
                                                                 <div class="my-2">
                                                                     <span class="text-red-600 text">{{$message}}</span>
                                                                 </div>
-                                                                @enderror --}}
+                                                                @enderror
                                                                 <!--อาการป่วย-->
                                                                 @php
                                                                     $unitArr = array();
@@ -284,7 +315,7 @@
                                                                 <div class="my-2 form-group">
                                                                     <label for="nco_law_rank" class="form-label">มีบุพพการี ป่วยหรือไม่</label>
                                                                     <select class="form-select" id="nco_law_rank" name="nco_law_rank">
-                                                                        {{-- <option value ="{{isset($nco->nco_law_rank) ? $nco->nco_law_rank : '' }} " >{{isset($nco->nco_law_rank) ? $nco->nco_law_rank : ''}}</option> --}}
+
                                                                         @foreach ( $unitArr as $row )
                                                                     <option value="{{$row}}"{{ $row == $nco->nco_law_rank ? 'selected' : ''}}>{{$row}}</option>
                                                                     @endforeach
@@ -354,7 +385,7 @@
                                                                 <div class="my-2">
                                                                     <span class="text-red-600 text">{{$message}}</span>
                                                                 </div>
-                                                                @enderror --}}
+                                                                @enderror
                                                                 <!--หากมีระบุ-->
                                                                 <div class="my-2 form-group">
                                                                     <label for="nco_law_parent">ระบุ(ถ้ามี)</label>
@@ -366,7 +397,101 @@
                                                                 </div>
                                                                 @enderror
                                                         </div>
-                                                    </div>
+                                                </div> --}}
+                                                <div class="my-4 card ">
+                                                    <div class="text-white bg-slate-500 card-header">ข้อมูล อาชีพเสริม</div>
+                                                        <div class=" card-body bg-slate-100">
+
+                                                                <!--ชื่อ-สกุล-->
+                                                                <div class="my-2 form-group">
+                                                                    <label for="nco_skill_work">อาชีพเสริม</label>
+                                                                    <input type="text" class="form-control" name="nco_skill_work" placeholder="" value ="{{isset($nco->nco_skill_work) ? $nco->nco_skill_work : ''}}" >
+                                                                </div>
+                                                                @error('nco_skill_work')
+                                                                <div class="my-2">
+                                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                                </div>
+                                                                @enderror
+                                                                <!--ชื่อ-สกุล-->
+                                                                <div class="my-2 form-group">
+                                                                    <label for="nco_skill">ความสามารถพิเศษ</label>
+                                                                    <input type="text" class="form-control" name="nco_skill" placeholder="" value ="{{isset($nco->nco_skill) ? $nco->nco_skill : ''}}" >
+                                                                </div>
+                                                                @error('nco_skill')
+                                                                <div class="my-2">
+                                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                                </div>
+                                                                @enderror
+
+
+                                                        </div>
+                                                </div>
+                                                <div class="my-4 card ">
+                                                    <div class="text-white bg-green-900 card-header">ข้อมูล ครอบครัว</div>
+                                                        <div class=" card-body bg-slate-100">
+                                                                <!--ชื่อ-สกุล-->
+                                                                <div class="my-2 form-group">
+                                                                    <label for="nco_wife_name">ชื่อภรรยา</label>
+                                                                    <input type="text" class="form-control" name="nco_wife_name" placeholder="" value ="{{isset($nco->nco_wife_name) ? $nco->nco_wife_name : ''}}" >
+                                                                </div>
+                                                                @error('nco_wife_name')
+                                                                <div class="my-2">
+                                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                                </div>
+                                                                @enderror
+
+                                                                <!--หากมีระบุ-->
+                                                                <div class="my-2 form-group">
+                                                                    <label for="nco_child_name1">ชื่อบุตรคนที่ 1</label>
+                                                                    <input type="text" class="form-control" name="nco_child_name1" placeholder="" value ="{{isset($nco->nco_child_name1) ? $nco->nco_child_name1 : ''}}" >
+                                                                </div>
+                                                                @error('nco_child_name1')
+                                                                <div class="my-2">
+                                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                                </div>
+                                                                @enderror
+                                                                <!--หากมีระบุ-->
+                                                                <div class="my-2 form-group">
+                                                                    <label for="nco_child_name2">ชื่อบุตรคนที่ 2</label>
+                                                                    <input type="text" class="form-control" name="nco_child_name2" placeholder="" value ="{{isset($nco->nco_child_name2) ? $nco->nco_child_name2 : ''}}" >
+                                                                </div>
+                                                                @error('nco_child_name2')
+                                                                <div class="my-2">
+                                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                                </div>
+                                                                @enderror
+                                                                <!--หากมีระบุ-->
+                                                                <div class="my-2 form-group">
+                                                                    <label for="nco_child_name3">ชื่อบุตรคนที่ 3</label>
+                                                                    <input type="text" class="form-control" name="nco_child_name3" placeholder="" value ="{{isset($nco->nco_child_name3) ? $nco->nco_child_name3 : ''}}" >
+                                                                </div>
+                                                                @error('nco_child_name3')
+                                                                <div class="my-2">
+                                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                                </div>
+                                                                @enderror
+                                                                <!--หากมีระบุ-->
+                                                                <div class="my-2 form-group">
+                                                                    <label for="cco_child_name4">ชื่อบุตรคนที่ 4</label>
+                                                                    <input type="text" class="form-control" name="nco_child_name4" placeholder="" value ="{{isset($nco->nco_child_name4) ? $nco->nco_child_name4 : ''}}" >
+                                                                </div>
+                                                                @error('cco_child_name4')
+                                                                <div class="my-2">
+                                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                                </div>
+                                                                @enderror
+                                                                <!--หากมีระบุ-->
+                                                                <div class="my-2 form-group">
+                                                                    <label for="nco_child_name5">ชื่อบุตรคนที่ 5</label>
+                                                                    <input type="text" class="form-control" name="nco_child_name5" placeholder="" value ="{{isset($nco->nco_child_name5) ? $nco->nco_child_name5 : ''}}" >
+                                                                </div>
+                                                                @error('nco_child_name5')
+                                                                <div class="my-2">
+                                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                                </div>
+                                                                @enderror
+                                                        </div>
+                                                </div>
 
                                             <br>
                                              <a href="{{ '/nco/all?page='.request()->page.'&search='.request()->search.'&nco_dep_id='.request()->soldier_dep_id.'&nco_provinces='.request()->nco_provinces.'&nco_education='.request()->nco_education.'&nco_disease='.request()->nco_disease  }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>

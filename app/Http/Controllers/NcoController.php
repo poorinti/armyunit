@@ -44,12 +44,12 @@ class NcoController extends Controller
                 // ลิส table
                 $nco= Nco::where('nco_id','!=','')
 
-                ->where(function($query) use ($nco_ranknco){
-                    if($nco_ranknco!=''){
-                        $query->where('nco_rank_index','=',0);
-                    }
+                // ->where(function($query) use ($nco_ranknco){
+                //     if($nco_ranknco!=''){
+                //         $query->where('nco_rank_index','=',0);
+                //     }
 
-                })
+                // })
 
                 ->where(function($query) use ($DepArr){
                          if($DepArr){
@@ -110,7 +110,7 @@ class NcoController extends Controller
                     // ->orderByRaw("SUBSTRING_INDEX(nco_intern,'/',1) desc")
                      ->orderBy('nco_name')
                      // ->orderBy('created_at','desc')
-                     ->paginate(3);
+                     ->paginate(15);
 
 
 
@@ -177,7 +177,7 @@ class NcoController extends Controller
 
           // 'ไฟล์ที่เก็บค่ามาชื่อ name'=>'ต้องการข้อมูล|ไม่ซ้ำ:ในฐานข้อมูลที่เป็น พหุพจน์ |max:255'
 
-            'nco_id'=>'required|unique:ncos|max:13'
+            'nco_id'=>'required|unique:ncos|max:10'
             ,'nco_name'=>'required|unique:ncos|max:255'
             ,'nco_image'=>'mimes:png,jpg,jpeg,JPG|max:2048'
         ],
@@ -186,8 +186,8 @@ class NcoController extends Controller
             'nco_name.max'=>"ห้ามป้อนตัวอักษรเกิน 255",
             'nco_name.unique'=>"มีข้อมูลชื่อกำลังพลในฐานข้อมูลแล้ว",
             // 'soldier_image.required' => "กรุณาใส่ภาพประกอบ",
-            'nco_id.required'=>"กรุณาป้อนเลขประจำตัวประชาชนด้วยครับด้วยครับ",
-            'nco_id.max'=>"ห้ามป้อนตัวอักษรเกิน 13",
+            'nco_id.required'=>"กรุณาป้อนเลขประจำตัวทหารด้วยครับด้วยครับ",
+            'nco_id.max'=>"ห้ามป้อนตัวอักษรเกิน 10",
             'nco_id.unique'=>"มีเลขประจำตัวประชาชนในฐานข้อมูลแล้ว",
         ]
     );
@@ -209,10 +209,16 @@ class NcoController extends Controller
     $nco_bat_name      =$Dep->battalion_name;
     $nco_year   =Carbon::now()->format("Y");
 
+    $nco_rank  = isset($request->nco_rank  ) ? $request->nco_rank   : '';
+
+    $nco_rank_iput_name=Rank::where('rank_name','=',$nco_rank  )->first();
+    $nco_rank_index = isset($nco_rank_iput_name->nco_rank_index ) ? $nco_rank_iput_name->nco_rank_index   : 0;
+
     $act =Nco::insert([
         'nco_name'=>$nco_name,
         'nco_rank'=>$nco_rank,
         'nco_id'=>$nco_id,
+        'nco_rank_index'=>$nco_rank_index,
         'nco_dep_id'=>$nco_dep_id,
         'created_at'=>$created_at,
         'updated_at'=>$updated_at
@@ -314,7 +320,7 @@ class NcoController extends Controller
 
 /////////////////////////////////////////////////////// อัพเดทข้อมูล/////////////////////////////////////////////
         public function update(Request $request,$dep_id){
-                //   dd( $request->All());
+                //    dd( $request->All());
             $request->validate([
 
                 'nco_image'=>'mimes:png,jpg,jpeg,JPG|max:2048'
@@ -335,9 +341,8 @@ class NcoController extends Controller
         $old_image = isset($request->old_image) ? $request->old_image  : '';
         // dd( $old_image);
         $nco_id = isset($request->nco_id ) ? $request->nco_id   : '';
-        $nco_rank = isset($request->nco_rank ) ? $request->nco_rank   : '';
-        $nco_rank_index = isset($request->nco_rank_index ) ? $request->nco_rank_index   : 0;
-        $nco_rank = isset($request->nco_rank ) ? $request->nco_rank   : '';
+
+
         $nco_name=isset($request->nco_name) ? $request->nco_name   : '';
         $nco_image =isset($request->nco_image) ? $request->nco_image   : '';
         $nco_rtanumber = isset($request->nco_rtanumber ) ? $request->nco_rtanumber   : '';
@@ -347,12 +352,32 @@ class NcoController extends Controller
         $nco_startdate = isset($request->nco_startdate  ) ?   $this->dateThaiToeng($request->nco_startdate)  : null;
         $nco_phone = isset($request->nco_phone) ? $request->nco_phone : '';
         $nco_about = isset($request->nco_phone) ? $request->nco_phone   : '';
+         //เพิ่มครั้งที่ 2
+         $nco_education=isset($request->nco_education) ? $request->nco_education   : '';
+         $nco_education_study=isset($request->nco_education_study) ? $request->nco_education_study  : '';
+         $nco_wantto=isset($request->nco_wantto) ? $request->nco_wantto  : '';
+         $nco_health=isset($request->nco_health) ? $request->nco_health  : '';
+         $nco_skill_work=isset($request->nco_skill_work) ? $request->nco_skill_work  : '';
+         $nco_skill=isset($request->nco_skill) ? $request->nco_skill  : '';
+         $nco_wife_name=isset($request->nco_wife_name) ? $request->nco_wife_name   : '';
+         $nco_child_name1=isset($request->nco_child_name1) ? $request->nco_child_name1   : '';
+         $nco_child_name2=isset($request->nco_child_name2) ? $request->nco_child_name2   : '';
+         $nco_child_name3=isset($request->nco_child_name3) ? $request->nco_child_name3   : '';
+         $nco_child_name4=isset($request->nco_child_name4) ? $request->nco_child_name4   : '';
+         $nco_child_name5=isset($request->nco_child_name5) ? $request->nco_child_name5   : '';
 
         // อันนี้ใช้แทนมีหรือไม่มี
         $nco_law_rank= isset($request->nco_law_rank) ? $request->nco_law_rank  : '';
         // อันนี้ใช้แทนอาการ
         $nco_law_parent= isset($request->nco_law_parent) ? $request->nco_law_parent   : '';
       //  dd($soldier_id);
+
+      //ดึงค่า  rank index
+
+      $nco_rank = isset($request->nco_rank ) ? $request->nco_rank   : '';
+      $nco_rank_iput_name=Rank::where('rank_name','=',$nco_rank )->first();
+      $nco_rank_index = isset($nco_rank_iput_name->nco_rank_index ) ? $nco_rank_iput_name->nco_rank_index   : 0;
+    //   dd( $nco_rank_index);
 
         $chk =false;
         $nco =Nco::where('nco_id','=', $nco_id)->first();
@@ -378,6 +403,19 @@ class NcoController extends Controller
                 ,"nco_about" => $nco_about
                 ,"nco_law_rank"=> $nco_law_rank
                 ,"nco_law_parent"=> $nco_law_parent
+
+                ,"nco_education" => $nco_education
+                ,"nco_education_study" => $nco_education_study
+                ,"nco_wantto" => $nco_wantto
+                ,"nco_health" => $nco_health
+                ,"nco_skill_work" => $nco_skill_work
+                ,"nco_skill" => $nco_skill
+                ,"nco_wife_name" => $nco_wife_name
+                ,"nco_child_name1" => $nco_child_name1
+                ,"nco_child_name2" => $nco_child_name2
+                ,"nco_child_name3" => $nco_child_name3
+                ,"nco_child_name4" => $nco_child_name4
+                ,"nco_child_name5" => $nco_child_name5
 
 
                  ,"nco_province" => $nco_province

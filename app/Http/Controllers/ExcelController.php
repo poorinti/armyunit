@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Soldier;
 use App\Models\Department;
+use App\Models\Rank;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -131,33 +132,32 @@ class ExcelController extends Controller
 
     // $line->$soldier_dep_id = $soldier_dep_id;
       //   try {
-            $soldiers = (new FastExcel)->import($excel_import, function ($line) {
+            $nco = (new FastExcel)->import($excel_import, function ($line) {
 
-                $soldier_dep_id=$line['soldier_dep_id'];
+                $nco_dep_id=$line['nco_dep_id'];
 
 
-                $Dep=Department::where('dep_id','=',$soldier_dep_id)->first();
+                $Dep=Department::where('dep_id','=',$nco_dep_id)->first();
 
-                $soldiers_dep_name      =$Dep->department_name;
-                $soldiers_bat_id        =$Dep->battalion_id ;
-                $soldiers_bat_name      =$Dep->battalion_name;
+                $nco_dep_name      =$Dep->department_name;
+                $nco_bat_id        =$Dep->battalion_id ;
+                $nco_bat_name      =$Dep->battalion_name;
 
                 $created_at=Carbon::now()->format("Y-m-d H:i:s");
                 $updated_at =Carbon::now()->format("Y-m-d H:i:s");
 
                 try {
-                return Soldier::insert([
+                return Nco::insert([
 
-                    'soldier_id' =>$line['soldier_id']
-                    ,'soldier_name'=>trim($line['soldier_name'])
-                    ,'soldier_intern'=>trim($line['soldier_intern'])
-                    ,'soldier_corp'=>$line['soldier_corp']
-                    ,'soldier_address'=>$line['soldier_address']
-                    ,'soldier_phone'=>$line['soldier_phone']
-                    ,'soldier_dep_id'=>$soldier_dep_id
-                    ,'soldiers_dep_name'=>$soldiers_dep_name
-                    ,'soldiers_bat_id'=>$soldiers_bat_id
-                    ,'soldiers_bat_name'=>$soldiers_bat_name
+                    'nco_id' =>$line['nco_id']
+                    ,'nco_name'=>trim($line['nco_name'])
+                    ,'nco_corp'=>$line['nco_corp']
+                    ,'nco_address'=>$line['nco_address']
+                    ,'nco_phone'=>$line['nco_phone']
+                    ,'nco_dep_id'=>$nco_dep_id
+                    ,'nco_dep_name'=>$nco_dep_name
+                    ,'nco_bat_id'=>$nco_bat_id
+                    ,'nco_bat_name'=>$nco_bat_name
                     ,'updated_at'=>$updated_at
                     ,'created_at'=>$created_at
 
@@ -166,18 +166,21 @@ class ExcelController extends Controller
             } catch (\Throwable $th) {
                 return
 
-                Soldier::where('soldier_id','=',trim($line['soldier_id']))->update([
+                Nco::where('nco_id','=',trim($line['nco_id']))->update([
 
                     //'soldier_id' =>$line['soldier_id']
-                    'soldier_name'=>trim($line['soldier_name'])
-                    ,'soldier_intern'=> trim($line['soldier_intern'])
-                    ,'soldier_corp'=>$line['soldier_corp']
-                    ,'soldier_address'=>$line['soldier_address']
-                    ,'soldier_phone'=>$line['soldier_phone']
-                    ,'soldier_dep_id'=>$soldier_dep_id
-                    ,'soldiers_dep_name'=>$soldiers_dep_name
-                    ,'soldiers_bat_id'=>$soldiers_bat_id
-                    ,'soldiers_bat_name'=>$soldiers_bat_name
+
+                    'nco_name'=>trim($line['nco_name'])
+                    ,'nco_corp'=>trim($line['nco_corp'])
+                    ,'nco_address'=>trim($line['nco_address'])
+                    ,'nco_phone'=>trim($line['nco_phone'])
+
+                    ,'nco_dep_id'=>$nco_dep_id
+                    ,'nco_dep_name'=>$nco_dep_name
+                    ,'nco_bat_id'=>$nco_bat_id
+                    ,'nco_bat_name'=>$nco_bat_name
+                    ,'updated_at'=>$updated_at
+
                     ,'updated_at'=>$updated_at
 
 
@@ -199,86 +202,88 @@ class ExcelController extends Controller
     }
  /////////////////////////////////////////////////////////////////////////////////////////ss
 
-    public function importcco(Request $request)
-    {
+ public function importcco(Request $request)
+ {
 
-       $excel_import= $request->file('excel_import');
-    //
-
-
-    if(!$excel_import){
-
-        return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
-    }
-
-    // $line->$soldier_dep_id = $soldier_dep_id;
-      //   try {
-            $soldiers = (new FastExcel)->import($excel_import, function ($line) {
-
-                $soldier_dep_id=$line['soldier_dep_id'];
+    $excel_import= $request->file('excel_import');
+ //
 
 
-                $Dep=Department::where('dep_id','=',$soldier_dep_id)->first();
+ if(!$excel_import){
 
-                $soldiers_dep_name      =$Dep->department_name;
-                $soldiers_bat_id        =$Dep->battalion_id ;
-                $soldiers_bat_name      =$Dep->battalion_name;
+     return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
+ }
 
-                $created_at=Carbon::now()->format("Y-m-d H:i:s");
-                $updated_at =Carbon::now()->format("Y-m-d H:i:s");
+ // $line->$soldier_dep_id = $soldier_dep_id;
+   //   try {
+         $cco = (new FastExcel)->import($excel_import, function ($line) {
 
-                try {
-                return Soldier::insert([
-
-                    'soldier_id' =>$line['soldier_id']
-                    ,'soldier_name'=>trim($line['soldier_name'])
-                    ,'soldier_intern'=>trim($line['soldier_intern'])
-                    ,'soldier_corp'=>$line['soldier_corp']
-                    ,'soldier_address'=>$line['soldier_address']
-                    ,'soldier_phone'=>$line['soldier_phone']
-                    ,'soldier_dep_id'=>$soldier_dep_id
-                    ,'soldiers_dep_name'=>$soldiers_dep_name
-                    ,'soldiers_bat_id'=>$soldiers_bat_id
-                    ,'soldiers_bat_name'=>$soldiers_bat_name
-                    ,'updated_at'=>$updated_at
-                    ,'created_at'=>$created_at
+             $cco_dep_id=$line['cco_dep_id'];
 
 
-                ]);
-            } catch (\Throwable $th) {
-                return
+             $Dep=Department::where('dep_id','=',$cco_dep_id)->first();
 
-                Soldier::where('soldier_id','=',trim($line['soldier_id']))->update([
+             $cco_dep_name      =$Dep->department_name;
+             $cco_bat_id        =$Dep->battalion_id ;
+             $cco_bat_name      =$Dep->battalion_name;
 
-                    //'soldier_id' =>$line['soldier_id']
-                    'soldier_name'=>trim($line['soldier_name'])
-                    ,'soldier_intern'=> trim($line['soldier_intern'])
-                    ,'soldier_corp'=>$line['soldier_corp']
-                    ,'soldier_address'=>$line['soldier_address']
-                    ,'soldier_phone'=>$line['soldier_phone']
-                    ,'soldier_dep_id'=>$soldier_dep_id
-                    ,'soldiers_dep_name'=>$soldiers_dep_name
-                    ,'soldiers_bat_id'=>$soldiers_bat_id
-                    ,'soldiers_bat_name'=>$soldiers_bat_name
-                    ,'updated_at'=>$updated_at
+             $created_at=Carbon::now()->format("Y-m-d H:i:s");
+             $updated_at =Carbon::now()->format("Y-m-d H:i:s");
+
+             try {
+             return Cco::insert([
+
+                 'cco_id' =>$line['cco_id']
+                 ,'cco_name'=>trim($line['cco_name'])
+                 ,'cco_corp'=>$line['cco_corp']
+                 ,'cco_address'=>$line['cco_address']
+                 ,'cco_phone'=>$line['cco_phone']
+                 ,'cco_dep_id'=>$cco_dep_id
+                 ,'cco_dep_name'=>$cco_dep_name
+                 ,'cco_bat_id'=>$cco_bat_id
+                 ,'cco_bat_name'=>$cco_bat_name
+                 ,'updated_at'=>$updated_at
+                 ,'created_at'=>$created_at
+
+
+             ]);
+         } catch (\Throwable $th) {
+             return
+
+             Cco::where('cco_id','=',trim($line['cco_id']))->update([
+
+                 //'soldier_id' =>$line['soldier_id']
+
+                 'cco_name'=>trim($line['cco_name'])
+                 ,'cco_corp'=>trim($line['cco_corp'])
+                 ,'cco_address'=>trim($line['cco_address'])
+                 ,'cco_phone'=>trim($line['cco_phone'])
+
+                 ,'cco_dep_id'=>$cco_dep_id
+                 ,'cco_dep_name'=>$cco_dep_name
+                 ,'cco_bat_id'=>$cco_bat_id
+                 ,'cco_bat_name'=>$cco_bat_name
+                 ,'updated_at'=>$updated_at
+
+                 ,'updated_at'=>$updated_at
 
 
 
 
-                ]);
-                //  return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
-                }
+             ]);
+             //  return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
+             }
 
 
-            });
-        //   } catch (\Throwable $th) {
+         });
+     //   } catch (\Throwable $th) {
 
-        //  //  return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
-        //  }
+     //  //  return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
+     //  }
 
-        return redirect('/cco/excel')->with(['success' => "Users imported successfully."]);
+     return redirect('/nco/excel')->with(['success' => "Users imported successfully."]);
 
-    }
+ }
 /////////////////////////////////////////////////////////////////////////////////////////ss
     public function importlaw(Request $request)
     {
@@ -300,6 +305,14 @@ class ExcelController extends Controller
 
 
                 $Dep=Department::where('dep_id','=',$law_dep_id)->first();
+                    // เอาค่าแรง
+
+                $law_rank  = trim($line['law_rank']);
+
+                    $nco_rank_iput_name=Rank::where('rank_name','=',$law_rank  )->first();
+                    $nco_rank_index = isset($nco_rank_iput_name->nco_rank_index ) ? $nco_rank_iput_name->nco_rank_index   : 0;
+
+
 
                 $law_dep_name      =$Dep->department_name;
                 $law_bat_id        =$Dep->battalion_id ;
@@ -315,6 +328,7 @@ class ExcelController extends Controller
                     ,'law_name'=>trim($line['law_name'])
                     ,"law_rank" => trim($line['law_rank'])
                     ,'law_rank_index' =>trim($line['law_rank_index'])
+                    ,'law_rank_index_name' =>$nco_rank_index 
                     ,"law_index" => trim($line['law_index'])
                     ,"law_defective" =>trim($line['law_defective'])
                     ,"law_defective_about" =>trim($line['law_defective_about'])
