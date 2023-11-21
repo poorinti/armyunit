@@ -301,10 +301,11 @@ class ExcelController extends Controller
       //   try {
             $law = (new FastExcel)->import($excel_import, function ($line) {
 
-                $law_dep_id=$line['law_dep_id'];
+                $law_dep_id=trim($line['law_dep_id']);
 
 
                 $Dep=Department::where('dep_id','=',$law_dep_id)->first();
+                dd($law_dep_id);
                     // เอาค่าแรง
 
                 $law_rank  = trim($line['law_rank']);
@@ -328,7 +329,7 @@ class ExcelController extends Controller
                     ,'law_name'=>trim($line['law_name'])
                     ,"law_rank" => trim($line['law_rank'])
                     ,'law_rank_index' =>trim($line['law_rank_index'])
-                    ,'law_rank_index_name' =>$nco_rank_index 
+                    ,'law_rank_index_name' =>$nco_rank_index
                     ,"law_index" => trim($line['law_index'])
                     ,"law_defective" =>trim($line['law_defective'])
                     ,"law_defective_about" =>trim($line['law_defective_about'])
