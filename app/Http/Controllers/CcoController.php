@@ -109,7 +109,7 @@ class CcoController extends Controller
                     // ->orderByRaw("SUBSTRING_INDEX(nco_intern,'/',1) desc")
                      ->orderBy('cco_name')
                      // ->orderBy('created_at','desc')
-                     ->paginate(2);
+                     ->paginate(15);
 
 
 
