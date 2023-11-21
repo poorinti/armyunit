@@ -346,13 +346,16 @@ class ExcelController extends Controller
                     ,"law_m3_join" =>trim($line['law_m3_join'])
                     ,"law_m7_join" =>trim($line['law_m7_join'])
                     ,"law_reward" =>trim($line['law_reward'])
-                    ,'law_address'=>$line['law_address']
+                    ,'law_address'=>trim($line['law_address'])
+                    ,'law_amphoe'=>trim($line['law_amphoe'])
+                    ,'law_province'=>trim($line['law_province'])
                     ,"law_parent_about" =>trim($line['law_parent_about'])
                     ,'law_phone'=>trim($line['law_phone'])
                     ,'law_about'=>trim($line['law_about'])
 
                     ,"law_parent_rank" =>trim($line['law_parent_rank'])
                     ,"law_parent_name" =>trim($line['law_parent_name'])
+
 
 
                     ,'law_dep_id'=>$law_dep_id
@@ -377,7 +380,9 @@ class ExcelController extends Controller
                     ,"law_m3_join" =>trim($line['law_m3_join'])
                     ,"law_m7_join" =>trim($line['law_m7_join'])
                     ,"law_reward" =>trim($line['law_reward'])
-                    ,'law_address'=>$line['law_address']
+                    ,'law_address'=>trim($line['law_address'])
+                    ,'law_amphoe'=>trim($line['law_amphoe'])
+                    ,'law_province'=>trim($line['law_province'])
                     ,"law_parent_about" =>trim($line['law_parent_about'])
                     ,'law_phone'=>$line['law_phone']
                     ,"law_parent_rank" =>trim($line['law_parent_rank'])
