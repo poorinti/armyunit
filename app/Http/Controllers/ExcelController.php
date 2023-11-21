@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Soldier;
 use App\Models\Department;
 use App\Models\Rank;
+use App\Models\Law;
+use App\Models\Nco;
+use App\Models\Cco;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -305,19 +308,26 @@ class ExcelController extends Controller
 
 
                 $Dep=Department::where('dep_id','=',$law_dep_id)->first();
-                // dd($law_dep_id);
+                //  dd( $Dep);
                     // เอาค่าแรง
+                    $law_dep_name  = isset($Dep->department_name) ? $Dep->department_name   : '';
+
+                    $law_bat_name = isset($Dep->battalion_name) ? $Dep->battalion_name   : '';
+                    $law_bat_id= isset($Dep->battalion_id) ? $Dep->battalion_id   : '';
+
+                    // $law_bat_name  =$Dep->battalion_name;
+
+                    // $law_bat_id   =$Dep->battalion_id ;
 
                 $law_rank  = trim($line['law_rank']);
 
                     $nco_rank_iput_name=Rank::where('rank_name','=',$law_rank  )->first();
                     $nco_rank_index = isset($nco_rank_iput_name->nco_rank_index ) ? $nco_rank_iput_name->nco_rank_index   : 0;
 
+                    //  dd( $Dep->department_name);
 
 
-                $law_dep_name      =$Dep->department_name;
-                $law_bat_id        =$Dep->battalion_id ;
-                $law_bat_name      =$Dep->battalion_name;
+                // dd( $law_dep_name,$law_bat_id,$law_bat_name );
 
                 $created_at=Carbon::now()->format("Y-m-d H:i:s");
                 $updated_at =Carbon::now()->format("Y-m-d H:i:s");
