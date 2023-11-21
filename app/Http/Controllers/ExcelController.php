@@ -305,7 +305,7 @@ class ExcelController extends Controller
 
 
                 $Dep=Department::where('dep_id','=',$law_dep_id)->first();
-                dd($law_dep_id);
+                // dd($law_dep_id);
                     // เอาค่าแรง
 
                 $law_rank  = trim($line['law_rank']);
