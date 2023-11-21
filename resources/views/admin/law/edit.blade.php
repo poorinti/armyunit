@@ -140,8 +140,9 @@
                                                 @enderror
                                                 @php
                                                 $lawArr = array();
-                                                $lawArr=['พิการทางการมองเห็น','พิการทางการได้ยินหรือสื่อความหมาย','พิการทางการเคลื่อนไหวหรือทางร่างกาย','พิการทางจิตใจ หรือพฤติกรรม','พิการทางสติปัญญา','พิการทางการเรียนรู้','พิการทางออทิสติก','อื่นๆ']
+                                                $lawArr=['พิการทางการมองเห็น','พิการทางการได้ยินหรือสื่อความหมาย','พิการทางการเคลื่อนไหวหรือทางร่างกาย','พิการทางจิตใจ หรือพฤติกรรม','พิการทางการสติปัญญา','พิการทางการเรียนรู้','พิการทางออทิสติก','อื่นๆ']
                                                 @endphp
+
                                                 <!--ลักษณะการพิการ -->
                                                <div class="my-2 form-group">
                                                   <label for="law_defective" class="form-label">ลักษณะการพิการ</label>
@@ -382,7 +383,7 @@
                                                                     <span class="text-red-600 text">{{$message}}</span>
                                                                 </div>
                                                                 @enderror
-                                                                <!--เลขบัตรประชานผู้เกี่ยวข้อง-->
+                                                                {{-- <!--เลขบัตรประชานผู้เกี่ยวข้อง-->
                                                                 <div class="my-2 form-group">
                                                                     <label for="law_parent_id">เลขบัตรประชน</label>
                                                                     <input type="text" class="form-control" name="law_parent_id" placeholder=" " value ="{{isset($law->law_parent_id) ? $law->law_parent_id : ''}}" >
@@ -391,7 +392,7 @@
                                                                 <div class="my-2">
                                                                     <span class="text-red-600 text">{{$message}}</span>
                                                                 </div>
-                                                                @enderror
+                                                                @enderror --}}
                                                               <!--ชื่อ-สกุล-->
                                                                 <div class="my-2 form-group">
                                                                     <label for="law_parent_name">ชื่อ-สกุล</label>
