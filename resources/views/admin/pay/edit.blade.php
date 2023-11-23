@@ -70,8 +70,33 @@
                             </div>
 
                         </div>
+                        {{-- <div class="my-4 card ">
+                            <div class="text-white bg-orange-600 card-header">ข้อมูลการรับเงิน</div>
+                                <div class=" card-body bg-slate-100">
+                                         <!--เบอร์-->
+                                         @php
+                                                $i=0;
+                                                $depArr=Array();
+                                            foreach ( $payout as $key => $val) {
+                                                    $depArr[$val->payout_id]= $val->payout_name;
+                                                }
+                                     @endphp
+                                         @foreach ( $payout as $row )
 
+                                         <div class="my-2 form-group">
+                                            <label for="pay_payuot">{{$depArr[$row->payout_id]}} </label>
+                                            <input type="text" class="form-control" name="pay_payuot" placeholder="" value ="{{isset($PayoutArr[$row->payout_id]) ? $PayoutArr[$row->payout_id] : 'ยังไม่ได้รับ'}}" >
+                                        </div>
+                                        @error('pay_payuot')
+                                        <div class="my-2">
+                                            <span class="text-red-600 text">{{$message}}</span>
+                                        </div>
+                                        @enderror
+                                        @endforeach
+                                </div>
+                        </div> --}}
                     </div>
+
                     <div class="col-md-8">
                         <div class=" card">
                             <div class="card">
@@ -170,25 +195,25 @@
                                                 @enderror
                                                 @php
                                                 $payArr = array();
-                                                $payArr=[0,3,7]
+                                                $payArr=['เงินสงเคราะห์บุตร','เงินสงเคราะห์บุพการี','ทุนยังชีพรายปีบุตร','ทุนยังชีพรายปีคู่สมรส']
                                                 @endphp
                                                 <!--เคยเข้าร่วม -->
                                                <div class="my-2 form-group">
-                                                  <label for="pay_index" class="form-label">ประเภทสิทธิ์ที่ได้รับ</label>
-                                                  <select class="form-select" id="pay_index" name="pay_index">
+                                                  <label for="pay_reward" class="form-label">ประเภทสิทธิ์ที่ได้รับ</label>
+                                                  <select class="form-select" id="pay_reward" name="pay_reward">
                                                     {{-- <option value ="{{isset($pay->pay_index) ? $pay->pay_index : 0 }}" >เข้าร่วมทั้งสอง</option> --}}
                                                     @foreach (  $payArr as $row )
-                                                  <option value="{{$row}}"{{ $pay->pay_index == $row ? 'selected' : ''}}>{{$row == 0 ? 'เข้าร่วมทั้งสอง' : 'ม.35('.$row.')'}}</option>
+                                                  <option value="{{$row}}"{{ $pay->pay_reward == $row ? 'selected' : ''}}>{{$row}}</option>
                                                   @endforeach
                                                   </select>
                                               </div>
-                                              @error('pay_index')
+                                              @error('pay_reward')
                                               <div class="my-2">
                                                 <span class="text-red-600 text">{{$message}}</span>
                                               </div>
                                                @enderror
 
-                                                <!--สิทธิอื่นๆที่รับ-->
+                                                {{-- <!--สิทธิอื่นๆที่รับ-->
                                                 <div class="my-2 form-group">
                                                     <label for="pay_reward">สิทธิอื่นๆที่รับ</label>
                                                     <input type="text" class="form-control" name="pay_reward" placeholder="" value ="{{isset($pay->pay_reward) ? $pay->pay_reward : ''}}" >
@@ -197,7 +222,7 @@
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
-                                                @enderror
+                                                @enderror --}}
 
                                                   {{-- <!--เลขประจำตัวทหาร -->
                                                   <div class="my-2 form-group">
@@ -432,7 +457,7 @@
                                                                     @enderror
 
                                                             </div>
-                                                        </div>
+                                                    </div>
 
                                             <br>
                                              <a href="{{ '/pay/all?page='.request()->page.'&search='.request()->search.'&pay_dep_id='.request()->pay_dep_id.'&pay_provinces='.request()->pay_provinces.'&pay_education='.request()->pay_education.'&pay_disease='.request()->pay_disease  }}{{isset($pay_rank) ? '&pay_rank='.$pay_rank : '' }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>

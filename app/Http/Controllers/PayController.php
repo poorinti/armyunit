@@ -9,6 +9,8 @@ use App\Models\Department;
 use App\Models\Nco;
 use App\Models\Law;
 use App\Models\Pay;
+use App\Models\Payout;
+use App\Models\Paytopayout;
 use App\Models\Rank;
 use App\Models\Tambon;
 
@@ -76,13 +78,8 @@ class PayController extends Controller
                 ->where(function($query) use ($pay_paychk){
                     if($pay_paychk!=''){
 
-                          if($pay_paychk=='ม.35(3)'){
-                                $query->where('pay_index','=',3);
-                                }
+                        $query->where('pay_reward','=',$pay_paychk);
 
-                          if($pay_paychk=='ม.35(7)'){
-                            $query->where('pay_index','=',7);
-                              }
                     }
 
                 })
@@ -107,9 +104,13 @@ class PayController extends Controller
                          ->orwhere('pay_id', 'like','%'.$search.'%')
                          ->orwhere('pay_dep_name', 'like','%'.$search.'%')
                          ->orwhere('pay_bat_name', 'like','%'.$search.'%')
-                         ->orwhere('pay_rtanumber', 'like','%'.$search.'%')
-                         ->orwhere('pay_intern', 'like','%'.$search.'%')
-                         ->orwhere('pay_province', 'like','%'.$search.'%');
+                         ->orwhere('pay_reward', 'like','%'.$search.'%')
+                         ->orwhere('pay_rank', 'like','%'.$search.'%')
+                         ->orwhere('pay_province', 'like','%'.$search.'%')
+                         ->orwhere('pay_address', 'like','%'.$search.'%')
+                         ->orwhere('pay_amphoe', 'like','%'.$search.'%')
+                         ->orwhere('pay_parent_about', 'like','%'.$search.'%')
+                         ->orwhere('pay_parent_name', 'like','%'.$search.'%');
 
                      }
                      })
@@ -165,14 +166,26 @@ class PayController extends Controller
 
             $pay= Pay::where('pay_id','=',$pay_id)->first();
             $nco= Pay::where('pay_id','=',$pay_id)->first();
+            $payout=  Payout::where('payout_id','!=','')->get();
+            $paytopayout= Paytopayout::where('pay_id','=',$pay_id)->get();
 
+            $PayArr =Array();
+                foreach($paytopayout as $key =>$row){
+                    $PayArr[]=$row->payout_id;
+                }
+// {{dd($PayArr);}}
+            $PayoutArr=Array();
+                foreach($paytopayout as $key =>$val){
+                    $PayoutArr[$val->payout_id]=$val->payout_date;
+                }
+// {{dd($PayoutArr);}}
             $rank = Rank::where('rank_id','!=','')->where('cco_rank_index','<=',2)->orderby('nco_rank_index')->get();
 
 
 
     // dd($soldier_provinces);
 
-            return view('admin.pay.edit',compact('page','nco','provinces','amphoes','pay_provinces','rank','pay_rank','pay','pay_dep_id','search','pay_paychk'));
+            return view('admin.pay.edit',compact('page','nco','provinces','amphoes','pay_provinces','rank','pay_rank','pay','pay_dep_id','search','pay_paychk','payout','paytopayout','PayoutArr'));
 
 
 

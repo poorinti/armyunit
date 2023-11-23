@@ -84,14 +84,14 @@
 
                     <div class="my-3 input-group">
                         @php
-                        $lawArr = array();
-                        $lawArr=['เงินสงเคราะห์บุตร','เงินสงเคราะห์บุพการี','ทุนยังชีพรายปีบุตร','ทุนยังชีพรายปีคู่สมรส']
+                        $payArr = array();
+                        $payArr=['เงินสงเคราะห์บุตร','เงินสงเคราะห์บุพการี','ทุนยังชีพรายปีบุตร','ทุนยังชีพรายปีคู่สมรส']
                         @endphp
 
                         <select class="mr-2 form-select-sm" name="pay_paychk" id="pay_paychk" >
 
                             <option value="">ทั้งหมด</option>
-                                @foreach ( $lawArr as $key=>$item )
+                                @foreach ( $payArr as $key=>$item )
                                 <option value="{{ $item }}" {{ $item == $pay_paychk ? 'selected' : ''}}>{{ $item }}</option>
 
                                 @endforeach
@@ -135,6 +135,7 @@
                                     <th style="width: 120px;" scope="col">เกี่ยวข้องเป็น</th>
                                     <th scope="col">หน่วย</th>
                                     <th scope="col" class="hidden sm:table-cell">ภูมิลำเนา</th>
+                                    <th scope="col" class="hidden sm:table-cell ">สิทธิ์</th>
                                     <th scope="col" class="hidden sm:table-cell">แก้ไข</th>
                                     <th scope="col" class="hidden sm:table-cell">ลบ</th>
                                   </tr>
@@ -157,6 +158,7 @@
                                     <td>{{$row->pay_parent_about}}</td>
                                     <td>{{$row->pay_dep_name}}</td>
                                     <td class="hidden sm:table-cell">{{$row->pay_province}}</td>
+                                    <td class="hidden sm:table-cell ">{{$row->pay_reward}}</td>
                                     <td class="hidden sm:table-cell"><a href="{{url('/pay/edit/'.$row->pay_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($pay_dep_id) ? '&pay_dep_id='.$pay_dep_id : '' }}{{isset($pay_provinces) ? '&pay_provinces='.$pay_provinces : '' }}{{isset($pay_education) ? '&pay_education='.$pay_education : '' }}{{isset($pay_disease) ? '&pay_disease='.$pay_disease : '' }}{{isset($pay_paychk) ? '&pay_paychk='.$pay_paychk : '' }}{{isset($pay_rank) ? '&pay_rank='.$pay_rank : '' }}" class="btn btn-danger"> แก้ไข</a></td>
                                     <td class="hidden sm:table-cell"><a href="{{url('/pay/delete/'.$row->pay_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($pay_dep_id) ? '&pay_dep_id='.$pay_dep_id : '' }}{{isset($pay_provinces) ? '&pay_provinces='.$pay_provinces : '' }}{{isset($pay_education) ? '&pay_education='.$pay_education : '' }}{{isset($pay_disease) ? '&pay_disease='.$pay_disease : '' }}{{isset($pay_lawchk) ? '&pay_lawchk='.$pay_lawchk : '' }}{{isset($pay_rank) ? '&lpay_rank='.$pay_rank : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
