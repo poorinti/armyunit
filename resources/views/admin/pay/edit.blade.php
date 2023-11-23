@@ -203,7 +203,7 @@
                                                   <select class="form-select" id="pay_reward" name="pay_reward">
                                                     {{-- <option value ="{{isset($pay->pay_index) ? $pay->pay_index : 0 }}" >เข้าร่วมทั้งสอง</option> --}}
                                                     @foreach (  $payArr as $row )
-                                                  <option value="{{$row}}"{{ $pay->pay_reward == $row ? 'selected' : ''}}>{{$row}}</option>
+                                                  <option value="{{$row}}"{{ $pay->pay_reward == $row ? 'selected' : ''}}>{{isset($pay->pay_reward) ? $pay->pay_reward : ''}}</option>
                                                   @endforeach
                                                   </select>
                                               </div>
