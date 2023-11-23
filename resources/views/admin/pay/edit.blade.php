@@ -174,7 +174,7 @@
                                                 @endphp
                                                 <!--เคยเข้าร่วม -->
                                                <div class="my-2 form-group">
-                                                  <label for="pay_index" class="form-label">เคยเข้าร่วม</label>
+                                                  <label for="pay_index" class="form-label">ประเภทสิทธิ์ที่ได้รับ</label>
                                                   <select class="form-select" id="pay_index" name="pay_index">
                                                     {{-- <option value ="{{isset($pay->pay_index) ? $pay->pay_index : 0 }}" >เข้าร่วมทั้งสอง</option> --}}
                                                     @foreach (  $payArr as $row )
@@ -187,26 +187,7 @@
                                                 <span class="text-red-600 text">{{$message}}</span>
                                               </div>
                                                @enderror
-                                                <!--ประวัติการเข้าร่วม ม.35(3)-->
-                                                <div class="my-2 form-group">
-                                                    <label for="pay_m3_join">ประวัติการเข้าร่วม ม.35(3)</label>
-                                                    <input type="text" class="form-control" name="pay_m3_join" placeholder="" value ="{{isset($pay->pay_m3_join) ? $pay->pay_m3_join : ''}}" >
-                                                </div>
-                                                @error('pay_m3_join')
-                                                <div class="my-2">
-                                                    <span class="text-red-600 text">{{$message}}</span>
-                                                </div>
-                                                @enderror
-                                                 <!--ประวัติการเข้าร่วม ม.35(7)-->
-                                                 <div class="my-2 form-group">
-                                                    <label for="pay_m7_join">ประวัติการเข้าร่วม ม.35(7)</label>
-                                                    <input type="text" class="form-control" name="pay_m7_join" placeholder="" value ="{{isset($pay->pay_m7_join) ? $pay->pay_m7_join : ''}}" >
-                                                </div>
-                                                @error('pay_m7_join')
-                                                <div class="my-2">
-                                                    <span class="text-red-600 text">{{$message}}</span>
-                                                </div>
-                                                @enderror
+
                                                 <!--สิทธิอื่นๆที่รับ-->
                                                 <div class="my-2 form-group">
                                                     <label for="pay_reward">สิทธิอื่นๆที่รับ</label>
