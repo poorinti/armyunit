@@ -201,9 +201,9 @@
                                                <div class="my-2 form-group">
                                                   <label for="pay_reward" class="form-label">ประเภทสิทธิ์ที่ได้รับ</label>
                                                   <select class="form-select" id="pay_reward" name="pay_reward">
-                                                    {{-- <option value ="{{isset($pay->pay_index) ? $pay->pay_index : 0 }}" >เข้าร่วมทั้งสอง</option> --}}
+                                                    <option value="">กรุณาเลือก</option>
                                                     @foreach (  $payArr as $row )
-                                                  <option value="{{$row}}"{{ $pay->pay_reward == $row ? 'selected' : ''}}>{{isset($pay->pay_reward) ? $pay->pay_reward : ''}}</option>
+                                                  <option value="{{$row}}"{{ $pay->pay_reward == $row ? 'selected' : ''}}>{{$row}}</option>
                                                   @endforeach
                                                   </select>
                                               </div>
@@ -363,7 +363,7 @@
                                                                 <div class="my-2 form-group">
                                                                     <label for="pay_parent_about" class="form-label">ความเกี่ยวข้องกับกำลังพล</label>
                                                                     <select class="form-select" id="pay_parent_about" name="pay_parent_about">
-                                                                        {{-- <option value ="{{isset($pay->pay_index) ? $pay->pay_index : 0 }}" >เข้าร่วมทั้งสอง</option> --}}
+                                                                        <option value="">กรุณาเลือก</option>
                                                                         @foreach (  $payArr as $row )
                                                                     <option value="{{$row}}"{{ $pay->pay_parent_about == $row ? 'selected' : ''}}>{{$row}}</option>
                                                                         @endforeach
