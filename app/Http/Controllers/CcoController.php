@@ -322,9 +322,9 @@ class CcoController extends Controller
                     // dd( $request->All());
             $request->validate([
 
-                'nco_image'=>'mimes:png,jpg,jpeg,JPG|max:2048'
+                'cco_image'=>'mimes:png,jpg,jpeg,JPG|max:2048'
               ],[
-                'nco_image.max' => "ขนาดไฟล์เกิน 2 MB ครับ",
+                'cco_image.max' => "ขนาดไฟล์เกิน 2 MB ครับ",
               ]
 
               );

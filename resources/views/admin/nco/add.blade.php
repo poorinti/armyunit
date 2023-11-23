@@ -68,8 +68,8 @@
                                                 @enderror
                                                 <!--เลขประชาชน -->
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_id">เลขประชาชน</label>
-                                                    <input type="text" class="form-control" name="nco_id" placeholder="ตัวอย่าง :เลข 13 หลัก" required>
+                                                    <label for="nco_id">เลขประจำตัวทหาร</label>
+                                                    <input type="text" class="form-control" name="nco_id" placeholder="ตัวอย่าง :เลข 10 หลัก" required>
                                                 </div>
                                                 @error('nco_id')
                                                 <div class="my-2">

@@ -28,30 +28,96 @@
                     </x-nav-link>
                     @endif
 
-                    <x-nav-link href="{{ route('cco') }}" :active="request()->routeIs('cco')"  class="text-white ">
-                        {{ __('ข้อมูลนายทหาร') }}
-                    </x-nav-link>
 
-                    <x-nav-link href="{{ route('nco') }}" :active="request()->routeIs('nco')"  class="text-white ">
-                        {{ __('ข้อมูลนายสิบ') }}
-                     </x-nav-link>
+                    <div class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-white text-gray-500 transition duration-150 ease-in-out border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">
+                    <x-dropdown align="right" width="80">
+                        <x-slot name="trigger">
+                            <span class="inline-flex ">
+                                <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50">
+                                    {{ __('ข้อมูลกำลังพล') }}
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                                    </svg>
 
-                    <x-nav-link href="{{ route('soldier') }}" :active="request()->routeIs('soldier')"  class="text-white ">
-                       {{ __('ข้อมูลพลทหาร') }}
-                    </x-nav-link>
+                                </button>
+                            </span>
+                        </x-slot>
 
-                    <x-nav-link href="{{ route('law') }}" :active="request()->routeIs('law')"  class="text-white ">
-                       {{ __('ข้อมูล ม.35') }}
-                    </x-nav-link>
+                        <x-slot name="content">
+                            <div class="w-60">
+                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                    {{ __('เลือกข้อมูล') }}
+                                </div>
+                                <hr class="border border-2 opacity-80">
+                                <x-dropdown-link href="{{ route('cco') }}" :active="request()->routeIs('cco')"  class="text-black ">
+                                    {{ __('ข้อมูลนายทหาร') }}
+                                </x-dropdown-link>
 
+                                <x-dropdown-link href="{{ route('nco') }}" :active="request()->routeIs('nco')"  class="text-black ">
+                                    {{ __('ข้อมูลนายสิบ') }}
+                                </x-dropdown-link>
 
+                                <x-dropdown-link href="{{ route('soldier') }}" :active="request()->routeIs('soldier')"  class="text-black">
+                                    {{ __('ข้อมูลพลทหาร') }}
+                                </x-dropdown-link>
 
+                                {{-- <x-nav-link href="{{ route('cco') }}" :active="request()->routeIs('cco')"  class="text-black ">
+                                    {{ __('ข้อมูลนายทหาร') }}
+                                </x-nav-link>
 
+                                <x-nav-link href="{{ route('nco') }}" :active="request()->routeIs('nco')"  class="text-black ">
+                                    {{ __('ข้อมูลนายสิบ') }}
+                                 </x-nav-link>
 
+                                <x-nav-link href="{{ route('soldier') }}" :active="request()->routeIs('soldier')"  class="text-black">
+                                   {{ __('ข้อมูลพลทหาร') }}
+                                </x-nav-link> --}}
 
+                            </div>
+                        </x-slot>
+                    </x-dropdown>
+                    </div>
+                    <div class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-white text-gray-500 transition duration-150 ease-in-out border-b-2 border-transparent hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">
+                    <x-dropdown align="right" width="80">
+                        <x-slot name="trigger">
+                            <span class="inline-flex ">
+                                <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50">
+                                    {{ __('ข้อมูล ม.35') }}
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                                    </svg>
 
+                                </button>
+                            </span>
+                        </x-slot>
 
+                        <x-slot name="content">
+                            <div class="w-60">
+                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                    {{ __('เลือกข้อมูล') }}
+                                </div>
+                                <hr class="border border-2 opacity-80">
 
+                                <x-dropdown-link href="{{ route('law') }}" :active="request()->routeIs('law')"  class="text-black ">
+                                    {{ __('ข้อมูล ม.35') }}
+                                </x-dropdown-link>
+
+                                <x-dropdown-link href="{{ route('pay') }}" :active="request()->routeIs('pay')"  class="text-black ">
+                                    {{ __('ข้อมูลผู้รับสิทธิ์') }}
+                                </x-dropdown-link>
+
+                                {{-- <x-nav-link href="{{ route('law') }}" :active="request()->routeIs('law')"  class="text-white ">
+                                    {{ __('ข้อมูล ม.35') }}
+                                 </x-nav-link>
+
+                                 <x-nav-link href="{{ route('pay') }}" :active="request()->routeIs('pay')"  class="text-white ">
+                                    {{ __('ข้อมูลผู้รับสิทธิ์') }}
+                                 </x-nav-link> --}}
+
+                            </div>
+                        </x-slot>
+                    </x-dropdown>
+                    </div>
                 </div>
             </div>
 
@@ -134,7 +200,6 @@
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}
                             </div>
-
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
@@ -200,12 +265,11 @@
                 {{ __('ข้อมูล ม.35') }}
             </x-nav-link>
         </div>
-
-
-
-
-
-
+        <div class="pt-2 pb-3 mx-3 space-y-1">
+            <x-nav-link href="{{ route('pay') }}" :active="request()->routeIs('pay')"  class="text-xl text-yellow-500 ">
+                {{ __('ข้อมูลผู้รับสิทธิ์') }}
+            </x-nav-link>
+        </div>
 
 
         <!-- Responsive Settings Options -->

@@ -39,6 +39,12 @@ class ExcelController extends Controller
         $Department=Department::where('dep_id','!=','')->orderby('dep_id')->get();
         return view('admin.law.excel',compact('Department'));
     }
+    public function indexpay()
+    {
+
+        $Department=Department::where('dep_id','!=','')->orderby('dep_id')->get();
+        return view('admin.pay.excel',compact('Department'));
+    }
 /////////////////////////////////////////////////////////////////////////////////////////ss
     public function import(Request $request)
     {
@@ -411,6 +417,134 @@ class ExcelController extends Controller
         //  }
 
         return redirect('/law/excel')->with(['success' => "Users imported successfully."]);
+
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////ss
+    public function importpay(Request $request)
+    {
+
+       $excel_import= $request->file('excel_import');
+    //
+
+
+    if(!$excel_import){
+
+        return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
+    }
+
+    // $line->$soldier_dep_id = $soldier_dep_id;
+      //   try {
+            $pay = (new FastExcel)->import($excel_import, function ($line) {
+
+                $pay_dep_id=trim($line['pay_dep_id']);
+
+
+                $Dep=Department::where('dep_id','=',$pay_dep_id)->first();
+                //  dd( $Dep);
+                    // เอาค่าแรง
+                    $pay_dep_name  = isset($Dep->department_name) ? $Dep->department_name   : '';
+
+                    $pay_bat_name = isset($Dep->battalion_name) ? $Dep->battalion_name   : '';
+                    $pay_bat_id= isset($Dep->battalion_id) ? $Dep->battalion_id   : '';
+
+                    // $pay_bat_name  =$Dep->battalion_name;
+
+                    // $pay_bat_id   =$Dep->battalion_id ;
+
+                $pay_rank  = trim($line['pay_rank']);
+
+                    $nco_rank_iput_name=Rank::where('rank_name','=',$pay_rank  )->first();
+                    $nco_rank_index = isset($nco_rank_iput_name->nco_rank_index ) ? $nco_rank_iput_name->nco_rank_index   : 0;
+
+                    //  dd( $Dep->department_name);
+
+
+                // dd( $pay_dep_name,$pay_bat_id,$pay_bat_name );
+
+                $created_at=Carbon::now()->format("Y-m-d H:i:s");
+                $updated_at =Carbon::now()->format("Y-m-d H:i:s");
+
+                try {
+                return Pay::insert([
+
+                    'pay_id' =>$line['pay_id']
+                    ,'pay_name'=>trim($line['pay_name'])
+                    ,"pay_rank" => trim($line['pay_rank'])
+                    ,'pay_rank_index' =>trim($line['pay_rank_index'])
+                    ,'pay_rank_index_name' =>$nco_rank_index
+                    ,"pay_index" => trim($line['pay_index'])
+                    ,"pay_defective" =>trim($line['pay_defective'])
+                    ,"pay_defective_about" =>trim($line['pay_defective_about'])
+                    ,"pay_m3_join" =>trim($line['pay_m3_join'])
+                    ,"pay_m7_join" =>trim($line['pay_m7_join'])
+                    ,"pay_reward" =>trim($line['pay_reward'])
+                    ,'pay_address'=>trim($line['pay_address'])
+                    ,'pay_province'=>trim($line['pay_province'])
+                    ,'pay_amphoe'=>trim($line['pay_amphoe'])
+                    ,"pay_parent_about" =>trim($line['pay_parent_about'])
+                    ,'pay_phone'=>trim($line['pay_phone'])
+                    ,'pay_payout'=>trim($line['pay_payout'])
+                    ,'pay_about'=>trim($line['pay_about'])
+
+                    ,"pay_parent_rank" =>trim($line['pay_parent_rank'])
+                    ,"pay_parent_name" =>trim($line['pay_parent_name'])
+
+
+
+                    ,'pay_dep_id'=>$pay_dep_id
+                    ,'pay_dep_name'=>$pay_dep_name
+                    ,'pay_bat_id'=>$pay_bat_id
+                    ,'pay_bat_name'=>$pay_bat_name
+                    ,'updated_at'=>$updated_at
+                    ,'created_at'=>$created_at
+
+                ]);
+            } catch (\Throwable $th) {
+                return
+
+                Pay::where('pay_id','=',trim($line['pay_id']))->update([
+
+                    'pay_name'=>trim($line['pay_name'])
+                    ,"pay_rank" => trim($line['pay_rank'])
+                    ,'pay_rank_index' =>trim($line['pay_rank_index'])
+                    ,"pay_index" => trim($line['pay_index'])
+                    ,"pay_defective" =>trim($line['pay_defective'])
+                    ,"pay_defective_about" =>trim($line['pay_defective_about'])
+                    ,"pay_m3_join" =>trim($line['pay_m3_join'])
+                    ,"pay_m7_join" =>trim($line['pay_m7_join'])
+                    ,"pay_reward" =>trim($line['pay_reward'])
+                    ,'pay_address'=>trim($line['pay_address'])
+                    ,'pay_province'=>trim($line['pay_province'])
+                    ,'pay_amphoe'=>trim($line['pay_amphoe'])
+                    ,"pay_parent_about" =>trim($line['pay_parent_about'])
+                    ,'pay_phone'=>trim($line['pay_phone'])
+                    ,'pay_payout'=>trim($line['pay_payout'])
+                    ,"pay_parent_rank" =>trim($line['pay_parent_rank'])
+                    ,"pay_parent_name" =>trim($line['pay_parent_name'])
+
+
+                    ,'pay_dep_id'=>$pay_dep_id
+                    ,'pay_dep_name'=>$pay_dep_name
+                    ,'pay_bat_id'=>$pay_bat_id
+                    ,'pay_bat_name'=>$pay_bat_name
+                    ,'updated_at'=>$updated_at
+                    ,'created_at'=>$created_at
+
+
+
+
+                ]);
+                //  return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
+                }
+
+
+            });
+        //   } catch (\Throwable $th) {
+
+        //  //  return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
+        //  }
+
+        return redirect('/pay/excel')->with(['success' => "Users imported successfully."]);
 
     }
 

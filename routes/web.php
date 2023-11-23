@@ -4,6 +4,7 @@ use App\Http\Controllers\BattalionController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\LawController;
+use App\Http\Controllers\PayController;
 use App\Http\Controllers\NcoController;
 use App\Http\Controllers\CcoController;
 use App\Http\Controllers\UserAllowDepController;
@@ -115,6 +116,10 @@ Route::middleware([
     Route::post('/law/excel/import', [ExcelController::class,'importlaw']);
     Route::get('/law/excel/export', [ExcelController::class,'exportlaw']);
 
+    Route::get('/pay/excel', [ExcelController::class,'indexpay']);
+    Route::post('/pay/excel/import', [ExcelController::class,'importpay']);
+    Route::get('/pay/excel/export', [ExcelController::class,'exportpay']);
+
 
     Route::get('/soldier/provinces',[TambonController::class,'getProvinces']);
     Route::get('/soldier/amphoes',[TambonController::class,'getAmphoes']);
@@ -158,6 +163,20 @@ Route::middleware([
 
     Route::get('/law/provinces',[TambonController::class,'getProvinces']);
     Route::get('/law/amphoes',[TambonController::class,'getAmphoes']);
+
+    //////////////////////////////////////////*หน้า pay//////////////////////////////////////////
+
+    Route::match(['get', 'post'], '/pay/all',[PayController::class,'index'])->name('pay');
+
+    Route::post('/pay/add',[PayController::class,'store'])->name('addPay');
+    Route::get('/pay/edit/{id}',[PayController::class,'edit']);
+    Route::get('/pay/startadd/',[PayController::class,'startadd']);
+    Route::post('/pay/update/{id}',[PayController::class,'update']);
+    Route::get('/pay/delete/{id}',[PayController::class,'delete']);
+
+
+    Route::get('/pay/provinces',[TambonController::class,'getProvinces']);
+    Route::get('/pay/amphoes',[TambonController::class,'getAmphoes']);
 
 
 

@@ -90,10 +90,36 @@
             </header>
             @endif
 
+            @if (isset($header5))
+            <header class="bg-orange-800 shadow">
+                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    {{ $header5}}
+                </div>
+            </header>
+            @endif
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
+            {{-- <div class="my-5"> </div>
+            <nav class=" navbar fixed-bottom bg-light justify-content-center">
+                <ul class="nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#"><i class="fa fa-arrow-left"></i> <br>ข้อมูลนายทหาร</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">ข้อมูลนายสิบ</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">ข้อมูลพลทหาร</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">ข้อมูล ม.35</a>
+                    </li>
+                </ul>
+            </nav> --}}
+
         </div>
 
         @stack('modals')
