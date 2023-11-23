@@ -357,7 +357,7 @@
                                                                 <div class="my-2 form-group">
                                                                     <label for="law_parent_about" class="form-label">ความเกี่ยวข้องกับกำลังพล</label>
                                                                     <select class="form-select" id="law_parent_about" name="law_parent_about">
-                                                                        {{-- <option value ="{{isset($law->law_index) ? $law->law_index : 0 }}" >เข้าร่วมทั้งสอง</option> --}}
+                                                                        <option value="">กรุณาเลือก</option>
                                                                         @foreach (  $lawArr as $row )
                                                                     <option value="{{$row}}"{{ $law->law_parent_about == $row ? 'selected' : ''}}>{{$row}}</option>
                                                                         @endforeach
@@ -372,7 +372,7 @@
                                                             <!--ยศ-->
                                                                 <div class="my-2 form-group">
                                                                     <label for="law_parent_rank">ยศ/คำนำหน้า</label>
-                                                                    <select class="form-control" name="law_parent_rank" id="law_parent_rank" required>
+                                                                    <select class="form-control" name="law_parent_rank" id="law_parent_rank" >
                                                                     @foreach ( $rank as $key=>$row )
                                                                     <option value="{{$row->rank_name}}"{{ $row->rank_name==$law->law_parent_rank ? 'selected' : ''}}>{{$row->rank_name}}</option>
                                                                     @endforeach
