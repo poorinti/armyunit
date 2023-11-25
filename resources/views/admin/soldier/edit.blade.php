@@ -62,7 +62,7 @@
                     @endif
                     <div class="col-md-4">
                         <div class="card">
-                            <a href="{{ '/soldier/all?page='.request()->page.'&search='.request()->search.'&soldier_dep_id='.request()->soldier_dep_id.'&soldier_provinces='.request()->soldier_provinces.'&soldier_education='.request()->soldier_education.'&soldier_disease='.request()->soldier_disease  }}" class="text-black bg-purple-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>     กลับ</a>
+                            <a href="{{ '/soldier/all?page='.request()->page.'&search='.request()->search.'&soldier_dep_id='.request()->soldier_dep_id.'&soldier_provinces='.request()->soldier_provinces.'&soldier_education='.request()->soldier_education.'&soldier_disease='.request()->soldier_disease.'&soldier_amphoe='.request()->soldier_amphoe}}" class="text-black bg-purple-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>     กลับ</a>
                             <div class="bg-yellow-100 card-header ">รูปประจำตัว</div>
                             <div class="justify-center mx-auto text-center card-body ">
                                 <img src="{{isset($soldier->soldier_image) ? asset($soldier->soldier_image) : '/image/logo/logo1.png'}}" alt="{{ isset($soldier->soldier_image) ? asset($soldier->soldier_image) : '' }}" alt="imageshow" width="200px" height="200px">
@@ -305,12 +305,31 @@
                                                 <div class="my-4 card ">
                                                     <div class="text-white bg-slate-500 card-header">ข้อมูลพิเศษ</div>
                                                         <div class=" card-body bg-slate-100">
+                                                            @php
+                                                                    $wanttoArr = array();
+                                                                    $wanttoArr=['บุพการีป่วยติดเตียง','ภรรยาคลอดบุตร','ไร้ที่อยู่อาศัย','ประสบภัยธรรมชาติ','อื่นๆ']
+                                                                @endphp
+
+                                                                <div class="my-2 form-group">
+                                                                    <label for="soldier_wantto" class="form-label">ความต้องการพิเศษ</label>
+                                                                    <select class="form-select" id="soldier_wantto" name="soldier_wantto">
+                                                                        <option value ="{{isset($soldier->soldier_wantto) ? $soldier->soldier_wantto : '' }} " >{{isset($soldier->soldier_wantto) ? $soldier->soldier_wantto : ''}}</option>
+                                                                        @foreach ( $wanttoArr as $row )
+                                                                    <option value="{{ $row}}">{{ $row}}</option>
+                                                                    @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                @error('soldier_disease')
+                                                                <div class="my-2">
+                                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                                </div>
+                                                                @enderror
                                                             <!--ความต้องการพิเศษ-->
                                                                 <div class="my-2 form-group">
-                                                                    <label for="soldier_wantto">ความต้องการพิเศษ</label>
-                                                                    <input type="text" class="form-control" name="soldier_wantto" placeholder=" " value ="{{isset($soldier->soldier_wantto) ? $soldier->soldier_wantto : ''}}" >
+                                                                    <label for="soldier_wantto_about">ระบุ อื่นๆ</label>
+                                                                    <input type="text" class="form-control" name="soldier_wantto_about" placeholder=" " value ="{{isset($soldier->soldier_wantto_about) ? $soldier->soldier_wantto_about : ''}}" >
                                                                 </div>
-                                                                @error('soldier_wantto')
+                                                                @error('soldier_wantto_about')
                                                                 <div class="my-2">
                                                                     <span class="text-red-600 text">{{$message}}</span>
                                                                 </div>
@@ -371,6 +390,16 @@
                                                                     </select>
                                                                 </div>
                                                                 @error('soldier_disease')
+                                                                <div class="my-2">
+                                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                                </div>
+                                                                @enderror
+                                                                <!--ตรวจสุขภาพจิตล่าสุด-->
+                                                                <div class="my-2 form-group">
+                                                                    <label for="soldier_disease_about">ระบุ อื่นๆ</label>
+                                                                    <input type="text" class="form-control" name="soldier_disease_about" placeholder="" value ="{{isset($soldier->soldier_disease_about) ? $soldier->soldier_disease_about : ''}}" >
+                                                                </div>
+                                                                @error('soldier_disease_about')
                                                                 <div class="my-2">
                                                                     <span class="text-red-600 text">{{$message}}</span>
                                                                 </div>
@@ -525,7 +554,7 @@
                                                 @enderror --}}
 
                                             <br>
-                                             <a href="{{ '/soldier/all?page='.request()->page.'&search='.request()->search.'&soldier_dep_id='.request()->soldier_dep_id.'&soldier_provinces='.request()->soldier_provinces.'&soldier_education='.request()->soldier_education.'&soldier_disease='.request()->soldier_disease  }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                                             <a href="{{ '/soldier/all?page='.request()->page.'&search='.request()->search.'&soldier_dep_id='.request()->soldier_dep_id.'&soldier_provinces='.request()->soldier_provinces.'&soldier_education='.request()->soldier_education.'&soldier_disease='.request()->soldier_disease.'&soldier_amphoe='.request()->soldier_amphoe  }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
 
                                             <button type="submit" value="อัพเดท" class="text-black bg-blue-300 btn btn-primary">อัพเดท </button>
                                         </form>

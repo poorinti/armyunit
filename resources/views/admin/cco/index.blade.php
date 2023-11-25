@@ -51,7 +51,14 @@
                                 <option value="{{ $item->province }}" {{ $item->province==$cco_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
 
                                 @endforeach
-                            </select>
+                        </select>
+                        <select id="cco_amphoe"  name="cco_amphoe"  class="mr-2 form-control" >
+                            <option value="">เลือกจังหวัดก่อน</option>
+                            @foreach($amphoes as $item)
+                            <option value="{{ $item->amphoe }}" {{ $item->amphoe==$cco_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
+                            @endforeach
+                        </select>
+
 
                    </div>
                             {{-- @php
@@ -131,7 +138,7 @@
                                   <tr class="text-center ">
                                     <th class="text-center"> {{$cco->firstItem()+$loop->index}}</th>
                                     <td >
-                                        <a href="{{url('/cco/edit/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}" >
+                                        <a href="{{url('/cco/edit/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}{{isset($cco_amphoe) ? '&cco_amphoe='.$cco_amphoe : '' }}" >
 
 
                                         <img src="{{isset($row->cco_image) ? asset($row->cco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->cco_image) ? asset($row->cco_image) : '' }}" width="100px" height="100px" class="mx-auto" >
@@ -144,15 +151,15 @@
                                     {{-- <td>{{$row->cco_intern}}</td> --}}
                                     <td>{{$row->cco_dep_name}}</td>
                                     <td class="hidden sm:table-cell">{{$row->cco_province}}</td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/cco/edit/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/cco/delete/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/cco/edit/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}{{isset($cco_amphoe) ? '&cco_amphoe='.$cco_amphoe : '' }}" class="btn btn-danger"> แก้ไข</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/cco/delete/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}{{isset($cco_amphoe) ? '&cco_amphoe='.$cco_amphoe : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
                             </table>
                             <br>
 
-                            {{$cco->appends(['search' => isset($search) ? $search : '','cco_dep_id'=>isset($cco_dep_id) ?$cco_dep_id :'',"cco_provinces"=> isset($cco_provinces) ? $cco_provinces : '',"cco_rank"=> isset($cco_rank) ? $cco_rank : ''])->links()}}
+                            {{$cco->appends(['search' => isset($search) ? $search : '','cco_dep_id'=>isset($cco_dep_id) ?$cco_dep_id :'',"cco_provinces"=> isset($cco_provinces) ? $cco_provinces : '',"cco_rank"=> isset($cco_rank) ? $cco_rank : '',"cco_amphoe"=> isset($cco_amphoe) ? $cco_amphoe: ''])->links()}}
 
                         </div>
                     </div>
@@ -162,3 +169,42 @@
     </div>
 </x-app-layout>
 
+<script>
+    $(document).ready(function() {
+
+    });
+
+
+    function showAmphoes() {
+
+        let cco_province = document.querySelector("#cco_provinces");
+            let url = "/cco/amphoes?province=" + cco_provinces.value;
+            console.log( url );
+            // if(cco_province.value == "") return;
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    //UPDATE SELECT OPTION
+                    let cco_amphoe = document.querySelector("#cco_amphoe");
+                    cco_amphoe.innerHTML = '<option value="">กรุณาเลือกเขต/อำเภอ</option>';
+                    for (let item of result) {
+                        let option = document.createElement("option");
+                        option.text = item.amphoe;
+                        option.value = item.amphoe;
+                        cco_amphoe.appendChild(option);
+
+                    }
+                    //QUERY AMPHOES
+                    showTambons();
+                });
+        }
+    // เมื่อเลือกจังหวัดเกิดการเปลี่ยนแปลง
+        document.querySelector('#cco_provinces').addEventListener('change', (event) => {
+            showAmphoes();
+        });
+        document.querySelector('#cco_provinces').addEventListener('click', (event) => {
+            showAmphoes();
+        });
+
+</script>

@@ -37,36 +37,34 @@
                     <div class=" form-group">
                     </div>
                     <div class="input-group">
-                            <select class="form-control" name="soldier_dep_id" id="soldier_dep_id" >
-                                <option value="">แสดงหน่วยทั้งหมด</option>
+                            <select class="mr-2 form-control" name="soldier_dep_id" id="soldier_dep_id" >
+                                <option value="">หน่วยทั้งหมด</option>
                                     @foreach ( $Department as $key=>$row )
 
                                     <option value="{{$row->dep_id}}" {{ $soldier_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
                                 @endforeach
                         </select>
 
-                        <select class="form-control" name="soldier_provinces" id="soldier_provinces" >
-                            <option value="">แสดงจังหวัดทั้งหมด</option>
+                            <select class="mr-2 form-control" name="soldier_provinces" id="soldier_provinces" >
+                                <option value="">จังหวัดทั้งหมด</option>
                                 @foreach ( $provinces as $key=>$item )
                                 <option value="{{ $item->province }}" {{ $item->province==$soldier_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
-
                                 @endforeach
                             </select>
-                            {{-- <select class="form-control" name="soldier_provinces" id="soldier_provinces" >
-                                <option value="">เลือกจังหวัด</option>
-                                    @foreach ( $provinces as $key=>$item )
-                                    <option value="{{ $item->province }}" {{ $item->province==$soldier_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
-
+                            <select id="soldier_amphoe"  name="soldier_amphoe"  class="mr-2 form-control" >
+                                    <option value="">เลือกจังหวัดก่อน</option>
+                                    @foreach($amphoes as $item)
+                                    <option value="{{ $item->amphoe }}" {{ $item->amphoe==$soldier_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
                                     @endforeach
-                                </select> --}}
+                            </select>
                    </div>
                             @php
                             $educationArr = array();
                             $educationArr=['ประถม','ม.ต้น','ม.ปลาย','ปวช','ปวส.','ป.ตรี','ป.โท','ป.เอก',]
                             @endphp
                    <div class="input-group">
-                        <select class="form-control" name="soldier_education" id="soldier_education" >
-                            <option value="">แสดงวุฒิทั้งหมด</option>
+                        <select class="mr-2 form-control" name="soldier_education" id="soldier_education" >
+                            <option value="">วุฒิทั้งหมด</option>
                                 @foreach ( $educationArr as $key=>$row )
 
                                 <option value="{{$row}}" {{ $soldier_education ==$row ? 'selected' :'' }}>{{$row}}</option>
@@ -77,20 +75,24 @@
                         $diseaseArr=['ไม่มี','ซึมเศร้า','จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','อื่นๆ']
                         @endphp
 
-                        <select class="form-control" name="soldier_disease" id="soldier_disease" >
-                        <option value="">แสดงอาการป่วยทั้งหมด</option>
+                        <select class="mr-2 form-control" name="soldier_disease" id="soldier_disease" >
+                        <option value="">อาการป่วยทั้งหมด</option>
                             @foreach ( $diseaseArr as $key=>$item )
                             <option value="{{ $item }}" {{ $item == $soldier_disease ? 'selected' : ''}}>{{ $item }}</option>
 
                             @endforeach
                         </select>
-                        {{-- <select class="form-control" name="soldier_provinces" id="soldier_provinces" >
-                            <option value="">เลือกจังหวัด</option>
-                                @foreach ( $provinces as $key=>$item )
-                                <option value="{{ $item->province }}" {{ $item->province==$soldier_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
+                        @php
+                        $wanttoArr = array();
+                        $wanttoArr=['บุพการีป่วยติดเตียง','ภรรยาคลอดบุตร','ไร้ที่อยู่อาศัย','ประสบภัยธรรมชาติ','อื่นๆ']
+                    @endphp
+                        <select class="mr-2 form-control" id="soldier_wantto" name="soldier_wantto">
+                            <option value="">ความต้องการพิเศษทั้งหมด</option>
+                            @foreach ( $wanttoArr as $row )
+                        <option value="{{ $row}}">{{ $row}}</option>
+                        @endforeach
+                        </select>
 
-                                @endforeach
-                        </select> --}}
                     </div>
 
 
@@ -131,7 +133,7 @@
                                   <tr class="text-center ">
                                     <th class="text-center"> {{$soldier->firstItem()+$loop->index}}</th>
                                     <td >
-                                        <a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}" >
+                                        <a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}{{isset($soldier_amphoe) ? '&soldier_amphoe='.$soldier_amphoe : '' }}" >
 
                                         {{-- isset จากฐานข้อมูล ถ้าไม่มีภาพ ให้ดึงเอา โลโก้มา --}}
                                         <img src="{{isset($row->soldier_image) ? asset($row->soldier_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->soldier_image) ? asset($row->soldier_image) : '' }}" width="100px" height="100px" class="mx-auto" >
@@ -144,8 +146,8 @@
                                     <td>{{$row->soldier_intern}}</td>
                                     <td>{{$row->soldiers_dep_name}}</td>
                                     <td class="hidden sm:table-cell">{{$row->soldier_province}}</td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/soldier/delete/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}{{isset($soldier_amphoe) ? '&soldier_amphoe='.$soldier_amphoe : '' }}" class="btn btn-danger"> แก้ไข</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/soldier/delete/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}{{isset($soldier_amphoe) ? '&soldier_amphoe='.$soldier_amphoe : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
@@ -153,7 +155,7 @@
 
                             <br>
 
-                            {{$soldier->appends(['search' => isset($search) ? $search : '','soldier_dep_id'=>isset($soldier_dep_id) ?$soldier_dep_id :'' ,"soldier_provinces"=> isset($soldier_provinces) ? $soldier_provinces : '',"soldier_education"=> isset($soldier_education) ? $soldier_education : '',"soldier_disease"=> isset($soldier_disease) ? $soldier_disease : ''])->links()}}
+                            {{$soldier->appends(['search' => isset($search) ? $search : '','soldier_dep_id'=>isset($soldier_dep_id) ?$soldier_dep_id :'' ,"soldier_provinces"=> isset($soldier_provinces) ? $soldier_provinces : '',"soldier_education"=> isset($soldier_education) ? $soldier_education : '',"soldier_disease"=> isset($soldier_disease) ? $soldier_disease : '',"soldier_amphoe"=> isset($soldier_amphoe) ? $soldier_amphoe: ''])->links()}}
 
 
                         </div>
@@ -163,4 +165,44 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    $(document).ready(function() {
+
+    });
+
+
+    function showAmphoes() {
+
+        let soldier_province = document.querySelector("#soldier_provinces");
+            let url = "/soldier/amphoes?province=" + soldier_provinces.value;
+            console.log( url );
+            // if(soldier_province.value == "") return;
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    //UPDATE SELECT OPTION
+                    let soldier_amphoe = document.querySelector("#soldier_amphoe");
+                    soldier_amphoe.innerHTML = '<option value="">กรุณาเลือกเขต/อำเภอ</option>';
+                    for (let item of result) {
+                        let option = document.createElement("option");
+                        option.text = item.amphoe;
+                        option.value = item.amphoe;
+                        soldier_amphoe.appendChild(option);
+
+                    }
+                    //QUERY AMPHOES
+                    showTambons();
+                });
+        }
+    // เมื่อเลือกจังหวัดเกิดการเปลี่ยนแปลง
+        document.querySelector('#soldier_provinces').addEventListener('change', (event) => {
+            showAmphoes();
+        });
+        document.querySelector('#soldier_provinces').addEventListener('click', (event) => {
+            showAmphoes();
+        });
+
+</script>
 

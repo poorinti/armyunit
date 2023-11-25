@@ -32,6 +32,7 @@ class NcoController extends Controller
                 $nco_provinces  =isset($request->nco_provinces) ? $request->nco_provinces : '' ;
                 $nco_education =isset($request->nco_education) ? $request->nco_education : '' ;
                 $nco_disease =isset($request->nco_disease) ? $request->nco_disease : '' ;
+                $nco_amphoe =isset($request->nco_amphoe) ? $request->nco_amphoe : '' ;
 
                 // เช็ค สิทธิ์ login
                 $user_id = Auth::user()->id;
@@ -74,6 +75,12 @@ class NcoController extends Controller
                  ->where(function($query) use ($nco_provinces){
                      if($nco_provinces!=''){
                          $query->where('nco_province','=',$nco_provinces);
+                     }
+
+                 })
+                 ->where(function($query) use ($nco_amphoe){
+                     if($nco_amphoe!=''){
+                         $query->where('nco_amphoe','=',$nco_amphoe);
                      }
 
                  })
@@ -132,7 +139,7 @@ class NcoController extends Controller
 
             $rank = Rank::where('rank_id','!=','')->where('cco_rank_index','=',0)->orderby('nco_rank_index')->get();
 
-
+            $amphoes = Tambon::select('amphoe')->distinct()->get();
 
             $provinces = Nco::selectRaw('nco_province as province')->where('nco_province','!=','')->distinct()->get();
 
@@ -140,7 +147,7 @@ class NcoController extends Controller
 
 
 
-        return view('admin.nco.index',compact('nco','Department','total_nco','nco_dep_id','nco_provinces','nco_education','nco_disease','provinces','rank','nco_rank','search' ));
+        return view('admin.nco.index',compact('nco','Department','total_nco','nco_dep_id','nco_provinces','nco_education','nco_disease','provinces','rank','nco_rank','search','nco_amphoe','amphoes' ));
     }
 
     public function edit(Request $request,$nco_id){
@@ -151,6 +158,7 @@ class NcoController extends Controller
             $nco_dep_id = isset($request->nco_dep_id) ? $request->nco_dep_id : '';
             $nco_provinces  =isset($request->nco_provinces) ? $request->nco_provinces : '' ;
             $nco_rank =isset($request->nco_rank ) ? $request->nco_rank  : '' ;
+            $nco_amphoe=isset($request->nco_amphoe) ? $request->nco_amphoe : '' ;
             $provinces = Tambon::select('province')->distinct()->get();
             $amphoes = Tambon::select('amphoe')->distinct()->get();
 
@@ -162,7 +170,7 @@ class NcoController extends Controller
 
     // dd($soldier_provinces);
 
-            return view('admin.nco.edit',compact('page','nco','provinces','amphoes','nco_provinces','rank','nco_rank'));
+            return view('admin.nco.edit',compact('page','nco','provinces','amphoes','nco_provinces','rank','nco_rank','nco_amphoe'));
 
 
 

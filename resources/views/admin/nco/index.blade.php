@@ -52,6 +52,12 @@
 
                                 @endforeach
                             </select>
+                            <select id="nco_amphoe"  name="nco_amphoe"  class="mr-2 form-control" >
+                                <option value="">เลือกจังหวัดก่อน</option>
+                                @foreach($amphoes as $item)
+                                <option value="{{ $item->amphoe }}" {{ $item->amphoe==$nco_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
+                                @endforeach
+                        </select>
 
                    </div>
                             {{-- @php
@@ -131,7 +137,7 @@
                                   <tr class="text-center ">
                                     <th class="text-center"> {{$nco->firstItem()+$loop->index}}</th>
                                     <td >
-                                        <a href="{{url('/nco/edit/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" >
+                                        <a href="{{url('/nco/edit/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}{{isset($nco_amphoe) ? '&nco_amphoe='.$nco_amphoe : '' }}" >
 
 
                                         <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->nco_image) ? asset($row->nco_image) : '' }}" width="60px" height="60px" class="mx-auto" >
@@ -144,8 +150,8 @@
                                     {{-- <td>{{$row->nco_intern}}</td> --}}
                                     <td>{{$row->nco_dep_name}}</td>
                                     <td class="hidden sm:table-cell">{{$row->nco_province}}</td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/nco/edit/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/nco/delete/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/nco/edit/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}{{isset($nco_amphoe) ? '&nco_amphoe='.$nco_amphoe : '' }}" class="btn btn-danger"> แก้ไข</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/nco/delete/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}{{isset($nco_amphoe) ? '&nco_amphoe='.$nco_amphoe : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
@@ -153,7 +159,7 @@
                             <br>
 
 
-                            {{$nco->appends(['search' => isset($search) ? $search : '','nco_dep_id'=>isset($nco_dep_id) ?$nco_dep_id :'',"nco_provinces"=> isset($nco_provinces) ? $nco_provinces : '',"nco_rank"=> isset($nco_rank) ? $nco_rank : ''])->links()}}
+                            {{$nco->appends(['search' => isset($search) ? $search : '','nco_dep_id'=>isset($nco_dep_id) ?$nco_dep_id :'',"nco_provinces"=> isset($nco_provinces) ? $nco_provinces : '',"nco_rank"=> isset($nco_rank) ? $nco_rank : '',"nco_amphoe"=> isset($nco_amphoe) ? $nco_amphoe: ''])->links()}}
                         </div>
                     </div>
                 </div>
@@ -161,4 +167,42 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    $(document).ready(function() {
 
+    });
+
+
+    function showAmphoes() {
+
+        let nco_province = document.querySelector("#nco_provinces");
+            let url = "/nco/amphoes?province=" + nco_provinces.value;
+            console.log( url );
+            // if(nco_province.value == "") return;
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    //UPDATE SELECT OPTION
+                    let nco_amphoe = document.querySelector("#nco_amphoe");
+                    nco_amphoe.innerHTML = '<option value="">กรุณาเลือกเขต/อำเภอ</option>';
+                    for (let item of result) {
+                        let option = document.createElement("option");
+                        option.text = item.amphoe;
+                        option.value = item.amphoe;
+                        nco_amphoe.appendChild(option);
+
+                    }
+                    //QUERY AMPHOES
+                    showTambons();
+                });
+        }
+    // เมื่อเลือกจังหวัดเกิดการเปลี่ยนแปลง
+        document.querySelector('#nco_provinces').addEventListener('change', (event) => {
+            showAmphoes();
+        });
+        document.querySelector('#nco_provinces').addEventListener('click', (event) => {
+            showAmphoes();
+        });
+
+</script>

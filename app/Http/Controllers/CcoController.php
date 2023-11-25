@@ -33,6 +33,7 @@ class CcoController extends Controller
                 $cco_provinces  =isset($request->cco_provinces) ? $request->cco_provinces : '' ;
                 $cco_education =isset($request->cco_education) ? $request->cco_education : '' ;
                 $cco_disease =isset($request->cco_disease) ? $request->cco_disease : '' ;
+                $cco_amphoe =isset($request->cco_amphoe) ? $request->cco_amphoe : '' ;
 
                 // เช็ค สิทธิ์ login
                 $user_id = Auth::user()->id;
@@ -78,6 +79,12 @@ class CcoController extends Controller
                      }
 
                  })
+                 ->where(function($query) use ($cco_amphoe){
+                    if($cco_amphoe!=''){
+                        $query->where('cco_amphoe','=',$cco_amphoe);
+                    }
+
+                })
                  ->where(function($query) use ($cco_education){
                      if($cco_education!=''){
                          $query->where('nco_education','=',$cco_education);
@@ -132,7 +139,7 @@ class CcoController extends Controller
 
             $rank = Rank::where('rank_id','!=','')->where('cco_rank_index','=',1)->orderby('nco_rank_index')->get();
 
-
+            $amphoes = Tambon::select('amphoe')->distinct()->get();
 
             $provinces = Cco::selectRaw('cco_province as province')->where('cco_province','!=','')->distinct()->get();
 
@@ -140,7 +147,7 @@ class CcoController extends Controller
 
 
 
-        return view('admin.cco.index',compact('cco','Department','total_cco','cco_dep_id','cco_provinces','cco_education','cco_disease','provinces','rank','cco_rank','search' ));
+        return view('admin.cco.index',compact('cco','Department','total_cco','cco_dep_id','cco_provinces','cco_education','cco_disease','provinces','rank','cco_rank','search','amphoes','cco_amphoe'));
     }
 
     public function edit(Request $request,$cco_id){
@@ -151,6 +158,7 @@ class CcoController extends Controller
             $cco_dep_id = isset($request->cco_dep_id) ? $request->cco_dep_id : '';
             $cco_provinces  =isset($request->cco_provinces) ? $request->cco_provinces : '' ;
             $cco_rank =isset($request->cco_rank ) ? $request->cco_rank  : '' ;
+            $cco_amphoe=isset($request->cco_amphoe) ? $request->cco_amphoe : '' ;
             $provinces = Tambon::select('province')->distinct()->get();
             $amphoes = Tambon::select('amphoe')->distinct()->get();
 
@@ -162,7 +170,7 @@ class CcoController extends Controller
 
     // dd($soldier_provinces);
 
-            return view('admin.cco.edit',compact('page','cco','provinces','amphoes','cco_provinces','rank','cco_rank','cco_dep_id','search'));
+            return view('admin.cco.edit',compact('page','cco','provinces','amphoes','cco_provinces','rank','cco_rank','cco_dep_id','search','cco_amphoe'));
 
 
 

@@ -1,0 +1,32 @@
+/ ฝั่งคอม อัพขึ้น git
+git add .
+git commit  -m "Add new file"
+git push origin main
+
+// ฝั่ง เซิฟ
+git pull
+
+
+
+git fetch --all
+git reset --hard origin/main
+
+
+<VirtualHost *:80>
+    ServerName somehost
+    DocumentRoot /var/www/html/armyunit/public
+
+    CustomLog       /var/www/html/access.log common
+    ErrorLog        /var/www/html/error.log
+
+   <Directory /var/www/html/armyunit/public>
+      <IfModule mod_rewrite.c>
+      Options -MultiViews
+      RewriteEngine On
+      RewriteCond %{REQUEST_FILENAME} !-f
+     RewriteRule ^ index.php [L]
+   </IfModule>
+</Directory>
+</VirtualHost>
+
+พลฯ จตุพล ตอซอน
