@@ -19,13 +19,14 @@ class SoldierController extends Controller
 {
     public function index(Request $request){
         $search   =isset($request->search) ? $request->search : '' ;
-        // dd($request->all());
+         //dd($request->all());
         //  รับจากหน้า index ที่ selecd มา
         $soldier_dep_id     =isset($request->soldier_dep_id) ? $request->soldier_dep_id : '' ;
         $soldier_provinces  =isset($request->soldier_provinces) ? $request->soldier_provinces : '' ;
         $soldier_education =isset($request->soldier_education) ? $request->soldier_education : '' ;
         $soldier_disease =isset($request->soldier_disease) ? $request->soldier_disease : '' ;
         $soldier_amphoe =isset($request->soldier_amphoe) ? $request->soldier_amphoe : '' ;
+        $soldier_wantto=isset($request->soldier_wantto) ? $request->soldier_wantto : '' ;
 
         $user_id = Auth::user()->id;
         $userdep =Userdep::where('user_id','=',$user_id)->orderBy('dep_id')->get();
@@ -73,6 +74,12 @@ class SoldierController extends Controller
         ->where(function($query) use ($soldier_disease){
             if($soldier_disease!=''){
                 $query->where('soldier_disease','=',$soldier_disease);
+            }
+
+        })
+        ->where(function($query) use ($soldier_wantto){
+            if($soldier_wantto!=''){
+                $query->where('soldier_wantto','=',$soldier_wantto);
             }
 
         })
@@ -128,7 +135,7 @@ class SoldierController extends Controller
             $provinces = Soldier::selectRaw('soldier_province as province')->where('soldier_province','!=','')->distinct()->get();
 
             $total_soldier= Soldier::where('soldier_id','!=','')->count();
-        return view('admin.soldier.index',compact('soldier','search','soldier_dep_id','total_soldier','Department','soldier_dep_id','provinces','soldier_provinces','soldier_education','soldier_disease','amphoes','soldier_amphoe'));
+        return view('admin.soldier.index',compact('soldier','search','soldier_dep_id','total_soldier','Department','soldier_dep_id','provinces','soldier_provinces','soldier_education','soldier_disease','amphoes','soldier_amphoe','soldier_wantto'));
     }
 
     public function store( Request $request){

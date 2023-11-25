@@ -85,11 +85,11 @@
                         @php
                         $wanttoArr = array();
                         $wanttoArr=['บุพการีป่วยติดเตียง','ภรรยาคลอดบุตร','ไร้ที่อยู่อาศัย','ประสบภัยธรรมชาติ','อื่นๆ']
-                    @endphp
+                        @endphp
                         <select class="mr-2 form-control" id="soldier_wantto" name="soldier_wantto">
                             <option value="">ความต้องการพิเศษทั้งหมด</option>
-                            @foreach ( $wanttoArr as $row )
-                        <option value="{{ $row}}">{{ $row}}</option>
+                            @foreach ( $wanttoArr as $key=>$row )
+                        <option value="{{ $row}}" {{ $row== $soldier_wantto ? 'selected' : ''}}>{{ $row}}</option>
                         @endforeach
                         </select>
 
@@ -133,7 +133,7 @@
                                   <tr class="text-center ">
                                     <th class="text-center"> {{$soldier->firstItem()+$loop->index}}</th>
                                     <td >
-                                        <a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}{{isset($soldier_amphoe) ? '&soldier_amphoe='.$soldier_amphoe : '' }}" >
+                                        <a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}{{isset($soldier_amphoe) ? '&soldier_amphoe='.$soldier_amphoe : '' }}{{isset($soldier_wantto) ? '&soldier_wantto='.$soldier_wantto : '' }}" >
 
                                         {{-- isset จากฐานข้อมูล ถ้าไม่มีภาพ ให้ดึงเอา โลโก้มา --}}
                                         <img src="{{isset($row->soldier_image) ? asset($row->soldier_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->soldier_image) ? asset($row->soldier_image) : '' }}" width="100px" height="100px" class="mx-auto" >
@@ -146,8 +146,8 @@
                                     <td>{{$row->soldier_intern}}</td>
                                     <td>{{$row->soldiers_dep_name}}</td>
                                     <td class="hidden sm:table-cell">{{$row->soldier_province}}</td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}{{isset($soldier_amphoe) ? '&soldier_amphoe='.$soldier_amphoe : '' }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/soldier/delete/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}{{isset($soldier_amphoe) ? '&soldier_amphoe='.$soldier_amphoe : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}{{isset($soldier_amphoe) ? '&soldier_amphoe='.$soldier_amphoe : '' }}{{isset($soldier_wantto) ? '&soldier_wantto='.$soldier_wantto : '' }}" class="btn btn-danger"> แก้ไข</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/soldier/delete/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}{{isset($soldier_amphoe) ? '&soldier_amphoe='.$soldier_amphoe : '' }}{{isset($soldier_wantto) ? '&soldier_wantto='.$soldier_wantto : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
@@ -155,7 +155,7 @@
 
                             <br>
 
-                            {{$soldier->appends(['search' => isset($search) ? $search : '','soldier_dep_id'=>isset($soldier_dep_id) ?$soldier_dep_id :'' ,"soldier_provinces"=> isset($soldier_provinces) ? $soldier_provinces : '',"soldier_education"=> isset($soldier_education) ? $soldier_education : '',"soldier_disease"=> isset($soldier_disease) ? $soldier_disease : '',"soldier_amphoe"=> isset($soldier_amphoe) ? $soldier_amphoe: ''])->links()}}
+                            {{$soldier->appends(['search' => isset($search) ? $search : '','soldier_dep_id'=>isset($soldier_dep_id) ?$soldier_dep_id :'' ,"soldier_provinces"=> isset($soldier_provinces) ? $soldier_provinces : '',"soldier_education"=> isset($soldier_education) ? $soldier_education : '',"soldier_disease"=> isset($soldier_disease) ? $soldier_disease : '',"soldier_amphoe"=> isset($soldier_amphoe) ? $soldier_amphoe: '',"soldier_wantto"=> isset($soldier_wantto) ? $soldier_wantto: ''])->links()}}
 
 
                         </div>
