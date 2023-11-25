@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header2">
         <h2 class="text-xl font-semibold leading-tight text-white">
-
+         เพิ่มข้อมูล นายสิบด้วย excel
         </h2>
     </x-slot>
     <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -23,7 +23,7 @@
                             <div class="card">
                                 <div class="card-header">Import ข้อมูลนายสิบ</div>
                                      <div class="card-body">
-                                        <form action="{{ url('/soldier/excel/import') }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ url('/nco/excel/import') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
 
                                             <div class="flex-row-reverse d-flex justify-content-end ">

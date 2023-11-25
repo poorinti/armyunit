@@ -20,6 +20,11 @@ class Nco extends Model
         'nco_id', 'nco_rank', 'nco_rank_index', 'nco_name', 'nco_rtanumber', 'nco_image', 'nco_address'
         , 'nco_province', 'nco_amphoe', 'nco_zip', 'nco_intern', 'nco_corp', 'nco_startdate'
         , 'nco_phone', 'nco_about'
+        ,'nco_education', 'nco_education_study', 'nco_education_end'
+        , 'nco_wantto', 'nco_health', 'nco_skill_work'
+        , 'nco_skill', 'nco_wife_name'
+        , 'nco_child_name1', 'nco_child_name2', 'nco_child_name3'
+        , 'nco_child_name4', 'nco_child_name5'
 
         , 'nco_law_index', 'nco_law_id', 'nco_law_rank','nco_law_rank_index'
         , 'nco_law_name'

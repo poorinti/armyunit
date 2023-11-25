@@ -152,17 +152,40 @@ class ExcelController extends Controller
                 $nco_bat_id        =$Dep->battalion_id ;
                 $nco_bat_name      =$Dep->battalion_name;
 
+                $nco_rank  = trim($line['nco_rank']);
+
+                $nco_rank_iput_name=Rank::where('rank_name','=',$nco_rank  )->first();
+                $nco_rank_index = isset($nco_rank_iput_name->nco_rank_index ) ? $nco_rank_iput_name->nco_rank_index   : 0;
+
+
                 $created_at=Carbon::now()->format("Y-m-d H:i:s");
                 $updated_at =Carbon::now()->format("Y-m-d H:i:s");
 
                 try {
                 return Nco::insert([
 
-                    'nco_id' =>$line['nco_id']
+                    'nco_id' =>trim($line['nco_id'])
                     ,'nco_name'=>trim($line['nco_name'])
-                    ,'nco_corp'=>$line['nco_corp']
-                    ,'nco_address'=>$line['nco_address']
-                    ,'nco_phone'=>$line['nco_phone']
+                    ,'nco_rank'=>trim($line['nco_rank'])
+                    ,'nco_rank_index'=>$nco_rank_index
+                    ,'nco_corp'=>trim($line['nco_corp'])
+                    ,'nco_education'=>trim($line['nco_education'])
+                    ,'nco_education_study'=>trim($line['nco_education_study'])
+                    ,'nco_address'=>trim($line['nco_address'])
+                    ,'nco_amphoe'=>trim($line['nco_amphoe'])
+                    ,'nco_province'=>trim($line['nco_province'])
+                    ,'nco_wantto'=>trim($line['nco_wantto'])
+                    ,'nco_health'=>trim($line['nco_health'])
+                    ,'nco_wife_name'=>trim($line['nco_wife_name'])
+                    ,'nco_child_name1'=>trim($line['nco_child_name1'])
+                    ,'nco_child_name2'=>trim($line['nco_child_name2'])
+                    ,'nco_child_name3'=>trim($line['nco_child_name3'])
+                    ,'nco_child_name4'=>trim($line['nco_child_name4'])
+                    ,'nco_child_name5'=>trim($line['nco_child_name5'])
+                    ,'nco_skill_work'=>trim($line['nco_skill_work'])
+                    ,'nco_skill'=>trim($line['nco_skill'])
+                    ,'nco_phone'=>trim($line['nco_phone'])
+
                     ,'nco_dep_id'=>$nco_dep_id
                     ,'nco_dep_name'=>$nco_dep_name
                     ,'nco_bat_id'=>$nco_bat_id
@@ -180,8 +203,24 @@ class ExcelController extends Controller
                     //'soldier_id' =>$line['soldier_id']
 
                     'nco_name'=>trim($line['nco_name'])
+                    ,'nco_rank'=>trim($line['nco_rank'])
+                    ,'nco_rank_index'=>$nco_rank_index
                     ,'nco_corp'=>trim($line['nco_corp'])
+                    ,'nco_education'=>trim($line['nco_education'])
+                    ,'nco_education_study'=>trim($line['nco_education_study'])
                     ,'nco_address'=>trim($line['nco_address'])
+                    ,'nco_amphoe'=>trim($line['nco_amphoe'])
+                    ,'nco_province'=>trim($line['nco_province'])
+                    ,'nco_wantto'=>trim($line['nco_wantto'])
+                    ,'nco_health'=>trim($line['nco_health'])
+                    ,'nco_wife_name'=>trim($line['nco_wife_name'])
+                    ,'nco_child_name1'=>trim($line['nco_child_name1'])
+                    ,'nco_child_name2'=>trim($line['nco_child_name2'])
+                    ,'nco_child_name3'=>trim($line['nco_child_name3'])
+                    ,'nco_child_name4'=>trim($line['nco_child_name4'])
+                    ,'nco_child_name5'=>trim($line['nco_child_name5'])
+                    ,'nco_skill_work'=>trim($line['nco_skill_work'])
+                    ,'nco_skill'=>trim($line['nco_skill'])
                     ,'nco_phone'=>trim($line['nco_phone'])
 
                     ,'nco_dep_id'=>$nco_dep_id
@@ -190,7 +229,7 @@ class ExcelController extends Controller
                     ,'nco_bat_name'=>$nco_bat_name
                     ,'updated_at'=>$updated_at
 
-                    ,'updated_at'=>$updated_at
+                    
 
 
 
@@ -236,23 +275,46 @@ class ExcelController extends Controller
              $cco_bat_id        =$Dep->battalion_id ;
              $cco_bat_name      =$Dep->battalion_name;
 
+             $cco_rank  = trim($line['cco_rank']);
+
+             $nco_rank_iput_name=Rank::where('rank_name','=',$cco_rank  )->first();
+             $cco_rank_index = isset($nco_rank_iput_name->nco_rank_index ) ? $nco_rank_iput_name->nco_rank_index   : 0;
+
+
              $created_at=Carbon::now()->format("Y-m-d H:i:s");
              $updated_at =Carbon::now()->format("Y-m-d H:i:s");
 
              try {
              return Cco::insert([
 
-                 'cco_id' =>$line['cco_id']
-                 ,'cco_name'=>trim($line['cco_name'])
-                 ,'cco_corp'=>$line['cco_corp']
-                 ,'cco_address'=>$line['cco_address']
-                 ,'cco_phone'=>$line['cco_phone']
-                 ,'cco_dep_id'=>$cco_dep_id
-                 ,'cco_dep_name'=>$cco_dep_name
-                 ,'cco_bat_id'=>$cco_bat_id
-                 ,'cco_bat_name'=>$cco_bat_name
-                 ,'updated_at'=>$updated_at
-                 ,'created_at'=>$created_at
+                'cco_id' =>trim($line['cco_id'])
+                    ,'cco_name'=>trim($line['cco_name'])
+                    ,'cco_rank'=>trim($line['cco_rank'])
+                    ,'cco_rank_index'=>$cco_rank_index
+                    ,'cco_corp'=>trim($line['cco_corp'])
+                    ,'cco_education'=>trim($line['cco_education'])
+                    ,'cco_education_study'=>trim($line['cco_education_study'])
+                    ,'cco_address'=>trim($line['cco_address'])
+                    ,'cco_amphoe'=>trim($line['cco_amphoe'])
+                    ,'cco_province'=>trim($line['cco_province'])
+                    ,'cco_wantto'=>trim($line['cco_wantto'])
+                    ,'cco_health'=>trim($line['cco_health'])
+                    ,'cco_wife_name'=>trim($line['cco_wife_name'])
+                    ,'cco_child_name1'=>trim($line['cco_child_name1'])
+                    ,'cco_child_name2'=>trim($line['cco_child_name2'])
+                    ,'cco_child_name3'=>trim($line['cco_child_name3'])
+                    ,'cco_child_name4'=>trim($line['cco_child_name4'])
+                    ,'cco_child_name5'=>trim($line['cco_child_name5'])
+                    ,'cco_skill_work'=>trim($line['cco_skill_work'])
+                    ,'cco_skill'=>trim($line['cco_skill'])
+                    ,'cco_phone'=>trim($line['cco_phone'])
+
+                    ,'cco_dep_id'=>$cco_dep_id
+                    ,'cco_dep_name'=>$cco_dep_name
+                    ,'cco_bat_id'=>$cco_bat_id
+                    ,'cco_bat_name'=>$cco_bat_name
+                    ,'updated_at'=>$updated_at
+                    ,'created_at'=>$created_at
 
 
              ]);
@@ -263,19 +325,34 @@ class ExcelController extends Controller
 
                  //'soldier_id' =>$line['soldier_id']
 
-                 'cco_name'=>trim($line['cco_name'])
-                 ,'cco_corp'=>trim($line['cco_corp'])
-                 ,'cco_address'=>trim($line['cco_address'])
-                 ,'cco_phone'=>trim($line['cco_phone'])
 
-                 ,'cco_dep_id'=>$cco_dep_id
-                 ,'cco_dep_name'=>$cco_dep_name
-                 ,'cco_bat_id'=>$cco_bat_id
-                 ,'cco_bat_name'=>$cco_bat_name
-                 ,'updated_at'=>$updated_at
+                    'cco_name'=>trim($line['cco_name'])
+                    ,'cco_rank'=>trim($line['cco_rank'])
+                    ,'cco_rank_index'=>$cco_rank_index
+                    ,'cco_corp'=>trim($line['cco_corp'])
+                    ,'cco_education'=>trim($line['cco_education'])
+                    ,'cco_education_study'=>trim($line['cco_education_study'])
+                    ,'cco_address'=>trim($line['cco_address'])
+                    ,'cco_amphoe'=>trim($line['cco_amphoe'])
+                    ,'cco_province'=>trim($line['cco_province'])
+                    ,'cco_wantto'=>trim($line['cco_wantto'])
+                    ,'cco_health'=>trim($line['cco_health'])
+                    ,'cco_wife_name'=>trim($line['cco_wife_name'])
+                    ,'cco_child_name1'=>trim($line['cco_child_name1'])
+                    ,'cco_child_name2'=>trim($line['cco_child_name2'])
+                    ,'cco_child_name3'=>trim($line['cco_child_name3'])
+                    ,'cco_child_name4'=>trim($line['cco_child_name4'])
+                    ,'cco_child_name5'=>trim($line['cco_child_name5'])
+                    ,'cco_skill_work'=>trim($line['cco_skill_work'])
+                    ,'cco_skill'=>trim($line['cco_skill'])
+                    ,'cco_phone'=>trim($line['cco_phone'])
 
-                 ,'updated_at'=>$updated_at
-
+                    ,'cco_dep_id'=>$cco_dep_id
+                    ,'cco_dep_name'=>$cco_dep_name
+                    ,'cco_bat_id'=>$cco_bat_id
+                    ,'cco_bat_name'=>$cco_bat_name
+                    ,'updated_at'=>$updated_at
+                    ,'created_at'=>$created_at
 
 
 
@@ -290,7 +367,7 @@ class ExcelController extends Controller
      //  //  return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
      //  }
 
-     return redirect('/nco/excel')->with(['success' => "Users imported successfully."]);
+     return redirect('/cco/excel')->with(['success' => "Users imported successfully."]);
 
  }
 /////////////////////////////////////////////////////////////////////////////////////////ss
@@ -380,6 +457,7 @@ class ExcelController extends Controller
                     'law_name'=>trim($line['law_name'])
                     ,"law_rank" => trim($line['law_rank'])
                     ,'law_rank_index' =>trim($line['law_rank_index'])
+                    ,'law_rank_index_name' =>$nco_rank_index
                     ,"law_index" => trim($line['law_index'])
                     ,"law_defective" =>trim($line['law_defective'])
                     ,"law_defective_about" =>trim($line['law_defective_about'])
@@ -390,7 +468,9 @@ class ExcelController extends Controller
                     ,'law_province'=>trim($line['law_province'])
                     ,'law_amphoe'=>trim($line['law_amphoe'])
                     ,"law_parent_about" =>trim($line['law_parent_about'])
-                    ,'law_phone'=>$line['law_phone']
+                    ,'law_phone'=>trim($line['law_phone'])
+                    ,'law_about'=>trim($line['law_about'])
+
                     ,"law_parent_rank" =>trim($line['law_parent_rank'])
                     ,"law_parent_name" =>trim($line['law_parent_name'])
 
