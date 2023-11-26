@@ -60,6 +60,7 @@ Route::middleware([
         return view('dashboard',compact('Department'));
     })->name('dashboard');
     Route::get('/department/all',[DepartmentController::class,'index'])->name('department');
+    Route::get('/department/show',[DepartmentController::class,'show'])->name('departmentshow');
     Route::post('/department/add',[DepartmentController::class,'store'])->name('addDepartment');
     Route::get('/department/edit/{id}',[DepartmentController::class,'edit']);
     Route::post('/department/update/{id}',[DepartmentController::class,'update']);

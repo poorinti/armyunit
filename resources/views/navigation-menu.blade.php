@@ -15,6 +15,9 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="text-white ">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('departmentshow') }}" :active="request()->routeIs('departmentshow')" class="text-white ">
+                        {{ __('ดูรหัสหน่วย') }}
+                    </x-nav-link>
 
                     @if(Auth::user()->isAdmin())
                     <x-nav-link href="{{ route('department') }}" :active="request()->routeIs('department')" class="text-white ">

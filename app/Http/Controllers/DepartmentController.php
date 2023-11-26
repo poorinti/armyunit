@@ -177,6 +177,29 @@ class DepartmentController extends Controller
 
         return redirect()->back()->with("success","ลบข้อมูลถาวรเรียบร้อย");
     }
+
+    public function show(){
+        //ดึงจาก EORM โดยตรง
+       $departments = Department::orderby('dep_index')->paginate(30);
+       $battalion = Battalion::where('battalion_id','!=','')->orderby('battalion_id')->get();
+
+    //    $Battalion = Battalion::where('battalion_id','!= ไม่ค่าว่าง','')->orderby('battalion_id')->get();
+       $trashDepartment = Department::onlyTrashed()->paginate(10);
+      // $departments =  DB::table('departments')->get();
+
+      //เขียนเรียกจาก table โดยตรง
+
+    //   $departments =DB::table('departments')
+    //     ->join('users','departments.user_id','users.id')
+    //     ->select('departments.*','users.name')->paginate(5);
+
+    //
+    // DB::table('เรียกตาราง ดีพาสเม้น')
+    // -> join ร่วมกับ('ตาราง users', 'โดย คอลั่ม user_id ใน departments.','เชื่มกับคอลั่ม id ใน ตาราง user')
+    // ->select เลือก('เรียกตาราง ดีพาสเม้น ทั้งหมด.*','แต่ ในตรางรางuser เอามาแค่ name')->paginate(3);
+        return view('admin.department.show',compact('departments','battalion','trashDepartment'));
+    }
+
 }
 
 //รันตาเลขหน้า <!--<div> {{department_name->fristItem()+loop->index }} </div> -->
