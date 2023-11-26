@@ -25,7 +25,7 @@
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">รหัสหน่วย</th>
                                     <th scope="col">หน่วย</th>
-                                    <th scope="col">กองพัน</th>
+
                                     <th scope="col">เรียงลำดับ</th>
 
                                   </tr>
@@ -46,7 +46,7 @@
 
                                     <td>{{$row->dep_id}}</td>
                                     <td>{{$row->department_name}}</td>
-                                    <td>{{$batArr[$row->battalion_id]}}</td>
+                                   
                                     <td>{{$row->dep_index}}</td>
                                 </tr>
                                   @endforeach
