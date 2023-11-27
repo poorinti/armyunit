@@ -165,7 +165,7 @@
                                                 @enderror
                                                 @php
                                                 $payArr = array();
-                                                $payArr=['พิการทางการมองเห็น','พิการทางการได้ยินหรือสื่อความหมาย','พิการทางการเคลื่อนไหวหรือทางร่างกาย','พิการทางจิตใจ หรือพฤติกรรม','พิการทางการสติปัญญา','พิการทางการเรียนรู้','พิการทางออทิสติก','อื่นๆ']
+                                                $payArr=['พิการทางการมองเห็น','พิการทางการได้ยินหรือสื่อความหมาย','พิการทางการเคลื่อนไหวหรือทางร่างกาย','พิการทางจิตใจหรือพฤติกรรม','พิการทางการสติปัญญา','พิการทางการเรียนรู้','พิการทางออทิสติก','พิการทางการเคลื่อนไหว','อื่นๆ']
                                                 @endphp
 
                                                 <!--ลักษณะการพิการ -->
@@ -195,7 +195,7 @@
                                                 @enderror
                                                 @php
                                                 $payArr = array();
-                                                $payArr=['เงินสงเคราะห์บุตร','เงินสงเคราะห์บุพการี','ทุนยังชีพรายปีบุตร','ทุนยังชีพรายปีคู่สมรส']
+                                                $payArr=['เงินสงเคราะห์บุตร','เงินสงเคราะห์บุพการีทุพพลภาพ','ทุนยังชีพรายปีบุตร','ทุนยังชีพรายปีคู่สมรส']
                                                 @endphp
                                                 <!--เคยเข้าร่วม -->
                                                <div class="my-2 form-group">
@@ -412,7 +412,7 @@
                                                                 <!--หน่วย-->
                                                                 <div class="my-2 form-group">
                                                                     <label for="pay_dep_name">หน่วย</label>
-                                                                    <input type="text" class="form-control" name="pay_dep_name" placeholder="" value ="{{isset($pay->pay_dep_name) ? $pay->pay_dep_name : ''}}" >
+                                                                    <input type="text" class="form-control" name="pay_dep_name" placeholder="" value ="{{isset($pay->pay_dep_name) ? $pay->pay_dep_name : ''}} " disabled>
                                                                 </div>
                                                                 @error('pay_dap_name')
                                                                 <div class="my-2">
@@ -437,20 +437,20 @@
                                                             <div class=" card-body bg-slate-100">
                                                                      <!--เบอร์-->
                                                                      <div class="my-2 form-group">
-                                                                        <label for="pay_payuot">งวดที่ 20 (ห้วง ม.ค. - มิ.ย. 66)</label>
-                                                                        <input type="text" class="form-control" name="pay_payuot" placeholder="" value ="{{isset($pay->pay_payuot) ? $pay->pay_payuot : ''}}" >
+                                                                        <label for="pay_payout">งวดที่ 20 (ห้วง ม.ค. - มิ.ย. 66)</label>
+                                                                        <input type="text" class="form-control" name="pay_payout" placeholder="" value ="{{isset($pay->pay_payout) ? $pay->pay_payout : ''}}" >
                                                                     </div>
-                                                                    @error('pay_payuot')
+                                                                    @error('pay_payout')
                                                                     <div class="my-2">
                                                                         <span class="text-red-600 text">{{$message}}</span>
                                                                     </div>
                                                                     @enderror
                                                                      <!--เบอร์-->
                                                                      <div class="my-2 form-group">
-                                                                        <label for="pay_phone">งวดที่ 21 (ห้วง ก.ค. - ธ.ค. 66)</label>
-                                                                        <input type="text" class="form-control" name="pay_phone" placeholder="" value ="{{isset($pay->pay_phone) ? $pay->pay_phone : ''}}" >
+                                                                        <label for="pay_payout2">งวดที่ 21 (ห้วง ก.ค. - ธ.ค. 66)</label>
+                                                                        <input type="text" class="form-control" name="pay_payout2" placeholder=""  >
                                                                     </div>
-                                                                    @error('pay_phone')
+                                                                    @error('pay_payout')
                                                                     <div class="my-2">
                                                                         <span class="text-red-600 text">{{$message}}</span>
                                                                     </div>

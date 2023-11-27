@@ -5,6 +5,7 @@
             {{-- <b class="float-end">จำนวนกำลังพลทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_soldier,0)}}</button>  นาย</b> --}}
         </h2>
         <h2 class="text-xl font-semibold leading-tight text-white sm:block md:hidden lg:hidden xl:hidden">
+            ข้อมูล ผู้รับสิทธิ์
          {{-- <b class="">จำนวนกำลังพลทั้งหมด <button class="btn btn-primary" style="font-weight: 800;">{{ number_format( $total_soldier,0)}}</button>  นาย</b> --}}
         </h2>
 
@@ -38,7 +39,7 @@
                     </div>
                     <div class="input-group">
                             <select class="form-control" name="pay_dep_id" id="pay_dep_id" >
-                                <option value="">แสดงหน่วยทั้งหมด</option>
+                                <option value="">หน่วยทั้งหมด</option>
                                     @foreach ( $Department as $key=>$row )
 
                                     <option value="{{$row->dep_id}}" {{ $pay_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
@@ -46,7 +47,7 @@
                             </select>
 
                         <select class="form-control" name="pay_provinces" id="pay_provinces" >
-                            <option value="">แสดงจังหวัดทั้งหมด</option>
+                            <option value="">จังหวัดทั้งหมด</option>
                                 @foreach ( $provinces as $key=>$item )
                                 <option value="{{ $item->province }}" {{ $item->province==$pay_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
 
@@ -85,23 +86,39 @@
                             @endforeach
                         </select>
 
+
                     </div> --}}
+                    <div class="my-2 input-group">
+                    @php
+                    $payArr = array();
+                    $payArr=['เงินสงเคราะห์บุตร','เงินสงเคราะห์บุพการีทุพพลภาพ','ทุนยังชีพรายปีบุตร','ทุนยังชีพรายปีคู่สมรส']
+                    @endphp
 
+                    <select class="mr-2  form-select" name="pay_paychk" id="pay_paychk" >
 
-                    <div class="my-3 input-group">
-                        @php
+                        <option value="">ทั้งหมด</option>
+                            @foreach ( $payArr as $key=>$item )
+                            <option value="{{ $item }}" {{ $item == $pay_paychk ? 'selected' : ''}}>{{ $item }}</option>
+                            @endforeach
+                    </select>
+
+                    </div>
+
+                    <div class="my-1 input-group">
+                        {{-- @php
                         $payArr = array();
-                        $payArr=['เงินสงเคราะห์บุตร','เงินสงเคราะห์บุพการี','ทุนยังชีพรายปีบุตร','ทุนยังชีพรายปีคู่สมรส']
+                        $payArr=['เงินสงเคราะห์บุตร','เงินสงเคราะห์บุพการีทุพพลภาพ','ทุนยังชีพรายปีบุตร','ทุนยังชีพรายปีคู่สมรส']
                         @endphp
 
-                        <select class="mr-2 form-select-sm" name="pay_paychk" id="pay_paychk" >
+                        <select class="hidden mr-2 form-select-sm sm:block" name="pay_paychk" id="pay_paychk" >
 
                             <option value="">ทั้งหมด</option>
                                 @foreach ( $payArr as $key=>$item )
                                 <option value="{{ $item }}" {{ $item == $pay_paychk ? 'selected' : ''}}>{{ $item }}</option>
 
                                 @endforeach
-                        </select>
+                        </select> --}}
+
 
 
                         <select class="mr-2 form-select-sm" name="pay_rank" id="pay_rank" >

@@ -7,6 +7,7 @@ use App\Models\Department;
 use App\Models\Rank;
 use App\Models\Law;
 use App\Models\Nco;
+use App\Models\Pay;
 use App\Models\Cco;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -229,7 +230,7 @@ class ExcelController extends Controller
                     ,'nco_bat_name'=>$nco_bat_name
                     ,'updated_at'=>$updated_at
 
-                    
+
 
 
 
@@ -552,11 +553,11 @@ class ExcelController extends Controller
                     ,"pay_rank" => trim($line['pay_rank'])
                     ,'pay_rank_index' =>trim($line['pay_rank_index'])
                     ,'pay_rank_index_name' =>$nco_rank_index
-                    ,"pay_index" => trim($line['pay_index'])
+                    // ,"pay_index" => trim($line['pay_index'])
                     ,"pay_defective" =>trim($line['pay_defective'])
                     ,"pay_defective_about" =>trim($line['pay_defective_about'])
-                    ,"pay_m3_join" =>trim($line['pay_m3_join'])
-                    ,"pay_m7_join" =>trim($line['pay_m7_join'])
+                    // ,"pay_m3_join" =>trim($line['pay_m3_join'])
+                    // ,"pay_m7_join" =>trim($line['pay_m7_join'])
                     ,"pay_reward" =>trim($line['pay_reward'])
                     ,'pay_address'=>trim($line['pay_address'])
                     ,'pay_province'=>trim($line['pay_province'])
@@ -587,11 +588,11 @@ class ExcelController extends Controller
                     'pay_name'=>trim($line['pay_name'])
                     ,"pay_rank" => trim($line['pay_rank'])
                     ,'pay_rank_index' =>trim($line['pay_rank_index'])
-                    ,"pay_index" => trim($line['pay_index'])
+                    // ,"pay_index" => trim($line['pay_index'])
                     ,"pay_defective" =>trim($line['pay_defective'])
                     ,"pay_defective_about" =>trim($line['pay_defective_about'])
-                    ,"pay_m3_join" =>trim($line['pay_m3_join'])
-                    ,"pay_m7_join" =>trim($line['pay_m7_join'])
+                    // ,"pay_m3_join" =>trim($line['pay_m3_join'])
+                    // ,"pay_m7_join" =>trim($line['pay_m7_join'])
                     ,"pay_reward" =>trim($line['pay_reward'])
                     ,'pay_address'=>trim($line['pay_address'])
                     ,'pay_province'=>trim($line['pay_province'])
