@@ -52,6 +52,12 @@
 
                                 @endforeach
                             </select>
+                            <select id="pay_amphoe"  name="pay_amphoe"  class="mr-2 form-control" >
+                                <option value="">เลือกจังหวัดก่อน</option>
+                                @foreach($amphoes as $item)
+                                <option value="{{ $item->amphoe }}" {{ $item->amphoe==$pay_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
+                                @endforeach
+                            </select>
 
                    </div>
                             {{-- @php
@@ -145,7 +151,7 @@
                                   <tr class="text-center ">
                                     <th class="text-center"> {{$pay->firstItem()+$loop->index}}</th>
                                     <td >
-                                        <a href="{{url('/pay/edit/'.$row->pay_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($pay_dep_id) ? '&pay_dep_id='.$pay_dep_id : '' }}{{isset($pay_provinces) ? '&pay_provinces='.$pay_provinces : '' }}{{isset($pay_education) ? '&pay_education='.$pay_education : '' }}{{isset($pay_disease) ? '&pay_disease='.$pay_disease : '' }}{{isset($pay_paychk) ? '&pay_paychk='.$pay_paychk : '' }}{{isset($pay_rank) ? '&pay_rank='.$pay_rank : '' }}" >
+                                        <a href="{{url('/pay/edit/'.$row->pay_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($pay_dep_id) ? '&pay_dep_id='.$pay_dep_id : '' }}{{isset($pay_provinces) ? '&pay_provinces='.$pay_provinces : '' }}{{isset($pay_education) ? '&pay_education='.$pay_education : '' }}{{isset($pay_disease) ? '&pay_disease='.$pay_disease : '' }}{{isset($pay_paychk) ? '&pay_paychk='.$pay_paychk : '' }}{{isset($pay_rank) ? '&pay_rank='.$pay_rank : '' }}{{isset($pay_amphoe) ? '&pay_amphoe='.$pay_amphoe : '' }}" >
 
 
                                         <img src="{{isset($row->pay_image) ? asset($row->pay_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->pay_image) ? asset($row->pay_image) : '' }}" width="100px" height="100px" class="mx-auto" >
@@ -159,15 +165,15 @@
                                     <td>{{$row->pay_dep_name}}</td>
                                     <td class="hidden sm:table-cell">{{$row->pay_province}}</td>
                                     <td class="hidden sm:table-cell ">{{$row->pay_reward}}</td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/pay/edit/'.$row->pay_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($pay_dep_id) ? '&pay_dep_id='.$pay_dep_id : '' }}{{isset($pay_provinces) ? '&pay_provinces='.$pay_provinces : '' }}{{isset($pay_education) ? '&pay_education='.$pay_education : '' }}{{isset($pay_disease) ? '&pay_disease='.$pay_disease : '' }}{{isset($pay_paychk) ? '&pay_paychk='.$pay_paychk : '' }}{{isset($pay_rank) ? '&pay_rank='.$pay_rank : '' }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/pay/delete/'.$row->pay_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($pay_dep_id) ? '&pay_dep_id='.$pay_dep_id : '' }}{{isset($pay_provinces) ? '&pay_provinces='.$pay_provinces : '' }}{{isset($pay_education) ? '&pay_education='.$pay_education : '' }}{{isset($pay_disease) ? '&pay_disease='.$pay_disease : '' }}{{isset($pay_lawchk) ? '&pay_lawchk='.$pay_lawchk : '' }}{{isset($pay_rank) ? '&lpay_rank='.$pay_rank : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/pay/edit/'.$row->pay_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($pay_dep_id) ? '&pay_dep_id='.$pay_dep_id : '' }}{{isset($pay_provinces) ? '&pay_provinces='.$pay_provinces : '' }}{{isset($pay_education) ? '&pay_education='.$pay_education : '' }}{{isset($pay_disease) ? '&pay_disease='.$pay_disease : '' }}{{isset($pay_paychk) ? '&pay_paychk='.$pay_paychk : '' }}{{isset($pay_rank) ? '&pay_rank='.$pay_rank : '' }}{{isset($pay_amphoe) ? '&pay_amphoe='.$pay_amphoe : '' }}" class="btn btn-danger"> แก้ไข</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/pay/delete/'.$row->pay_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($pay_dep_id) ? '&pay_dep_id='.$pay_dep_id : '' }}{{isset($pay_provinces) ? '&pay_provinces='.$pay_provinces : '' }}{{isset($pay_education) ? '&pay_education='.$pay_education : '' }}{{isset($pay_disease) ? '&pay_disease='.$pay_disease : '' }}{{isset($pay_lawchk) ? '&pay_lawchk='.$pay_lawchk : '' }}{{isset($pay_rank) ? '&lpay_rank='.$pay_rank : '' }}{{isset($pay_amphoe) ? '&pay_amphoe='.$pay_amphoe : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
                             </table>
                             <br>
 
-                            {{$pay->appends(['search' => isset($search) ? $search : '','pay_dep_id'=>isset($pay_dep_id) ?$pay_dep_id :'',"pay_provinces"=> isset($pay_provinces) ? $pay_provinces : '',"pay_rank"=> isset($pay_rank) ? $pay_rank : '',"pay_paychk"=> isset($pay_paychk) ? $pay_paychk : ''])->links()}}
+                            {{$pay->appends(['search' => isset($search) ? $search : '','pay_dep_id'=>isset($pay_dep_id) ?$pay_dep_id :'',"pay_provinces"=> isset($pay_provinces) ? $pay_provinces : '',"pay_rank"=> isset($pay_rank) ? $pay_rank : '',"pay_paychk"=> isset($pay_paychk) ? $pay_paychk : '',"pay_amphoe"=> isset($pay_amphoe) ? $pay_amphoe: ''])->links()}}
 
                         </div>
                     </div>
@@ -176,4 +182,40 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    $(document).ready(function() {
+
+    });
+
+
+    function showAmphoes() {
+
+        let pay_province = document.querySelector("#pay_provinces");
+            let url = "/pay/amphoes?province=" + pay_province.value;
+            console.log( url );
+            // if(soldier_province.value == "") return;
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    //UPDATE SELECT OPTION
+                    let pay_amphoe = document.querySelector("#pay_amphoe");
+                    pay_amphoe.innerHTML = '<option value="">กรุณาเลือกเขต/อำเภอ ครับ</option>';
+                    for (let item of result) {
+                        let option = document.createElement("option");
+                        option.text = item.amphoe;
+                        option.value = item.amphoe;
+                        pay_amphoe.appendChild(option);
+                    }
+                    //QUERY AMPHOES
+                    showTambons();
+                });
+        }
+    // เมื่อเลือกจังหวัดเกิดการเปลี่ยนแปลง
+        document.querySelector('#pay_provinces').addEventListener('change', (event) => {
+            showAmphoes();
+        });
+
+
+    </script>
 

@@ -57,7 +57,7 @@
                                 @foreach($amphoes as $item)
                                 <option value="{{ $item->amphoe }}" {{ $item->amphoe==$nco_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
                                 @endforeach
-                        </select>
+                            </select>
 
                    </div>
                             {{-- @php

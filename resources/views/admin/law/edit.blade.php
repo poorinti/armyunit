@@ -62,7 +62,7 @@
                     @endif
                     <div class="col-md-4">
                         <div class="card">
-                            <a href="{{ '/law/all?page='.request()->page.'&search='.request()->search.'&law_dep_id='.request()->law_dep_id.'&law_provinces='.request()->law_provinces.'&law_education='.request()->law_education.'&law_disease='.request()->law_disease  }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk: '' }}" class="text-black bg-purple-700 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                            <a href="{{ '/law/all?page='.request()->page.'&search='.request()->search.'&law_dep_id='.request()->law_dep_id.'&law_provinces='.request()->law_provinces.'&law_education='.request()->law_education.'&law_disease='.request()->law_disease.'&law_amphoe='.request()->law_amphoe  }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk: '' }}" class="text-black bg-purple-700 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
                             <div class="bg-slate-200 card-header ">รูปประจำตัว</div>
                             <div class="justify-center mx-auto text-center card-body ">
                                 <img src="{{isset($law->law_image) ? asset($law->law_image) : '/image/logo/logo1.png'}}" alt="{{ isset($law->law_image) ? asset($law->law_image) : '' }}" alt="imageshow" width="200px" height="200px">
@@ -428,7 +428,7 @@
                                                     </div>
 
                                             <br>
-                                             <a href="{{ '/law/all?page='.request()->page.'&search='.request()->search.'&law_dep_id='.request()->law_dep_id.'&law_provinces='.request()->law_provinces.'&law_education='.request()->law_education.'&law_disease='.request()->law_disease  }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                                             <a href="{{ '/law/all?page='.request()->page.'&search='.request()->search.'&law_dep_id='.request()->law_dep_id.'&law_provinces='.request()->law_provinces.'&law_education='.request()->law_education.'&law_disease='.request()->law_disease.'&law_amphoe='.request()->law_amphoe  }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
 
                                             <button type="submit" value="อัพเดท" class="text-black bg-blue-300 btn btn-primary">อัพเดท </button>
                                         </form>

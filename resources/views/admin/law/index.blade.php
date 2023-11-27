@@ -45,11 +45,17 @@
                                 @endforeach
                         </select>
 
-                        <select class="form-control" name="law_provinces" id="law_provinces" >
+                        <select class="form-control " name="law_provinces" id="law_provinces" >
                             <option value="">แสดงจังหวัดทั้งหมด</option>
                                 @foreach ( $provinces as $key=>$item )
                                 <option value="{{ $item->province }}" {{ $item->province==$law_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
 
+                                @endforeach
+                            </select>
+                            <select id="law_amphoe"  name="law_amphoe"  class="mr-2 form-control" >
+                                <option value="">เลือกจังหวัดก่อน</option>
+                                @foreach($amphoes as $item)
+                                <option value="{{ $item->amphoe }}" {{ $item->amphoe==$law_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
                                 @endforeach
                             </select>
 
@@ -144,7 +150,7 @@
                                   <tr class="text-center ">
                                     <th class="text-center"> {{$law->firstItem()+$loop->index}}</th>
                                     <td >
-                                        <a href="{{url('/law/edit/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}" >
+                                        <a href="{{url('/law/edit/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}{{isset($law_amphoe) ? '&law_amphoe='.$law_amphoe : '' }}" >
 
 
                                         <img src="{{isset($row->law_image) ? asset($row->law_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->law_image) ? asset($row->law_image) : '' }}" width="100px" height="100px" class="mx-auto" >
@@ -157,15 +163,15 @@
                                     <td>{{$row->law_parent_about}}</td>
                                     <td>{{$row->law_dep_name}}</td>
                                     <td class="hidden sm:table-cell">{{$row->law_province}}</td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/law/edit/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/law/delete/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/law/edit/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}{{isset($law_amphoe) ? '&law_amphoe='.$law_amphoe : '' }}" class="btn btn-danger"> แก้ไข</a></td>
+                                    <td class="hidden sm:table-cell"><a href="{{url('/law/delete/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}{{isset($law_amphoe) ? '&law_amphoe='.$law_amphoe : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
                             </table>
                             <br>
 
-                            {{$law->appends(['search' => isset($search) ? $search : '','law_dep_id'=>isset($law_dep_id) ?$law_dep_id :'',"law_provinces"=> isset($law_provinces) ? $law_provinces : '',"law_rank"=> isset($law_rank) ? $law_rank : '',"law_lawchk"=> isset($law_lawchk) ? $law_lawchk : ''])->links()}}
+                            {{$law->appends(['search' => isset($search) ? $search : '','law_dep_id'=>isset($law_dep_id) ?$law_dep_id :'',"law_provinces"=> isset($law_provinces) ? $law_provinces : '',"law_rank"=> isset($law_rank) ? $law_rank : '',"law_lawchk"=> isset($law_lawchk) ? $law_lawchk : '',"law_amphoe"=> isset($law_amphoe) ? $law_amphoe: ''])->links()}}
 
                         </div>
                     </div>
@@ -174,4 +180,43 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    $(document).ready(function() {
+
+    });
+
+
+    function showAmphoes() {
+
+        let nco_province = document.querySelector("#law_provinces");
+            let url = "/law/amphoes?province=" + law_provinces.value;
+            console.log( url );
+            // if(law_province.value == "") return;
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    //UPDATE SELECT OPTION
+                    let law_amphoe = document.querySelector("#law_amphoe");
+                    law_amphoe.innerHTML = '<option value="">กรุณาเลือกเขต/อำเภอ</option>';
+                    for (let item of result) {
+                        let option = document.createElement("option");
+                        option.text = item.amphoe;
+                        option.value = item.amphoe;
+                        law_amphoe.appendChild(option);
+
+                    }
+                    //QUERY AMPHOES
+                    showTambons();
+                });
+        }
+    // เมื่อเลือกจังหวัดเกิดการเปลี่ยนแปลง
+        document.querySelector('#law_provinces').addEventListener('change', (event) => {
+            showAmphoes();
+        });
+        document.querySelector('#law_provinces').addEventListener('click', (event) => {
+            showAmphoes();
+        });
+
+</script>
 

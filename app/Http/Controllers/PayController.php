@@ -37,6 +37,7 @@ class PayController extends Controller
                 $pay_provinces  =isset($request->pay_provinces) ? $request->pay_provinces : '' ;
                 $pay_education =isset($request->pay_education) ? $request->pay_education : '' ;
                 $pay_disease =isset($request->pay_disease) ? $request->pay_disease : '' ;
+                $pay_amphoe =isset($request->pay_amphoe) ? $request->pay_amphoe : '' ;
 
                 // เช็ค สิทธิ์ login
                 $user_id = Auth::user()->id;
@@ -90,6 +91,12 @@ class PayController extends Controller
                      }
 
                  })
+                 ->where(function($query) use ($pay_amphoe){
+                     if($pay_amphoe!=''){
+                         $query->where('pay_amphoe','=',$pay_amphoe);
+                     }
+
+                 })
 
                  ->where(function($query) use ($pay_disease){
                      if($pay_disease!=''){
@@ -140,7 +147,7 @@ class PayController extends Controller
 
             $rank = Rank::where('rank_id','!=','')->where('cco_rank_index','<=',2)->orderby('nco_rank_index')->get();
 
-
+            $amphoes = Tambon::select('amphoe')->distinct()->get();
 
             $provinces = Pay::selectRaw('pay_province as province')->where('pay_province','!=','')->distinct()->get();
 
@@ -149,7 +156,7 @@ class PayController extends Controller
 
 
 
-        return view('admin.pay.index',compact('pay','Department','total_nco','pay_dep_id','pay_provinces','pay_education','pay_disease','provinces','rank','pay_rank','pay_paychk','search' ));
+        return view('admin.pay.index',compact('pay','Department','total_nco','pay_dep_id','pay_provinces','pay_education','pay_disease','provinces','rank','pay_rank','pay_paychk','search','amphoes','pay_amphoe' ));
     }
 
     public function edit(Request $request,$pay_id){

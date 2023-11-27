@@ -62,7 +62,7 @@
                     @endif
                     <div class="col-md-4">
                         <div class="card">
-                            <a href="{{ '/pay/all?page='.request()->page.'&search='.request()->search.'&pay_dep_id='.request()->pay_dep_id.'&pay_provinces='.request()->pay_provinces.'&pay_education='.request()->pay_education.'&pay_disease='.request()->pay_disease  }}{{isset($pay_rank) ? '&pay_rank='.$pay_rank : '' }}{{isset($pay_paychk) ? '&pay_paychk='.$pay_paychk: '' }}" class="text-black bg-purple-700 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                            <a href="{{ '/pay/all?page='.request()->page.'&search='.request()->search.'&pay_dep_id='.request()->pay_dep_id.'&pay_provinces='.request()->pay_provinces.'&pay_education='.request()->pay_education.'&pay_disease='.request()->pay_disease.'&pay_amphoe='.request()->pay_amphoe  }}{{isset($pay_rank) ? '&pay_rank='.$pay_rank : '' }}{{isset($pay_paychk) ? '&pay_paychk='.$pay_paychk: '' }}" class="text-black bg-purple-700 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
                             <div class="bg-slate-200 card-header ">รูปประจำตัว</div>
                             <div class="justify-center mx-auto text-center card-body ">
                                 <img src="{{isset($pay->pay_image) ? asset($pay->pay_image) : '/image/logo/logo1.png'}}" alt="{{ isset($pay->pay_image) ? asset($pay->pay_image) : '' }}" alt="imageshow" width="200px" height="200px">
@@ -460,7 +460,7 @@
                                                     </div>
 
                                             <br>
-                                             <a href="{{ '/pay/all?page='.request()->page.'&search='.request()->search.'&pay_dep_id='.request()->pay_dep_id.'&pay_provinces='.request()->pay_provinces.'&pay_education='.request()->pay_education.'&pay_disease='.request()->pay_disease  }}{{isset($pay_rank) ? '&pay_rank='.$pay_rank : '' }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                                             <a href="{{ '/pay/all?page='.request()->page.'&search='.request()->search.'&pay_dep_id='.request()->pay_dep_id.'&pay_provinces='.request()->pay_provinces.'&pay_education='.request()->pay_education.'&pay_disease='.'&pay_amphoe='.request()->pay_amphoe  }}{{isset($pay_rank) ? '&pay_rank='.$pay_rank : '' }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
 
                                             <button type="submit" value="อัพเดท" class="text-black bg-blue-300 btn btn-primary">อัพเดท </button>
                                         </form>
@@ -484,7 +484,7 @@ $(document).ready(function() {
 
 function showAmphoes() {
 
-    let nco_province = document.querySelector("#pay_province");
+    let pay_province = document.querySelector("#pay_province");
         let url = "/pay/amphoes?province=" + pay_province.value;
         console.log( url );
         // if(soldier_province.value == "") return;

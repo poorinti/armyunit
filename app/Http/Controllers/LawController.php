@@ -34,6 +34,7 @@ class LawController extends Controller
                 $law_provinces  =isset($request->law_provinces) ? $request->law_provinces : '' ;
                 $law_education =isset($request->law_education) ? $request->law_education : '' ;
                 $law_disease =isset($request->law_disease) ? $request->law_disease : '' ;
+                $law_amphoe=isset($request->law_amphoe) ? $request->law_amphoe : '' ;
 
                 // เช็ค สิทธิ์ login
                 $user_id = Auth::user()->id;
@@ -92,6 +93,12 @@ class LawController extends Controller
                      }
 
                  })
+                 ->where(function($query) use ($law_provinces){
+                     if($law_provinces!=''){
+                         $query->where('law_province','=',$law_provinces);
+                     }
+
+                 })
 
                  ->where(function($query) use ($law_disease){
                      if($law_disease!=''){
@@ -138,7 +145,7 @@ class LawController extends Controller
 
             $rank = Rank::where('rank_id','!=','')->where('cco_rank_index','<=',2)->orderby('nco_rank_index')->get();
 
-
+            $amphoes = Tambon::select('amphoe')->distinct()->get();
 
             $provinces = Law::selectRaw('law_province as province')->where('law_province','!=','')->distinct()->get();
 
@@ -147,7 +154,7 @@ class LawController extends Controller
 
 
 
-        return view('admin.law.index',compact('law','Department','total_nco','law_dep_id','law_provinces','law_education','law_disease','provinces','rank','law_rank','law_lawchk','search' ));
+        return view('admin.law.index',compact('law','Department','total_nco','law_dep_id','law_provinces','law_education','law_disease','provinces','rank','law_rank','law_lawchk','search','amphoes','law_amphoe' ));
     }
 
     public function edit(Request $request,$law_id){
