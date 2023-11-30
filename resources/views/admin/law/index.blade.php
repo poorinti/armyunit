@@ -138,12 +138,12 @@
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ภาพ</th>
                                     <th scope="col">ชื่อ-สกุล</th>
-                                    <th scope="col" class="hidden sm:table-cell">เลขบัตรประชาชน</th>
+                                    <th scope="col" class="hidden lg:table-cell">เลขบัตรประชาชน</th>
                                     <th style="width: 120px;" scope="col">เกี่ยวข้องเป็น</th>
                                     <th scope="col">หน่วย</th>
                                     <th scope="col" class="hidden sm:table-cell">ภูมิลำเนา</th>
-                                    <th scope="col" class="hidden sm:table-cell">แก้ไข</th>
-                                    <th scope="col" class="hidden sm:table-cell">ลบ</th>
+                                    <th scope="col" class="hidden lg:table-cell">แก้ไข</th>
+                                    <th scope="col" class="hidden lg:table-cell">ลบ</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -160,12 +160,12 @@
 
 
                                     <td class="text-left " >{{$row->law_rank}}{{$row->law_name}}</td>
-                                    <td  class="hidden sm:table-cell">{{$row->law_id }}</td>
+                                    <td  class="hidden lg:table-cell">{{$row->law_id }}</td>
                                     <td>{{$row->law_parent_about}}</td>
                                     <td>{{$row->law_dep_name}}</td>
                                     <td class="hidden sm:table-cell">{{$row->law_province}}</td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/law/edit/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}{{isset($law_amphoe) ? '&law_amphoe='.$law_amphoe : '' }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/law/delete/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}{{isset($law_amphoe) ? '&law_amphoe='.$law_amphoe : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td class="hidden lg:table-cell"><a href="{{url('/law/edit/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}{{isset($law_amphoe) ? '&law_amphoe='.$law_amphoe : '' }}" class="btn btn-danger"> แก้ไข</a></td>
+                                    <td class="hidden lg:table-cell"><a href="{{url('/law/delete/'.$row->law_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($law_dep_id) ? '&law_dep_id='.$law_dep_id : '' }}{{isset($law_provinces) ? '&law_provinces='.$law_provinces : '' }}{{isset($law_education) ? '&law_education='.$law_education : '' }}{{isset($law_disease) ? '&law_disease='.$law_disease : '' }}{{isset($law_lawchk) ? '&law_lawchk='.$law_lawchk : '' }}{{isset($law_rank) ? '&law_rank='.$law_rank : '' }}{{isset($law_amphoe) ? '&law_amphoe='.$law_amphoe : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>

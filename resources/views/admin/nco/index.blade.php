@@ -124,12 +124,12 @@
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ภาพ</th>
                                     <th scope="col">ชื่อ-สกุล</th>
-                                    <th scope="col" class="hidden sm:table-cell">เลขประจำตัวทหาร/th>
+                                    <th scope="col" class="hidden lg:table-cell">เลขประจำตัวทหาร/th>
                                     {{-- <th style="width: 80px;" scope="col">กำเหนิด</th> --}}
                                     <th scope="col">หน่วย</th>
                                     <th scope="col" class="hidden sm:table-cell">ภูมิลำเนา</th>
-                                    <th scope="col" class="hidden sm:table-cell">แก้ไข</th>
-                                    <th scope="col" class="hidden sm:table-cell">ลบ</th>
+                                    <th scope="col" class="hidden lg:table-cell">แก้ไข</th>
+                                    <th scope="col" class="hidden lg:table-cell">ลบ</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -140,18 +140,18 @@
                                         <a href="{{url('/nco/edit/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}{{isset($nco_amphoe) ? '&nco_amphoe='.$nco_amphoe : '' }}" >
 
 
-                                        <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->nco_image) ? asset($row->nco_image) : '' }}" width="60px" height="60px" class="mx-auto" >
+                                        <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->nco_image) ? asset($row->nco_image) : '' }}" width="100px" height="100px" class="mx-auto" >
                                         </a>
                                     </td>
 
 
                                     <td class="text-left " >{{$row->nco_rank}}{{$row->nco_name}}</td>
-                                    <td  class="hidden sm:table-cell">{{$row->nco_id }}</td>
+                                    <td  class="hidden lg:table-cell">{{$row->nco_id }}</td>
                                     {{-- <td>{{$row->nco_intern}}</td> --}}
                                     <td>{{$row->nco_dep_name}}</td>
                                     <td class="hidden sm:table-cell">{{$row->nco_province}}</td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/nco/edit/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}{{isset($nco_amphoe) ? '&nco_amphoe='.$nco_amphoe : '' }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td class="hidden sm:table-cell"><a href="{{url('/nco/delete/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}{{isset($nco_amphoe) ? '&nco_amphoe='.$nco_amphoe : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td class="hidden lg:table-cell"><a href="{{url('/nco/edit/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}{{isset($nco_amphoe) ? '&nco_amphoe='.$nco_amphoe : '' }}" class="btn btn-danger"> แก้ไข</a></td>
+                                    <td class="hidden lg:table-cell"><a href="{{url('/nco/delete/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}{{isset($nco_amphoe) ? '&nco_amphoe='.$nco_amphoe : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
