@@ -232,6 +232,9 @@
         document.querySelector('#pay_provinces').addEventListener('change', (event) => {
             showAmphoes();
         });
+        document.querySelector('#nco_provinces').addEventListener('click', (event) => {
+            showAmphoes();
+        });
 
 
     </script>

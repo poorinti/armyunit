@@ -124,7 +124,7 @@
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ภาพ</th>
                                     <th scope="col">ชื่อ-สกุล</th>
-                                    <th scope="col" class="hidden lg:table-cell">เลขประจำตัวทหาร/th>
+                                    <th scope="col" class="hidden lg:table-cell">เลขประจำตัวทหาร</th>
                                     {{-- <th style="width: 80px;" scope="col">กำเหนิด</th> --}}
                                     <th scope="col">หน่วย</th>
                                     <th scope="col" class="hidden sm:table-cell">ภูมิลำเนา</th>
