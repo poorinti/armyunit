@@ -83,6 +83,11 @@ class LawController extends Controller
                           if($law_lawchk=='ม.35(7)'){
                             $query->where('law_index','=',7);
                               }
+
+                          if($law_lawchk=='ไม่เข้าร่วม'){
+                            $query->where('law_index','=',9);
+                              }
+
                     }
 
                 })
