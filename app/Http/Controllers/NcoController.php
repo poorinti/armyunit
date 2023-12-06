@@ -125,7 +125,7 @@ class NcoController extends Controller
 
           $Department=Department::select('dep_id')
             //->selectRaw('ใส่sql ตรงๆเลย')
-            ->where('nco_rank_index','=',0)
+            
             ->selectRaw('min(departments.dep_index)dep_index')
             ->selectRaw('min(department_name)department_name')
             ->selectRaw("SUM(CASE WHEN nco_dep_id != '' THEN 1 ELSE 0 END) AS total")
