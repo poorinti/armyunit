@@ -106,8 +106,8 @@ class NcoController extends Controller
                          ->orwhere('nco_bat_name', 'like','%'.$search.'%')
                          ->orwhere('nco_rtanumber', 'like','%'.$search.'%')
                          ->orwhere('nco_intern', 'like','%'.$search.'%')
-                         ->orwhere('nco_province', 'like','%'.$search.'%')
-                         ->orWhere('nco_state','%'. $search.'%');
+                         ->orwhere('nco_province', 'like','%'.$search.'%');
+
                      }
                      })
                      // ->dd()
