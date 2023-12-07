@@ -175,7 +175,7 @@
                                                     <select class="form-select" id="cco_corp"  name="cco_corp">
                                                     {{-- <option value ="{{isset($cco->cco_corp) ? $cco->nco_corp : ''}}" >{{isset($cco->cco_corp) ? $cco->cco_corp : ''}}</option> --}}
                                                         @foreach ( $unitArr as $row )
-                                                      <option value="{{$row}}"{{ $row==$cco->cco_amphoe ? 'selected' : ''}}>{{ $row}}</option>
+                                                      <option value="{{$row}}"{{ $row==$cco->cco_corp ? 'selected' : ''}}>{{ $row}}</option>
                                                       @endforeach
                                                     </select>
                                                 </div>
