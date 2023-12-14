@@ -62,7 +62,7 @@
                     @endif
                     <div class="col-md-4">
                         <div class="card">
-                            <a href="{{ '/cco/all?page='.request()->page.'&search='.request()->search.'&cco_dep_id='.request()->cco_dep_id.'&cco_provinces='.request()->cco_provinces.'&cco_education='.request()->cco_education.'&cco_disease='.request()->cco_disease.'&cco_amphoe='.request()->cco_amphoe  }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}" class="text-black bg-purple-700 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                            <a href="{{ '/cco/all?page='.request()->page.'&search='.request()->search.'&cco_dep_id='.request()->cco_dep_id.'&cco_provinces='.request()->cco_provinces.'&cco_education='.request()->cco_education.'&cco_disease='.request()->cco_disease.'&cco_amphoe='.request()->cco_amphoe.'&cco_wantto='.request()->cco_wantto  }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}" class="text-black bg-purple-700 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
                             <div class="bg-slate-200 card-header ">รูปประจำตัว</div>
                             <div class="justify-center mx-auto text-center card-body ">
                                 <img src="{{isset($cco->cco_image) ? asset($cco->cco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($cco->cco_image) ? asset($cco->cco_image) : '' }}" alt="imageshow" width="200px" height="200px">
@@ -132,6 +132,16 @@
                                                     <input type="text" class="form-control" name="cco_id"  value =" {{$cco->cco_id}}" placeholder="ตัวอย่าง :เลข 13 หลัก" disabled>
                                                 </div>
                                                 @error('cco_id')
+                                                <div class="my-2">
+                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                </div>
+                                                @enderror
+                                                <!--ตำแหน่ง -->
+                                                <div class="my-2 form-group">
+                                                    <label for="cco_job">ตำแหน่ง</label>
+                                                    <input type="text" class="form-control" name="cco_job" placeholder="" value ="{{isset($cco->cco_job) ? $cco->cco_job : ''}}">
+                                                </div>
+                                                @error('cco_job')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
@@ -275,10 +285,10 @@
                                                     @enderror
                                                     <!--ความต้องการพิเศษ อื่นๆ-->
                                                     <div class="my-2 form-group">
-                                                        <label for="cco_about">ระบุอื่นๆ</label>
-                                                        <input type="text" class="form-control" name="cco_about" value ="{{isset($cco->cco_about) ? $cco->cco_about: ''}}" >
+                                                        <label for="cco_wantto_about">ระบุอื่นๆ</label>
+                                                        <input type="text" class="form-control" name="cco_wantto_about" value ="{{isset($cco->cco_wantto_about) ? $cco->cco_wantto_about: ''}}" >
                                                     </div>
-                                                    @error('cco_about')
+                                                    @error('cco_wantto_about')
                                                     <div class="my-2">
                                                         <span class="text-red-600 text">{{$message}}</span>
                                                     </div>
@@ -311,10 +321,10 @@
                                                     @enderror
                                                     <!--โรคประจำตัว อื่นๆ-->
                                                 <div class="my-2 form-group">
-                                                    <label for="cco_about">ระบุอื่นๆ</label>
-                                                    <input type="text" class="form-control" name="cco_about" value ="{{isset($cco->cco_about) ? $cco->cco_about: ''}}" >
+                                                    <label for="cco_health_about">ระบุอื่นๆ</label>
+                                                    <input type="text" class="form-control" name="cco_health_about" value ="{{isset($cco->cco_health_about) ? $cco->cco_health_about: ''}}" >
                                                 </div>
-                                                @error('cco_about')
+                                                @error('cco_health_about')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
@@ -439,7 +449,7 @@
                                                 </div>
 
                                             <br>
-                                             <a href="{{ '/cco/all?page='.request()->page.'&search='.request()->search.'&cco_dep_id='.request()->cco_dep_id.'&cco_provinces='.request()->cco_provinces.'&cco_education='.request()->cco_education.'&cco_disease='.request()->cco_disease.'&cco_amphoe='.request()->cco_amphoe  }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                                             <a href="{{ '/cco/all?page='.request()->page.'&search='.request()->search.'&cco_dep_id='.request()->cco_dep_id.'&cco_provinces='.request()->cco_provinces.'&cco_education='.request()->cco_education.'&cco_disease='.request()->cco_disease.'&cco_amphoe='.request()->cco_amphoe.'&cco_wantto='.request()->cco_wantto  }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
 
                                             <button type="submit" value="อัพเดท" class="text-black bg-blue-300 btn btn-primary">อัพเดท </button>
                                         </form>

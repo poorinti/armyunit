@@ -136,6 +136,16 @@
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
+                                                <!--ตำแหน่ง -->
+                                                <div class="my-2 form-group">
+                                                    <label for="nco_job">ตำแหน่ง</label>
+                                                    <input type="text" class="form-control" name="nco_job" placeholder="" value ="{{isset($nco->nco_job) ? $nco->nco_job : ''}}">
+                                                </div>
+                                                @error('nco_job')
+                                                <div class="my-2">
+                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                </div>
+                                                @enderror
                                                 <!--ภูมิลำเนา-->
                                                 <div class="my-2 form-group">
                                                     <label for="nco_address">ภูมิลำเนา</label>
@@ -260,7 +270,7 @@
                                                     $wanttoArr=['บุพการีป่วยติดเตียง','ภรรยาคลอดบุตร','ไร้ที่อยู่อาศัย','ประสบภัยธรรมชาติ','อื่นๆ']
                                                     @endphp
                                                     <div class="my-2 form-group">
-                                                        
+
                                                         <select class="form-select" id="nco_wantto" name="nco_wantto">
                                                             <option value ="{{isset($nco->nco_wantto) ? $nco->nco_wantto : '' }} " >{{isset($nco->nco_wantto) ? $nco->nco_wantto : ''}}</option>
                                                             @foreach ( $wanttoArr as $row )
@@ -276,10 +286,10 @@
                                                     @enderror
                                                      <!--ความต้องการพิเศษ อื่นๆ-->
                                                     <div class="my-2 form-group">
-                                                        <label for="nco_about">ระบุอื่นๆ</label>
-                                                        <input type="text" class="form-control" name="nco_about" value ="{{isset($nco->nco_about) ? $nco->nco_about: ''}}" >
+                                                        <label for="nco_wantto_about">ระบุอื่นๆ</label>
+                                                        <input type="text" class="form-control" name="nco_wantto_about" value ="{{isset($nco->nco_wantto_about) ? $nco->nco_wantto_about: ''}}" >
                                                     </div>
-                                                    @error('nco_about')
+                                                    @error('nco_wantto_about')
                                                     <div class="my-2">
                                                         <span class="text-red-600 text">{{$message}}</span>
                                                     </div>
@@ -312,10 +322,10 @@
                                                     @enderror
                                                     <!--โรคประจำตัว อื่นๆ-->
                                                 <div class="my-2 form-group">
-                                                    <label for="nco_about">ระบุอื่นๆ</label>
-                                                    <input type="text" class="form-control" name="nco_about" value ="{{isset($nco->nco_about) ? $nco->nco_about: ''}}" >
+                                                    <label for="nco_health_about">ระบุอื่นๆ</label>
+                                                    <input type="text" class="form-control" name="nco_health_about" value ="{{isset($nco->nco_health_about) ? $nco->nco_health_about: ''}}" >
                                                 </div>
-                                                @error('nco_about')
+                                                @error('nco_health_about')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>

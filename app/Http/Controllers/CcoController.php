@@ -34,6 +34,7 @@ class CcoController extends Controller
                 $cco_education =isset($request->cco_education) ? $request->cco_education : '' ;
                 $cco_disease =isset($request->cco_disease) ? $request->cco_disease : '' ;
                 $cco_amphoe =isset($request->cco_amphoe) ? $request->cco_amphoe : '' ;
+                $cco_wantto =isset($request->cco_wantto) ? $request->cco_wantto : '' ;
 
                 // เช็ค สิทธิ์ login
                 $user_id = Auth::user()->id;
@@ -85,9 +86,9 @@ class CcoController extends Controller
                     }
 
                 })
-                 ->where(function($query) use ($cco_education){
-                     if($cco_education!=''){
-                         $query->where('nco_education','=',$cco_education);
+                 ->where(function($query) use ($cco_wantto){
+                     if($cco_wantto!=''){
+                         $query->where('cco_wantto','=',$cco_wantto);
                      }
 
                  })
@@ -147,7 +148,7 @@ class CcoController extends Controller
 
 
 
-        return view('admin.cco.index',compact('cco','Department','total_cco','cco_dep_id','cco_provinces','cco_education','cco_disease','provinces','rank','cco_rank','search','amphoes','cco_amphoe'));
+        return view('admin.cco.index',compact('cco','Department','total_cco','cco_dep_id','cco_provinces','cco_education','cco_disease','provinces','rank','cco_rank','search','amphoes','cco_amphoe','cco_wantto'));
     }
 
     public function edit(Request $request,$cco_id){

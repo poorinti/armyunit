@@ -33,6 +33,8 @@ class NcoController extends Controller
                 $nco_education =isset($request->nco_education) ? $request->nco_education : '' ;
                 $nco_disease =isset($request->nco_disease) ? $request->nco_disease : '' ;
                 $nco_amphoe =isset($request->nco_amphoe) ? $request->nco_amphoe : '' ;
+                $nco_wantto =isset($request->nco_wantto) ? $request->nco_wantto: '' ;
+
 
                 // เช็ค สิทธิ์ login
                 $user_id = Auth::user()->id;
@@ -84,9 +86,9 @@ class NcoController extends Controller
                      }
 
                  })
-                 ->where(function($query) use ($nco_education){
-                     if($nco_education!=''){
-                         $query->where('nco_education','=',$nco_education);
+                 ->where(function($query) use ($nco_wantto){
+                     if($nco_wantto!=''){
+                         $query->where('nco_wantto','=',$nco_wantto);
                      }
 
                  })
@@ -125,7 +127,7 @@ class NcoController extends Controller
 
           $Department=Department::select('dep_id')
             //->selectRaw('ใส่sql ตรงๆเลย')
-            
+
             ->selectRaw('min(departments.dep_index)dep_index')
             ->selectRaw('min(department_name)department_name')
             ->selectRaw("SUM(CASE WHEN nco_dep_id != '' THEN 1 ELSE 0 END) AS total")
@@ -147,7 +149,7 @@ class NcoController extends Controller
 
 
 
-        return view('admin.nco.index',compact('nco','Department','total_nco','nco_dep_id','nco_provinces','nco_education','nco_disease','provinces','rank','nco_rank','search','nco_amphoe','amphoes' ));
+        return view('admin.nco.index',compact('nco','Department','total_nco','nco_dep_id','nco_provinces','nco_education','nco_disease','provinces','rank','nco_rank','search','nco_amphoe','amphoes','nco_wantto' ));
     }
 
     public function edit(Request $request,$nco_id){

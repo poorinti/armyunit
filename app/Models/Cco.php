@@ -28,6 +28,9 @@ class Cco extends Model
 
 
         , 'dep_index', 'cco_dep_id', 'cco_dep_name'
+
+        ,'cco_job','cco_wantto_about','cco_health_about'
+
         , 'cco_bat_id', 'cco_bat_name', 'cco_year', 'created_at', 'updated_at'
    ];
 }

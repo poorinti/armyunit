@@ -31,6 +31,9 @@ class Nco extends Model
         , 'nco_law_defective', 'nco_law_defective_about', 'nco_law_m3_join', 'nco_law_m7_join', 'nco_law_reward'
         , 'nco_law_parent', 'dep_index', 'nco_dep_id', 'nco_dep_name', 'nco_bat_id', 'nco_bat_name'
         , 'nco_year'
+
+        ,'nco_job','nco_wantto_about','nco_health_about'
+
         , 'created_at', 'updated_at'
    ];
 }

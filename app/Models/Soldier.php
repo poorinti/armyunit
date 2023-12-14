@@ -27,6 +27,7 @@ class Soldier extends Model
         ,'soldier_education_study', 'soldier_education_end', 'soldier_wantto', 'soldier_health', 'soldier_want_nco', 'soldier_want_skill', 'soldier_disease', 'soldier_relative_name1', 'soldier_relative_phone1'
         , 'soldier_relative_add1', 'soldier_relative_name2', 'soldier_relative_phone2', 'soldier_relative_add2'
         ,'soldier_disease_about','soldier_wantto_about'
+        ,'soldier_job'
 
    ];
 }

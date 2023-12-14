@@ -154,12 +154,12 @@ class LawController extends Controller
 
             $provinces = Law::selectRaw('law_province as province')->where('law_province','!=','')->distinct()->get();
 
-            $total_nco= Law::where('law_id','!=','')->count();
+            $total_law= Law::where('law_id','!=','')->count();
 
 
 
 
-        return view('admin.law.index',compact('law','Department','total_nco','law_dep_id','law_provinces','law_education','law_disease','provinces','rank','law_rank','law_lawchk','search','amphoes','law_amphoe' ));
+        return view('admin.law.index',compact('law','Department','total_law','law_dep_id','law_provinces','law_education','law_disease','provinces','rank','law_rank','law_lawchk','search','amphoes','law_amphoe' ));
     }
 
     public function edit(Request $request,$law_id){

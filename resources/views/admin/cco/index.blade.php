@@ -44,49 +44,33 @@
                                     <option value="{{$row->dep_id}}" {{ $cco_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
                                 @endforeach
                         </select>
-
-                        <select class="form-control" name="cco_provinces" id="cco_provinces" >
-                            <option value="">แสดงจังหวัดทั้งหมด</option>
-                                @foreach ( $provinces as $key=>$item )
-                                <option value="{{ $item->province }}" {{ $item->province==$cco_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
-
-                                @endforeach
-                        </select>
-                        <select id="cco_amphoe"  name="cco_amphoe"  class="mr-2 form-control" >
-                            <option value="">เลือกจังหวัดก่อน</option>
-                            @foreach($amphoes as $item)
-                            <option value="{{ $item->amphoe }}" {{ $item->amphoe==$cco_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
-                            @endforeach
-                        </select>
-
-
-                   </div>
-                            {{-- @php
-                            $educationArr = array();
-                            $educationArr=['ประถม','ม.ต้น','ม.ปลาย','ปวช','ปวส.','ป.ตรี','ป.โท','ป.เอก',]
-                            @endphp
-                   <div class="input-group">
-                        <select class="form-control" name="cco_education" id="cco_education" >
-                            <option value="">แสดงวุฒิทั้งหมด</option>
-                                @foreach ( $educationArr as $key=>$row )
-
-                                <option value="{{$row}}" {{ $nco_education ==$row ? 'selected' :'' }}>{{$row}}</option>
-                            @endforeach
-                        </select>
                         @php
-                        $diseaseArr = array();
-                        $diseaseArr=['ไม่มี','ซึมเศร้า','จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','อื่นๆ']
+                        $wanttoArr = array();
+                        $wanttoArr=['บุพการีป่วยติดเตียง','ภรรยาคลอดบุตร','ไร้ที่อยู่อาศัย','ประสบภัยธรรมชาติ','อื่นๆ']
                         @endphp
+                        <select class="mr-2 form-control" id="cco_wantto" name="cco_wantto">
+                            <option value="">ไม่มีความต้องการพิเศษ</option>
+                            @foreach ( $wanttoArr as $key=>$row )
+                        <option value="{{ $row}}" {{ $row== $cco_wantto ? 'selected' : ''}}>{{ $row}}</option>
+                        @endforeach
+                        </select>
+                   </div>
 
-                        <select class="form-control" name="cco_disease" id="cco_disease" >
-                        <option value="">แสดงอาการป่วยทั้งหมด</option>
-                            @foreach ( $diseaseArr as $key=>$item )
-                            <option value="{{ $item }}" {{ $item == $nco_disease ? 'selected' : ''}}>{{ $item }}</option>
+                   <div class="input-group">
+                    <select class="form-control" name="cco_provinces" id="cco_provinces" >
+                        <option value="">แสดงจังหวัดทั้งหมด</option>
+                            @foreach ( $provinces as $key=>$item )
+                            <option value="{{ $item->province }}" {{ $item->province==$cco_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
 
                             @endforeach
-                        </select>
-
-                    </div> --}}
+                    </select>
+                    <select id="cco_amphoe"  name="cco_amphoe"  class="mr-2 form-control" >
+                        <option value="">เลือกจังหวัดก่อน</option>
+                        @foreach($amphoes as $item)
+                        <option value="{{ $item->amphoe }}" {{ $item->amphoe==$cco_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
+                        @endforeach
+                    </select>
+                    </div>
 
 
                     <div class="my-3 input-group">
@@ -118,8 +102,12 @@
 
                     <div class="col-md-12">
                         <div class="">
+                            <button class=" mx-1 text-white btn btn-primary" id = "btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล</button>
+                            <div id="showimg"  style="display:none" class="my-1">
+                                <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/pp.JPG'}}" alt="{{ isset($row->nco_image) ? asset($row->nco_image) : '' }}" width="1000px" height="1000px" class="mx-auto my-2" >
+                            </div>
 
-                            <table class="table table-striped">
+                            <table class="my-1 table table-striped">
                                 <thead class="table-danger">
                                   <tr class="text-center">
                                     <th scope="col">ลำดับ</th>
@@ -138,7 +126,7 @@
                                   <tr class="text-center ">
                                     <th class="text-center"> {{$cco->firstItem()+$loop->index}}</th>
                                     <td >
-                                        <a href="{{url('/cco/edit/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}{{isset($cco_amphoe) ? '&cco_amphoe='.$cco_amphoe : '' }}" >
+                                        <a href="{{url('/cco/edit/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}{{isset($cco_amphoe) ? '&cco_amphoe='.$cco_amphoe : '' }}{{isset($cco_wantto) ? '&cco_wantto='.$cco_wantto : '' }}" >
 
 
                                         <img src="{{isset($row->cco_image) ? asset($row->cco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->cco_image) ? asset($row->cco_image) : '' }}" width="100px" height="100px" class="mx-auto" >
@@ -151,15 +139,15 @@
                                     {{-- <td>{{$row->cco_intern}}</td> --}}
                                     <td>{{$row->cco_dep_name}}</td>
                                     <td class="hidden sm:table-cell">{{$row->cco_province}}</td>
-                                    <td class="hidden lg:table-cell"><a href="{{url('/cco/edit/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}{{isset($cco_amphoe) ? '&cco_amphoe='.$cco_amphoe : '' }}" class="btn btn-danger"> แก้ไข</a></td>
-                                    <td class="hidden lg:table-cell"><a href="{{url('/cco/delete/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}{{isset($cco_amphoe) ? '&cco_amphoe='.$cco_amphoe : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td class="hidden lg:table-cell"><a href="{{url('/cco/edit/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}{{isset($cco_amphoe) ? '&cco_amphoe='.$cco_amphoe : '' }}{{isset($cco_wantto) ? '&cco_wantto='.$cco_wantto : '' }}" class="btn btn-danger"> แก้ไข</a></td>
+                                    <td class="hidden lg:table-cell"><a href="{{url('/cco/delete/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}{{isset($cco_amphoe) ? '&cco_amphoe='.$cco_amphoe : '' }}{{isset($cco_wantto) ? '&cco_wantto='.$cco_wantto : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
                             </table>
                             <br>
 
-                            {{$cco->appends(['search' => isset($search) ? $search : '','cco_dep_id'=>isset($cco_dep_id) ?$cco_dep_id :'',"cco_provinces"=> isset($cco_provinces) ? $cco_provinces : '',"cco_rank"=> isset($cco_rank) ? $cco_rank : '',"cco_amphoe"=> isset($cco_amphoe) ? $cco_amphoe: ''])->links()}}
+                            {{$cco->appends(['search' => isset($search) ? $search : '','cco_dep_id'=>isset($cco_dep_id) ?$cco_dep_id :'',"cco_provinces"=> isset($cco_provinces) ? $cco_provinces : '',"cco_rank"=> isset($cco_rank) ? $cco_rank : '',"cco_amphoe"=> isset($cco_amphoe) ? $cco_amphoe: '',"cco_wantto"=> isset($cco_wantto) ? $cco_wantto: ''])->links()}}
 
                         </div>
                     </div>
@@ -206,5 +194,19 @@
         document.querySelector('#cco_provinces').addEventListener('click', (event) => {
             showAmphoes();
         });
+        $("#btnSubmit").click(function(){
+            var $this = $(this);
+                $this.toggleClass('btnSubmit');
+                $("#showimg").toggle();
+                if($this.hasClass('btnSubmit')){
+
+                    // $this.text('<i class="fa-solid fa-circle-info"></i>แสดงสรุปข้อมูล');
+                    $this.html('<i class="fa-solid fa-circle-info"></i> ปิดสรุปข้อมูล');
+
+                } else {
+
+                    $this.html('<i class="fa-solid fa-circle-info"></i>แสดงสรุปข้อมูล');
+                }
+            });
 
 </script>

@@ -44,48 +44,34 @@
                                     <option value="{{$row->dep_id}}" {{ $nco_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
                                 @endforeach
                         </select>
-
-                        <select class="form-control" name="nco_provinces" id="nco_provinces" >
-                            <option value="">แสดงจังหวัดทั้งหมด</option>
-                                @foreach ( $provinces as $key=>$item )
-                                <option value="{{ $item->province }}" {{ $item->province==$nco_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
-
-                                @endforeach
-                            </select>
-                            <select id="nco_amphoe"  name="nco_amphoe"  class="mr-2 form-control" >
-                                <option value="">เลือกจังหวัดก่อน</option>
-                                @foreach($amphoes as $item)
-                                <option value="{{ $item->amphoe }}" {{ $item->amphoe==$nco_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
-                                @endforeach
+                            @php
+                            $wanttoArr = array();
+                            $wanttoArr=['บุพการีป่วยติดเตียง','ภรรยาคลอดบุตร','ไร้ที่อยู่อาศัย','ประสบภัยธรรมชาติ','อื่นๆ']
+                            @endphp
+                            <select class="mr-2 form-control" id="nco_wantto" name="nco_wantto">
+                                <option value="">ไม่มีความต้องการพิเศษ</option>
+                                @foreach ( $wanttoArr as $key=>$row )
+                            <option value="{{ $row}}" {{ $row== $nco_wantto ? 'selected' : ''}}>{{ $row}}</option>
+                            @endforeach
                             </select>
 
                    </div>
-                            {{-- @php
-                            $educationArr = array();
-                            $educationArr=['ประถม','ม.ต้น','ม.ปลาย','ปวช','ปวส.','ป.ตรี','ป.โท','ป.เอก',]
-                            @endphp
+
                    <div class="input-group">
-                        <select class="form-control" name="nco_education" id="nco_education" >
-                            <option value="">แสดงวุฒิทั้งหมด</option>
-                                @foreach ( $educationArr as $key=>$row )
-
-                                <option value="{{$row}}" {{ $nco_education ==$row ? 'selected' :'' }}>{{$row}}</option>
-                            @endforeach
-                        </select>
-                        @php
-                        $diseaseArr = array();
-                        $diseaseArr=['ไม่มี','ซึมเศร้า','จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','อื่นๆ']
-                        @endphp
-
-                        <select class="form-control" name="nco_disease" id="nco_disease" >
-                        <option value="">แสดงอาการป่วยทั้งหมด</option>
-                            @foreach ( $diseaseArr as $key=>$item )
-                            <option value="{{ $item }}" {{ $item == $nco_disease ? 'selected' : ''}}>{{ $item }}</option>
+                    <select class="form-control" name="nco_provinces" id="nco_provinces" >
+                        <option value="">แสดงจังหวัดทั้งหมด</option>
+                            @foreach ( $provinces as $key=>$item )
+                            <option value="{{ $item->province }}" {{ $item->province==$nco_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
 
                             @endforeach
                         </select>
-
-                    </div> --}}
+                        <select id="nco_amphoe"  name="nco_amphoe"  class="mr-2 form-control" >
+                            <option value="">เลือกจังหวัดก่อน</option>
+                            @foreach($amphoes as $item)
+                            <option value="{{ $item->amphoe }}" {{ $item->amphoe==$nco_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
 
                     <div class="my-3 input-group">
@@ -116,9 +102,13 @@
                         @endif
 
                     <div class="col-md-12">
-                        <div class="">
+                        <div class="justify-items-center">
+                            <button class=" mx-1 text-white btn btn-primary" id = "btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล</button>
+                            <div id="showimg"  style="display:none" class="my-1">
+                                <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/pp.JPG'}}" alt="{{ isset($row->nco_image) ? asset($row->nco_image) : '' }}" width="1000px" height="1000px" class="mx-auto my-2" >
+                            </div>
 
-                            <table class="table table-striped">
+                            <table class="table table-striped my-1">
                                 <thead class="table-success">
                                   <tr class="text-center">
                                     <th scope="col">ลำดับ</th>
@@ -204,5 +194,28 @@
         document.querySelector('#nco_provinces').addEventListener('click', (event) => {
             showAmphoes();
         });
+
+        // $("#btnSubmit").click(function(){
+        //     let $btnSubmit = $(this);
+        //     $("#showimg").toggle();
+        //     $("#btnSubmit").text('ปิดข้อมูล') ;
+        //     });
+
+        $("#btnSubmit").click(function(){
+            var $this = $(this);
+                $this.toggleClass('btnSubmit');
+                $("#showimg").toggle();
+                if($this.hasClass('btnSubmit')){
+
+                    // $this.text('<i class="fa-solid fa-circle-info"></i>แสดงสรุปข้อมูล');
+                    $this.html('<i class="fa-solid fa-circle-info"></i> ปิดสรุปข้อมูล');
+
+                } else {
+
+                    $this.html('<i class="fa-solid fa-circle-info"></i>แสดงสรุปข้อมูล');
+                }
+            });
+
+
 
 </script>
