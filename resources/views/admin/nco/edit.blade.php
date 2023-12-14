@@ -252,25 +252,76 @@
                                                     </div>
                                                     @enderror
                                                     <!--ความต้องการพิเศษ -->
+                                                    <div class="my-4 card ">
+                                                        <div class="text-white bg-slate-500 card-header">ความต้องการพิเศษ </div>
+                                                            <div class=" card-body bg-slate-100">
+                                                    @php
+                                                    $wanttoArr = array();
+                                                    $wanttoArr=['บุพการีป่วยติดเตียง','ภรรยาคลอดบุตร','ไร้ที่อยู่อาศัย','ประสบภัยธรรมชาติ','อื่นๆ']
+                                                    @endphp
                                                     <div class="my-2 form-group">
-                                                        <label for="nco_wantto">ความต้องการพิเศษ</label>
-                                                        <input type="text" class="form-control" name="nco_wantto" placeholder="" value ="{{isset($nco->nco_wantto) ? $nco->nco_wantto : ''}}" >
+                                                        
+                                                        <select class="form-select" id="nco_wantto" name="nco_wantto">
+                                                            <option value ="{{isset($nco->nco_wantto) ? $nco->nco_wantto : '' }} " >{{isset($nco->nco_wantto) ? $nco->nco_wantto : ''}}</option>
+                                                            @foreach ( $wanttoArr as $row )
+                                                        <option value="{{ $row}}">{{ $row}}</option>
+                                                        @endforeach
+                                                        </select>
                                                     </div>
+
                                                     @error('nco_wantto')
                                                     <div class="my-2">
                                                         <span class="text-red-600 text">{{$message}}</span>
                                                     </div>
                                                     @enderror
-                                                    <!--โรคประจำตัว -->
+                                                     <!--ความต้องการพิเศษ อื่นๆ-->
                                                     <div class="my-2 form-group">
-                                                        <label for="nco_health">โรคประจำตัว</label>
-                                                        <input type="text" class="form-control" name="nco_health" placeholder="" value ="{{isset($nco->nco_health) ? $nco->nco_health : ''}}" >
+                                                        <label for="nco_about">ระบุอื่นๆ</label>
+                                                        <input type="text" class="form-control" name="nco_about" value ="{{isset($nco->nco_about) ? $nco->nco_about: ''}}" >
+                                                    </div>
+                                                    @error('nco_about')
+                                                    <div class="my-2">
+                                                        <span class="text-red-600 text">{{$message}}</span>
+                                                    </div>
+                                                    @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <!--โรคประจำตัว -->
+                                                    <div class="my-4 card ">
+                                                        <div class="text-white bg-slate-500 card-header">โรคประจำตัว </div>
+                                                            <div class=" card-body bg-slate-100">
+                                                    @php
+                                                    $diseaseArr = array();
+                                                    $diseaseArr=['ไม่มี','ซึมเศร้า','จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','อื่นๆ']
+                                                    @endphp
+
+                                                    <div class="my-2 form-group">
+
+                                                        <select class="form-select" id="nco_health" name="nco_health">
+                                                            <option value ="{{isset($nco->nco_health) ? $nco->nco_health : '' }} " >{{isset($nco->nco_health) ? $nco->nco_health : ''}}</option>
+                                                            @foreach ( $diseaseArr as $row )
+                                                        <option value="{{ $row}}">{{ $row}}</option>
+                                                        @endforeach
+                                                        </select>
                                                     </div>
                                                     @error('nco_health')
                                                     <div class="my-2">
                                                         <span class="text-red-600 text">{{$message}}</span>
                                                     </div>
                                                     @enderror
+                                                    <!--โรคประจำตัว อื่นๆ-->
+                                                <div class="my-2 form-group">
+                                                    <label for="nco_about">ระบุอื่นๆ</label>
+                                                    <input type="text" class="form-control" name="nco_about" value ="{{isset($nco->nco_about) ? $nco->nco_about: ''}}" >
+                                                </div>
+                                                @error('nco_about')
+                                                <div class="my-2">
+                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                </div>
+                                                @enderror
+                                                    </div>
+                                                </div>
 
                                                 <!--เบอร์โทรศัพท์-->
                                                 <div class="my-2 form-group">
@@ -494,7 +545,7 @@
                                                 </div>
 
                                             <br>
-                                             <a href="{{ '/nco/all?page='.request()->page.'&search='.request()->search.'&nco_dep_id='.request()->soldier_dep_id.'&nco_provinces='.request()->nco_provinces.'&nco_education='.request()->nco_education.'&nco_disease='.request()->nco_disease.'&nco_amphoe='.request()->nco_amphoe   }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                                             <a href="{{ '/nco/all?page='.request()->page.'&search='.request()->search.'&nco_dep_id='.request()->nco_dep_id.'&nco_provinces='.request()->nco_provinces.'&nco_education='.request()->nco_education.'&nco_disease='.request()->nco_disease.'&nco_amphoe='.request()->nco_amphoe   }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
 
                                             <button type="submit" value="อัพเดท" class="text-black bg-blue-300 btn btn-primary">อัพเดท </button>
                                         </form>

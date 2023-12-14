@@ -98,12 +98,12 @@ class LawController extends Controller
                      }
 
                  })
-                 ->where(function($query) use ($law_provinces){
-                     if($law_provinces!=''){
-                         $query->where('law_province','=',$law_provinces);
-                     }
+                 ->where(function($query) use ($law_amphoe){
+                    if($law_amphoe!=''){
+                        $query->where('law_amphoe','=',$law_amphoe);
+                    }
 
-                 })
+                })
 
                  ->where(function($query) use ($law_disease){
                      if($law_disease!=''){

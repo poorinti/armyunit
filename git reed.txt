@@ -30,3 +30,6 @@ git reset --hard origin/main
 </VirtualHost>
 
 พลฯ จตุพล ตอซอน
+php artisan serve
+
+npm run dev

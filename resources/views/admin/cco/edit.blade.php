@@ -250,26 +250,77 @@
                                                         <span class="text-red-600 text">{{$message}}</span>
                                                     </div>
                                                     @enderror
-                                                    <!--ความต้องการพิเศษ -->
+                                                   <!--ความต้องการพิเศษ -->
+                                                    <div class="my-4 card ">
+                                                        <div class="text-white bg-slate-500 card-header">ความต้องการพิเศษ </div>
+                                                            <div class=" card-body bg-slate-100">
+                                                    @php
+                                                    $wanttoArr = array();
+                                                    $wanttoArr=['บุพการีป่วยติดเตียง','ภรรยาคลอดบุตร','ไร้ที่อยู่อาศัย','ประสบภัยธรรมชาติ','อื่นๆ']
+                                                    @endphp
                                                     <div class="my-2 form-group">
-                                                        <label for="cco_wantto">ความต้องการพิเศษ</label>
-                                                        <input type="text" class="form-control" name="cco_wantto" placeholder="" value ="{{isset($cco->cco_wantto) ? $cco->cco_wantto : ''}}" >
+
+                                                        <select class="form-select" id="cco_wantto" name="cco_wantto">
+                                                            <option value ="{{isset($cco->cco_wantto) ? $cco->cco_wantto : '' }} " >{{isset($cco->cco_wantto) ? $cco->cco_wantto : ''}}</option>
+                                                            @foreach ( $wanttoArr as $row )
+                                                        <option value="{{ $row}}">{{ $row}}</option>
+                                                        @endforeach
+                                                        </select>
                                                     </div>
+
                                                     @error('cco_wantto')
                                                     <div class="my-2">
                                                         <span class="text-red-600 text">{{$message}}</span>
                                                     </div>
                                                     @enderror
-                                                    <!--โรคประจำตัว -->
+                                                    <!--ความต้องการพิเศษ อื่นๆ-->
                                                     <div class="my-2 form-group">
-                                                        <label for="cco_health">โรคประจำตัว</label>
-                                                        <input type="text" class="form-control" name="cco_health" placeholder="" value ="{{isset($cco->cco_health) ? $cco->cco_health : ''}}" >
+                                                        <label for="cco_about">ระบุอื่นๆ</label>
+                                                        <input type="text" class="form-control" name="cco_about" value ="{{isset($cco->cco_about) ? $cco->cco_about: ''}}" >
+                                                    </div>
+                                                    @error('cco_about')
+                                                    <div class="my-2">
+                                                        <span class="text-red-600 text">{{$message}}</span>
+                                                    </div>
+                                                    @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <!--โรคประจำตัว -->
+                                                    <div class="my-4 card ">
+                                                        <div class="text-white bg-slate-500 card-header">โรคประจำตัว </div>
+                                                            <div class=" card-body bg-slate-100">
+                                                    @php
+                                                    $diseaseArr = array();
+                                                    $diseaseArr=['ไม่มี','ซึมเศร้า','จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','อื่นๆ']
+                                                    @endphp
+
+                                                    <div class="my-2 form-group">
+
+                                                        <select class="form-select" id="cco_health" name="cco_health">
+                                                            <option value ="{{isset($cco->cco_health) ? $cco->cco_health : '' }} " >{{isset($cco->cco_health) ? $cco->cco_health : ''}}</option>
+                                                            @foreach ( $diseaseArr as $row )
+                                                        <option value="{{ $row}}">{{ $row}}</option>
+                                                        @endforeach
+                                                        </select>
                                                     </div>
                                                     @error('cco_health')
                                                     <div class="my-2">
                                                         <span class="text-red-600 text">{{$message}}</span>
                                                     </div>
                                                     @enderror
+                                                    <!--โรคประจำตัว อื่นๆ-->
+                                                <div class="my-2 form-group">
+                                                    <label for="cco_about">ระบุอื่นๆ</label>
+                                                    <input type="text" class="form-control" name="cco_about" value ="{{isset($cco->cco_about) ? $cco->cco_about: ''}}" >
+                                                </div>
+                                                @error('cco_about')
+                                                <div class="my-2">
+                                                    <span class="text-red-600 text">{{$message}}</span>
+                                                </div>
+                                                @enderror
+                                                    </div>
+                                                </div>
 
 
                                                 <!--เบอร์โทรศัพท์-->

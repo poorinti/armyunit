@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
 
-           <b >จำนวนหน่วย <span class="text-red-500">{{count($Department)}} </span>หน่วย</b>
+           <b >พลทหาร จำนวน <span class="text-red-500">{{count($Department)}} </span>หน่วย</b>
         </h2>
     </x-slot>
    {{-- {{dd($Department);}} --}}
@@ -14,8 +14,7 @@
                       <tr>
                         <th scope="col">ลำดับ</th>
                         <th scope="col">หน่วย</th>
-                        <th scope="col">จำนวนกำลังพล</th>
-
+                        <th scope="col">จำนวนพลทหาร</th>
                       </tr>
                     </thead>
                     <tbody>
