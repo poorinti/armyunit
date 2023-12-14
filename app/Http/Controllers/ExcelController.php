@@ -80,10 +80,40 @@ class ExcelController extends Controller
 
                     'soldier_id' =>$line['soldier_id']
                     ,'soldier_name'=>trim($line['soldier_name'])
+                    ,'soldier_rtanumber'=>trim($line['soldier_rtanumber'])
+                    ,'soldier_address'=>trim($line['soldier_address'])
+                    ,'soldier_job'=>trim($line['soldier_job'])
                     ,'soldier_intern'=>trim($line['soldier_intern'])
-                    ,'soldier_corp'=>$line['soldier_corp']
-                    ,'soldier_address'=>$line['soldier_address']
-                    ,'soldier_phone'=>$line['soldier_phone']
+                    ,'soldier_corp'=>trim($line['soldier_corp'])
+                    ,'soldier_province'=>trim($line['oldier_province'])
+                    ,'soldier_amphoe'=>trim($line['soldier_amphoe'])
+                    ,'soldier_education'=>trim($line['soldier_education'])
+                    ,'soldier_education_study'=>trim($line['soldier_education_study'])
+                    ,'soldier_education_end'=>trim($line['soldier_education_end'])
+                    ,'soldier_skill'=>trim($line['soldier_skill'])
+                    ,'soldier_startdate_text'=>trim($line['soldier_startdate_text'])
+                    ,'soldier_enddate_text'=>trim($line['soldier_enddate_text'])
+                    ,'soldier_phone'=>trim($line['soldier_phone'])
+                    ,'soldier_about'=>trim($line['soldier_about'])
+                    ,'soldier_wantto'=>trim($line['soldier_wantto'])
+                    ,'soldier_wantto_about'=>trim($line['soldier_wantto_about'])
+                    ,'soldier_health'=>trim($line['soldier_health'])
+                    ,'soldier_want_nco'=>trim($line['soldier_want_nco'])
+                    ,'soldier_want_skill'=>trim($line['soldier_want_skill'])
+                    ,'soldier_disease'=>trim($line['soldier_disease'])
+                    ,'soldier_disease_about'=>trim($line['soldier_disease_about'])
+                    ,'soldier_relative_name1'=>trim($line['soldier_relative_name1'])
+                    ,'soldier_relative_phone1'=>trim($line['soldier_relative_phone1'])
+                    ,'soldier_relative_add1'=>trim($line['soldier_relative_add1'])
+                    ,'soldier_relative_name2'=>trim($line['soldier_relative_name2'])
+                    ,'soldier_relative_phone2'=>trim($line['soldier_relative_phone2'])
+                    ,'soldier_relative_add2'=>trim($line['soldier_relative_add2'])
+                    ,'soldier_course_have'=>trim($line['soldier_course_have'])
+                    ,'soldier_course'=>trim($line['soldier_course'])
+                    ,'soldiers_teacher'=>trim($line['soldiers_teacher'])
+                    ,'soldiers_term'=>trim($line['soldiers_term'])
+                    ,'soldiers_now'=>trim($line['soldiers_now'])
+
                     ,'soldier_dep_id'=>$soldier_dep_id
                     ,'soldiers_dep_name'=>$soldiers_dep_name
                     ,'soldiers_bat_id'=>$soldiers_bat_id
@@ -100,15 +130,46 @@ class ExcelController extends Controller
 
                     //'soldier_id' =>$line['soldier_id']
                     'soldier_name'=>trim($line['soldier_name'])
-                    ,'soldier_intern'=> trim($line['soldier_intern'])
-                    ,'soldier_corp'=>$line['soldier_corp']
-                    ,'soldier_address'=>$line['soldier_address']
-                    ,'soldier_phone'=>$line['soldier_phone']
+                    ,'soldier_rtanumber'=>trim($line['soldier_rtanumber'])
+                    ,'soldier_address'=>trim($line['soldier_address'])
+                    ,'soldier_job'=>trim($line['soldier_job'])
+                    ,'soldier_intern'=>trim($line['soldier_intern'])
+                    ,'soldier_corp'=>trim($line['soldier_corp'])
+                    ,'soldier_province'=>trim($line['oldier_province'])
+                    ,'soldier_amphoe'=>trim($line['soldier_amphoe'])
+                    ,'soldier_education'=>trim($line['soldier_education'])
+                    ,'soldier_education_study'=>trim($line['soldier_education_study'])
+                    ,'soldier_education_end'=>trim($line['soldier_education_end'])
+                    ,'soldier_skill'=>trim($line['soldier_skill'])
+                    ,'soldier_startdate_text'=>trim($line['soldier_startdate_text'])
+                    ,'soldier_enddate_text'=>trim($line['soldier_enddate_text'])
+                    ,'soldier_phone'=>trim($line['soldier_phone'])
+                    ,'soldier_about'=>trim($line['soldier_about'])
+                    ,'soldier_wantto'=>trim($line['soldier_wantto'])
+                    ,'soldier_wantto_about'=>trim($line['soldier_wantto_about'])
+                    ,'soldier_health'=>trim($line['soldier_health'])
+                    ,'soldier_want_nco'=>trim($line['soldier_want_nco'])
+                    ,'soldier_want_skill'=>trim($line['soldier_want_skill'])
+                    ,'soldier_disease'=>trim($line['soldier_disease'])
+                    ,'soldier_disease_about'=>trim($line['soldier_disease_about'])
+                    ,'soldier_relative_name1'=>trim($line['soldier_relative_name1'])
+                    ,'soldier_relative_phone1'=>trim($line['soldier_relative_phone1'])
+                    ,'soldier_relative_add1'=>trim($line['soldier_relative_add1'])
+                    ,'soldier_relative_name2'=>trim($line['soldier_relative_name2'])
+                    ,'soldier_relative_phone2'=>trim($line['soldier_relative_phone2'])
+                    ,'soldier_relative_add2'=>trim($line['soldier_relative_add2'])
+                    ,'soldier_course_have'=>trim($line['soldier_course_have'])
+                    ,'soldier_course'=>trim($line['soldier_course'])
+                    ,'soldiers_teacher'=>trim($line['soldiers_teacher'])
+                    ,'soldiers_term'=>trim($line['soldiers_term'])
+                    ,'soldiers_now'=>trim($line['soldiers_now'])
+
                     ,'soldier_dep_id'=>$soldier_dep_id
                     ,'soldiers_dep_name'=>$soldiers_dep_name
                     ,'soldiers_bat_id'=>$soldiers_bat_id
                     ,'soldiers_bat_name'=>$soldiers_bat_name
                     ,'updated_at'=>$updated_at
+
 
 
 

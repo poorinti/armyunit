@@ -94,6 +94,20 @@
                         </select>
 
                     </div>
+                   <div class="input-group">
+                        @php
+                        $diseaseArr = array();
+                        $diseaseArr=['มี','ไม่มี']
+                        @endphp
+
+                        <select class="mr-2 my-1 form-control" name="soldier_want_nco" id="soldier_want_nco" >
+                        <option value="">ความประสงค์สอบ นนส. ทั้งหมด</option>
+                            @foreach ( $diseaseArr as $key=>$item )
+                            <option value="{{ $item }}" {{ $item == $soldier_want_nco ? 'selected' : ''}}>{{ $item }}</option>
+
+                            @endforeach
+                        </select>
+                    </div>
 
 
                     <div class="my-3 input-group ">
@@ -113,10 +127,20 @@
 
                     <div class="col-md-12">
                         <div class="">
-                            <button class=" mx-1 text-white btn btn-primary" id = "btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล</button>
+                            <button class=" mx-1 text-white btn btn-primary" id = "btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล </button>
+
                             <div id="showimg"  style="display:none" class="my-1">
-                                <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/pp.JPG'}}" alt="{{ isset($row->nco_image) ? asset($row->nco_image) : '' }}" width="1000px" height="1000px" class="mx-auto my-2" >
+                                @php
+                                $imgArr = array();
+                                $imgArr=['t3','t4','t5']
+                                @endphp
+                                @foreach ( $imgArr as $row )
+
+                                {{-- <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/'.{{$row}}.'JPG'}}" alt="" width="1000px" height="1000px" class="mx-auto my-2" > --}}
+                                <img src="/image/logo/{{$row}}.JPG" alt="" width="1000px" height="1000px" class="mx-auto my-2" >
+                                @endforeach
                             </div>
+
 
                             <table class="my-1 table table-striped">
                                 <thead class="table-warning">
@@ -124,7 +148,7 @@
                                     <th scope="col">ลำดับ</th>
                                     <th scope="col">ภาพ</th>
                                     <th scope="col">ชื่อ-สกุล</th>
-                                    <th scope="col" class="hidden lg:table-cell ">เลขบัตรประชาชน</th>
+                                    <th scope="col" class="hidden lg:table-cell ">ความต้องการพิเศษ</th>
                                     <th style="width: 80px;" scope="col">ผลัด/ปี</th>
                                     <th scope="col">หน่วย</th>
                                     <th scope="col" class="hidden sm:table-cell ">ภูมิลำเนา</th>
@@ -146,7 +170,7 @@
 
 
                                     <td class="text-left " >{{$row->soldier_name}}</td>
-                                    <td  class="hidden lg:table-cell">{{$row->soldier_id }}</td>
+                                    <td  class="hidden lg:table-cell">{{$row->soldier_wantto }}</td>
                                     <td>{{$row->soldier_intern}}</td>
                                     <td>{{$row->soldiers_dep_name}}</td>
                                     <td class="hidden sm:table-cell">{{$row->soldier_province}}</td>
@@ -219,6 +243,20 @@
                 } else {
 
                     $this.html('<i class="fa-solid fa-circle-info"></i>แสดงสรุปข้อมูล');
+                }
+            });
+            $("#btnSubmit2").click(function(){
+            var $this = $(this);
+                $this.toggleClass('btnSubmit2');
+                $("#showimg2").toggle();
+                if($this.hasClass('btnSubmit2')){
+
+                    // $this.text('<i class="fa-solid fa-circle-info"></i>แสดงสรุปข้อมูล');
+                    $this.html('<i class="fa-solid fa-circle-info"></i> ปิดสรุปข้อมูล โรคประจำตัว');
+
+                } else {
+
+                    $this.html('<i class="fa-solid fa-circle-info"></i>แสดงสรุปข้อมูล โรคประจำตัว.');
                 }
             });
 

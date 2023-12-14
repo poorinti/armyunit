@@ -104,8 +104,17 @@
                         <div class="">
                             <button class=" mx-1 text-white btn btn-primary" id = "btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล</button>
                             <div id="showimg"  style="display:none" class="my-1">
-                                <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/pp.JPG'}}" alt="{{ isset($row->nco_image) ? asset($row->nco_image) : '' }}" width="1000px" height="1000px" class="mx-auto my-2" >
-                            </div>
+                                @php
+                             $imgArr = array();
+                             $imgArr=['t1','t2']
+                             @endphp
+                             @foreach ( $imgArr as $row )
+
+                             {{-- <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/'.{{$row}}.'JPG'}}" alt="" width="1000px" height="1000px" class="mx-auto my-2" > --}}
+                             <img src="/image/logo/{{$row}}.JPG" alt="" width="1000px" height="1000px" class="mx-auto my-2" >
+                             @endforeach
+                             {{-- <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/pp.JPG'}}" alt="{{ isset($row->nco_image) ? asset($row->nco_image) : '' }}" width="1000px" height="1000px" class="mx-auto my-2" > --}}
+                         </div>
 
                             <table class="my-1 table table-striped">
                                 <thead class="table-danger">
