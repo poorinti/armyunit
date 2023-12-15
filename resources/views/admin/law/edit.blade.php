@@ -170,7 +170,7 @@
                                                 @enderror
                                                 @php
                                                 $lawArr = array();
-                                                $lawArr=[0,3,7]
+                                                $lawArr=[0,3,7,9]
                                                 @endphp
                                                 <!--เคยเข้าร่วม -->
                                                <div class="my-2 form-group">
@@ -178,7 +178,22 @@
                                                   <select class="form-select" id="law_index" name="law_index">
                                                     {{-- <option value ="{{isset($law->law_index) ? $law->law_index : 0 }}" >เข้าร่วมทั้งสอง</option> --}}
                                                     @foreach (  $lawArr as $row )
-                                                  <option value="{{$row}}"{{ $law->law_index == $row ? 'selected' : ''}}>{{$row == 0 ? 'เข้าร่วมทั้งสอง' : 'ม.35('.$row.')'}}</option>
+                                                  <option value="{{$row}}"{{ $law->law_index == $row ? 'selected' : ''}}>
+                                                    {{-- {{$row == 0 ? 'เข้าร่วมทั้งสอง' : 'ม.35('.$row.')'}} --}}
+                                                     @if ($row == 0 )
+                                                     เข้าร่วมทั้งสอง
+                                                     @endif
+                                                     @if ($row == 3 )
+                                                     ม.35(3)
+                                                     @endif
+                                                     @if ($row == 7 )
+                                                     ม.35(7)
+                                                     @endif
+                                                     @if ($row == 9 )
+                                                     ไม่เข้าร่วม
+                                                     @endif
+
+                                                 </option>
                                                   @endforeach
                                                   </select>
                                               </div>
