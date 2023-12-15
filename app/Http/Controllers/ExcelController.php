@@ -228,6 +228,7 @@ class ExcelController extends Controller
 
                     'nco_id' =>trim($line['nco_id'])
                     ,'nco_name'=>trim($line['nco_name'])
+                    ,'nco_job'=>trim($line['nco_job'])
                     ,'nco_rank'=>trim($line['nco_rank'])
                     ,'nco_rank_index'=>$nco_rank_index
                     ,'nco_corp'=>trim($line['nco_corp'])
@@ -237,7 +238,9 @@ class ExcelController extends Controller
                     ,'nco_amphoe'=>trim($line['nco_amphoe'])
                     ,'nco_province'=>trim($line['nco_province'])
                     ,'nco_wantto'=>trim($line['nco_wantto'])
+                    ,'nco_wantto_about'=>trim($line['nco_wantto_about'])
                     ,'nco_health'=>trim($line['nco_health'])
+                    ,'nco_health_about'=>trim($line['nco_health_about'])
                     ,'nco_wife_name'=>trim($line['nco_wife_name'])
                     ,'nco_child_name1'=>trim($line['nco_child_name1'])
                     ,'nco_child_name2'=>trim($line['nco_child_name2'])
@@ -265,6 +268,7 @@ class ExcelController extends Controller
                     //'soldier_id' =>$line['soldier_id']
 
                     'nco_name'=>trim($line['nco_name'])
+                    ,'nco_job'=>trim($line['nco_job'])
                     ,'nco_rank'=>trim($line['nco_rank'])
                     ,'nco_rank_index'=>$nco_rank_index
                     ,'nco_corp'=>trim($line['nco_corp'])
@@ -274,7 +278,9 @@ class ExcelController extends Controller
                     ,'nco_amphoe'=>trim($line['nco_amphoe'])
                     ,'nco_province'=>trim($line['nco_province'])
                     ,'nco_wantto'=>trim($line['nco_wantto'])
+                    ,'nco_wantto_about'=>trim($line['nco_wantto_about'])
                     ,'nco_health'=>trim($line['nco_health'])
+                    ,'nco_health_about'=>trim($line['nco_health_about'])
                     ,'nco_wife_name'=>trim($line['nco_wife_name'])
                     ,'nco_child_name1'=>trim($line['nco_child_name1'])
                     ,'nco_child_name2'=>trim($line['nco_child_name2'])
@@ -351,6 +357,7 @@ class ExcelController extends Controller
 
                 'cco_id' =>trim($line['cco_id'])
                     ,'cco_name'=>trim($line['cco_name'])
+                    ,'cco_job'=>trim($line['cco_job'])
                     ,'cco_rank'=>trim($line['cco_rank'])
                     ,'cco_rank_index'=>$cco_rank_index
                     ,'cco_corp'=>trim($line['cco_corp'])
@@ -360,7 +367,9 @@ class ExcelController extends Controller
                     ,'cco_amphoe'=>trim($line['cco_amphoe'])
                     ,'cco_province'=>trim($line['cco_province'])
                     ,'cco_wantto'=>trim($line['cco_wantto'])
+                    ,'cco_wantto_about'=>trim($line['cco_wantto_about'])
                     ,'cco_health'=>trim($line['cco_health'])
+                    ,'cco_health_about'=>trim($line['cco_health_about'])
                     ,'cco_wife_name'=>trim($line['cco_wife_name'])
                     ,'cco_child_name1'=>trim($line['cco_child_name1'])
                     ,'cco_child_name2'=>trim($line['cco_child_name2'])
@@ -389,6 +398,7 @@ class ExcelController extends Controller
 
 
                     'cco_name'=>trim($line['cco_name'])
+                    ,'cco_job'=>trim($line['cco_job'])
                     ,'cco_rank'=>trim($line['cco_rank'])
                     ,'cco_rank_index'=>$cco_rank_index
                     ,'cco_corp'=>trim($line['cco_corp'])
@@ -398,7 +408,9 @@ class ExcelController extends Controller
                     ,'cco_amphoe'=>trim($line['cco_amphoe'])
                     ,'cco_province'=>trim($line['cco_province'])
                     ,'cco_wantto'=>trim($line['cco_wantto'])
+                    ,'cco_wantto_about'=>trim($line['cco_wantto_about'])
                     ,'cco_health'=>trim($line['cco_health'])
+                    ,'cco_health_about'=>trim($line['cco_health_about'])
                     ,'cco_wife_name'=>trim($line['cco_wife_name'])
                     ,'cco_child_name1'=>trim($line['cco_child_name1'])
                     ,'cco_child_name2'=>trim($line['cco_child_name2'])
