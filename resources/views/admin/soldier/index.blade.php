@@ -76,7 +76,7 @@
                         @endphp
 
                         <select class="mr-2 form-control" name="soldier_disease" id="soldier_disease" >
-                        <option value="">อาการป่วยทั้งหมด</option>
+                        <option value="">แสดงทั้งหมด</option>
                             @foreach ( $diseaseArr as $key=>$item )
                             <option value="{{ $item }}" {{ $item == $soldier_disease ? 'selected' : ''}}>{{ $item }}</option>
 
