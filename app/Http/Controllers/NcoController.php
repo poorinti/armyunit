@@ -362,11 +362,14 @@ class NcoController extends Controller
         $nco_startdate = isset($request->nco_startdate  ) ?   $this->dateThaiToeng($request->nco_startdate)  : null;
         $nco_phone = isset($request->nco_phone) ? $request->nco_phone : '';
         $nco_about = isset($request->nco_phone) ? $request->nco_phone   : '';
-         //เพิ่มครั้งที่ 2
-         $nco_education=isset($request->nco_education) ? $request->nco_education   : '';
-         $nco_education_study=isset($request->nco_education_study) ? $request->nco_education_study  : '';
-         $nco_wantto=isset($request->nco_wantto) ? $request->nco_wantto  : '';
-         $nco_health=isset($request->nco_health) ? $request->nco_health  : '';
+        $nco_job = isset($request->nco_job) ? $request->nco_job   : '';
+        //เพิ่มครั้งที่ 2
+        $nco_education=isset($request->nco_education) ? $request->nco_education   : '';
+        $nco_education_study=isset($request->nco_education_study) ? $request->nco_education_study  : '';
+        $nco_wantto=isset($request->nco_wantto) ? $request->nco_wantto  : '';
+        $nco_wantto_about=isset($request->nco_wantto_about) ? $request->nco_wantto_about  : '';
+        $nco_health=isset($request->nco_health) ? $request->nco_health  : '';
+        $nco_health_about = isset($request->nco_health_about) ? $request->nco_health_about   : '';
          $nco_skill_work=isset($request->nco_skill_work) ? $request->nco_skill_work  : '';
          $nco_skill=isset($request->nco_skill) ? $request->nco_skill  : '';
          $nco_wife_name=isset($request->nco_wife_name) ? $request->nco_wife_name   : '';
@@ -413,11 +416,14 @@ class NcoController extends Controller
                 ,"nco_about" => $nco_about
                 ,"nco_law_rank"=> $nco_law_rank
                 ,"nco_law_parent"=> $nco_law_parent
+                ,"nco_job"=>$nco_job
 
                 ,"nco_education" => $nco_education
                 ,"nco_education_study" => $nco_education_study
                 ,"nco_wantto" => $nco_wantto
+                ,'nco_wantto_about'=>$nco_wantto_about
                 ,"nco_health" => $nco_health
+                ,'nco_health_about'=> $nco_health_about
                 ,"nco_skill_work" => $nco_skill_work
                 ,"nco_skill" => $nco_skill
                 ,"nco_wife_name" => $nco_wife_name

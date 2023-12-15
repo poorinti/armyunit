@@ -365,10 +365,13 @@ class CcoController extends Controller
         $cco_phone = isset($request->cco_phone) ? $request->cco_phone : '';
         $cco_about = isset($request->cco_about) ? $request->cco_about   : '';
         $cco_education=isset($request->cco_education) ? $request->cco_education   : '';
+        $cco_job=isset($request->cco_job) ? $request->cco_job   : '';
         //เพิ่มครั้งที่ 2
         $cco_education_study=isset($request->cco_education_study) ? $request->cco_education_study  : '';
         $cco_wantto=isset($request->cco_wantto) ? $request->cco_wantto  : '';
+        $cco_wantto_about=isset($request->cco_wantto_about) ? $request->cco_wantto_about  : '';
         $cco_health=isset($request->cco_health) ? $request->cco_health  : '';
+        $cco_health_about=isset($request->cco_health_about) ? $request->cco_health_about  : '';
         $cco_skill_work=isset($request->cco_skill_work) ? $request->cco_skill_work  : '';
         $cco_skill=isset($request->cco_skill) ? $request->cco_skill  : '';
         $cco_wife_name=isset($request->cco_wife_name) ? $request->cco_wife_name   : '';
@@ -416,11 +419,14 @@ class CcoController extends Controller
                 ,"cco_startdate" => $cco_startdate
                 ,"cco_phone" => $cco_phone
                 ,"cco_about" => $cco_about
+                ,'cco_job'=>$cco_job
 
                 ,"cco_education" => $cco_education
                 ,"cco_education_study" => $cco_education_study
                 ,"cco_wantto" => $cco_wantto
+                ,'cco_wantto_about'=>$cco_wantto_about
                 ,"cco_health" => $cco_health
+                ,"cco_health_about" => $cco_health_about
                 ,"cco_skill_work" => $cco_skill_work
                 ,"cco_skill" => $cco_skill
                 ,"cco_wife_name" => $cco_wife_name
