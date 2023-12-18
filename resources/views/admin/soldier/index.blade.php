@@ -37,16 +37,16 @@
                     <div class=" form-group">
                     </div>
                     <div class="input-group">
+                        <button class="mx-1 text-white bg-purple-700 btn hover:bg-black " style="font-weight: 800;" >หน่วย</button>
                             <select class="mr-2 form-control" name="soldier_dep_id" id="soldier_dep_id" >
-                                <option value="">หน่วยทั้งหมด</option>
+                                <option value="">ทั้งหมด</option>
                                     @foreach ( $Department as $key=>$row )
-
                                     <option value="{{$row->dep_id}}" {{ $soldier_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
                                 @endforeach
                         </select>
-
-                            <select class="mr-2 form-control" name="soldier_provinces" id="soldier_provinces" >
-                                <option value="">จังหวัดทั้งหมด</option>
+                        <button class="text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >จังหวัด</button>
+                            <select class="mx-1 mr-2 form-control" name="soldier_provinces" id="soldier_provinces" >
+                                <option value="">ทั้งหมด</option>
                                 @foreach ( $provinces as $key=>$item )
                                 <option value="{{ $item->province }}" {{ $item->province==$soldier_provinces ? 'selected' : ''}}>{{ $item->province }}</option>
                                 @endforeach
@@ -62,9 +62,10 @@
                             $educationArr = array();
                             $educationArr=['ประถม','ม.ต้น','ม.ปลาย','ปวช','ปวส.','ป.ตรี','ป.โท','ป.เอก',]
                             @endphp
-                   <div class="input-group">
+                   <div class="my-2 input-group">
+                        <button class="mx-1 btn btn-success" style="font-weight: 800;" >วุฒิ</button>
                         <select class="mr-2 form-control" name="soldier_education" id="soldier_education" >
-                            <option value="">วุฒิทั้งหมด</option>
+                            <option value="">ทั้งหมด</option>
                                 @foreach ( $educationArr as $key=>$row )
 
                                 <option value="{{$row}}" {{ $soldier_education ==$row ? 'selected' :'' }}>{{$row}}</option>
@@ -74,38 +75,39 @@
                         $diseaseArr = array();
                         $diseaseArr=['ไม่มี','ซึมเศร้า','จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','อื่นๆ']
                         @endphp
-
+                        <button class="mx-1 btn btn-success" style="font-weight: 800;" >โรค</button>
                         <select class="mr-2 form-control" name="soldier_disease" id="soldier_disease" >
-                        <option value="">แสดงทั้งหมด</option>
+                        <option value="">ทั้งหมด(มีและไม่มี)</option>
                             @foreach ( $diseaseArr as $key=>$item )
                             <option value="{{ $item }}" {{ $item == $soldier_disease ? 'selected' : ''}}>{{ $item }}</option>
 
                             @endforeach
                         </select>
-                        @php
-                        $wanttoArr = array();
-                        $wanttoArr=['บุพการีป่วยติดเตียง','ภรรยาคลอดบุตร','ไร้ที่อยู่อาศัย','ประสบภัยธรรมชาติ','อื่นๆ']
-                        @endphp
-                        <select class="mr-2 form-control" id="soldier_wantto" name="soldier_wantto">
-                            <option value="">ความต้องการพิเศษทั้งหมด</option>
-                            @foreach ( $wanttoArr as $key=>$row )
-                        <option value="{{ $row}}" {{ $row== $soldier_wantto ? 'selected' : ''}}>{{ $row}}</option>
-                        @endforeach
-                        </select>
-
                     </div>
-                   <div class="input-group">
+                   <div class="my-1 input-group">
                         @php
                         $diseaseArr = array();
                         $diseaseArr=['มี','ไม่มี']
                         @endphp
+                        <button class="mx-1 btn btn-success" style="font-weight: 800;" >ความประสงค์สอบ นนส.</button>
+                        <select class="mx-1 mr-2 form-control" name="soldier_want_nco" id="soldier_want_nco" >
 
-                        <select class="mr-2 my-1 form-control" name="soldier_want_nco" id="soldier_want_nco" >
-                        <option value="">ความประสงค์สอบ นนส. ทั้งหมด</option>
+                        <option value="">ทั้งหมด</option>
                             @foreach ( $diseaseArr as $key=>$item )
                             <option value="{{ $item }}" {{ $item == $soldier_want_nco ? 'selected' : ''}}>{{ $item }}</option>
-
                             @endforeach
+                        </select>
+
+                        @php
+                        $wanttoArr = array();
+                        $wanttoArr=['บุพการีป่วยติดเตียง','ภรรยาคลอดบุตร','ไร้ที่อยู่อาศัย','ประสบภัยธรรมชาติ','อื่นๆ']
+                        @endphp
+                        <button class="btn btn-success" style="font-weight: 800;">ความต้องการพิเศษ</button>
+                        <select class="mx-1 mr-2 form-control" id="soldier_wantto" name="soldier_wantto">
+                            <option value="">ทั้งหมด</option>
+                            @foreach ( $wanttoArr as $key=>$row )
+                        <option value="{{ $row}}" {{ $row== $soldier_wantto ? 'selected' : ''}}>{{ $row}}</option>
+                        @endforeach
                         </select>
                     </div>
 
@@ -127,7 +129,7 @@
 
                     <div class="col-md-12">
                         <div class="">
-                            <button class=" mx-1 text-white btn btn-primary" id = "btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล </button>
+                            <button class="mx-1 text-white btn btn-primary" id = "btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล </button>
 
                             <div id="showimg"  style="display:none" class="my-1">
                                 @php
@@ -142,7 +144,7 @@
                             </div>
 
 
-                            <table class="my-1 table table-striped">
+                            <table class="table my-1 table-striped">
                                 <thead class="table-warning">
                                   <tr class="text-center">
                                     <th scope="col">ลำดับ</th>

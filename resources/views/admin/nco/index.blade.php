@@ -37,6 +37,7 @@
                     <div class=" form-group">
                     </div>
                     <div class="input-group">
+                        <button class="mx-1 text-white bg-purple-700 btn hover:bg-black " style="font-weight: 800;" >หน่วย</button>
                             <select class="form-control" name="nco_dep_id" id="nco_dep_id" >
                                 <option value="">แสดงหน่วยทั้งหมด</option>
                                     @foreach ( $Department as $key=>$row )
@@ -48,6 +49,7 @@
                             $wanttoArr = array();
                             $wanttoArr=['บุพการีป่วยติดเตียง','ภรรยาคลอดบุตร','ไร้ที่อยู่อาศัย','ประสบภัยธรรมชาติ','อื่นๆ']
                             @endphp
+                            <button class="mx-1 btn btn-success " style="font-weight: 800;">ความต้องการพิเศษ</button>
                             <select class="mr-2 form-control" id="nco_wantto" name="nco_wantto">
                                 <option value="">ไม่มีความต้องการพิเศษ</option>
                                 @foreach ( $wanttoArr as $key=>$row )
@@ -57,7 +59,8 @@
 
                    </div>
 
-                   <div class="input-group">
+                   <div class="my-1 input-group">
+                    <button class="mx-1 btn btn-success " style="font-weight: 800;">จังหวัด</button>
                     <select class="form-control" name="nco_provinces" id="nco_provinces" >
                         <option value="">แสดงจังหวัดทั้งหมด</option>
                             @foreach ( $provinces as $key=>$item )
@@ -65,7 +68,7 @@
 
                             @endforeach
                         </select>
-                        <select id="nco_amphoe"  name="nco_amphoe"  class="mr-2 form-control" >
+                        <select id="nco_amphoe"  name="nco_amphoe"  class="mx-1 mr-2 form-control" >
                             <option value="">เลือกจังหวัดก่อน</option>
                             @foreach($amphoes as $item)
                             <option value="{{ $item->amphoe }}" {{ $item->amphoe==$nco_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
@@ -103,7 +106,7 @@
 
                     <div class="col-md-12">
                         <div class="justify-items-center">
-                            <button class=" mx-1 text-white btn btn-primary" id = "btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล</button>
+                            <button class="mx-1 text-white btn btn-primary" id = "btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล</button>
                             <div id="showimg"  style="display:none" class="my-1">
                                    @php
                                 $imgArr = array();
@@ -117,7 +120,7 @@
                                 {{-- <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/pp.JPG'}}" alt="{{ isset($row->nco_image) ? asset($row->nco_image) : '' }}" width="1000px" height="1000px" class="mx-auto my-2" > --}}
                             </div>
 
-                            <table class="table table-striped my-1">
+                            <table class="table my-1 table-striped">
                                 <thead class="table-success">
                                   <tr class="text-center">
                                     <th scope="col">ลำดับ</th>
