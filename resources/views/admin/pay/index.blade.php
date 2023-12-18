@@ -38,14 +38,15 @@
                     <div class=" form-group">
                     </div>
                     <div class="input-group">
-                            <select class="form-control" name="pay_dep_id" id="pay_dep_id" >
+                        <button class="text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >หน่วย</button>
+                            <select class="mx-1 form-control" name="pay_dep_id" id="pay_dep_id" >
                                 <option value="">หน่วยทั้งหมด</option>
                                     @foreach ( $Department as $key=>$row )
 
                                     <option value="{{$row->dep_id}}" {{ $pay_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
                                 @endforeach
                             </select>
-
+                            <button class="mx-1 text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >จังหวัด</button>
                         <select class="form-control" name="pay_provinces" id="pay_provinces" >
                             <option value="">จังหวัดทั้งหมด</option>
                                 @foreach ( $provinces as $key=>$item )
@@ -53,7 +54,7 @@
 
                                 @endforeach
                             </select>
-                            <select id="pay_amphoe"  name="pay_amphoe"  class="mr-2 form-control" >
+                            <select id="pay_amphoe"  name="pay_amphoe"  class="mx-1 mr-2 form-control" >
                                 <option value="">เลือกจังหวัดก่อน</option>
                                 @foreach($amphoes as $item)
                                 <option value="{{ $item->amphoe }}" {{ $item->amphoe==$pay_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
@@ -93,8 +94,8 @@
                     $payArr = array();
                     $payArr=['เงินสงเคราะห์บุตร','เงินสงเคราะห์บุพการีทุพพลภาพ','ทุนยังชีพรายปีบุตร','ทุนยังชีพรายปีคู่สมรส']
                     @endphp
-
-                    <select class="mr-2 form-select" name="pay_paychk" id="pay_paychk" >
+                    <button class="text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >ประเภท</button>
+                    <select class="mx-1 mr-2 form-select" name="pay_paychk" id="pay_paychk" >
 
                         <option value="">ทั้งหมด</option>
                             @foreach ( $payArr as $key=>$item )

@@ -67,7 +67,6 @@
                         <select class="mr-2 form-control" name="soldier_education" id="soldier_education" >
                             <option value="">ทั้งหมด</option>
                                 @foreach ( $educationArr as $key=>$row )
-
                                 <option value="{{$row}}" {{ $soldier_education ==$row ? 'selected' :'' }}>{{$row}}</option>
                             @endforeach
                         </select>
@@ -75,8 +74,8 @@
                         $diseaseArr = array();
                         $diseaseArr=['ไม่มี','ซึมเศร้า','จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','อื่นๆ']
                         @endphp
-                        <button class="mx-1 btn btn-success" style="font-weight: 800;" >โรค</button>
-                        <select class="mr-2 form-control" name="soldier_disease" id="soldier_disease" >
+                        <button class=" btn btn-success" style="font-weight: 800;" >โรค</button>
+                        <select class="mx-1 mr-2 form-control" name="soldier_disease" id="soldier_disease" >
                         <option value="">ทั้งหมด(มีและไม่มี)</option>
                             @foreach ( $diseaseArr as $key=>$item )
                             <option value="{{ $item }}" {{ $item == $soldier_disease ? 'selected' : ''}}>{{ $item }}</option>

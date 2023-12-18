@@ -38,6 +38,7 @@
                     <div class=" form-group">
                     </div>
                     <div class="input-group">
+                        <button class="mx-1 text-white bg-purple-700 btn hover:bg-black " style="font-weight: 800;" >หน่วย</button>
                             <select class="form-control" name="law_dep_id" id="law_dep_id" >
                                 <option value="">แสดงหน่วยทั้งหมด</option>
                                     @foreach ( $Department as $key=>$row )
@@ -45,7 +46,7 @@
                                     <option value="{{$row->dep_id}}" {{ $law_dep_id==$row->dep_id ? 'selected' :'' }}>{{$row->department_name}} ({{$row->total}})</option>
                                 @endforeach
                         </select>
-
+                        <button class="mx-1 text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >จังหวัด</button>
                         <select class="form-control " name="law_provinces" id="law_provinces" >
                             <option value="">แสดงจังหวัดทั้งหมด</option>
                                 @foreach ( $provinces as $key=>$item )
@@ -53,7 +54,7 @@
 
                                 @endforeach
                             </select>
-                            <select id="law_amphoe"  name="law_amphoe"  class="mr-2 form-control" >
+                            <select id="law_amphoe"  name="law_amphoe"  class="mx-1 mr-2 form-control" >
                                 <option value="">เลือกจังหวัดก่อน</option>
                                 @foreach($amphoes as $item)
                                 <option value="{{ $item->amphoe }}" {{ $item->amphoe==$law_amphoe ? 'selected' : ''}}>{{ $item->amphoe }}</option>
@@ -131,7 +132,7 @@
 
                     <div class="col-md-12">
                         <div class="">
-                            <button class=" mx-1 text-white btn btn-primary" id = "btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล </button>
+                            <button class="mx-1 text-white btn btn-primary" id = "btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล </button>
                             <div id="showimg"  style="display:none" class="my-1">
                                 @php
                                 $imgArr = array();
