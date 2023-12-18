@@ -147,17 +147,10 @@ class SoldierController extends Controller
             if($soldier_dep_id!=''){
             $ans = Ans::where('ans_id','!=','')
             ->where('ans_name','=','ข้อมูลพลทหาร')
-            ->where(function($query) use ($DepArr){
-                if($DepArr){
-                    $query->whereIn('soldier_dep_id',$DepArr);
-                }
-
-                })
                 ->where(function($query) use ($soldier_dep_id){
                     if($soldier_dep_id!=''){
                         $query->where('ans_dep_id','=',$soldier_dep_id);
                     }
-
                 })->orderBy('ans_index')->get();
                 }else{
                     $ans=null;

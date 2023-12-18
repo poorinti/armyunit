@@ -151,12 +151,6 @@ class NcoController extends Controller
             if($nco_dep_id!=''){
                 $ans = Ans::where('ans_id','!=','')
                 ->where('ans_name','=','ข้อมูลนายสิบ')
-                ->where(function($query) use ($DepArr){
-                    if($DepArr){
-                        $query->whereIn('nco_dep_id',$DepArr);
-                    }
-
-                    })
                     ->where(function($query) use ($nco_dep_id){
                         if($nco_dep_id!=''){
                             $query->where('ans_dep_id','=',$nco_dep_id);
