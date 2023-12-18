@@ -7,6 +7,7 @@ use App\Models\Soldier;
 use App\Models\Userdep;
 use App\Models\Department;
 use App\Models\Nco;
+use App\Models\Ans;
 use App\Models\Rank;
 use App\Models\Tambon;
 
@@ -147,9 +148,28 @@ class NcoController extends Controller
 
             $total_nco= Nco::where('nco_id','!=','')->count();
 
+            if($nco_dep_id!=''){
+                $ans = Ans::where('ans_id','!=','')
+                ->where('ans_name','=','ข้อมูลนายสิบ')
+                ->where(function($query) use ($DepArr){
+                    if($DepArr){
+                        $query->whereIn('nco_dep_id',$DepArr);
+                    }
+
+                    })
+                    ->where(function($query) use ($nco_dep_id){
+                        if($nco_dep_id!=''){
+                            $query->where('ans_dep_id','=',$nco_dep_id);
+                        }
+
+                    })->orderBy('ans_index')->get();
+                    }else{
+                        $ans=null;
+                    }
 
 
-        return view('admin.nco.index',compact('nco','Department','total_nco','nco_dep_id','nco_provinces','nco_education','nco_disease','provinces','rank','nco_rank','search','nco_amphoe','amphoes','nco_wantto' ));
+
+        return view('admin.nco.index',compact('nco','Department','total_nco','nco_dep_id','nco_provinces','nco_education','nco_disease','provinces','rank','nco_rank','search','nco_amphoe','amphoes','nco_wantto','ans' ));
     }
 
     public function edit(Request $request,$nco_id){

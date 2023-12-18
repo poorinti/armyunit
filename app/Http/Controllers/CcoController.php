@@ -7,6 +7,7 @@ use App\Models\Soldier;
 use App\Models\Userdep;
 use App\Models\Department;
 use App\Models\Nco;
+use App\Models\Ans;
 use App\Models\Cco;
 use App\Models\Rank;
 use App\Models\Tambon;
@@ -146,9 +147,28 @@ class CcoController extends Controller
 
             $total_cco= Cco::where('cco_id','!=','')->count();
 
+            if($cco_dep_id!=''){
+                $ans = Ans::where('ans_id','!=','')
+                ->where('ans_name','=','ข้อมูลนายทหารทหาร')
+                ->where(function($query) use ($DepArr){
+                    if($DepArr){
+                        $query->whereIn('cco_dep_id',$DepArr);
+                    }
+
+                    })
+                    ->where(function($query) use ($cco_dep_id){
+                        if($cco_dep_id!=''){
+                            $query->where('ans_dep_id','=',$cco_dep_id);
+                        }
+
+                    })->orderBy('ans_index')->get();
+                    }else{
+                        $ans=null;
+                    }
 
 
-        return view('admin.cco.index',compact('cco','Department','total_cco','cco_dep_id','cco_provinces','cco_education','cco_disease','provinces','rank','cco_rank','search','amphoes','cco_amphoe','cco_wantto'));
+
+        return view('admin.cco.index',compact('cco','Department','total_cco','cco_dep_id','cco_provinces','cco_education','cco_disease','provinces','rank','cco_rank','search','amphoes','cco_amphoe','cco_wantto','ans'));
     }
 
     public function edit(Request $request,$cco_id){

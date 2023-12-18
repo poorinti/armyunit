@@ -4,6 +4,7 @@ use App\Http\Controllers\BattalionController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\LawController;
+use App\Http\Controllers\AnsController;
 use App\Http\Controllers\PayController;
 use App\Http\Controllers\NcoController;
 use App\Http\Controllers\CcoController;
@@ -12,8 +13,7 @@ use App\Http\Controllers\UserlistController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SoldierController;
 use App\Http\Controllers\TambonController;
-
-
+use App\Models\Ans;
 use App\Models\Department;
 use App\Models\Nco;
 use App\Models\Service;
@@ -178,6 +178,17 @@ Route::middleware([
 
     Route::get('/pay/provinces',[TambonController::class,'getProvinces']);
     Route::get('/pay/amphoes',[TambonController::class,'getAmphoes']);
+
+      //////////////////////////////////////////*หน้า Ans//////////////////////////////////////////
+
+
+      Route::match(['get', 'post'], '/ans/all',[AnsController::class,'index'])->name('ans');
+      Route::post('/ans/add',[AnsController::class,'store'])->name('addans');
+      Route::post('/ans/show',[AnsController::class,'show']);
+      Route::get('/ans/edit/{id}',[AnsController::class,'edit']);
+      Route::get('/ans/startadd/',[AnsController::class,'startadd']);
+      Route::post('/ans/update/{id}',[AnsController::class,'update']);
+      Route::get('/ans/delete/{id}',[AnsController::class,'delete']);
 
 
 

@@ -9,6 +9,7 @@ use App\Models\Department;
 use App\Models\Nco;
 use App\Models\Law;
 use App\Models\Rank;
+use App\Models\Ans;
 use App\Models\Tambon;
 
 use Illuminate\Http\Request;
@@ -156,10 +157,29 @@ class LawController extends Controller
 
             $total_law= Law::where('law_id','!=','')->count();
 
+            if($law_dep_id!=''){
+                $ans = Ans::where('ans_id','!=','')
+                ->where('ans_name','=','ข้อมูลพลทหาร')
+                ->where(function($query) use ($DepArr){
+                    if($DepArr){
+                        $query->whereIn('law_dep_id',$DepArr);
+                    }
+
+                    })
+                    ->where(function($query) use ($law_dep_id){
+                        if($law_dep_id!=''){
+                            $query->where('ans_dep_id','=',$law_dep_id);
+                        }
+
+                    })->orderBy('ans_index')->get();
+                    }else{
+                        $ans=null;
+                    }
 
 
 
-        return view('admin.law.index',compact('law','Department','total_law','law_dep_id','law_provinces','law_education','law_disease','provinces','rank','law_rank','law_lawchk','search','amphoes','law_amphoe' ));
+
+        return view('admin.law.index',compact('law','Department','total_law','law_dep_id','law_provinces','law_education','law_disease','provinces','rank','law_rank','law_lawchk','search','amphoes','law_amphoe','ans' ));
     }
 
     public function edit(Request $request,$law_id){
@@ -249,7 +269,7 @@ class LawController extends Controller
 
 
     //การเข้ารหัสรูปภาพ
-    $law_image = $request->file('nco_image');
+    $law_image = $request->file('law_image');
     if($law_image){
     // gen ชื่อภาพ
     $name_gen = hexdec(uniqid());

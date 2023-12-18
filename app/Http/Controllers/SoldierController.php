@@ -5,6 +5,7 @@ use App\Models\Service;
 use Illuminate\Support\Facades\File;
 use App\Models\Soldier;
 use App\Models\Userdep;
+use App\Models\Ans;
 use App\Models\Department;
 use App\Models\Tambon;
 
@@ -142,7 +143,30 @@ class SoldierController extends Controller
             $provinces = Soldier::selectRaw('soldier_province as province')->where('soldier_province','!=','')->distinct()->get();
 
             $total_soldier= Soldier::where('soldier_id','!=','')->count();
-        return view('admin.soldier.index',compact('soldier','search','soldier_dep_id','total_soldier','Department','soldier_dep_id','provinces','soldier_provinces','soldier_education','soldier_disease','amphoes','soldier_amphoe','soldier_wantto','soldier_want_nco'));
+
+            if($soldier_dep_id!=''){
+            $ans = Ans::where('ans_id','!=','')
+            ->where('ans_name','=','ข้อมูลพลทหาร')
+            ->where(function($query) use ($DepArr){
+                if($DepArr){
+                    $query->whereIn('soldier_dep_id',$DepArr);
+                }
+
+                })
+                ->where(function($query) use ($soldier_dep_id){
+                    if($soldier_dep_id!=''){
+                        $query->where('ans_dep_id','=',$soldier_dep_id);
+                    }
+
+                })->orderBy('ans_index')->get();
+                }else{
+                    $ans=null;
+                }
+
+
+
+
+        return view('admin.soldier.index',compact('soldier','search','soldier_dep_id','total_soldier','Department','soldier_dep_id','provinces','soldier_provinces','soldier_education','soldier_disease','amphoes','soldier_amphoe','soldier_wantto','soldier_want_nco','ans'));
     }
 
     public function store( Request $request){

@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Soldier;
+use App\Models\Userdep;
+
 use App\Models\Battalion;
 use App\Models\Department;
-use App\Models\Soldier;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
+use Nette\Utils\Arrays;
+
 
 class DepartmentController extends Controller
 {
