@@ -2,8 +2,9 @@
 /node_modules
 /public/build
 /public/hot
-/public/image/soldier
 /public/storage
+/public/image/soldier
+/public/image/ans
 /storage/*.key
 /vendor
 .env
