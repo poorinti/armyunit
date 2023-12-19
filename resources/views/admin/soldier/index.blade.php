@@ -37,7 +37,7 @@
                     <div class=" form-group">
                     </div>
                     <div class="input-group">
-                        <button class="mx-1 text-white bg-purple-700 btn hover:bg-black " style="font-weight: 800;" >หน่วย</button>
+                        <button class="mx-1 text-white btn btn-success " style="font-weight: 800;" >หน่วย</button>
                             <select class="mr-2 form-control" name="soldier_dep_id" id="soldier_dep_id" >
                                 <option value="">ทั้งหมด</option>
                                     @foreach ( $Department as $key=>$row )
