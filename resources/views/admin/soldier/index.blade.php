@@ -88,8 +88,8 @@
                         $diseaseArr = array();
                         $diseaseArr=['มี','ไม่มี']
                         @endphp
-                        <button class="mx-1 text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >ความประสงค์สอบ นนส.</button>
-                        <select class="mx-1 mr-2 form-control" name="soldier_want_nco" id="soldier_want_nco" >
+                        <button class="mx-1 text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >ประสงค์สอบนนส.</button>
+                        <select class="mr-2 form-control" name="soldier_want_nco" id="soldier_want_nco" >
 
                         <option value="">ทั้งหมด</option>
                             @foreach ( $diseaseArr as $key=>$item )
