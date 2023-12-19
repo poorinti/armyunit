@@ -99,6 +99,9 @@
                             {{$ansShow->links()}}
                         </div>
                     </div>
+                    {{-- @php
+                         $ans_name_chk= isset($ans_name) ? $ans_name  : '';
+                    @endphp --}}
 
                     <div class="col-md-4 ">
                         <div class="card">
@@ -114,11 +117,12 @@
                                     <!-- <input type="hidden" class="form-control" name="department_id"> -->
                                     <!-- เลือกกองพัน -->
                                     <!-- php จะอ้างอิงจากชื่อ name เท่านั้น-->
+
                                     <select class=" form-control form-select" aria-label="ans_name" name="ans_name" required>
 
                                         <option value="">คลิกเพื่อเลือก</option>
                                         @foreach (  $dataArr as $row )
-                                        <option value="{{$row}}">{{$row}}</option>
+                                        <option value="{{$row}}" {{$row == $ans_name? 'selected' : ''}}>{{$row}}</option>
                                         @endforeach
 
                                      </select>
@@ -130,7 +134,7 @@
 
                                         <option value="">คลิกเพื่อเลือก</option>
                                         @foreach ( $departments as $row )
-                                        <option value="{{$row->dep_id}}">{{$row->department_name}}</option>
+                                        <option value="{{$row->dep_id}}"{{ $row->dep_id == $ans_dep_id ? 'selected' : ''}}>{{$row->department_name}}</option>
                                         @endforeach
 
                                      </select>
