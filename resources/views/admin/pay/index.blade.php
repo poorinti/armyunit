@@ -137,6 +137,7 @@
                         <button class="mr-2 text-white btn btn-primary bg-primary" type="sumit">ค้นหา</button>
                         <a href="{{url('/pay/startadd')}}" class="hidden mr-2 text-white bg-purple-700 btn btn-primary sm:block "> เพิ่มกำลังพล</a>
                         <a href="{{url('/pay/excel')}}" class="hidden mr-2 text-white btn btn-success sm:block">import excel</a>
+                        <a href="{{url('/ans/all/')}}" class="hidden mr-2 text-white btn btn-warning sm:block">เพิ่มสรุป</a>
                     </div>
                 </div>
                 </form>
@@ -148,6 +149,17 @@
 
                     <div class="col-md-12">
                         <div class="">
+                            <button class="mx-1 text-white btn btn-primary" id ="btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล </button>
+
+                            <div id="showimg"  style="display:none" class="my-1">
+                                    @if ($ans)
+                                    @foreach ( $ans as $row )
+                                    {{-- <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/'.{{$row}}.'JPG'}}" alt="" width="1000px" height="1000px" class="mx-auto my-2" > --}}
+                                    <img src="{{isset($row->ans_image) ? asset($row->ans_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->ans_image) ? asset($row->ans_image) : '' }}" alt="" width="1000px" height="1000px" class="mx-auto my-2" >
+                                    @endforeach
+                                    @endif
+
+                            </div>
 
                             <table class="table table-striped">
                                 <thead class="table-primary">
@@ -233,9 +245,24 @@
         document.querySelector('#pay_provinces').addEventListener('change', (event) => {
             showAmphoes();
         });
-        document.querySelector('#nco_provinces').addEventListener('click', (event) => {
+        document.querySelector('#pay_provinces').addEventListener('click', (event) => {
             showAmphoes();
         });
+
+        $("#btnSubmit").click(function(){
+            var $this = $(this);
+                $this.toggleClass('btnSubmit');
+                $("#showimg").toggle();
+                if($this.hasClass('btnSubmit')){
+
+                    // $this.text('<i class="fa-solid fa-circle-info"></i>แสดงสรุปข้อมูล');
+                    $this.html('<i class="fa-solid fa-circle-info"></i> ปิดสรุปข้อมูล');
+
+                } else {
+
+                    $this.html('<i class="fa-solid fa-circle-info"></i>แสดงสรุปข้อมูล');
+                }
+            });
 
 
     </script>

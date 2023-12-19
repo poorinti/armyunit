@@ -8,6 +8,7 @@ use App\Models\Userdep;
 use App\Models\Department;
 use App\Models\Nco;
 use App\Models\Law;
+use App\Models\Ans;
 use App\Models\Pay;
 use App\Models\Payout;
 use App\Models\Paytopayout;
@@ -153,10 +154,23 @@ class PayController extends Controller
 
             $total_nco= Pay::where('pay_id','!=','')->count();
 
+            if($pay_dep_id!=''){
+                $ans = Ans::where('ans_id','!=','')
+                ->where('ans_name','=','ข้อมูลผู้รับสิทธิ์')
+                    ->where(function($query) use ($pay_dep_id){
+                        if($pay_dep_id!=''){
+                            $query->where('ans_dep_id','=',$pay_dep_id);
+                        }
+
+                    })->orderBy('ans_index')->get();
+                    }else{
+                        $ans=null;
+                    }
 
 
 
-        return view('admin.pay.index',compact('pay','Department','total_nco','pay_dep_id','pay_provinces','pay_education','pay_disease','provinces','rank','pay_rank','pay_paychk','search','amphoes','pay_amphoe' ));
+
+        return view('admin.pay.index',compact('pay','Department','total_nco','pay_dep_id','pay_provinces','pay_education','pay_disease','provinces','rank','pay_rank','pay_paychk','search','amphoes','pay_amphoe','ans' ));
     }
 
     public function edit(Request $request,$pay_id){
