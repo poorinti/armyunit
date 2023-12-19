@@ -449,7 +449,7 @@
                                                                     </div>
                                                                     @enderror
                                                                      <div class="my-2 form-group">
-                                                                        <label for="pay_payout">เงินรายปีบุตร งวดที่ได้รับล่าสุด</label>
+                                                                        <label for="pay_payout">เงินทุนยังชีพรายปีบุตร งวดที่ได้รับล่าสุด</label>
                                                                         <input type="text" class="form-control" name="pay_payout" placeholder="" value ="{{isset($pay->pay_payout) ? $pay->pay_payout : ''}}" >
                                                                     </div>
                                                                     @error('pay_payout')
