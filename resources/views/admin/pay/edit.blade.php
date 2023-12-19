@@ -195,7 +195,7 @@
                                                 @enderror
                                                 @php
                                                 $payArr = array();
-                                                $payArr=['เงินสงเคราะห์บุตร','เงินสงเคราะห์บุพการีทุพพลภาพ','ทุนยังชีพรายปีบุตร','ทุนยังชีพรายปีคู่สมรส']
+                                                $payArr=['เงินสงเคราะห์บุตร/ทุนยังชีพรายปีบุตร','เงินสงเคราะห์บุพการีทุพพลภาพ','ทุนยังชีพรายปีคู่สมรส']
                                                 @endphp
                                                 <!--เคยเข้าร่วม -->
                                                <div class="my-2 form-group">
@@ -433,11 +433,14 @@
                                                         </div>
                                                     </div>
                                                     <div class="my-4 card ">
+                                                        @if ($pay->pay_reward == 'เงินสงเคราะห์บุตร/ทุนยังชีพรายปีบุตร')
+
+
                                                         <div class="text-white bg-orange-600 card-header">ข้อมูลการรับเงิน</div>
                                                             <div class=" card-body bg-slate-100">
                                                                      <!--เบอร์-->
                                                                      <div class="my-2 form-group">
-                                                                        <label for="pay_payout">งวดที่ 20 (ห้วง ม.ค. - มิ.ย. 66)</label>
+                                                                        <label for="pay_payout">เงินสงเคราะห์บุตร งวดที่ได้รับล่าสุด</label>
                                                                         <input type="text" class="form-control" name="pay_payout" placeholder="" value ="{{isset($pay->pay_payout) ? $pay->pay_payout : ''}}" >
                                                                     </div>
                                                                     @error('pay_payout')
@@ -445,18 +448,35 @@
                                                                         <span class="text-red-600 text">{{$message}}</span>
                                                                     </div>
                                                                     @enderror
-                                                                     <!--เบอร์-->
                                                                      <div class="my-2 form-group">
-                                                                        <label for="pay_payout2">งวดที่ 21 (ห้วง ก.ค. - ธ.ค. 66)</label>
-                                                                        <input type="text" class="form-control" name="pay_payout2" placeholder=""  >
+                                                                        <label for="pay_payout">เงินรายปีบุตร งวดที่ได้รับล่าสุด</label>
+                                                                        <input type="text" class="form-control" name="pay_payout" placeholder="" value ="{{isset($pay->pay_payout) ? $pay->pay_payout : ''}}" >
                                                                     </div>
                                                                     @error('pay_payout')
                                                                     <div class="my-2">
                                                                         <span class="text-red-600 text">{{$message}}</span>
                                                                     </div>
                                                                     @enderror
-
                                                             </div>
+                                                            @endif
+                                                            @if ($pay->pay_reward != 'เงินสงเคราะห์บุตร/ทุนยังชีพรายปีบุตร')
+
+
+                                                            <div class="text-white bg-orange-600 card-header">ข้อมูลการรับเงิน</div>
+                                                                <div class=" card-body bg-slate-100">
+                                                                         <!--เบอร์-->
+                                                                         <div class="my-2 form-group">
+                                                                            <label for="pay_payout">งวดที่ได้รับล่าสุด</label>
+                                                                            <input type="text" class="form-control" name="pay_payout" placeholder="" value ="{{isset($pay->pay_payout) ? $pay->pay_payout : ''}}" >
+                                                                        </div>
+                                                                        @error('pay_payout')
+                                                                        <div class="my-2">
+                                                                            <span class="text-red-600 text">{{$message}}</span>
+                                                                        </div>
+                                                                        @enderror
+                                                                </div>
+                                                                @endif
+
                                                     </div>
 
                                             <br>

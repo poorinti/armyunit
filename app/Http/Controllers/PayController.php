@@ -201,7 +201,7 @@ class PayController extends Controller
     /////////////////////////////////////////////////////// แอดข้อมูล/////////////////////////////////////////////
     public function store( Request $request){
 
-        //    dd($request->all());
+            // dd($request->all());
             // เช็คก่อนเอาเข้า
         $request->validate([
 
@@ -228,6 +228,7 @@ class PayController extends Controller
     $pay_id   =isset($request->pay_id) ? $request->pay_id : '' ;
     $pay_rank =isset($request->pay_rank) ? $request->pay_rank : '' ;
     $pay_dep_id   =isset($request->pay_dep_id) ? $request->pay_dep_id : '' ;
+    $pay_reward   =isset($request->pay_reward) ? $request->pay_reward  : '' ;
     $act=false;
     $created_at=Carbon::now()->format("Y-m-d H:i:s");
     $updated_at =Carbon::now()->format("Y-m-d H:i:s");
@@ -239,10 +240,19 @@ class PayController extends Controller
     $pay_bat_name      =$Dep->battalion_name;
     $pay_year   =Carbon::now()->format("Y");
 
+    $nco_rank_iput_name=Rank::where('rank_name','=',$pay_rank  )->first();
+    //pay_rank_index
+    $pay_rank_index=isset($nco_rank_iput_name->cco_rank_index ) ? $nco_rank_iput_name->cco_rank_index   : 0;
+    //pay_rank_index_name
+    $nco_rank_index_name = isset($nco_rank_iput_name->nco_rank_index ) ? $nco_rank_iput_name->nco_rank_index   : 0;
+
     $act =Pay::insert([
         'pay_name'=>$pay_name,
         'pay_rank'=>$pay_rank,
+        'pay_reward'=>$pay_reward,
         'pay_id'=>$pay_id,
+        'pay_rank_index' =>$pay_rank_index,
+        'pay_rank_index_name' =>$nco_rank_index_name,
         'pay_dep_id'=>$pay_dep_id,
         'created_at'=>$created_at,
         'updated_at'=>$updated_at
@@ -346,7 +356,7 @@ class PayController extends Controller
 
 /////////////////////////////////////////////////////// อัพเดทข้อมูล/////////////////////////////////////////////
         public function update(Request $request,$dep_id){
-            //    dd( $request->All());
+                // dd( $request->All());
             $request->validate([
 
                 'pay_image'=>'mimes:png,jpg,jpeg,JPG|max:2048'
@@ -391,6 +401,8 @@ class PayController extends Controller
         $pay_parent_name = isset($request->pay_parent_name) ? $request->pay_parent_name   : '';
         $pay_dep_name = isset($request->pay_dep_name) ? $request->pay_dep_name   : '';
         $pay_phone = isset($request->pay_phone) ? $request->pay_phone   : '';
+        $pay_payout = isset($request->pay_payout ) ? $request->pay_payout    : '';
+        $pay_payout_index = isset($request->pay_payout_index ) ? $request->pay_payout_index    : '';
       //  dd($soldier_id);
         $chk =false;
 
@@ -429,8 +441,8 @@ class PayController extends Controller
                 ,"pay_parent_id" =>$pay_parent_id
                 ,"pay_parent_rank" =>$pay_parent_rank
                 ,"pay_parent_name" =>$pay_parent_name
-                ,"pay_dep_name" =>$pay_dep_name
-                ,"pay_phone" =>$pay_phone
+                ,"pay_payout" =>$pay_payout
+                ,"pay_payout_index" =>$pay_payout_index
 
             ]);
         }

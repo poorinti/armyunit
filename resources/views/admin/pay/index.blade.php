@@ -92,7 +92,7 @@
                     <div class="my-2 input-group">
                     @php
                     $payArr = array();
-                    $payArr=['เงินสงเคราะห์บุตร','เงินสงเคราะห์บุพการีทุพพลภาพ','ทุนยังชีพรายปีบุตร','ทุนยังชีพรายปีคู่สมรส']
+                    $payArr=['เงินสงเคราะห์บุตร/ทุนยังชีพรายปีบุตร','เงินสงเคราะห์บุพการีทุพพลภาพ','ทุนยังชีพรายปีคู่สมรส']
                     @endphp
                     <button class="text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >ประเภท</button>
                     <select class="mx-1 mr-2 form-select" name="pay_paychk" id="pay_paychk" >

@@ -52,6 +52,21 @@
                                                 <!--ชื่อสกุล -->
                                                 {{-- <input type="hidden" name="soldier_id" value=""> --}}
                                                 <!--หน่วย-->
+                                                <div class="my-2 input-group">
+                                                    @php
+                                                    $payArr = array();
+                                                    $payArr=['เงินสงเคราะห์บุตร/ทุนยังชีพรายปีบุตร','เงินสงเคราะห์บุพการีทุพพลภาพ','ทุนยังชีพรายปีคู่สมรส']
+                                                    @endphp
+                                                    <button class="text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >ประเภท</button>
+                                                    <select class="mx-1 mr-2 form-select" name="pay_reward" id="pay_reward" >
+
+                                                        <option value="">ทั้งหมด</option>
+                                                            @foreach ( $payArr as $key=>$item )
+                                                            <option value="{{ $item }}">{{ $item }}</option>
+                                                            @endforeach
+                                                    </select>
+
+                                                </div>
                                                 <div class="my-2 form-group">
                                                     <label for="pay_rank">ยศ/คำนำหน้า</label>
                                                      <select class="form-control" name="pay_rank" id="pay_rank" required>
@@ -96,6 +111,7 @@
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
                                                 @enderror
+
                                          <br>
                                          <a href="/pay/all" class="btn-info btn-yellow-warnnig "><i class="fa fa-arrow-left"></i> กลับ</a>
                                          <button type="submit" class="mx-auto text-black btn btn-primary ">บันทึกข้อมูล</button>
