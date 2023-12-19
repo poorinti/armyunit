@@ -149,7 +149,7 @@ class CcoController extends Controller
 
             if($cco_dep_id!=''){
                 $ans = Ans::where('ans_id','!=','')
-                ->where('ans_name','=','ข้อมูลนายทหารทหาร')
+                ->where('ans_name','=','ข้อมูลนายทหาร')
                     ->where(function($query) use ($cco_dep_id){
                         if($cco_dep_id!=''){
                             $query->where('ans_dep_id','=',$cco_dep_id);
@@ -160,7 +160,7 @@ class CcoController extends Controller
                         $ans=null;
                     }
 
-
+                    // dd($ans);
 
         return view('admin.cco.index',compact('cco','Department','total_cco','cco_dep_id','cco_provinces','cco_education','cco_disease','provinces','rank','cco_rank','search','amphoes','cco_amphoe','cco_wantto','ans'));
     }

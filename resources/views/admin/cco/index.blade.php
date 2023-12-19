@@ -98,7 +98,7 @@
                     </div>
                 </div>
                 </form>
-
+               
                 <div class="row">
                     @if (session('success'))
                             <div class="alert alert-success">{{session('success')}}</div>
@@ -108,6 +108,7 @@
                         <div class="">
                             <button class="mx-1 text-white btn btn-primary" id = "btnSubmit"><i class="fa-solid fa-circle-info"></i>    แสดงสรุปข้อมูล</button>
                             <div id="showimg"  style="display:none" class="my-1">
+
                                 @if ($ans)
                                 @foreach ( $ans as $row )
                                 {{-- <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/'.{{$row}}.'JPG'}}" alt="" width="1000px" height="1000px" class="mx-auto my-2" > --}}
