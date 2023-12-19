@@ -105,7 +105,8 @@ class AnsController extends Controller
         $created_at=Carbon::now()->format("Y-m-d H:i:s");
         $updated_at =Carbon::now()->format("Y-m-d H:i:s");
 
-        $ans_id=$ans_dep_id.'_'.$ans_index;
+        $name_gen = hexdec(uniqid());
+        $ans_id=$ans_dep_id.'_'.$name_gen;
 
         $chkid=Ans::where('ans_id','=',$ans_id)->first();
         if(!$chkid){
@@ -119,7 +120,7 @@ class AnsController extends Controller
 
         $act =Ans::insert([
             'ans_name'=>$ans_name,
-            'ans_id'=>$ans_id ,
+            'ans_id'=>$ans_id,
             'ans_dep_id'=>$ans_dep_id,
             'ans_index'=>$ans_index,
             'created_at'=>$created_at,
