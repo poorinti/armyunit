@@ -168,10 +168,11 @@ class AnsController extends Controller
 
         }
 
-        return redirect()->back()->with('success',"บันทึกข้อมูลเรียบร้อย");
+
+        return redirect()->route('ans',['ans_name'=>$ans_name,'ans_dep_id'=>$ans_dep_id])->with('success',"บันทึกข้อมูลเรียบร้อย");
     }
 }
-        return redirect()->back()->with('error',"มีลำดับนี้อยู่แล้ว โปรดลบข้อมูลเก่าก่อน");
+        return redirect()->route('ans',['ans_name'=>$ans_name,'ans_dep_id'=>$ans_dep_id])->with('error',"มีลำดับนี้อยู่แล้ว โปรดลบข้อมูลเก่าก่อน");
         // $service_image->move(ที่ที่เก็บไว้ ตัวอย่างคือเก็บ ที่ pubplic ,ไฟล์ไหน);
 
         }
@@ -207,7 +208,7 @@ class AnsController extends Controller
              unlink($ans_image1);
             }
         if($act){
-            return redirect()->route('ans',['ans_name'=>$ans_name,'ans_dep_id'=>$ans_dep_id])->with("success","ลบข้อมูลถาวรเรียบร้อย");;
+            return redirect()->route('ans',['ans_name'=>$ans_name,'ans_dep_id'=>$ans_dep_id])->with("success","ลบข้อมูลถาวรเรียบร้อย");
             // return redirect()->back()->->with('ans_dep_id',$ans_dep_id);
         } else{
             return redirect()->back()->with("error","ไม่ลบสามารถลบข้อมูลได้");
