@@ -159,7 +159,7 @@ class LawController extends Controller
 
             if($law_dep_id!=''){
                 $ans = Ans::where('ans_id','!=','')
-                ->where('ans_name','=','ข้อมูลพลทหาร')
+                ->where('ans_name','=','ข้อมูลม.35')
                     ->where(function($query) use ($law_dep_id){
                         if($law_dep_id!=''){
                             $query->where('ans_dep_id','=',$law_dep_id);
