@@ -77,7 +77,22 @@ class AnsController extends Controller
         })
         ->paginate(30);
 
-        return view('admin.ans.index',compact('departments','battalion','trashDepartment','ansShow','ans_dep_id','ans_name'));
+        $Department=Department::select('dep_id')
+            //->selectRaw('ใส่sql ตรงๆเลย')
+            ->selectRaw('min(departments.dep_index)dep_index')
+            ->selectRaw('min(department_name)department_name')
+            ->selectRaw("SUM(CASE WHEN ans_dep_id != '' THEN 1 ELSE 0 END) AS total")
+            //->leftJoin("เทเบิ้ลที่จะเอามาเชื่อม", "soldiers.ฟิวที่ตรงกัน", "=", "departments.ฟิวตรงกัน")
+            ->leftJoin("anss", "anss.ans_dep_id", "=", "departments.dep_id")
+            //->where('soldier_dep_id','!=',)
+            ->groupBy('dep_id')
+            ->orderBy('dep_index')
+            //->dd()
+            ->get();
+
+            // dd($ans_cont);
+
+        return view('admin.ans.index',compact('departments','battalion','trashDepartment','ansShow','ans_dep_id','ans_name','Department'));
     }
     public function store( Request $request){
         //  dd($request->all());
@@ -197,6 +212,7 @@ class AnsController extends Controller
     public function delete(Request $request,$ans_id){
 
         $ans_name=isset($request->ans_name)? $request->ans_name : '';
+        dd($ans_name);
         $ans_dep_id=isset($request->ans_dep_id)? $request->ans_dep_id : '';
         $act=true;
         $ans_id  =isset($ans_id) ? $ans_id : '' ;

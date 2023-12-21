@@ -48,9 +48,9 @@
                                 <select class=" form-control form-select" aria-label="ans_dep_id" name="ans_dep_id" >
 
                                     <option value="">คลิกเพื่อเลือก</option>
-                                    @foreach ( $departments as $key=>$row )
+                                    @foreach ( $Department as $key=>$row )
 
-                                    <option value="{{$row->dep_id}}"{{ $row->dep_id == $ans_dep_id ? 'selected' : ''}}>{{$row->department_name}}</option>
+                                    <option value="{{$row->dep_id}}"{{ $row->dep_id == $ans_dep_id ? 'selected' : ''}}>{{$row->department_name}} ({{$row->total}})</option>
                                     @endforeach
 
                                  </select>
@@ -90,7 +90,7 @@
                                         <img src="{{isset($row->ans_image) ? asset($row->ans_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->ans_image) ? asset($row->ans_image) : '' }}" width="100px" height="100px" class="mx-auto" >
                                     </td>
                                     <td>{{$row->ans_name}}</td>
-                                    <td><a href="{{url('/ans/delete/'.$row->ans_id)}}{{isset($ans_name) ? '?ans_image='.$ans_name : '' }}{{isset($ans_dep_id) ? '&ans_dep_id='.$ans_dep_id : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
+                                    <td><a href="{{url('/ans/delete/'.$row->ans_id)}}{{isset($ans_name) ? '?ans_name='.$ans_name : '' }}{{isset($ans_dep_id) ? '&ans_dep_id='.$ans_dep_id : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
                                   </tr>
                                   @endforeach
                                 </tbody>
