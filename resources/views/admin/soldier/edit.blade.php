@@ -135,9 +135,9 @@
                                                  <!--ตำแหน่ง -->
                                                  <div class="my-2 form-group">
                                                     <label for="soldier_rtanumber">ตำแหน่ง</label>
-                                                    <input type="text" class="form-control" name="soldier_rtanumber" placeholder="" value ="{{isset($soldier->soldier_rtanumber) ? $soldier->soldier_rtanumber : ''}}">
+                                                    <input type="text" class="form-control" name="soldier_job" placeholder="" value ="{{isset($soldier->soldier_job) ? $soldier->soldier_job : ''}}">
                                                 </div>
-                                                @error('soldier_rtanumber')
+                                                @error('soldier_job')
                                                 <div class="my-2">
                                                     <span class="text-red-600 text">{{$message}}</span>
                                                 </div>
