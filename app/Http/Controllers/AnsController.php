@@ -212,7 +212,7 @@ class AnsController extends Controller
     public function delete(Request $request,$ans_id){
 
         $ans_name=isset($request->ans_name)? $request->ans_name : '';
-        dd($ans_name);
+        // dd($ans_name);
         $ans_dep_id=isset($request->ans_dep_id)? $request->ans_dep_id : '';
         $act=true;
         $ans_id  =isset($ans_id) ? $ans_id : '' ;
