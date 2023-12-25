@@ -268,24 +268,25 @@
                                                 {{-- <div class="flex flex-auto"> --}}
 
                                                         <div class="my-2 form-group">
-                                                            <label for="soldier_startdate">วันที่ เข้าประจำการ</label>
+                                                            <label for="soldier_startdate_text">วันที่ เข้าประจำการ</label>
                                                             <div class="w-64">
-                                                                <input type="text" class="form-control soldier-date"  name="soldier_startdate" value ="{{ isset($soldier->soldier_startdate) ? Carbon\Carbon::parse($soldier->soldier_startdate)->format('d/m').'/'.Carbon\Carbon::parse($soldier->soldier_startdate)->format('Y')+543 : ''}}" >
+                                                                <input type="text" class="form-control "  name="soldier_startdate_text" value ="{{isset($soldier->soldier_startdate_text) ? $soldier->soldier_startdate_text : ''}}" >
                                                             </div>
                                                         </div>
-                                                        @error('soldier_startdate')
+                                                        @error('soldier_startdate_text')
                                                         <div class="my-2">
                                                             <span class="text-red-600 text">{{$message}}</span>
                                                         </div>
                                                         @enderror
                                                         <!--วันที่ ปลดประจำการ-->
                                                         <div class="my-2 form-group">
-                                                            <label for="soldier_enddate">วันที่ ปลดประจำการ</label>
+                                                            <label for="soldier_enddate_text">วันที่ ปลดประจำการ</label>
                                                             <div class="w-64">
-                                                                <input type="text" class="form-control soldier-date" name="soldier_enddate" value ="{{ isset($soldier->soldier_enddate) ? Carbon\Carbon::parse($soldier->soldier_enddate)->format('d/m').'/'.Carbon\Carbon::parse($soldier->soldier_enddate)->format('Y')+543 : ''}}" >
+                                                                {{-- <input type="text" class="form-control" name="soldier_enddate_text" value ="{{ isset($soldier->soldier_enddate) ? Carbon\Carbon::parse($soldier->soldier_enddate)->format('d/m').'/'.Carbon\Carbon::parse($soldier->soldier_enddate)->format('Y')+543 : ''}}" > --}}
+                                                                <input type="text" class="form-control" name="soldier_enddate_text" value ="{{isset($soldier->soldier_enddate_text) ? $soldier->soldier_enddate_text : ''}}" >
                                                             </div>
                                                         </div>
-                                                        @error('soldier_enddate')
+                                                        @error('soldier_enddate_text')
                                                         <div class="my-2">
                                                             <span class="text-red-600 text">{{$message}}</span>
                                                         </div>
