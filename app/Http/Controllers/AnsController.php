@@ -81,6 +81,12 @@ class AnsController extends Controller
             //->selectRaw('ใส่sql ตรงๆเลย')
             ->selectRaw('min(departments.dep_index)dep_index')
             ->selectRaw('min(department_name)department_name')
+            ->selectRaw("SUM(CASE WHEN ans_name = 'ข้อมูลพลทหาร' THEN 1 ELSE 0 END) AS total1")
+            ->selectRaw("SUM(CASE WHEN ans_name = 'ข้อมูลนาบสิบ' THEN 1 ELSE 0 END) AS total2")
+            ->selectRaw("SUM(CASE WHEN ans_name = 'ข้อมูลนายทหาร' THEN 1 ELSE 0 END) AS total3")
+            ->selectRaw("SUM(CASE WHEN ans_name = 'ข้อมูลม.35' THEN 1 ELSE 0 END) AS total4")
+            ->selectRaw("SUM(CASE WHEN ans_name = 'ข้อมูลผู้รับสิทธิ์' THEN 1 ELSE 0 END) AS total5")
+            ->selectRaw('min(anss.ans_name)ans_name')
             ->selectRaw("SUM(CASE WHEN ans_dep_id != '' THEN 1 ELSE 0 END) AS total")
             //->leftJoin("เทเบิ้ลที่จะเอามาเชื่อม", "soldiers.ฟิวที่ตรงกัน", "=", "departments.ฟิวตรงกัน")
             ->leftJoin("anss", "anss.ans_dep_id", "=", "departments.dep_id")
@@ -90,7 +96,11 @@ class AnsController extends Controller
             //->dd()
             ->get();
 
-            // dd($ans_cont);
+
+
+            //  dd($Department,$Ans1,$Ans2,$Ans3,$Ans4,$Ans5);
+
+
 
         return view('admin.ans.index',compact('departments','battalion','trashDepartment','ansShow','ans_dep_id','ans_name','Department'));
     }

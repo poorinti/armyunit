@@ -32,6 +32,10 @@
                                 <!-- <input type="hidden" class="form-control" name="department_id"> -->
                                 <!-- เลือกกองพัน -->
                                 <!-- php จะอ้างอิงจากชื่อ name เท่านั้น-->
+                                @php
+
+                                @endphp
+
                                 <select class=" form-control form-select" aria-label="ans_name" name="ans_name" >
 
                                     <option value="">คลิกเพื่อเลือก</option>
@@ -45,12 +49,12 @@
                                 <!-- <input type="hidden" class="form-control" name="department_id"> -->
                                 <!-- เลือกกองพัน -->
                                 <!-- php จะอ้างอิงจากชื่อ name เท่านั้น-->
-                                <select class=" form-control form-select" aria-label="ans_dep_id" name="ans_dep_id" >
+                                <select class=" form-select" aria-label="ans_dep_id" name="ans_dep_id" >
 
                                     <option value="">คลิกเพื่อเลือก</option>
                                     @foreach ( $Department as $key=>$row )
 
-                                    <option value="{{$row->dep_id}}"{{ $row->dep_id == $ans_dep_id ? 'selected' : ''}}>{{$row->department_name}} ({{$row->total}})</option>
+                                    <option value="{{$row->dep_id}}"{{ $row->dep_id == $ans_dep_id ? 'selected' : ''}}>{{$row->department_name}} ({{$row->total}}) ({{$row->total1}}) ({{$row->total2}})({{$row->total3}})({{$row->total4}})({{$row->total5}})</option>
                                     @endforeach
 
                                  </select>
