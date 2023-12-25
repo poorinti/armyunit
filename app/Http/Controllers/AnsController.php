@@ -82,7 +82,7 @@ class AnsController extends Controller
             ->selectRaw('min(departments.dep_index)dep_index')
             ->selectRaw('min(department_name)department_name')
             ->selectRaw("SUM(CASE WHEN ans_name = 'ข้อมูลพลทหาร' THEN 1 ELSE 0 END) AS total1")
-            ->selectRaw("SUM(CASE WHEN ans_name = 'ข้อมูลนาบสิบ' THEN 1 ELSE 0 END) AS total2")
+            ->selectRaw("SUM(CASE WHEN ans_name = 'ข้อมูลนายสิบ' THEN 1 ELSE 0 END) AS total2")
             ->selectRaw("SUM(CASE WHEN ans_name = 'ข้อมูลนายทหาร' THEN 1 ELSE 0 END) AS total3")
             ->selectRaw("SUM(CASE WHEN ans_name = 'ข้อมูลม.35' THEN 1 ELSE 0 END) AS total4")
             ->selectRaw("SUM(CASE WHEN ans_name = 'ข้อมูลผู้รับสิทธิ์' THEN 1 ELSE 0 END) AS total5")
