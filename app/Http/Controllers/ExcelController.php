@@ -426,7 +426,7 @@ class ExcelController extends Controller
                     ,'cco_bat_id'=>$cco_bat_id
                     ,'cco_bat_name'=>$cco_bat_name
                     ,'updated_at'=>$updated_at
-                    ,'created_at'=>$created_at
+
 
 
 
@@ -554,7 +554,7 @@ class ExcelController extends Controller
                     ,'law_bat_id'=>$law_bat_id
                     ,'law_bat_name'=>$law_bat_name
                     ,'updated_at'=>$updated_at
-                    ,'created_at'=>$created_at
+
 
 
 
@@ -682,7 +682,7 @@ class ExcelController extends Controller
                     ,'pay_bat_id'=>$pay_bat_id
                     ,'pay_bat_name'=>$pay_bat_name
                     ,'updated_at'=>$updated_at
-                    ,'created_at'=>$created_at
+                    
 
 
 

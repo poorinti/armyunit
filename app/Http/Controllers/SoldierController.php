@@ -389,6 +389,7 @@ class SoldierController extends Controller
             $soldier_corp = isset($request->soldier_corp ) ? $request->soldier_corp  : '';
             $soldier_education = isset($request->soldier_education ) ? $request->soldier_education   : '';
             $soldier_skill = isset($request->soldier_skill ) ? $request->soldier_skill    : '';
+
             $soldier_startdate = isset($request->soldier_startdate  ) ?   $this->dateThaiToeng($request->soldier_startdate)  : null;
             $soldier_enddate = isset($request->soldier_enddate  ) ?   $this->dateThaiToeng($request->soldier_enddate)  : null;
             // $soldier_startdate = isset($request->soldier_startdate  ) ? Carbon::parse($request->soldier_startdate )->format('Y-m-d')   : null;
@@ -425,7 +426,7 @@ class SoldierController extends Controller
             $soldier_relative_phone2  =isset($request->soldier_relative_phone2) ? $request->soldier_relative_phone2 : '' ;
             $soldier_relative_add2  =isset($request->soldier_relative_add2) ? $request->soldier_relative_add2 : '' ;
             $soldier_job =isset($request->soldier_job) ? $request->soldier_job : '' ;
-            $soldier_startdate_text =isset($request->startdate_text) ? $request->startdate_text : '' ;
+            $soldier_startdate_text =isset($request->soldier_startdate_text) ? $request->soldier_startdate_text : '' ;
             $soldier_enddate_text =isset($request->soldier_enddate_text) ? $request->soldier_enddate_text : '' ;
             $soldier_course_have =isset($request->soldier_course_have) ? $request->soldier_course_have: '' ;
 
