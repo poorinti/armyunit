@@ -127,7 +127,8 @@
                                     <th scope="col" class="hidden lg:table-cell">เลขประจำตัวทหาร</th>
                                     {{-- <th style="width: 80px;" scope="col">กำเหนิด</th> --}}
                                     <th scope="col">หน่วย</th>
-                                    <th scope="col" class="hidden sm:table-cell">ภูมิลำเนา</th>
+                                    <th scope="col" class="hidden sm:table-cell">อำเภอ</th>
+                                    <th scope="col" class="hidden sm:table-cell">จังหวัด</th>
                                     <th scope="col" class="hidden lg:table-cell">แก้ไข</th>
                                     <th scope="col" class="hidden lg:table-cell">ลบ</th>
                                   </tr>
@@ -149,6 +150,7 @@
                                     <td  class="hidden lg:table-cell">{{$row->nco_id }}</td>
                                     {{-- <td>{{$row->nco_intern}}</td> --}}
                                     <td>{{$row->nco_dep_name}}</td>
+                                    <td class="hidden sm:table-cell">{{$row->nco_amphoe}}</td>
                                     <td class="hidden sm:table-cell">{{$row->nco_province}}</td>
                                     <td class="hidden lg:table-cell"><a href="{{url('/nco/edit/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}{{isset($nco_amphoe) ? '&nco_amphoe='.$nco_amphoe : '' }}" class="btn btn-danger"> แก้ไข</a></td>
                                     <td class="hidden lg:table-cell"><a href="{{url('/nco/delete/'.$row->nco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' }}{{isset($nco_provinces) ? '&nco_provinces='.$nco_provinces : '' }}{{isset($nco_education) ? '&nco_education='.$nco_education : '' }}{{isset($nco_disease) ? '&nco_disease='.$nco_disease : '' }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}{{isset($nco_amphoe) ? '&nco_amphoe='.$nco_amphoe : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>

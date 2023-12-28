@@ -151,7 +151,8 @@
                                     <th scope="col" class="hidden lg:table-cell ">ความต้องการพิเศษ</th>
                                     <th style="width: 80px;" scope="col">ผลัด/ปี</th>
                                     <th scope="col">หน่วย</th>
-                                    <th scope="col" class="hidden sm:table-cell ">ภูมิลำเนา</th>
+                                    <th scope="col" class="hidden sm:table-cell ">อำเภอ</th>
+                                    <th scope="col" class="hidden sm:table-cell ">จังหวัด</th>
                                     <th scope="col" class="hidden lg:table-cell">แก้ไข</th>
                                     <th scope="col" class="hidden lg:table-cell">ลบ</th>
                                   </tr>
@@ -173,6 +174,7 @@
                                     <td  class="hidden lg:table-cell">{{$row->soldier_wantto }}</td>
                                     <td>{{$row->soldier_intern}}</td>
                                     <td>{{$row->soldiers_dep_name}}</td>
+                                    <td class="hidden sm:table-cell">{{$row->soldier_amphoe}}</td>
                                     <td class="hidden sm:table-cell">{{$row->soldier_province}}</td>
                                     <td class="hidden lg:table-cell"><a href="{{url('/soldier/edit/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}{{isset($soldier_amphoe) ? '&soldier_amphoe='.$soldier_amphoe : '' }}{{isset($soldier_wantto) ? '&soldier_wantto='.$soldier_wantto : '' }}" class="btn btn-danger"> แก้ไข</a></td>
                                     <td class="hidden lg:table-cell"><a href="{{url('/soldier/delete/'.$row->soldier_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' }}{{isset($soldier_provinces) ? '&soldier_provinces='.$soldier_provinces : '' }}{{isset($soldier_education) ? '&soldier_education='.$soldier_education : '' }}{{isset($soldier_disease) ? '&soldier_disease='.$soldier_disease : '' }}{{isset($soldier_amphoe) ? '&soldier_amphoe='.$soldier_amphoe : '' }}{{isset($soldier_wantto) ? '&soldier_wantto='.$soldier_wantto : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>

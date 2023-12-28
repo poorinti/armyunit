@@ -98,7 +98,7 @@
                     </div>
                 </div>
                 </form>
-               
+
                 <div class="row">
                     @if (session('success'))
                             <div class="alert alert-success">{{session('success')}}</div>
@@ -126,7 +126,8 @@
                                     <th scope="col" class="hidden lg:table-cell">เลขประจำตัวทหาร</th>
                                     {{-- <th style="width: 80px;" scope="col">กำเหนิด</th> --}}
                                     <th scope="col">หน่วย</th>
-                                    <th scope="col" class="hidden sm:table-cell">ภูมิลำเนา</th>
+                                    <th scope="col" class="hidden sm:table-cell">อำเภอ</th>
+                                    <th scope="col" class="hidden sm:table-cell">จังหวัด</th>
                                     <th scope="col" class="hidden lg:table-cell">แก้ไข</th>
                                     <th scope="col" class="hidden lg:table-cell">ลบ</th>
                                   </tr>
@@ -148,6 +149,7 @@
                                     <td  class="hidden lg:table-cell">{{$row->cco_id }}</td>
                                     {{-- <td>{{$row->cco_intern}}</td> --}}
                                     <td>{{$row->cco_dep_name}}</td>
+                                    <td class="hidden sm:table-cell">{{$row->cco_amphoe}}</td>
                                     <td class="hidden sm:table-cell">{{$row->cco_province}}</td>
                                     <td class="hidden lg:table-cell"><a href="{{url('/cco/edit/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}{{isset($cco_amphoe) ? '&cco_amphoe='.$cco_amphoe : '' }}{{isset($cco_wantto) ? '&cco_wantto='.$cco_wantto : '' }}" class="btn btn-danger"> แก้ไข</a></td>
                                     <td class="hidden lg:table-cell"><a href="{{url('/cco/delete/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}{{isset($cco_amphoe) ? '&cco_amphoe='.$cco_amphoe : '' }}{{isset($cco_wantto) ? '&cco_wantto='.$cco_wantto : '' }}" class="btn btn-warning" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่ ?')"> ลบ</a></td>
