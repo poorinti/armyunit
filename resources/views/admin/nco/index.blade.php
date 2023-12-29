@@ -51,7 +51,7 @@
                             @endphp
                             <button class="mx-1 btn btn-success " style="font-weight: 800;">ความต้องการพิเศษ</button>
                             <select class="mr-2 form-control" id="nco_wantto" name="nco_wantto">
-                                <option value="">ไม่มีความต้องการพิเศษ</option>
+                                <option value="">-</option>
                                 @foreach ( $wanttoArr as $key=>$row )
                             <option value="{{ $row}}" {{ $row== $nco_wantto ? 'selected' : ''}}>{{ $row}}</option>
                             @endforeach

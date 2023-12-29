@@ -65,7 +65,7 @@
                    <div class="my-2 input-group">
                         <button class="mx-1 text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >วุฒิ</button>
                         <select class="mr-2 form-control" name="soldier_education" id="soldier_education" >
-                            <option value="">ทั้งหมด</option>
+                            <option value="">-</option>
                                 @foreach ( $educationArr as $key=>$row )
                                 <option value="{{$row}}" {{ $soldier_education ==$row ? 'selected' :'' }}>{{$row}}</option>
                             @endforeach
@@ -76,7 +76,7 @@
                         @endphp
                         <button class="text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >โรค</button>
                         <select class="mx-1 mr-2 form-control" name="soldier_disease" id="soldier_disease" >
-                        <option value="">ทั้งหมด(มีและไม่มี)</option>
+                        <option value="">-</option>
                             @foreach ( $diseaseArr as $key=>$item )
                             <option value="{{ $item }}" {{ $item == $soldier_disease ? 'selected' : ''}}>{{ $item }}</option>
 
@@ -91,7 +91,7 @@
                         <button class="mx-1 text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >ประสงค์สอบนนส.</button>
                         <select class="mr-2 form-control" name="soldier_want_nco" id="soldier_want_nco" >
 
-                        <option value="">ทั้งหมด</option>
+                        <option value="">-</option>
                             @foreach ( $diseaseArr as $key=>$item )
                             <option value="{{ $item }}" {{ $item == $soldier_want_nco ? 'selected' : ''}}>{{ $item }}</option>
                             @endforeach
@@ -103,7 +103,7 @@
                         @endphp
                         <button class="text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;">ความต้องการพิเศษ</button>
                         <select class="mx-1 mr-2 form-control" id="soldier_wantto" name="soldier_wantto">
-                            <option value="">ทั้งหมด</option>
+                            <option value="">-</option>
                             @foreach ( $wanttoArr as $key=>$row )
                         <option value="{{ $row}}" {{ $row== $soldier_wantto ? 'selected' : ''}}>{{ $row}}</option>
                         @endforeach
