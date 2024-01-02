@@ -105,9 +105,25 @@ class CcoController extends Controller
                          //ตัวแรก where ตามด้วย orwhere
                          $query->where('cco_name', 'like','%'.$search.'%')
                          ->orwhere('cco_id', 'like','%'.$search.'%')
+                         ->orwhere('cco_rank', 'like','%'.$search.'%')
                          ->orwhere('cco_dep_name', 'like','%'.$search.'%')
                          ->orwhere('cco_bat_name', 'like','%'.$search.'%')
-                         ->orwhere('cco_province', 'like','%'.$search.'%');
+                         ->orwhere('cco_rtanumber', 'like','%'.$search.'%')
+                         ->orwhere('cco_intern', 'like','%'.$search.'%')
+                         ->orwhere('cco_corp', 'like','%'.$search.'%')
+                         ->orwhere('cco_job', 'like','%'.$search.'%')
+                         ->orwhere('cco_education', 'like','%'.$search.'%')
+                         ->orwhere('cco_education_study', 'like','%'.$search.'%')
+                         ->orwhere('cco_wantto', 'like','%'.$search.'%')
+                         ->orwhere('cco_wantto_about', 'like','%'.$search.'%')
+                         ->orwhere('cco_skill_work', 'like','%'.$search.'%')
+                         ->orwhere('cco_wife_name', 'like','%'.$search.'%')
+                         ->orwhere('cco_child_name1', 'like','%'.$search.'%')
+                         ->orwhere('cco_child_name2', 'like','%'.$search.'%')
+                         ->orwhere('cco_child_name3', 'like','%'.$search.'%')
+                         ->orwhere('cco_child_name4', 'like','%'.$search.'%')
+                         ->orwhere('cco_child_name5', 'like','%'.$search.'%')
+                         ->orwhere('cco_skill', 'like','%'.$search.'%');
 
                      }
                      })

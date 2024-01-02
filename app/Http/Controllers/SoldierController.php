@@ -106,10 +106,22 @@ class SoldierController extends Controller
                 ->orwhere('soldier_intern', 'like','%'.$search.'%')
                 ->orwhere('soldier_skill', 'like','%'.$search.'%')
                 ->orwhere('soldier_province', 'like','%'.$search.'%')
+                ->orwhere('soldier_address', 'like','%'.$search.'%')
                 ->orwhere('soldiers_teacher', 'like','%'.$search.'%')
                 ->orwhere('soldiers_now', 'like','%'.$search.'%')
                 ->orwhere('soldier_course', 'like','%'.$search.'%')
-                ->orWhere('soldier_state','%'. $search.'%');
+                ->orWhere('soldier_state','%'. $search.'%')
+                ->orWhere('soldier_province','%'. $search.'%')
+                ->orWhere('soldier_amphoe','%'. $search.'%')
+                ->orWhere('soldier_wantto','%'. $search.'%')
+                ->orWhere('soldier_disease','%'. $search.'%')
+                ->orWhere('soldier_disease_about','%'. $search.'%')
+                ->orWhere('soldier_startdate_text','%'. $search.'%')
+                ->orWhere('soldier_enddate_text','%'. $search.'%')
+                ->orWhere('soldier_course_have','%'. $search.'%')
+                ->orWhere('soldier_education_study','%'. $search.'%')
+                ->orWhere('soldier_education_end','%'. $search.'%')
+                ->orWhere('soldier_job','%'. $search.'%');
             }
 		    })
             // ->dd()

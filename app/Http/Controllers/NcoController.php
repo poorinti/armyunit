@@ -105,11 +105,25 @@ class NcoController extends Controller
                          //ตัวแรก where ตามด้วย orwhere
                          $query->where('nco_name', 'like','%'.$search.'%')
                          ->orwhere('nco_id', 'like','%'.$search.'%')
+                         ->orwhere('nco_rank', 'like','%'.$search.'%')
                          ->orwhere('nco_dep_name', 'like','%'.$search.'%')
                          ->orwhere('nco_bat_name', 'like','%'.$search.'%')
                          ->orwhere('nco_rtanumber', 'like','%'.$search.'%')
                          ->orwhere('nco_intern', 'like','%'.$search.'%')
-                         ->orwhere('nco_province', 'like','%'.$search.'%');
+                         ->orwhere('nco_corp', 'like','%'.$search.'%')
+                         ->orwhere('nco_job', 'like','%'.$search.'%')
+                         ->orwhere('nco_education', 'like','%'.$search.'%')
+                         ->orwhere('nco_education_study', 'like','%'.$search.'%')
+                         ->orwhere('nco_wantto', 'like','%'.$search.'%')
+                         ->orwhere('nco_wantto_about', 'like','%'.$search.'%')
+                         ->orwhere('nco_skill_work', 'like','%'.$search.'%')
+                         ->orwhere('nco_wife_name', 'like','%'.$search.'%')
+                         ->orwhere('nco_child_name1', 'like','%'.$search.'%')
+                         ->orwhere('nco_child_name2', 'like','%'.$search.'%')
+                         ->orwhere('nco_child_name3', 'like','%'.$search.'%')
+                         ->orwhere('nco_child_name4', 'like','%'.$search.'%')
+                         ->orwhere('nco_child_name5', 'like','%'.$search.'%')
+                         ->orwhere('nco_skill', 'like','%'.$search.'%');
 
                      }
                      })
