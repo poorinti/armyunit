@@ -72,7 +72,7 @@
                         </select>
                         @php
                         $diseaseArr = array();
-                        $diseaseArr=['ไม่มี','ซึมเศร้า','จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','อื่นๆ']
+                        $diseaseArr=['ไม่มี','ซึมเศร้า','จิตเวช','ภูมิแพ้','หอบหืด','หัวใจ','ภูมิแพ้','กระดูก/ดามเหล็ก','เคยเป็นลมร้อนมาก่อน','ตับ','ไว้รัสตับอักเสบ B','ลมชัก','เบาหวาน','ความดัน','อื่นๆ']
                         @endphp
                         <button class="text-white bg-purple-700 btn hover:bg-black" style="font-weight: 800;" >โรค</button>
                         <select class="mx-1 mr-2 form-control" name="soldier_disease" id="soldier_disease" >
