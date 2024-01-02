@@ -348,7 +348,7 @@ class NcoController extends Controller
             $nco_id  =isset($nco_id) ? $nco_id : '' ;
 
             $delete = Nco::Where('nco_id','=',$nco_id)->Delete();
-            if($act){
+            if($delete){
                 return redirect()->back()->with("success","ลบข้อมูลถาวรเรียบร้อย");
             } else{
                 return redirect()->back()->with("error","ไม่ลบสามารถลบข้อมูลได้");

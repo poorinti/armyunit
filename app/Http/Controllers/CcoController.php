@@ -347,7 +347,7 @@ class CcoController extends Controller
             $cco_id  =isset($cco_id) ? $cco_id : '' ;
 
             $delete = Cco::Where('cco_id','=',$cco_id)->Delete();
-            if($act){
+            if($delete){
                 return redirect()->back()->with("success","ลบข้อมูลถาวรเรียบร้อย");
             } else{
                 return redirect()->back()->with("error","ไม่ลบสามารถลบข้อมูลได้");

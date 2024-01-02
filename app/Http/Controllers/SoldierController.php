@@ -335,7 +335,7 @@ class SoldierController extends Controller
         $soldier_id  =isset($soldier_id) ? $soldier_id : '' ;
 
         $delete = Soldier::Where('soldier_id','=',$soldier_id)->Delete();
-        if($act){
+        if($delete){
             return redirect()->back()->with("success","ลบข้อมูลถาวรเรียบร้อย");
         } else{
             return redirect()->back()->with("error","ไม่ลบสามารถลบข้อมูลได้");
