@@ -330,13 +330,27 @@ class SoldierController extends Controller
         return view('admin.soldier.index');
        }
 
-       public function delete($soldier_id){
+
+    public function delete(Request $request,$soldier_id){
+
+        $soldier_id  =isset($soldier_id) ? $soldier_id : '' ;
+        $search=isset($request->search)? $request->search : '';
+        $page=isset($request->page)? $request->page : '';
+        // dd($soldier_name);
+        $soldier_dep_id=isset($request->soldier_dep_id)? $request->soldier_dep_id : '';
         $act=true;
         $soldier_id  =isset($soldier_id) ? $soldier_id : '' ;
 
+        $chkimage= Soldier::Where('soldier_id','=',$soldier_id)->first();
+        $soldier_image1=$chkimage->soldier_image;
+        
         $delete = Soldier::Where('soldier_id','=',$soldier_id)->Delete();
+        if($soldier_image1){
+             unlink($soldier_image1);
+            }
         if($delete){
-            return redirect()->back()->with("success","ลบข้อมูลถาวรเรียบร้อย");
+            return redirect()->route('soldier',['search'=>$search,'page'=>$page,'soldier_dep_id'=>$soldier_dep_id])->with("success","ลบข้อมูลถาวรเรียบร้อย");
+            // return redirect()->back()->->with('ans_dep_id',$ans_dep_id);
         } else{
             return redirect()->back()->with("error","ไม่ลบสามารถลบข้อมูลได้");
         }
