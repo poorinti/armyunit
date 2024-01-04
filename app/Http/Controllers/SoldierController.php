@@ -343,7 +343,7 @@ class SoldierController extends Controller
 
         $chkimage= Soldier::Where('soldier_id','=',$soldier_id)->first();
         $soldier_image1=$chkimage->soldier_image;
-        
+
         $delete = Soldier::Where('soldier_id','=',$soldier_id)->Delete();
         if($soldier_image1){
              unlink($soldier_image1);
@@ -394,9 +394,6 @@ class SoldierController extends Controller
           ]
 
       );
-
-
-
 
 // dd($soldier_startdate);
 
@@ -486,8 +483,8 @@ class SoldierController extends Controller
                 ,"soldier_enddate_text" => $soldier_enddate_text
                 ,"soldier_phone" => $soldier_phone
                 ,"soldier_about" => $soldier_about
-                ,'soldier_wantto'=>$soldier_wantto_about
-                ,'soldier_wantto_about'=>$soldier_wantto
+                ,'soldier_wantto'=>$soldier_wantto
+                ,'soldier_wantto_about'=>$soldier_wantto_about
                 ,'soldier_health'=>$soldier_health
                 ,'soldier_want_nco'=>$soldier_want_nco
 
