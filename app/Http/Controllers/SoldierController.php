@@ -336,6 +336,8 @@ class SoldierController extends Controller
         $soldier_id  =isset($soldier_id) ? $soldier_id : '' ;
         $search=isset($request->search)? $request->search : '';
         $page=isset($request->page)? $request->page : '';
+        $soldier_want_nco=isset($request->soldier_want_nco)? $request->soldier_want_nco : '';
+
         // dd($soldier_name);
         $soldier_dep_id=isset($request->soldier_dep_id)? $request->soldier_dep_id : '';
         $act=true;
@@ -349,7 +351,7 @@ class SoldierController extends Controller
              unlink($soldier_image1);
             }
         if($delete){
-            return redirect()->route('soldier',['search'=>$search,'page'=>$page,'soldier_dep_id'=>$soldier_dep_id])->with("success","ลบข้อมูลถาวรเรียบร้อย");
+            return redirect()->route('soldier',['search'=>$search,'page'=>$page,'soldier_dep_id'=>$soldier_dep_id,'soldier_want_nco'=>$soldier_want_nco])->with("success","ลบข้อมูลถาวรเรียบร้อย");
             // return redirect()->back()->->with('ans_dep_id',$ans_dep_id);
         } else{
             return redirect()->back()->with("error","ไม่ลบสามารถลบข้อมูลได้");
