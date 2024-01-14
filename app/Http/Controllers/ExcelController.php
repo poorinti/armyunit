@@ -170,10 +170,6 @@ class ExcelController extends Controller
                     ,'soldiers_bat_name'=>$soldiers_bat_name
                     ,'updated_at'=>$updated_at
 
-
-
-
-
                 ]);
                 //  return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
                 }
@@ -682,7 +678,7 @@ class ExcelController extends Controller
                     ,'pay_bat_id'=>$pay_bat_id
                     ,'pay_bat_name'=>$pay_bat_name
                     ,'updated_at'=>$updated_at
-                    
+
 
 
 

@@ -568,11 +568,11 @@ class SoldierController extends Controller
                 // $search = isset($request->search) ? $request->search  : '';
                 // $soldier_dep_id = isset($request->soldier_dep_id) ? $request->soldier_dep_id : '';
 
-                $url='/soldier/all?';
-                $url .=isset($page)? 'page='.$page :'';
-                $url .=isset($search) ? '&search='.$search : '' ;
-                $url .=isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' ;
-                $url .=isset($soldier_provinces) ? '&soldier_provinces='. iconv('Windows-1250', 'UTF-8',$soldier_provinces) : '' ;
+                // $url='/soldier/all?';
+                // $url .=isset($page)? 'page='.$page :'';
+                // $url .=isset($search) ? '&search='.$search : '' ;
+                // $url .=isset($soldier_dep_id) ? '&soldier_dep_id='.$soldier_dep_id : '' ;
+                // $url .=isset($soldier_provinces) ? '&soldier_provinces='. iconv('Windows-1250', 'UTF-8',$soldier_provinces) : '' ;
 
                 //    dd($url);
                 // return redirect($url  )->with("success","อัพเดทข้อมูลเรียบร้อย");
