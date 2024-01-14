@@ -531,12 +531,12 @@ class CcoController extends Controller
                 // $search = isset($request->search) ? $request->search  : '';
                 // $soldier_dep_id = isset($request->soldier_dep_id) ? $request->soldier_dep_id : '';
 
-                $url='/cco/all?';
-                $url .=isset($page)? 'page='.$page :'';
-                $url .=isset($search) ? '&search='.$search : '' ;
-                $url .=isset($nco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' ;
-                $url .=isset($request->cco_rank ) ? $request->cco_rank  : '' ;
-                $url .=isset($cco_provinces) ? '&cco_provinces='. iconv('Windows-1250', 'UTF-8',$cco_provinces) : '' ;
+                // $url='/cco/all?';
+                // $url .=isset($page)? 'page='.$page :'';
+                // $url .=isset($search) ? '&search='.$search : '' ;
+                // $url .=isset($nco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' ;
+                // $url .=isset($request->cco_rank ) ? $request->cco_rank  : '' ;
+                // $url .=isset($cco_provinces) ? '&cco_provinces='. iconv('Windows-1250', 'UTF-8',$cco_provinces) : '' ;
 
                 //    dd($url);
                 // return redirect($url  )->with("success","อัพเดทข้อมูลเรียบร้อย");

@@ -525,12 +525,12 @@ class NcoController extends Controller
                 // $search = isset($request->search) ? $request->search  : '';
                 // $soldier_dep_id = isset($request->soldier_dep_id) ? $request->soldier_dep_id : '';
 
-                $url='/nco/all?';
-                $url .=isset($page)? 'page='.$page :'';
-                $url .=isset($search) ? '&search='.$search : '' ;
-                $url .=isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' ;
-                $url .=isset($request->nco_rank ) ? $request->nco_rank  : '' ;
-                $url .=isset($nco_provinces) ? '&nco_provinces='. iconv('Windows-1250', 'UTF-8',$nco_provinces) : '' ;
+                // $url='/nco/all?';
+                // $url .=isset($page)? 'page='.$page :'';
+                // $url .=isset($search) ? '&search='.$search : '' ;
+                // $url .=isset($nco_dep_id) ? '&nco_dep_id='.$nco_dep_id : '' ;
+                // $url .=isset($request->nco_rank ) ? $request->nco_rank  : '' ;
+                // $url .=isset($nco_provinces) ? '&nco_provinces='. iconv('Windows-1250', 'UTF-8',$nco_provinces) : '' ;
 
                 //    dd($url);
                 // return redirect($url  )->with("success","อัพเดทข้อมูลเรียบร้อย");
