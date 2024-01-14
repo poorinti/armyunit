@@ -161,7 +161,7 @@
                             <br>
 
 
-                            {{$nco->appends(['search' => isset($search) ? $search : '','nco_dep_id'=>isset($nco_dep_id) ?$nco_dep_id :'',"nco_provinces"=> isset($nco_provinces) ? $nco_provinces : '',"nco_rank"=> isset($nco_rank) ? $nco_rank : '',"nco_amphoe"=> isset($nco_amphoe) ? $nco_amphoe: ''])->links()}}
+                            {{$nco->appends(['search' => isset($search) ? $search : '','nco_dep_id'=>isset($nco_dep_id) ?$nco_dep_id :'',"nco_provinces"=> isset($nco_provinces) ? $nco_provinces : '',"nco_rank"=> isset($nco_rank) ? $nco_rank : '',"nco_amphoe"=> isset($nco_amphoe) ? $nco_amphoe: '','nco_wantto'=>isset($nco_wantto) ?$nco_wantto :''])->links()}}
                         </div>
                     </div>
                 </div>

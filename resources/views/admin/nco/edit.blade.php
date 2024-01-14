@@ -62,7 +62,7 @@
                     @endif
                     <div class="col-md-4">
                         <div class="card">
-                            <a href="{{ '/nco/all?page='.request()->page.'&search='.request()->search.'&nco_dep_id='.request()->nco_dep_id.'&nco_provinces='.request()->nco_provinces.'&nco_education='.request()->nco_education.'&nco_disease='.request()->nco_disease.'&nco_amphoe='.request()->nco_amphoe   }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="text-black bg-purple-700 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                            <a href="{{ '/nco/all?page='.request()->page.'&search='.request()->search.'&nco_dep_id='.request()->nco_dep_id.'&nco_provinces='.request()->nco_provinces.'&nco_education='.request()->nco_education.'&nco_disease='.request()->nco_disease.'&nco_amphoe='.request()->nco_amphoe.'&nco_wantto='.request()->nco_wantto   }}{{isset($nco_rank) ? '&nco_rank='.$nco_rank : '' }}" class="text-black bg-purple-700 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
                             <div class="bg-slate-200 card-header ">รูปประจำตัว</div>
                             <div class="justify-center mx-auto text-center card-body ">
                                 <img src="{{isset($nco->nco_image) ? asset($nco->nco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($nco->nco_image) ? asset($nco->nco_image) : '' }}" alt="imageshow" width="200px" height="200px">
@@ -179,7 +179,7 @@
                                                 <!--เหล่า -->
                                                 @php
                                                     $unitArr = array();
-                                                    $unitArr=['ร.','ม.','ป.','ช.','ส.','ขส.','สพ.','พธ.','สห.','สบ.','กง.','สบ.','กง.','ธน.','พ','ผท','กส.','ดย.','ขว.']
+                                                    $unitArr=['ร.','ม.','ป.','ช.','ส.','ขส.','สพ.','พธ.','สห.','สบ.','กง.','สบ.','กง.','ธน.','พ.','ผท.','กส.','ดย.','ขว.']
                                                 @endphp
                                                 <div class="my-2 form-group">
                                                     <label for="nco_corp" class="form-label">เหล่า</label>
