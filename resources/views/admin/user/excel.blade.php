@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-             {{Auth::user()->name}}
+            User {{Auth::user()->name}}
         </h2>
     </x-slot>
     <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -21,9 +21,9 @@
                     <div class="col-md-12">
                         <div class=" card">
                             <div class="card">
-                                <div class="card-header">Import ข้อมูลกำลังพล</div>
+                                <div class="card-header">Import ข้อมูลUser</div>
                                      <div class="card-body">
-                                        <form action="{{ url('/soldier/excel/import') }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ url('/user/excel/import') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
 
                                             <div class="flex-row-reverse d-flex justify-content-end ">

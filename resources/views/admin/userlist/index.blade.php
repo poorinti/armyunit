@@ -2,7 +2,8 @@
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             รายชื่อผู้ใช้งาน
-           <b class="float-end">จำนวนผู้ใช้ระบบ <span class="text-red-500">{{count($users)}} </span>คน</b>
+
+           <b class="float-end">จำนวนผู้ใช้ระบบ <span class="text-red-500">{{count($users)}} </span>คน    |||<a href="/user/excel" class="btn btn-success show-model"> เพิ่มหน่วย ด้วย excel</a></b>
         </h2>
     </x-slot>
 

@@ -121,6 +121,10 @@ Route::middleware([
     Route::post('/pay/excel/import', [ExcelController::class,'importpay']);
     Route::get('/pay/excel/export', [ExcelController::class,'exportpay']);
 
+    Route::get('/user/excel', [ExcelController::class,'indexuser']);
+    Route::post('/user/excel/import', [ExcelController::class,'importuser']);
+    Route::get('/user/excel/export', [ExcelController::class,'exportuser']);
+
 
     Route::get('/soldier/provinces',[TambonController::class,'getProvinces']);
     Route::get('/soldier/amphoes',[TambonController::class,'getAmphoes']);

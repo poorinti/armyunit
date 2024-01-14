@@ -10,6 +10,7 @@ use App\Models\Nco;
 use App\Models\Pay;
 use App\Models\Cco;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Rap2hpoutre\FastExcel\FastExcel;
 use Carbon\Carbon;
@@ -45,6 +46,12 @@ class ExcelController extends Controller
 
         $Department=Department::where('dep_id','!=','')->orderby('dep_id')->get();
         return view('admin.pay.excel',compact('Department'));
+    }
+    public function indexuser()
+    {
+
+        $Department=Department::where('dep_id','!=','')->orderby('dep_id')->get();
+        return view('admin.user.excel',compact('Department'));
     }
 /////////////////////////////////////////////////////////////////////////////////////////ss
     public function import(Request $request)
@@ -710,4 +717,65 @@ class ExcelController extends Controller
             ];
         });
     }
+    public function importuser (Request $request)
+{
+
+   $excel_import= $request->file('excel_import');
+//
+
+
+if(!$excel_import){
+
+    return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
 }
+
+// $line->$soldier_dep_id = $soldier_dep_id;
+  //   try {
+        $pay = (new FastExcel)->import($excel_import, function ($line) {
+
+
+
+            $created_at=Carbon::now()->format("Y-m-d H:i:s");
+            $updated_at =Carbon::now()->format("Y-m-d H:i:s");
+
+            try {
+            return User::insert([
+
+                'name' =>$line['name']
+                ,'email'=>trim($line['email'])
+                ,"password" => Hash::make(trim($line['password']))
+
+                ,'updated_at'=>$updated_at
+                ,'created_at'=>$created_at
+                ,"is_admin" => trim($line['is_admin'])
+
+            ]);
+        } catch (\Throwable $th) {
+            return
+            User::where('email','=',trim($line['email']))->update([
+
+                'name' =>$line['name']
+                ,"password" => Hash::make(trim($line['password']))
+
+                ,'updated_at'=>$updated_at
+                ,'created_at'=>$created_at
+                ,"is_admin" => trim($line['is_admin'])
+
+            ]);
+            //  return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
+            }
+
+
+        });
+    //   } catch (\Throwable $th) {
+
+    //  //  return redirect()->back()->with(['error' => "ไม่สำเร็จครับ"]);
+    //  }
+
+    return redirect('/user/excel')->with(['success' => "Users imported successfully."]);
+
+}
+
+}
+//////////////////////////////////////////////////////////////////////////////////////
+
