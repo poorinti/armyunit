@@ -140,7 +140,7 @@
                                         <a href="{{url('/cco/edit/'.$row->cco_id)}}{{ "?page=".Request::get('page') }}{{isset($search) ? '&search='.$search : '' }}{{isset($cco_dep_id) ? '&cco_dep_id='.$cco_dep_id : '' }}{{isset($cco_provinces) ? '&cco_provinces='.$cco_provinces : '' }}{{isset($cco_education) ? '&cco_education='.$cco_education : '' }}{{isset($cco_disease) ? '&cco_disease='.$cco_disease : '' }}{{isset($cco_rank) ? '&cco_rank='.$cco_rank : '' }}{{isset($cco_amphoe) ? '&cco_amphoe='.$cco_amphoe : '' }}{{isset($cco_wantto) ? '&cco_wantto='.$cco_wantto : '' }}" >
 
 
-                                        <img src="{{isset($row->cco_image) ? asset($row->cco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->cco_image) ? asset($row->cco_image) : '' }}" width="100px" height="100px" class="mx-auto" >
+                                        <img src="{{isset($row->cco_image) ? asset($row->cco_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->cco_image) ? asset($row->cco_image) : '' }}" width="100px" height="100px" class="rounded" >
                                         </a>
                                     </td>
 
