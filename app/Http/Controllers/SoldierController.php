@@ -366,6 +366,7 @@ class SoldierController extends Controller
             $soldier_dep_id = isset($request->soldier_dep_id) ? $request->soldier_dep_id : '';
             $soldier_provinces  =isset($request->soldier_provinces) ? $request->soldier_provinces : '' ;
             $soldier_amphoe=isset($request->soldier_amphoe) ? $request->soldier_amphoe : '' ;
+            $soldier_wantto=isset($request->soldier_wantto) ? $request->soldier_wantto : '' ;
 
             $soldier = Soldier::Where('soldier_id','=',$soldier_id)->first(); /// get คือ มีหลายตั้งหลายเร็ค // first เอาอันเดียว
 
@@ -376,7 +377,7 @@ class SoldierController extends Controller
 
         // dd($soldier_provinces);
             if($soldier){
-                return view('admin.soldier.edit',compact('page','soldier','soldier_dep_id','search','provinces','amphoes','soldier_provinces','soldier_amphoe'));
+                return view('admin.soldier.edit',compact('page','soldier','soldier_dep_id','search','provinces','amphoes','soldier_provinces','soldier_amphoe','soldier_wantto'));
             }
             else {
             return  view('erroe.403');

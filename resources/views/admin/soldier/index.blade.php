@@ -135,7 +135,7 @@
                                     @if ($ans)
                                     @foreach ( $ans as $row )
                                     {{-- <img src="{{isset($row->nco_image) ? asset($row->nco_image) : '/image/logo/'.{{$row}}.'JPG'}}" alt="" width="1000px" height="1000px" class="mx-auto my-2" > --}}
-                                    <img src="{{isset($row->ans_image) ? asset($row->ans_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->ans_image) ? asset($row->ans_image) : '' }}" alt="" width="1000px" height="1000px" class="mx-auto my-2" >
+                                    <img src="{{isset($row->ans_image) ? asset($row->ans_image) : '/image/logo/logo1.png'}}" alt="{{ isset($row->ans_image) ? asset($row->ans_image) : '' }}" alt="" width="100px" height="100px" class="mx-auto my-2" >
                                     @endforeach
                                     @endif
 
