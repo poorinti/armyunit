@@ -62,7 +62,7 @@
                     @endif
                     <div class="col-md-4">
                         <div class="card">
-                            <a href="{{ '/soldier/all?page='.request()->page.'&search='.request()->search.'&soldier_dep_id='.request()->soldier_dep_id.'&soldier_provinces='.request()->soldier_provinces.'&soldier_education='.request()->soldier_education.'&soldier_disease='.request()->soldier_disease.'&soldier_amphoe='.request()->soldier_amphoe.'&soldier_wantto='.request()->soldier_wantto.'&soldier_education='.request()->soldier_education}}" class="text-black bg-purple-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>     กลับ</a>
+                            <a href="{{ '/soldier/all?page='.request()->page.'&search='.request()->search.'&soldier_dep_id='.request()->soldier_dep_id.'&soldier_provinces='.request()->soldier_provinces.'&soldier_education='.request()->soldier_education.'&soldier_disease='.request()->soldier_disease.'&soldier_amphoe='.request()->soldier_amphoe.'&soldier_wantto='.request()->soldier_wantto.'&soldier_want_nco='.request()->soldier_want_nco}}" class="text-black bg-purple-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>     กลับ</a>
                             <div class="bg-yellow-100 card-header ">รูปประจำตัว</div>
                             <div class="justify-center mx-auto text-center card-body ">
                                 <img src="{{isset($soldier->soldier_image) ? asset($soldier->soldier_image) : '/image/logo/logo1.png'}}" alt="{{ isset($soldier->soldier_image) ? asset($soldier->soldier_image) : '' }}" alt="imageshow" width="200px" height="200px">
@@ -565,7 +565,7 @@
                                                 @enderror --}}
 
                                             <br>
-                                             <a href="{{ '/soldier/all?page='.request()->page.'&search='.request()->search.'&soldier_dep_id='.request()->soldier_dep_id.'&soldier_provinces='.request()->soldier_provinces.'&soldier_education='.request()->soldier_education.'&soldier_disease='.request()->soldier_disease.'&soldier_amphoe='.request()->soldier_amphoe.'&soldier_wantto='.request()->soldier_wantto  }}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
+                                             <a href="{{ '/soldier/all?page='.request()->page.'&search='.request()->search.'&soldier_dep_id='.request()->soldier_dep_id.'&soldier_provinces='.request()->soldier_provinces.'&soldier_education='.request()->soldier_education.'&soldier_disease='.request()->soldier_disease.'&soldier_amphoe='.request()->soldier_amphoe.'&soldier_wantto='.request()->soldier_wantto.'&soldier_want_nco='.request()->soldier_want_nco}}" class="text-black bg-yellow-400 btn btn-primary"> <i class="fa fa-arrow-left"></i>      กลับ</a>
 
                                             <button type="submit" value="อัพเดท" class="text-black bg-blue-300 btn btn-primary">อัพเดท </button>
                                         </form>
