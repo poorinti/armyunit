@@ -93,7 +93,7 @@
                     <div class="my-3 input-group">
                         @php
                         $lawArr = array();
-                        $lawArr=['ม.35(3)','ม.35(7)','ไม่เข้าร่วม']
+                        $lawArr=['ม.35(3)','ม.35(7)']
                         @endphp
 
                         <select class="mr-2 form-select-sm" name="law_lawchk" id="law_lawchk" >
