@@ -132,7 +132,8 @@ class NcoController extends Controller
                     //SUBSTRING_INDEX(SUBSTRING_INDEX(soldier_intern,'/', 2), '/',-1) ,SUBSTRING_INDEX(soldier_intern,'/',1);
                     // ->orderByRaw("SUBSTRING_INDEX(SUBSTRING_INDEX(nco_intern,'/', 2), '/',-1) desc")
                     // ->orderByRaw("SUBSTRING_INDEX(nco_intern,'/',1) desc")
-                     ->orderBy('nco_name')
+                    ->orderBy('nco_rank_index','desc')
+                    ->orderBy('nco_name')
                      // ->orderBy('created_at','desc')
                      ->paginate(15);
 
