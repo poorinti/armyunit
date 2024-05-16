@@ -71,7 +71,8 @@ class ExcelController extends Controller
             $soldiers = (new FastExcel)->import($excel_import, function ($line) {
 
                 $soldier_dep_id=$line['soldier_dep_id'];
-
+                $soldier_name=$line['soldier_name'];
+                // dd($soldier_name);
 
                 $Dep=Department::where('dep_id','=',$soldier_dep_id)->first();
 
@@ -86,7 +87,7 @@ class ExcelController extends Controller
                 return Soldier::insert([
 
                     'soldier_id' =>$line['soldier_id']
-                    ,'soldier_name'=>trim($line['soldier_name'])
+                    ,'soldier_name'=>($line['soldier_name'])
                     ,'soldier_rtanumber'=>trim($line['soldier_rtanumber'])
                     ,'soldier_address'=>trim($line['soldier_address'])
                     ,'soldier_job'=>trim($line['soldier_job'])
